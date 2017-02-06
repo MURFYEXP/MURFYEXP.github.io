@@ -100,8 +100,8 @@ w[i]">
 
 思路解法1设第i个位置上的储水量w[i]，故容量总储水量为各位置的储水之和。
 w[i]">
-<meta property="og:image" content="https://murfyexp.github.io/../images/water.jpg">
-<meta property="og:updated_time" content="2017-02-06T00:21:31.000Z">
+<meta property="og:image" content="https://murfyexp.github.io/images/water.jpg">
+<meta property="og:updated_time" content="2017-02-06T02:19:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="容器盛水问题">
 <meta name="twitter:description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
@@ -109,7 +109,7 @@ w[i]">
 
 思路解法1设第i个位置上的储水量w[i]，故容量总储水量为各位置的储水之和。
 w[i]">
-<meta name="twitter:image" content="https://murfyexp.github.io/../images/water.jpg">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/water.jpg">
 
 
 
@@ -363,7 +363,7 @@ w[i]">
       
         <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,</div><div class="line">可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法</div></pre></td></tr></table></figure>
 <p>如图所示
-<img src="../images/water.jpg" alt="water"></p>
+<img src="/images/water.jpg" alt="water"></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h4><p>设第i个位置上的储水量w[i]，故容量总储水量为各位置的储水之和。
 w[i]的计算方法，根据储水特点，短板原理，即i位置左侧最大值lmax与右侧最大值rmax中较小的一侧决定该位置的储水能力。
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">w[i] = MAX&#123;0, MIN(lmax, rmax) - arr[i]&#125;;</div></pre></td></tr></table></figure></p>

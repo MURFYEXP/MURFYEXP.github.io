@@ -92,7 +92,7 @@
 <meta property="og:url" content="https://murfyexp.github.io/2017/02/04/俄国沙皇问题/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="问题12给定一个 N*2 的二维数组,看作是一个个二元组,例如[[a1,b1],[a2,b2],[a3,b3]], 规定:一个如果想把二元组甲放在二元组乙上,甲中的 a 值必须大于乙中的 a 值,甲中的 b值必须大于乙中的 b 值。如果在二维数组中随意选择二元组,请问二元组最多可以往上摞几个?例如:[[5,4],[6,4],[6,7],[2,3]], 最大数量可以摞 3 个,[2,3] =&amp;gt;">
-<meta property="og:updated_time" content="2017-02-05T22:39:18.000Z">
+<meta property="og:updated_time" content="2017-02-06T02:28:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="俄国沙皇问题">
 <meta name="twitter:description" content="问题12给定一个 N*2 的二维数组,看作是一个个二元组,例如[[a1,b1],[a2,b2],[a3,b3]], 规定:一个如果想把二元组甲放在二元组乙上,甲中的 a 值必须大于乙中的 a 值,甲中的 b值必须大于乙中的 b 值。如果在二维数组中随意选择二元组,请问二元组最多可以往上摞几个?例如:[[5,4],[6,4],[6,7],[2,3]], 最大数量可以摞 3 个,[2,3] =&amp;gt;">
@@ -348,6 +348,7 @@
 
       
         <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定一个 N*2 的二维数组,看作是一个个二元组,例如[[a1,b1],[a2,b2],[a3,b3]], 规定:一个如果想把二元组甲放在二元组乙上,甲中的 a 值必须大于乙中的 a 值,甲中的 b值必须大于乙中的 b 值。如果在二维数组中随意选择二元组,请问二元组最多可以往上摞几个?</div><div class="line">例如:[[5,4],[6,4],[6,7],[2,3]], 最大数量可以摞 3 个,[2,3] =&gt; [5,4] =&gt; [6,7] 要求:实现时间复杂度 O(N*logN)的解法</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>在解决这道题目之前，首先搞清楚一个问题：<a href="https://murfyexp.github.io/">最长递增子序列</a> ；<strong>最长递增子序列</strong>为本题的算法原型。</p>
 <p>那么问题来了，最长递增子序列是对一元数列的求解。此问题是二元组。<strong>如何将二元转换到一元</strong>，将复杂问题转换到我们已知的算法原型上来，成为本题的破题点。这也是俄国沙皇问题最精彩的地方。</p>
 <p>重要思想：<code>控制变量</code><br>1.以a的值进行升序排列<br>2.当a有序后，由b的值组成一元序列，对该序列查找最长子序列</p>

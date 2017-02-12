@@ -86,21 +86,16 @@
 
 
 
-<meta name="description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
-如图所示">
+<meta name="description" content="问题12给定一个数组 arr,该数组无序,但每个值均为正数,再给定一个正数 k。求 arr 的所有子数组中所有元素相加和为 k 的最长子数组长度。 例如,arr=[1,2,1,1,1],k=3。累加和为 3 的最长子数组为[1,1,1],所以结果返回 3。时间复杂度 O(N),额外空间复杂度 O(1)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="容器盛水问题">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/05/1-2/index.html">
+<meta property="og:title" content="最长子数组长度">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/09/2-2/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
-如图所示">
-<meta property="og:image" content="https://murfyexp.github.io/images/water.jpg">
-<meta property="og:updated_time" content="2017-02-07T07:28:35.000Z">
+<meta property="og:description" content="问题12给定一个数组 arr,该数组无序,但每个值均为正数,再给定一个正数 k。求 arr 的所有子数组中所有元素相加和为 k 的最长子数组长度。 例如,arr=[1,2,1,1,1],k=3。累加和为 3 的最长子数组为[1,1,1],所以结果返回 3。时间复杂度 O(N),额外空间复杂度 O(1)">
+<meta property="og:updated_time" content="2017-02-12T22:04:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="容器盛水问题">
-<meta name="twitter:description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
-如图所示">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/water.jpg">
+<meta name="twitter:title" content="最长子数组长度">
+<meta name="twitter:description" content="问题12给定一个数组 arr,该数组无序,但每个值均为正数,再给定一个正数 k。求 arr 的所有子数组中所有元素相加和为 k 的最长子数组长度。 例如,arr=[1,2,1,1,1],k=3。累加和为 3 的最长子数组为[1,1,1],所以结果返回 3。时间复杂度 O(N),额外空间复杂度 O(1)">
 
 
 
@@ -128,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/05/1-2/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/09/2-2/"/>
 
 
 
 
 
-  <title> 容器盛水问题 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 最长子数组长度 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/05/1-2/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/09/2-2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -291,7 +286,7 @@
             
             
               
-                容器盛水问题
+                最长子数组长度
               
             
           </h1>
@@ -306,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-05T00:50:21-08:00">
-                2017-02-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-09T19:00:10-08:00">
+                2017-02-09
               </time>
             
 
@@ -325,8 +320,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/05/1-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/1-2/" itemprop="commentCount"></span>
+                <a href="/2017/02/09/2-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/2-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,7 +331,7 @@
 
           
           
-             <span id="/2017/02/05/1-2/" class="leancloud_visitors" data-flag-title="容器盛水问题">
+             <span id="/2017/02/09/2-2/" class="leancloud_visitors" data-flag-title="最长子数组长度">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,31 +358,17 @@
       
 
       
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,</div><div class="line">可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法</div></pre></td></tr></table></figure>
-<p>如图所示
-<img src="/images/water.jpg" alt="water"></p>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定一个数组 arr,该数组无序,但每个值均为正数,再给定一个正数 k。求 arr 的所有子数组中所有元素相加和为 k 的最长子数组长度。 例如,arr=[1,2,1,1,1],k=3。累加和为 3 的最长子数组为[1,1,1],所以结果返回 3。</div><div class="line">时间复杂度 O(N),额外空间复杂度 O(1)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h4><p>设第i个位置上的储水量w[i]，故容量总储水量为各位置的储水之和。
-w[i]的计算方法，根据储水特点，短板原理，即i位置左侧最大值lmax与右侧最大值rmax中较小的一侧决定该位置的储水能力。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">w[i] = MAX&#123;0, MIN(lmax, rmax) - arr[i]&#125;;</div></pre></td></tr></table></figure></p>
-<p>实现过程中，需注意的两个小地方<br>1. 各位置最大值之前，<code>先初始化lmax，rmax</code><br>2. <code>for (int i = 1; i &lt; length - 1; i++)</code>i的遍历范围</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>未排序正数数组中累加和为给定值的最长子数组长度问题,仍是<code>双指针</code>系列的问题。<code>但与之前不同的是，本题左右工作指针从同一侧出发</code>。L和R都被初始化为0,指向arr[0]元素。</p>
+<p>左右工作指针的<code>移动策略</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sum &lt; k 时，R++；sum &gt;= k 时，L++；  </div><div class="line">R到达数组末尾时，循环结束跳出；</div></pre></td></tr></table></figure></p>
+<p>我们的目标是求最长子数组的长度，根据贪心的思想，<code>当L到达目标子数组的左端</code>，sum &lt; k(目标累加和)时，我们的L指针固定不动，<code>R指针应该尽可能的向右移动，直到到达目标子数组的最右端</code>。sum = k时，记录子数组 <code>len = R - L</code> ; 
+R再继续右移，那么sum &gt; k ，我们的L指针要向左移动一位 L++，<code>同样的 原理求子数组的左端为L++的最大长度</code>。
+<code>R到达数组最右端，不管sum值如何，L移动，len只会不断减少</code> 。故R到达最 右端时，直接结束跳出循环</p>
+<p>通过上面的说明，可以看出左右工作指针的移动策略，可以<code>保证我们不会错过最长子数组长度的记录，并且遍历到所有累加和小于k的子数组</code>。</p>
 <p>核心代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater1</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//边界条件</span></div><div class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span> || length &lt; <span class="number">3</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> value = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">//计算各位置最大值之前，先初始化lmax，rmax</span></div><div class="line">        <span class="keyword">int</span> lmax = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> rmax = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; i; l++)</div><div class="line">        &#123;</div><div class="line">            lmax = max(lmax ,arr[l]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = length - <span class="number">1</span>; i &lt; r; r--)</div><div class="line">        &#123;</div><div class="line">            rmax = max(rmax ,arr[r]);</div><div class="line">        &#125;</div><div class="line">        w[i] = max(<span class="number">0</span>, min(lmax, rmax) - arr[i]);</div><div class="line">        value += w[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>枚举计算w[i],再求和。此时的时间复杂度为⊖(n^2) </p>
-<h4 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h4><p>优化解法1中对每个位置的左右两侧最大值的计算。<code>以空间换时间</code>，利用
-Left数组，Right数组分别记录每个位置左侧和右侧的最大值
-核心代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater2</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//边界条件</span></div><div class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span> || length &lt; <span class="number">3</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> value = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> lmax = arr[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> rmax = arr[length - <span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> Left[length];</div><div class="line">    <span class="keyword">int</span> right[length];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>; l &lt; length; l++)</div><div class="line">    &#123;</div><div class="line">        lmax = max(lmax ,arr[l]);</div><div class="line">        Left[l] = lmax;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> r = length - <span class="number">2</span>; r &gt;= <span class="number">0</span>; r--)</div><div class="line">    &#123;</div><div class="line">        rmax = max(rmax ,arr[r]);</div><div class="line">        right[r] = rmax;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        w[i] = max(<span class="number">0</span>, min(Left[i], right[i]) - arr[i]);</div><div class="line">        value += w[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>优化后的时间复杂度降为⊖(n)</p>
-<h4 id="解法3"><a href="#解法3" class="headerlink" title="解法3"></a>解法3</h4><p>优化解法2，<code>干掉Left数组</code>，由于遍历的过程为从左到右，我们仅需一个Lmax变量记录当前最大即可完成Left数组的功能。
-部分代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater3</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        lmax = max(lmax ,arr[i]);</div><div class="line">        w[i] = max(<span class="number">0</span>, min(lmax, right[i]) - arr[i]);</div><div class="line">        value += w[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>相比解法2，<code>在空间上得到优化</code>，只要到一个数组。时间复杂度仍为⊖(n)</p>
-<h4 id="解法4"><a href="#解法4" class="headerlink" title="解法4"></a>解法4</h4><p>这里要介绍一个强大的解题利器，双指针。4个变量立即解决问题（服不服！<br>现在先介绍各变量的含义:<code>l, lmax, r, rmax</code><br><code>l</code>: 左侧工作指针 <code>lmax</code>: 保存i位置左侧最大值<br><code>r</code>: 右侧工作指针 <code>rmax</code>: 保存j位置右侧最大值  </p>
-<p>算法流程介绍说明：<br>arr数组部分值:<code>...5 4 6 8....3 7...</code><br>我们来看看左侧工作指针是如何工作的。假设现在<code>l 指向 4, r 指向 3, lmax = 5, rmax = 7;</code>此时arr值为4的位置处储水量可以确定下来，即使目前其右侧还未访问到，不知道它们的值。但是<code>由于rmax为7,则4的位置右侧已经出现大于lmax的值了</code>。由<strong>短板原理</strong>可得，4位置处的储水量为<code>5 - 4 = 1</code>。l向右移动一位，四个变量的值<code>l 指向 6, r 指向 3, lmax = 5, rmax = 7</code></p>
-<p>当l 指向 8时，<code>工作原理同上</code>，3位置处的出水量可以确定，其值为<code>7 - 3 =4</code>，r向左移动。<code>左右工作指针相遇即循环结束</code>，遍历完成<br>部分代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater4</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> value = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> l = <span class="number">1</span>; <span class="keyword">int</span> r = length - <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> lmax = arr[<span class="number">0</span>]; <span class="keyword">int</span> rmax = arr[length - <span class="number">1</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (l &lt;= r)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (lmax &lt;= rmax)</div><div class="line">        &#123;</div><div class="line">            value += max(<span class="number">0</span>, lmax - arr[l]);</div><div class="line">            <span class="comment">//更新lmax后再右移</span></div><div class="line">            lmax = max(lmax, arr[l++]); </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            value += max(<span class="number">0</span>, rmax - arr[r]);</div><div class="line">            <span class="comment">//更新rmax后再左移</span></div><div class="line">            rmax = max(rmax, arr[r--]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>小提醒<code>arr[l++]先取值，再自加</code><br>时间复杂度⊖(n)，空间复杂度⊖(1)，简直精彩</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxLength</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> k)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span> || length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> sum = arr[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> L = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> R = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (R &lt; length)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">//sum &gt;= k, sum先减，再移动L</span></div><div class="line">        <span class="keyword">if</span> (sum == k)</div><div class="line">        &#123;</div><div class="line">            len = max(len, R - L + <span class="number">1</span>);</div><div class="line">            sum -= arr[L];</div><div class="line">            L++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; k)</div><div class="line">        &#123;</div><div class="line">            sum -= arr[L];</div><div class="line">            L++;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//sum &lt; k, 先移动R，sum再加</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            R++;</div><div class="line">            <span class="comment">//检查是否越界</span></div><div class="line">            <span class="keyword">if</span> (R == length) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            sum += arr[R];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> len;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>注意</code>：sum值为L到R的子数组累加和，子数组为闭区间，<code>sum值包含l，r位置的元素值</code></p>
 
       
     </div>
@@ -425,8 +406,8 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/04/1-1/" rel="next" title="俄国沙皇问题">
-                <i class="fa fa-chevron-left"></i> 俄国沙皇问题
+              <a href="/2017/02/07/2-1/" rel="next" title="两个子数组最大的累加和">
+                <i class="fa fa-chevron-left"></i> 两个子数组最大的累加和
               </a>
             
           </div>
@@ -434,10 +415,6 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/06/1-3/" rel="prev" title="两圆柱围成面积">
-                两圆柱围成面积 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,8 +440,8 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/05/1-2/"
-           data-title="容器盛水问题" data-url="https://murfyexp.github.io/2017/02/05/1-2/">
+      <div class="ds-thread" data-thread-key="2017/02/09/2-2/"
+           data-title="最长子数组长度" data-url="https://murfyexp.github.io/2017/02/09/2-2/">
       </div>
     
   </div>
@@ -584,7 +561,7 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解法1"><span class="nav-number">2.1.</span> <span class="nav-text">解法1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法2"><span class="nav-number">2.2.</span> <span class="nav-text">解法2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法3"><span class="nav-number">2.3.</span> <span class="nav-text">解法3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法4"><span class="nav-number">2.4.</span> <span class="nav-text">解法4</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li></ol></div>
             
 
           </div>

@@ -92,7 +92,7 @@
 <meta property="og:url" content="https://murfyexp.github.io/2017/02/07/2-1/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="问题12给定一个数组,其中当然有很多的子数组,在所有两个子数组的组合中,找到相 加和最大的一组,要求两个子数组无重合的部分。最后返回累加和.时间复杂度达到 O(N)">
-<meta property="og:updated_time" content="2017-02-12T22:44:29.000Z">
+<meta property="og:updated_time" content="2017-02-13T00:31:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两个子数组最大的累加和">
 <meta name="twitter:description" content="问题12给定一个数组,其中当然有很多的子数组,在所有两个子数组的组合中,找到相 加和最大的一组,要求两个子数组无重合的部分。最后返回累加和.时间复杂度达到 O(N)">
@@ -360,7 +360,7 @@
       
         <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定一个数组,其中当然有很多的子数组,在所有两个子数组的组合中,找到相 加和最大的一组,要求两个子数组无重合的部分。最后返回累加和.</div><div class="line">时间复杂度达到 O(N)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>在解决这道题目之前，首先搞清楚一个问题：<a href="https://murfyexp.github.io/"><font color="DarkSlateGray" size="4"> 子数组最大的累加和 </font></a>；<strong>单个子数组最大的累加和</strong>为本题的算法原型。  </p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>在解决这道题目之前，首先搞清楚一个问题：<a href="https://murfyexp.github.io/"><font color="DarkSlateGray" size="3"> 子数组最大的累加和 </font></a>；<strong>单个子数组最大的累加和</strong>为本题的算法原型。  </p>
 <p><code>如何将本题转换到算法原型上去呢？</code>两个子数组肯定是不相容的。我们人为地<code>将数组划分成左右两个部分</code>，分别对两个子数组求最大累加和，转型成功！该问题得到解决  </p>
 <p>要求两个子数组最大的累加和，我们一定要枚举出所有情况，最终求得和值最大的那个。遍历一遍数组，<code>每个位置处将数组划分成两部分</code>。这个过程的时间复杂度已经是O(N)。要完成题目要求的O(N)复杂度，我们<code>计算子数组的最大累加和必须是O(1)</code>。<br>如何解决？很简单。<code>用空间换时间</code>，先计算出各位置处的最大累加和，<code>用数组保存起来</code>。遍历到该位置时，直接从数组中取数即可。  </p>
 <p>算法实现：<br>定义两个数组L和R，<code>L数组保存记录各位置左侧子数组最大累加和(0到当前位置)</code>，R数组保存记录各位置右侧子数组最大累加和(当前位置到最后一个元素)。由之前<a href="https://murfyexp.github.io/2017/02/05/1-2/">容器盛水问题的解法3</a>的经验，<code>直接干掉L数组</code>，一个R数组便可解决问题  </p>
@@ -490,7 +490,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

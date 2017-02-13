@@ -89,10 +89,10 @@
 <meta name="description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="子矩阵的最大和">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/12/子矩阵的最大和/index.html">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/12/3-1/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
-<meta property="og:updated_time" content="2017-02-13T01:32:38.000Z">
+<meta property="og:updated_time" content="2017-02-13T22:04:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="子矩阵的最大和">
 <meta name="twitter:description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/12/子矩阵的最大和/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/12/3-1/"/>
 
 
 
@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/12/子矩阵的最大和/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/12/3-1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -320,8 +320,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/12/子矩阵的最大和/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/子矩阵的最大和/" itemprop="commentCount"></span>
+                <a href="/2017/02/12/3-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/3-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -331,7 +331,7 @@
 
           
           
-             <span id="/2017/02/12/子矩阵的最大和/" class="leancloud_visitors" data-flag-title="子矩阵的最大和">
+             <span id="/2017/02/12/3-1/" class="leancloud_visitors" data-flag-title="子矩阵的最大和">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -366,9 +366,9 @@
 <p>如何将二维矩阵压缩成一维数组，并转化成子数组最大累加和问题。<code>我们将子矩阵的每一列求和，然后和值用s数组保存起来</code>，转型成功。这也是<code>压缩矩阵常用到的技巧</code>  </p>
 <p>若<code>矩阵为m*n矩阵</code>，在矩阵的长和宽中，我们应<code>选取数值较小的一个，作为最外层for循环的趟数</code></p>
 <p>核心代码
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">int SubMatrixMaxSum(int (*m)[line])</div><div class="line">&#123;</div><div class="line">    if (m == NULL || row == 0 || line == 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    //res初始化为非常小的负数</div><div class="line">    int res = -65535;</div><div class="line">    for (int i = 0; i &lt; row; i++)</div><div class="line">    &#123;</div><div class="line">        int* s = new int[line];</div><div class="line">        for (int j = i; j &lt; row; j++)</div><div class="line">        &#123;</div><div class="line">            int cur = 0;</div><div class="line">            for (int k = 0; k &lt; line; k++)</div><div class="line">            &#123;</div><div class="line">                //生成s数组</div><div class="line">                s[k] += m[j][k];</div><div class="line">                cur += s[k];</div><div class="line">                res = max(res, cur);</div><div class="line">                cur = cur &lt; 0 ? 0 : cur;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return res;</div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int matrix[row][line] = &#123; &#123; 0, -2, -7, 0&#125;, &#123;9, 2, -6, 2&#125;,</div><div class="line">        &#123;-4, 1, -4, 1&#125;, &#123;-1, 8, 0, -2&#125; &#125;;</div><div class="line">    printf("res: %d\n", SubMatrixMaxSum(matrix));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">SubMatrixMaxSum</span><span class="params">(<span class="keyword">int</span> m[][line])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (m == <span class="literal">NULL</span> || row == <span class="number">0</span> || line == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//res初始化为非常小的负数</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">-65535</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* s = <span class="keyword">new</span> <span class="keyword">int</span>[line];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; row; j++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">int</span> cur = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; line; k++)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">//生成s数组</span></div><div class="line">                s[k] += m[j][k];</div><div class="line">                cur += s[k];</div><div class="line">                res = max(res, cur);</div><div class="line">                cur = cur &lt; <span class="number">0</span> ? <span class="number">0</span> : cur;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> matrix[row][line] = &#123; &#123; <span class="number">0</span>, <span class="number">-2</span>, <span class="number">-7</span>, <span class="number">0</span>&#125;, &#123;<span class="number">9</span>, <span class="number">2</span>, <span class="number">-6</span>, <span class="number">2</span>&#125;,</div><div class="line">        &#123;<span class="number">-4</span>, <span class="number">1</span>, <span class="number">-4</span>, <span class="number">1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">-2</span>&#125; &#125;;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"res: %d\n"</span>, SubMatrixMaxSum(matrix));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>每一个子矩阵对应一个s数组</code>，故在遍历的过程中，每趟都需要new一个新的s数组用来保存当前子矩阵。同理，当前和值变量<code>cur每趟都需要初始化为0</code><br><code>cur = cur &lt; 0 ? 0 : cur;</code>可放在过程的<code>开始或者结束</code>，意思没有差别。</p>
-<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p><code>二维数组的传参方法</code>，这里我们使用的是方法二，<code>形参为指向数组的指针并给出数组长度。</code><a href="http://blog.csdn.net/gqb_driver/article/details/8886687" target="_blank" rel="external"><font color="DarkSlateGray" size="3"> 具体C/C++ 语 言二维数组的传参方法总结</font></a></p>
+<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p><code>二维数组的传参方法</code>，这里我们使用的是方法一，<code>形参为指向数组的指针并给出数组长度。</code><a href="http://blog.csdn.net/gqb_driver/article/details/8886687" target="_blank" rel="external"><font color="DarkSlateGray" size="3"> 具体C/C++ 语 言二维数组的传参方法总结</font></a></p>
 
       
     </div>
@@ -440,8 +440,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/12/子矩阵的最大和/"
-           data-title="子矩阵的最大和" data-url="https://murfyexp.github.io/2017/02/12/子矩阵的最大和/">
+      <div class="ds-thread" data-thread-key="2017/02/12/3-1/"
+           data-title="子矩阵的最大和" data-url="https://murfyexp.github.io/2017/02/12/3-1/">
       </div>
     
   </div>

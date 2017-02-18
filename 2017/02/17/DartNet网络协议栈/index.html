@@ -87,21 +87,21 @@
 
 
 <meta name="description" content="起因要想弄懂一个技术，我一贯的学习路线，就去读它的源码，再动手实现它。自己动手主动学习，一点一点地将它搭建起来。一来满足自己的好奇欲，二来本质的深刻理解使我能够更放心地使用它。于是上知乎搜索如何更好的学习TCP/IP协议，就淘到了达特茅斯的lab DartNet，该实验有框架代 码。省去很多琐碎的工作。正合我意，撸起袖子开启了网络协议栈的不归路。
-DartNet介绍DartNet是一个类TCP/I">
+我将该项目的所有代码实现托管在github上， 传">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DartNet网络协议栈">
 <meta property="og:url" content="https://murfyexp.github.io/2017/02/17/DartNet网络协议栈/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="起因要想弄懂一个技术，我一贯的学习路线，就去读它的源码，再动手实现它。自己动手主动学习，一点一点地将它搭建起来。一来满足自己的好奇欲，二来本质的深刻理解使我能够更放心地使用它。于是上知乎搜索如何更好的学习TCP/IP协议，就淘到了达特茅斯的lab DartNet，该实验有框架代 码。省去很多琐碎的工作。正合我意，撸起袖子开启了网络协议栈的不归路。
-DartNet介绍DartNet是一个类TCP/I">
+我将该项目的所有代码实现托管在github上， 传">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/DartNet.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/DartNet Communications Stack.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/DartNet APIs.png">
-<meta property="og:updated_time" content="2017-02-18T18:44:07.000Z">
+<meta property="og:updated_time" content="2017-02-18T18:57:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DartNet网络协议栈">
 <meta name="twitter:description" content="起因要想弄懂一个技术，我一贯的学习路线，就去读它的源码，再动手实现它。自己动手主动学习，一点一点地将它搭建起来。一来满足自己的好奇欲，二来本质的深刻理解使我能够更放心地使用它。于是上知乎搜索如何更好的学习TCP/IP协议，就淘到了达特茅斯的lab DartNet，该实验有框架代 码。省去很多琐碎的工作。正合我意，撸起袖子开启了网络协议栈的不归路。
-DartNet介绍DartNet是一个类TCP/I">
+我将该项目的所有代码实现托管在github上， 传">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/DartNet/DartNet.png">
 
 
@@ -394,6 +394,7 @@ DartNet介绍DartNet是一个类TCP/I">
 
       
         <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>要想弄懂一个技术，我一贯的学习路线，<code>就去读它的源码，再动手实现它</code>。自己动手主动学习，一点一点地将它搭建起来。<code>一来满足自己的好奇欲，二来本质的深刻理解使我能够更放心地使用它</code>。于是上知乎搜索如何更好的学习TCP/IP协议，就淘到了达特茅斯的lab DartNet，该实验有框架代 码。省去很多琐碎的工作。正合我意，撸起袖子开启了网络协议栈的不归路。</p>
+<p>我将该项目的所有代码实现托管在github上，<a href="https://github.com/MURFYEXP/CS60-DartNet" target="_blank" rel="external"><font color="DarkSlateGray" size="4"> 传送门 </font></a>.欢迎start</p>
 <h3 id="DartNet介绍"><a href="#DartNet介绍" class="headerlink" title="DartNet介绍"></a>DartNet介绍</h3><p>DartNet是一个<code>类TCP/IP协议栈</code>。<code>它的核心是简单可靠传输(SRT)层和简单网络协议 (SNP)层</code>。
 Simple Reliable Transport(SRT)实现了运输层TCP的功能 ，保证数据流的可靠传输。Simple Network Protocol (SNP)实现了网络层IP的功能，完成网络层的两个重要功能：转发和选路。</p>
 <p>DartNet整个<code>实验运行起来的框架</code>

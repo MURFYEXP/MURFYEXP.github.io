@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://murfyexp.github.io/about/index.html</loc>
+    
+    <lastmod>2017-02-18T23:53:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://murfyexp.github.io/2017/02/17/DartNet%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%A0%88/</loc>
     
     <lastmod>2017-02-18T18:57:51.000Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>https://murfyexp.github.io/2017/02/02/%E7%99%BB%E6%9C%88/</loc>
     
     <lastmod>2017-02-18T07:36:50.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://murfyexp.github.io/about/index.html</loc>
-    
-    <lastmod>2017-02-18T07:22:17.000Z</lastmod>
     
   </url>
   

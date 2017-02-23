@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://murfyexp.github.io/2017/02/20/JOS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2017-02-23T05:46:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>JOS操作系统</title>
+        <pubTime>2017-02-20T08:25:47.000Z</pubTime>
+        
+        <tag>OS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JOS操作系统" url="https://murfyexp.github.io/categories/JOS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://murfyexp.github.io/2017/02/21/3-3/</loc>
     <lastmod>2017-02-22T07:54:22.000Z</lastmod>
     <data>
@@ -23,26 +43,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>https://murfyexp.github.io/2017/02/20/JOS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2017-02-20T08:31:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>JOS操作系统</title>
-        <pubTime>2017-02-20T08:25:47.000Z</pubTime>
-        
-        <tag>OS</tag>
-         
-         
-           
-             
-              <breadCrumb title="JOS操作系统" url="https://murfyexp.github.io/categories/JOS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>https://murfyexp.github.io/2017/02/18/%E7%AE%80%E5%8D%95%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE-SRT/</loc>
@@ -239,7 +239,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://murfyexp.github.io/2017/02/02/hello-world/</loc>

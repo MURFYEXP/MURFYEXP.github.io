@@ -86,21 +86,18 @@
 
 
 
-<meta name="description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
-如图所示">
+<meta name="description" content="问题二叉树后序非递归遍历实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="容器盛水问题">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/05/1-2/index.html">
+<meta property="og:title" content="二叉树后序非递归遍历">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/26/8-1/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
-如图所示">
-<meta property="og:image" content="https://murfyexp.github.io/images/water.jpg">
-<meta property="og:updated_time" content="2017-02-18T07:37:47.000Z">
+<meta property="og:description" content="问题二叉树后序非递归遍历实现">
+<meta property="og:image" content="https://murfyexp.github.io/images/后序遍历.jpg">
+<meta property="og:updated_time" content="2017-02-26T21:34:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="容器盛水问题">
-<meta name="twitter:description" content="问题12给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法
-如图所示">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/water.jpg">
+<meta name="twitter:title" content="二叉树后序非递归遍历">
+<meta name="twitter:description" content="问题二叉树后序非递归遍历实现">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/后序遍历.jpg">
 
 
 
@@ -128,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/05/1-2/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/26/8-1/"/>
 
 
 
 
 
-  <title> 容器盛水问题 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 二叉树后序非递归遍历 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/05/1-2/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/26/8-1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -297,7 +294,7 @@
             
             
               
-                容器盛水问题
+                二叉树后序非递归遍历
               
             
           </h1>
@@ -312,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-05T00:50:21-08:00">
-                2017-02-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T12:30:28-08:00">
+                2017-02-26
               </time>
             
 
@@ -353,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/05/1-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/1-2/" itemprop="commentCount"></span>
+                <a href="/2017/02/26/8-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/26/8-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,7 +361,7 @@
 
           
           
-             <span id="/2017/02/05/1-2/" class="leancloud_visitors" data-flag-title="容器盛水问题">
+             <span id="/2017/02/26/8-1/" class="leancloud_visitors" data-flag-title="二叉树后序非递归遍历">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,31 +388,20 @@
       
 
       
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定一个非负数的数组,代表一个容器。例如数组[0,1,0,2,1,0,1,3,2,1,2,1],就是 以下图形中黑色的部分。如果用这个容器接水的话,请问可以接多少水?还以这个数组为例,</div><div class="line">可以接 6 格水,就是以下图形中蓝色的部分。 要求:实现时间复杂度 O(N),额外空间复杂度 O(1)的解法</div></pre></td></tr></table></figure>
-<p>如图所示
-<img src="/images/water.jpg" alt="water"></p>
-<a id="more"></a>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h4><p>设第i个位置上的储水量w[i]，故容量总储水量为各位置的储水之和。
-w[i]的计算方法，根据储水特点，短板原理，即i位置左侧最大值lmax与右侧最大值rmax中较小的一侧决定该位置的储水能力。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">w[i] = MAX&#123;0, MIN(lmax, rmax) - arr[i]&#125;;</div></pre></td></tr></table></figure></p>
-<p>实现过程中，需注意的两个小地方<br>1. 各位置最大值之前，<code>先初始化lmax，rmax</code><br>2. <code>for (int i = 1; i &lt; length - 1; i++)</code>i的遍历范围</p>
-<p>核心代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater1</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//边界条件</span></div><div class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span> || length &lt; <span class="number">3</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> value = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">//计算各位置最大值之前，先初始化lmax，rmax</span></div><div class="line">        <span class="keyword">int</span> lmax = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> rmax = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; i; l++)</div><div class="line">        &#123;</div><div class="line">            lmax = max(lmax ,arr[l]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = length - <span class="number">1</span>; i &lt; r; r--)</div><div class="line">        &#123;</div><div class="line">            rmax = max(rmax ,arr[r]);</div><div class="line">        &#125;</div><div class="line">        w[i] = max(<span class="number">0</span>, min(lmax, rmax) - arr[i]);</div><div class="line">        value += w[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>枚举计算w[i],再求和。此时的时间复杂度为⊖(n^2) </p>
-<h4 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h4><p>优化解法1中对每个位置的左右两侧最大值的计算。<code>以空间换时间</code>，利用
-Left数组，Right数组分别记录每个位置左侧和右侧的最大值
-核心代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater2</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//边界条件</span></div><div class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span> || length &lt; <span class="number">3</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> value = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> lmax = arr[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> rmax = arr[length - <span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> Left[length];</div><div class="line">    <span class="keyword">int</span> right[length];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>; l &lt; length; l++)</div><div class="line">    &#123;</div><div class="line">        lmax = max(lmax ,arr[l]);</div><div class="line">        Left[l] = lmax;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> r = length - <span class="number">2</span>; r &gt;= <span class="number">0</span>; r--)</div><div class="line">    &#123;</div><div class="line">        rmax = max(rmax ,arr[r]);</div><div class="line">        right[r] = rmax;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        w[i] = max(<span class="number">0</span>, min(Left[i], right[i]) - arr[i]);</div><div class="line">        value += w[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>优化后的时间复杂度降为⊖(n)</p>
-<h4 id="解法3"><a href="#解法3" class="headerlink" title="解法3"></a>解法3</h4><p>优化解法2，<code>干掉Left数组</code>，由于遍历的过程为从左到右，我们仅需一个Lmax变量记录当前最大即可完成Left数组的功能。
-部分代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater3</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        lmax = max(lmax ,arr[i]);</div><div class="line">        w[i] = max(<span class="number">0</span>, min(lmax, right[i]) - arr[i]);</div><div class="line">        value += w[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>相比解法2，<code>在空间上得到优化</code>，只要到一个数组。时间复杂度仍为⊖(n)</p>
-<h4 id="解法4"><a href="#解法4" class="headerlink" title="解法4"></a>解法4</h4><p>这里要介绍一个强大的解题利器，双指针。4个变量立即解决问题（服不服！<br>现在先介绍各变量的含义:<code>l, lmax, r, rmax</code><br><code>l</code>: 左侧工作指针 <code>lmax</code>: 保存i位置左侧最大值<br><code>r</code>: 右侧工作指针 <code>rmax</code>: 保存j位置右侧最大值  </p>
-<p>算法流程介绍说明：<br>arr数组部分值:<code>...5 4 6 8....3 7...</code><br>我们来看看左侧工作指针是如何工作的。假设现在<code>l 指向 4, r 指向 3, lmax = 5, rmax = 7;</code>此时arr值为4的位置处储水量可以确定下来，即使目前其右侧还未访问到，不知道它们的值。但是<code>由于rmax为7,则4的位置右侧已经出现大于lmax的值了</code>。由<strong>短板原理</strong>可得，4位置处的储水量为<code>5 - 4 = 1</code>。l向右移动一位，四个变量的值<code>l 指向 6, r 指向 3, lmax = 5, rmax = 7</code></p>
-<p>当l 指向 8时，<code>工作原理同上</code>，3位置处的出水量可以确定，其值为<code>7 - 3 =4</code>，r向左移动。<code>左右工作指针相遇即循环结束</code>，遍历完成<br>部分代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getWater4</span><span class="params">(<span class="keyword">int</span> *arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> value = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> l = <span class="number">1</span>; <span class="keyword">int</span> r = length - <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> lmax = arr[<span class="number">0</span>]; <span class="keyword">int</span> rmax = arr[length - <span class="number">1</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (l &lt;= r)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (lmax &lt;= rmax)</div><div class="line">        &#123;</div><div class="line">            value += max(<span class="number">0</span>, lmax - arr[l]);</div><div class="line">            <span class="comment">//更新lmax后再右移</span></div><div class="line">            lmax = max(lmax, arr[l++]); </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            value += max(<span class="number">0</span>, rmax - arr[r]);</div><div class="line">            <span class="comment">//更新rmax后再左移</span></div><div class="line">            rmax = max(rmax, arr[r--]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>小提醒<code>arr[l++]先取值，再自加</code><br>时间复杂度⊖(n)，空间复杂度⊖(1)，简直精彩</p>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p><code>二叉树后序非递归遍历实现</code>
+<img src="/images/后序遍历.jpg" alt="后序遍历">
+<a id="more"></a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>二叉树的后序非递归遍历是<code>三种遍历中实现最为复杂的一个</code>，麻烦在于它的遍历顺序为左，右，中。<code>没有中间节点将它们联系起来</code>，每次都是独立的过程。</p>
+<p>思路1：<code>两个栈实现</code>。一个S1栈实现类似<a href="https://murfyexp.github.io/">[<font color="DarkSlateGray" size="4">前序非递归的遍历 </font>]</a>前序非递归的遍历，<code>得到中，右， 左</code>。S1出栈后，<code>不直接打印，而是压入S2</code>。待整个树遍历完，所有节点也都全部压入S2栈内。<code>最后统一弹出，得到左，右，中</code>。</p>
+<p>思路2：<code>一个栈实现</code>。我们需要两个变量。<code>一个记录当前节点c，一个记录最近打印节点h</code>。一开始就将根结点直接压入栈中。</p>
+<p><code>左右孩子节点入栈规则：</code>
+若该节点有左孩子，且h既不是其左孩子，又不是其右孩子。左孩子入栈<br>若该节点有右孩子，且h不是其右孩子。右孩子入栈</p>
+<p><code>栈顶节点出栈规则：</code>
+从左孩子返回，则左子树遍历完毕，开始遍历右子树  从右孩子返回，则右子树遍历完毕  整颗子树遍历完毕，弹出栈顶元素，并打印节点</p>
+<p>代码如下
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> treeNode</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> data;</div><div class="line">    treeNode *l;</div><div class="line">    treeNode *r;</div><div class="line">    </div><div class="line">    <span class="comment">//构造函数设置每个节点的左右孩子为空</span></div><div class="line">    <span class="keyword">public</span>: treeNode(<span class="keyword">int</span> data)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>-&gt;data = data;</div><div class="line">        <span class="keyword">this</span>-&gt;l = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">this</span>-&gt;r = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">posOrderUnRecur</span><span class="params">(treeNode *h)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (h != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">//栈必须保存树的节点指针treeNode*</span></div><div class="line">        <span class="built_in">stack</span>&lt;treeNode*&gt; <span class="built_in">stack</span>;</div><div class="line">        <span class="built_in">stack</span>.push(h);</div><div class="line">        treeNode* c = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">while</span> (!<span class="built_in">stack</span>.empty())</div><div class="line">        &#123;</div><div class="line">            c = <span class="built_in">stack</span>.top();</div><div class="line">            <span class="comment">// 第一个if中的h != c-&gt;r判断必须要，如果不加，从右子树返回</span></div><div class="line">            <span class="comment">// 的节点会再一次压入栈中</span></div><div class="line">            <span class="keyword">if</span> (c-&gt;l != <span class="literal">NULL</span> &amp;&amp; h != c-&gt;l &amp;&amp; h != c-&gt;r)</div><div class="line">            &#123;</div><div class="line">                <span class="built_in">stack</span>.push(c-&gt;l);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c-&gt;r != <span class="literal">NULL</span> &amp;&amp; h != c-&gt;r)</div><div class="line">            &#123;</div><div class="line">                <span class="built_in">stack</span>.push(c-&gt;r);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; (<span class="built_in">stack</span>.top())-&gt;data &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">                <span class="built_in">stack</span>.pop();</div><div class="line">                h = c;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    treeNode *t1 = <span class="keyword">new</span> treeNode(<span class="number">1</span>);</div><div class="line">    treeNode *t2 = <span class="keyword">new</span> treeNode(<span class="number">2</span>);</div><div class="line">    treeNode *t3 = <span class="keyword">new</span> treeNode(<span class="number">3</span>);</div><div class="line">    treeNode *t4 = <span class="keyword">new</span> treeNode(<span class="number">4</span>);</div><div class="line">    treeNode *t5 = <span class="keyword">new</span> treeNode(<span class="number">5</span>);</div><div class="line">    treeNode *t6 = <span class="keyword">new</span> treeNode(<span class="number">6</span>);</div><div class="line"></div><div class="line">    t1-&gt;l = t2; t1-&gt;r = t3;</div><div class="line">    t2-&gt;l = t4; t2-&gt;r = t5;</div><div class="line">    t3-&gt;l = t6;</div><div class="line">    posOrderUnRecur(t1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>struct treeNode中构造函数对创建的节点初始化</code>，使建树时，只需关注各节点之间的关系，而无需一一单独对叶子节点添加左右空孩子</p>
+<p>有两个地方的代码实现值得注意：<code>栈中保存的元素类型最好是指针形式</code>。若栈中保存的是节点，作if判断时，<code>需要重载==运算符</code>。其次在出栈之前，必须<code>用指针c更新h</code>，因为判断进栈的条件是对指针进行比较</p>
 
       
     </div>
@@ -453,8 +439,8 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/04/1-1/" rel="next" title="俄国沙皇问题">
-                <i class="fa fa-chevron-left"></i> 俄国沙皇问题
+              <a href="/2017/02/22/bootloader加载kernel/" rel="next" title="bootloader加载kernel">
+                <i class="fa fa-chevron-left"></i> bootloader加载kernel
               </a>
             
           </div>
@@ -462,10 +448,6 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/06/1-3/" rel="prev" title="两圆柱围成面积">
-                两圆柱围成面积 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,8 +473,8 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/05/1-2/"
-           data-title="容器盛水问题" data-url="https://murfyexp.github.io/2017/02/05/1-2/">
+      <div class="ds-thread" data-thread-key="2017/02/26/8-1/"
+           data-title="二叉树后序非递归遍历" data-url="https://murfyexp.github.io/2017/02/26/8-1/">
       </div>
     
   </div>
@@ -619,7 +601,7 @@ Left数组，Right数组分别记录每个位置左侧和右侧的最大值
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解法1"><span class="nav-number">2.1.</span> <span class="nav-text">解法1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法2"><span class="nav-number">2.2.</span> <span class="nav-text">解法2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法3"><span class="nav-number">2.3.</span> <span class="nav-text">解法3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法4"><span class="nav-number">2.4.</span> <span class="nav-text">解法4</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li></ol></div>
             
 
           </div>

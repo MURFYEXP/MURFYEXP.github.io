@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="OS," />
 
 
 
@@ -86,15 +86,25 @@
 
 
 
+<meta name="description" content="8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式
+x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为通用寄存器，专用寄存器和段寄存器三类总共15个，其中通用寄存器有AX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="登月">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/02/登月/index.html">
+<meta property="og:title" content="实模式/保护模式下的寻址">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/27/实模式-保护模式下的寻址/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:image" content="https://murfyexp.github.io/images/test.jpg">
-<meta property="og:updated_time" content="2017-02-18T07:36:50.000Z">
+<meta property="og:description" content="8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式
+x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为通用寄存器，专用寄存器和段寄存器三类总共15个，其中通用寄存器有AX">
+<meta property="og:image" content="https://murfyexp.github.io/images/JOS/8086与80386寄存器对比表.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/JOS/保护模式段式寻址.jpg">
+<meta property="og:image" content="https://murfyexp.github.io/images/JOS/GDTR位分布图.jpg">
+<meta property="og:image" content="https://murfyexp.github.io/images/JOS/段描述符的结构.jpg">
+<meta property="og:image" content="https://murfyexp.github.io/images/JOS/保护模式寻址过程.jpg">
+<meta property="og:updated_time" content="2017-02-28T02:22:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="登月">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/test.jpg">
+<meta name="twitter:title" content="实模式/保护模式下的寻址">
+<meta name="twitter:description" content="8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式
+x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为通用寄存器，专用寄存器和段寄存器三类总共15个，其中通用寄存器有AX">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/8086与80386寄存器对比表.png">
 
 
 
@@ -122,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/02/登月/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/27/实模式-保护模式下的寻址/"/>
 
 
 
 
 
-  <title> 登月 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 实模式/保护模式下的寻址 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +277,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/02/登月/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/27/实模式-保护模式下的寻址/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -291,7 +301,7 @@
             
             
               
-                登月
+                实模式/保护模式下的寻址
               
             
           </h1>
@@ -306,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-02T20:42:05-08:00">
-                2017-02-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T16:30:13-08:00">
+                2017-02-27
               </time>
             
 
@@ -317,6 +327,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JOS操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">JOS操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -325,8 +357,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/02/登月/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/02/登月/" itemprop="commentCount"></span>
+                <a href="/2017/02/27/实模式-保护模式下的寻址/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/实模式-保护模式下的寻址/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,7 +368,7 @@
 
           
           
-             <span id="/2017/02/02/登月/" class="leancloud_visitors" data-flag-title="登月">
+             <span id="/2017/02/27/实模式-保护模式下的寻址/" class="leancloud_visitors" data-flag-title="实模式/保护模式下的寻址">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,8 +395,42 @@
       
 
       
-        <p><img src="/images/test.jpg" alt="ch1">
-<a id="more"></a></p>
+        <p>8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式</p>
+<h3 id="x86寄存器"><a href="#x86寄存器" class="headerlink" title="x86寄存器"></a>x86寄存器</h3><p>在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为<code>通用寄存器，专用寄存器和段寄存器三类总共15个</code>，其中通用寄存器有AX、BX、CX、DX、SP、BP、DI及 SI，<code>专用寄存器包括IP、SP 和FLAGS三个</code>16位寄存器， 而段寄存器则有CS、DS、SS、ES，这些寄存器都是 16位的</p>
+<p><img src="/images/JOS/8086与80386寄存器对比表.png" alt="8086与80386寄存器对比表"></p>
+<p>为支持1MB寻址空间，8086在实模式下引入了分段的方法。CPU中设置了<code>四个段寄存器:CS、DS、SS和 ES，分别用于可执行代码段 、数据段以及堆栈段</code> 。 每个段寄存器都是16位的，<code>对应于地址总线中的高16位</code>。</p>
+<h3 id="段式内存管理"><a href="#段式内存管理" class="headerlink" title="段式内存管理"></a>段式内存管理</h3><p>段式内存管理带来了优势:</p>
+<blockquote>
+<ul>
+<li>调试错误更容易定位</li>
+<li>程序的地址不再需要采用内存物理地址进行编码</li>
+<li>支持更大的内存地址</li>
+</ul>
+</blockquote>
+<p>但是在该环境下，<code>应用程序可以直接对系统的任意内存地址(包括操作系统所在的区域)进行操作</code></p>
+<p>保护模式，这种模式下内存段的访问受到了限制。<code>访问内存时不能直接从段寄存器中获得段的起始地址，而需要经过额外转换和检查</code>。在保护模式下，段范围不再受限于64K，可以达到16MB(或者80386的4GB)。</p>
+<h4 id="实模式下段的管理"><a href="#实模式下段的管理" class="headerlink" title="实模式下段的管理"></a>实模式下段的管理</h4><p>实模式采用16位寻址模式，在该模式中，最大寻址空间为1MB，最大分段为64KB。</p>
+<p>8086处理器地址总线扩展到20位，但算术逻辑运算单元(ALU)宽度即数据总线却只有16位，也就是说<code>直接参与运算的数值都是16位的</code>。寻址时，采用以下公式计算实际访问的物理内存地址:<code>实际物理地址 = (段寄存器 &lt;&lt; 4) + 偏移地址</code>这样，便实现了16位内存地址到20位物理地址的转换</p>
+<p>80x86系列是<code>使用CS寄存器配合IP寄存器的组合来通知CPU指令在内存中的位置</code>。程序指令在执行过程中一般还需要有各种数据，<code>80x86系列有DS、ES、FS、GS、SS等用于指示不同用途的数据段在内存中的位置</code>。80x86系列使用中断机制来实现系统服务。总的来说，这些就是实模式一个程序运行所需的主要内容。</p>
+<h4 id="保护模式下段的管理"><a href="#保护模式下段的管理" class="headerlink" title="保护模式下段的管理"></a>保护模式下段的管理</h4><p><code>保护模式下的分段机制</code>
+利用段选择子到全局描述符表中找到需要的段描述符，段描述符中就存放着真正的段的物理首地址，再加上偏移地址量便得到了最后的物理地址</p>
+<p><img src="/images/JOS/保护模式段式寻址.jpg" alt="保护模式段式寻址">
+一般保护模式段式寻址可用 xxxx:yyyyyyyy表示。其中xxxx表示索引，也就是 段选择子，是16位的;yyyyyyyy是偏移量，是32位的。</p>
+<p>到哪里去寻找全局描述符表呢?80386以及以后的处理器专门设计了<code>一个寄存器GDTR</code>(Global Descriptor Table Register)，<code>专门用于存储全局描述符表在内</code>。GDTR寄存器有48位，其中有32位记录描述符表的物理地址，16位记录全局描述符表的长度(该表占据的物理内存字节数)
+<img src="/images/JOS/GDTR位分布图.jpg" alt="GDTR位分布图"></p>
+<p>再来看看段描述符，段描述符实际上是一个占据64位内存(8个字节)的结构体
+<img src="/images/JOS/段描述符的结构.jpg" alt="段描述符的结构"></p>
+<p>一个64位的<code>段描述符包含了段的物理首地址、段的界限以及段的属性</code>。在描述符中，段基址占32位，段限长占20位，属性占12位</p>
+<h3 id="保护模式寻址实例"><a href="#保护模式寻址实例" class="headerlink" title="保护模式寻址实例"></a>保护模式寻址实例</h3><p>下面将通过一个例子来加深对保护模式寻址方式的理解。在这个程序开始执行的时候cs寄存器的值为0</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">.set</span> PROT_MODE_CSEG， <span class="number">0x8</span>         # kernel code <span class="meta">segment</span> selector</div><div class="line"><span class="meta">.set</span> PROT_MODE_DSEG， <span class="number">0x10</span>        # kernel data <span class="meta">segment</span> selector</div><div class="line"><span class="meta">.set</span> CR0_PE_ON，      <span class="number">0x1</span>         # protected mode enable flag</div><div class="line"><span class="keyword">lgdt</span>    gdtdesc</div><div class="line"></div><div class="line">  movl    %cr0， %eax</div><div class="line">  orl     $CR0_PE_ON， %eax</div><div class="line">  movl    %eax， %cr0</div><div class="line">  </div><div class="line">  # Jump to next instruction， but <span class="keyword">in</span> <span class="number">32</span>-bit code <span class="meta">segment</span>.</div><div class="line">  # Switches processor <span class="keyword">into</span> <span class="number">32</span>-bit mode.</div><div class="line">  #  实模式跳转到保护模式</div><div class="line">  ljmp    $PROT_MODE_CSEG， $protcseg</div><div class="line"><span class="symbol"></span></div><div class="line">protcseg:</div><div class="line">  movw    <span class="number">0x10</span>， %ax</div><div class="line">  movw    %ax，  %dx</div><div class="line">  movl    <span class="number">0xf0000000</span>， %ebx</div><div class="line">  movl    <span class="number">0x20</span>(%ebx)， %eax</div><div class="line"><span class="symbol"></span></div><div class="line">gdt:                                    #gdt表的内容</div><div class="line">  SEG_NULL				                # null <span class="built_in">seg</span></div><div class="line">  <span class="built_in">SEG</span>(STA_X|STA_R， <span class="number">0x0</span>， <span class="number">0xffffffff</span>)	    # code <span class="built_in">seg</span></div><div class="line">  <span class="built_in">SEG</span>(STA_W， <span class="number">0x0</span>， <span class="number">0xffffffff</span>)	        # data <span class="built_in">seg</span></div><div class="line"><span class="symbol"></span></div><div class="line">gdtdesc:</div><div class="line"><span class="meta">  .word</span>   <span class="number">0x17</span>                            # sizeof(gdt) - <span class="number">1</span></div><div class="line"><span class="meta">  .long</span>   gdt</div></pre></td></tr></table></figure>
+<p>以上这一小段程序展示了<code>系统进入保护模式以及在保护模式中利用寄存器寻址的过程</code>。  </p>
+<p>首先lgdt指令<code>将GDT表的地址和表长装入GDTR寄存器</code>，在gdtdesc标识的地方存有一个字及一个双字，前者为0x17表示表的长度(字节数)，后者是表的物理地址。</p>
+<p>接着再将<code>CR0的保护模式开启位打开，系统便进入了保护模式</code>，开始采用保护模式的寻址模式进行地址的转换。这个时候，<code>内存中有GDT的3个表项</code>。</p>
+<p>进入保护模式后系统立即执行了一个长跳转指令，<code>由于是在保护模式中，所以
+PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选择子的值是0x8，于是对应的段描述符会是表中的第一项，即是<code>SEG(STA_X|STA_R， 0x0， 0xffffffff)</code>这一项，0x0表示段首地址是0，所以最终得到的物理地址为0 + protcseg，程序便会跳到 protcseg 所标识的位置来执行。</p>
+<p>之后执行指令: <code>movl 0x20(%ebx)， %eax</code>， 如图所示可知段基址为0，于是物理地址是0+0x20+0xf000000=0xf000020，内存中这个位置的一个双字会被复制到eax寄存器中
+<img src="/images/JOS/保护模式寻址过程.jpg" alt="保护模式寻址过程"></p>
+<p>这里能访问的到的0到4G的地址空间实际上是虚拟地址空间，在<code>开启分页机制后，还要经过页表转换才能得到真实地址</code>，而<code>在开启分页之前系统一般会控制只访问低地址</code>，这些问题到内存管理我们会进行更深入的讨论</p>
 
       
     </div>
@@ -391,13 +457,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag"># OS</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/02/27/8-5/" rel="next" title="二叉树中累加和为指定值的最长路径">
+                <i class="fa fa-chevron-left"></i> 二叉树中累加和为指定值的最长路径
               </a>
             
           </div>
@@ -405,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/04/1-1/" rel="prev" title="俄国沙皇问题">
-                俄国沙皇问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -434,8 +502,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/02/登月/"
-           data-title="登月" data-url="https://murfyexp.github.io/2017/02/02/登月/">
+      <div class="ds-thread" data-thread-key="2017/02/27/实模式-保护模式下的寻址/"
+           data-title="实模式/保护模式下的寻址" data-url="https://murfyexp.github.io/2017/02/27/实模式-保护模式下的寻址/">
       </div>
     
   </div>
@@ -459,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -543,6 +620,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#x86寄存器"><span class="nav-number">1.</span> <span class="nav-text">x86寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段式内存管理"><span class="nav-number">2.</span> <span class="nav-text">段式内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实模式下段的管理"><span class="nav-number">2.1.</span> <span class="nav-text">实模式下段的管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保护模式下段的管理"><span class="nav-number">2.2.</span> <span class="nav-text">保护模式下段的管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保护模式寻址实例"><span class="nav-number">3.</span> <span class="nav-text">保护模式寻址实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

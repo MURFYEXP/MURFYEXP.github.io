@@ -86,31 +86,43 @@
 
 
 
-<meta name="description" content="操作系统，江湖流传着
-计算机三大浪漫之一。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-体会不到其中的浪漫。
-MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的。开始折腾吧，它值得你付出时间和精力。
-我将该项目的目前完成Lab的">
+<meta name="description" content="内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
+完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。
+物理页面管理相关的函数:
+
+boot_alloc()
+page_init()
+page_alloc()
+page_free() 
+
+页">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JOS操作系统">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/20/JOS操作系统/index.html">
+<meta property="og:title" content="JOS内存管理">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/28/JOS内存管理/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="操作系统，江湖流传着
-计算机三大浪漫之一。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-体会不到其中的浪漫。
-MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的。开始折腾吧，它值得你付出时间和精力。
-我将该项目的目前完成Lab的">
-<meta property="og:updated_time" content="2017-03-02T01:02:48.000Z">
+<meta property="og:description" content="内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
+完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。
+物理页面管理相关的函数:
+
+boot_alloc()
+page_init()
+page_alloc()
+page_free() 
+
+页">
+<meta property="og:updated_time" content="2017-03-01T00:17:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JOS操作系统">
-<meta name="twitter:description" content="操作系统，江湖流传着
-计算机三大浪漫之一。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-体会不到其中的浪漫。
-MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的。开始折腾吧，它值得你付出时间和精力。
-我将该项目的目前完成Lab的">
+<meta name="twitter:title" content="JOS内存管理">
+<meta name="twitter:description" content="内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
+完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。
+物理页面管理相关的函数:
+
+boot_alloc()
+page_init()
+page_alloc()
+page_free() 
+
+页">
 
 
 
@@ -138,13 +150,13 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/20/JOS操作系统/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/28/JOS内存管理/"/>
 
 
 
 
 
-  <title> JOS操作系统 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> JOS内存管理 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +295,7 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/20/JOS操作系统/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/28/JOS内存管理/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -307,7 +319,7 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
             
             
               
-                JOS操作系统
+                JOS内存管理
               
             
           </h1>
@@ -322,8 +334,8 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T00:25:47-08:00">
-                2017-02-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T16:16:13-08:00">
+                2017-02-28
               </time>
             
 
@@ -363,8 +375,8 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/20/JOS操作系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/JOS操作系统/" itemprop="commentCount"></span>
+                <a href="/2017/02/28/JOS内存管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/JOS内存管理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,7 +386,7 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
 
           
           
-             <span id="/2017/02/20/JOS操作系统/" class="leancloud_visitors" data-flag-title="JOS操作系统">
+             <span id="/2017/02/28/JOS内存管理/" class="leancloud_visitors" data-flag-title="JOS内存管理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -401,52 +413,23 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
       
 
       
-        <p><code>操作系统，江湖流传着
-计算机三大浪漫之一</code>。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-<code>体会不到其中的浪漫</code>。</p>
-<p>MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-<code>帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的</code>。开始折腾吧，它值得你付出时间和精力。</p>
-<p>我将该项目的目前完成Lab的代码实现托管在github上，<a href="https://github.com/MURFYEXP/CS8.628-JOS" target="_blank" rel="external"><font color="DarkSlateGray" size="4"> 传送门 </font></a>.欢迎star</p>
-<p>虽然之前读过《深入理解计算机系统》，读完之后对很多OS的概念和实现细节都是只见树木不见森林。然后从寒假回家就窝家里开始刷Lab。目前对OS的理解清楚了很多，
-<code>从书本概念到0距离接触代码这一过程，将很多之前学习过的知识点都串了起来</code>。比如elf文件的理解，函数调用的底层机制实现。当然汇编代码的阅读能力，没有了之前对它的恐惧感，算是得到质的提升吧。</p>
-<p>不可否认的是有些Exercise真的非常让人头痛、一个bug可能会调很久甚至几天没有进展。一
-<code>个概念查阅大量的资料，反复的理解，一遍又一遍地认识</code>。</p>
-<p>具体每个Lab所完成的工作(目前只刷到lab4)</p>
-<blockquote>
+        <p>内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
+完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。</p>
+<p>物理页面管理相关的函数:</p>
 <ul>
-<li><p>Lab1是熟悉的过程，需要学习QEMU模拟器的使用、开机启动流程、调试工具、bootloader、以及整个加载kernel的流程。做完这个lab会具备基本的内核调试能力，以及掌握开机到通电，
-<code>bootloader是如何加载kernel</code>的。</p>
-</li>
-<li><p>Lab2要完成
-<code>JOS的的内存管理模块</code>，需要学习一些计算机基础知识，如虚拟地址系统是如何工作的，地址空间是如何切分的，物理页面是如何管理的。做完这个lab将会给JOS添加最基本的内存管理功能，即
-<code>Kernel其余模块需要物理页，这个模块可以分配出来</code>。</p>
-</li>
-<li><p>Lab3为
-<code>JOS添加进程的支持、异常/中断的支持、系统调用和页中断的支持</code>。这个lab内容比较多，但收获也比较大，做完后会对从用户态陷入内核态，执行系统调用，然后返回这整个流程都非常清楚（不是泛泛的清楚，而是代码级别的清楚，这是和学概念不同的地方）。</p>
-</li>
+<li>boot_alloc()</li>
+<li>page_init()</li>
+<li>page_alloc()</li>
+<li>page_free() </li>
 </ul>
-</blockquote>
-<p>由于考研，准备实习，该项目也就暂时搁浅了。Lab4为
-<code>JOS添加多核支持、RR调度、COW的fork、抢占式内核、时钟中断和最基本的IPC机制</code>。Lab6为
-<code>JOS添加网络的支持</code>。这两个Lab对我来说，还是有很大的吸引力。日后一定会抠出时间，将它们完成。至于Lab5的文件系统，本人不太感冒。
-PS：想想之后
-<code>将Dartnet协议栈移植到JOS就激动，先在这挖个大坑吧</code>。</p>
-<p>归根结底这只一个课程OS，JOS还有很大的提升空间，离工业级使用还差很多，以下是一些改进点：</p>
-<blockquote>
+<p>页表管理相关的函数: </p>
 <ul>
-<li><p>JOS和xv6的内存管理方式都是空闲链表，这导致
-<code>如果内核想要连续的物理内存，将十分困难</code>，所以linux采用了buddy system来解决碎片问题。</p>
-</li>
-<li><p>JOS和xv6的进程调度是最简单的RR方式，这使得它们
-<code>无法应用在某些特殊的场景下，而且父进程很容易fork子进程把CPU时间全抢了</code>。</p>
-</li>
+<li>pgdir_walk()</li>
+<li>boot_map_segment() </li>
+<li>page_lookup() </li>
+<li>page_remove() </li>
+<li>page_insert()</li>
 </ul>
-</blockquote>
-<p>打算之后再读读《Linux内核设计与实现》，
-<code>发现JOS到底哪里做得不好以及Linux是如何解决的</code>。
-最后
-<code>感谢开源</code>，在刷Lab的过程中遇到不少的坑，总能从前辈的经验中学习，帮助自己更有方向性的解决问题</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://lifeofzjs.com/blog/2016/02/24/recommmend-6-dot-828/" target="_blank" rel="external"><font color="DarkSlateGray" size="3"> 推荐一门课：6.828 </font></a></p>
 
       
     </div>
@@ -484,8 +467,8 @@ PS：想想之后
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/19/3-2/" rel="next" title="只含1最大的子矩阵">
-                <i class="fa fa-chevron-left"></i> 只含1最大的子矩阵
+              <a href="/2017/02/27/实模式-保护模式下的寻址/" rel="next" title="实模式/保护模式下的寻址">
+                <i class="fa fa-chevron-left"></i> 实模式/保护模式下的寻址
               </a>
             
           </div>
@@ -493,10 +476,6 @@ PS：想想之后
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/21/3-3/" rel="prev" title="完全二叉树节点个数">
-                完全二叉树节点个数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,8 +501,8 @@ PS：想想之后
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/20/JOS操作系统/"
-           data-title="JOS操作系统" data-url="https://murfyexp.github.io/2017/02/20/JOS操作系统/">
+      <div class="ds-thread" data-thread-key="2017/02/28/JOS内存管理/"
+           data-title="JOS内存管理" data-url="https://murfyexp.github.io/2017/02/28/JOS内存管理/">
       </div>
     
   </div>
@@ -547,17 +526,8 @@ PS：想想之后
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -570,7 +540,7 @@ PS：想想之后
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -640,22 +610,6 @@ PS：想想之后
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>

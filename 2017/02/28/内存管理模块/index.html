@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="面试 算法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,16 +86,27 @@
 
 
 
-<meta name="description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
+<meta name="description" content="内存管理模块完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。
+实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。
+前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
+而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子矩阵的最大和">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/12/3-1/index.html">
+<meta property="og:title" content="1000 words a Day">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/28/内存管理模块/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
-<meta property="og:updated_time" content="2017-02-18T07:38:11.000Z">
+<meta property="og:description" content="内存管理模块完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。
+实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。
+前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
+而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建">
+<meta property="og:image" content="https://murfyexp.github.io/images/JOS/mem_layout1.png">
+<meta property="og:updated_time" content="2017-03-02T18:00:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="子矩阵的最大和">
-<meta name="twitter:description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
+<meta name="twitter:title" content="1000 words a Day">
+<meta name="twitter:description" content="内存管理模块完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。
+实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。
+前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
+而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/mem_layout1.png">
 
 
 
@@ -123,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/12/3-1/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/28/内存管理模块/"/>
 
 
 
 
 
-  <title> 子矩阵的最大和 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>  | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/12/3-1/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/28/内存管理模块/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -292,7 +303,7 @@
             
             
               
-                子矩阵的最大和
+                
               
             
           </h1>
@@ -307,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T17:29:32-08:00">
-                2017-02-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T16:00:13-08:00">
+                2017-02-28
               </time>
             
 
@@ -318,28 +329,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/面试算法/" itemprop="url" rel="index">
-                    <span itemprop="name">面试算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -348,8 +337,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/12/3-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/3-1/" itemprop="commentCount"></span>
+                <a href="/2017/02/28/内存管理模块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/内存管理模块/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +348,7 @@
 
           
           
-             <span id="/2017/02/12/3-1/" class="leancloud_visitors" data-flag-title="子矩阵的最大和">
+             <span id="/2017/02/28/内存管理模块/" class="leancloud_visitors" data-flag-title="">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -386,18 +375,32 @@
       
 
       
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><code>思路一：暴力枚举；</code>已知由左上顶点坐标与右下顶点坐标可唯一确定一个子矩阵。左上顶点与右下顶点的确定分别需要O(n^2)，遍历所有子矩阵需要O(n^2)。故<code>暴力枚举的总体时间复杂度O(n^6)</code>。  </p>
-<p>然而利用之前学习过的算法原型，可以<code>将时间复杂度降为O(n^3)，是不是感觉很吊，闭上眼睛小小的期待一下吧！</code></p>
-<p>前几篇文章介绍过子数组最大累加和<a href="https://murfyexp.github.io/"><font color="DarkSlateGray" size="3"> 子数组最大的累加和</font></a>，如果我们将二维矩阵压缩成一维，就<code>可以用O(n)的时间复杂度计算出子矩阵的最大</code>和。加上遍历所有子矩阵需要的O(n^2)，故<code>总体时间复杂度成功地降为O(n^3)</code></p>
-<p>如何将二维矩阵压缩成一维数组，并转化成子数组最大累加和问题。<code>我们将子矩阵的每一列求和，然后和值用s数组保存起来</code>，转型成功。这也是<code>压缩矩阵常用到的技巧</code>  </p>
-<p>若<code>矩阵为m*n矩阵</code>，在矩阵的长和宽中，我们应<code>选取数值较小的一个，作为最外层for循环的趟数</code></p>
-<p>核心代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">SubMatrixMaxSum</span><span class="params">(<span class="keyword">int</span> m[][line])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (m == <span class="literal">NULL</span> || row == <span class="number">0</span> || line == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//res初始化为非常小的负数</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">-65535</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* s = <span class="keyword">new</span> <span class="keyword">int</span>[line];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; row; j++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">int</span> cur = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; line; k++)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">//生成s数组</span></div><div class="line">                s[k] += m[j][k];</div><div class="line">                cur += s[k];</div><div class="line">                res = max(res, cur);</div><div class="line">                cur = cur &lt; <span class="number">0</span> ? <span class="number">0</span> : cur;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> matrix[row][line] = &#123; &#123; <span class="number">0</span>, <span class="number">-2</span>, <span class="number">-7</span>, <span class="number">0</span>&#125;, &#123;<span class="number">9</span>, <span class="number">2</span>, <span class="number">-6</span>, <span class="number">2</span>&#125;,</div><div class="line">        &#123;<span class="number">-4</span>, <span class="number">1</span>, <span class="number">-4</span>, <span class="number">1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">-2</span>&#125; &#125;;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"res: %d\n"</span>, SubMatrixMaxSum(matrix));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>每一个子矩阵对应一个s数组</code>，故在遍历的过程中，每趟都需要new一个新的s数组用来保存当前子矩阵。同理，当前和值变量<code>cur每趟都需要初始化为0</code><br><code>cur = cur &lt; 0 ? 0 : cur;</code>可放在过程的<code>开始或者结束</code>，意思没有差别。</p>
-<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p><code>二维数组的传参方法</code>，这里我们使用的是方法一，<code>形参为指向数组的指针并给出数组长度。</code><a href="http://blog.csdn.net/gqb_driver/article/details/8886687" target="_blank" rel="external"><font color="DarkSlateGray" size="3"> 具体C/C++ 语 言二维数组的传参方法总结</font></a></p>
-
+        <h1 id="内存管理模块"><a href="#内存管理模块" class="headerlink" title="内存管理模块"></a>内存管理模块</h1><p>完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。</p>
+<p>实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。</p>
+<p>前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
+而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。</p>
+<p>在物理页面管理上，需要完成的函数包括:
+boot_alloc()
+page_init()
+page_alloc()
+page_free() </p>
+<p>在页表管理上，需要完成的函数包括: 
+pgdir_walk()
+boot_map_segment() 
+page_lookup() 
+page_remove() 
+page_insert()</p>
+<h3 id="JOS的内存组织"><a href="#JOS的内存组织" class="headerlink" title="JOS的内存组织"></a>JOS的内存组织</h3><p>由于页式地址管理机制的采用，物理内存不再成为限制条件，所以这里主要讨论的是 JOS 操作系统中线性地址的规划。
+同时，由于 JOS 系统中只用了一个页目录页面(不是像很多现代操作系统那样，每个 进程，无论是内核进程还是用户进程，都有自己的页目录)，所以整个系统的线性地址只有 4GB。如何规划和使用这 4GB 内存空间就成了问题。这里，我们分析 JOS 的线性地址规划， 如图 4-7 所示。</p>
+<p>按照 JOS 的要求，一共有三个线性地址到物理地址的映射是需要的:
+[UPAGES， sizeof(PAGES) ] =&gt; [pages， sizeof(PAGES)]
+这里 PAGES 代表页面管理结构所占用的空间;
+[KSTACKTOP – KSTKSIZE， 8] =&gt; [bootstack， 8]
+其中 bootstack 为内核编译时预先留下的 8 个页面(用做内核堆栈); [KERNBASE， pages in the memory] =&gt; [0， pages in the memory] 这个地址映射范围比较广，􏰁盖了所有物理内存。
+其中，最后一个地址映射最重要，因为 JOS 其后启动新的段式地址，新的段 base=0x0 (见 struct Segdesc gdt[])，如果没有这个地址映射，以前的内核地址(0xf0000000 开始的地 址是无法变换到实际的物理地址的)!</p>
+<h3 id="内存分页机制的实现"><a href="#内存分页机制的实现" class="headerlink" title="内存分页机制的实现"></a>内存分页机制的实现</h3><p>内存的分页机制实际上包􏰁页面管理和页表管理两个部分。对于前一个 部分，主要是讨论内核如何在如图4-1所示的物理内存中分配空间和建立合理的数据结构来 对物理页面进行管理，而后一个部分主要是讨论如何建立两级页目录(Page directory)和页 表(Page table)，从而在开启 x86 的分页管理后仍然能够进行合理的逻辑地址→物理地址的 转换。</p>
+<h4 id="页面管理"><a href="#页面管理" class="headerlink" title="页面管理"></a>页面管理</h4><p><img src="/images/JOS/mem_layout1.png" alt="1"></p>
+<h4 id="页表管理"><a href="#页表管理" class="headerlink" title="页表管理"></a>页表管理</h4>
       
     </div>
 
@@ -423,19 +426,13 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/面试-算法/" rel="tag"># 面试 算法</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/09/2-2/" rel="next" title="最长子数组长度">
-                <i class="fa fa-chevron-left"></i> 最长子数组长度
+              <a href="/2017/02/27/实模式-保护模式下的寻址/" rel="next" title="实模式/保护模式下的寻址">
+                <i class="fa fa-chevron-left"></i> 实模式/保护模式下的寻址
               </a>
             
           </div>
@@ -443,10 +440,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/17/DartNet网络协议栈/" rel="prev" title="DartNet网络协议栈">
-                DartNet网络协议栈 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,8 +465,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/12/3-1/"
-           data-title="子矩阵的最大和" data-url="https://murfyexp.github.io/2017/02/12/3-1/">
+      <div class="ds-thread" data-thread-key="2017/02/28/内存管理模块/"
+           data-title="" data-url="https://murfyexp.github.io/2017/02/28/内存管理模块/">
       </div>
     
   </div>
@@ -600,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-小知识"><span class="nav-number">3.</span> <span class="nav-text">C++小知识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存管理模块"><span class="nav-number">1.</span> <span class="nav-text">内存管理模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JOS的内存组织"><span class="nav-number">1.0.1.</span> <span class="nav-text">JOS的内存组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分页机制的实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">内存分页机制的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面管理"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">页面管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页表管理"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">页表管理</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -892,17 +885,7 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
-
-
-  
-
-
-  <!-- 页面点击小红心 -->
-  <script type="text/javascript" src="/js/src/love.js"></script>
-
-  <!-- 背景动画 -->
-  <script type="text/javascript" src="/js/src/particle.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -920,6 +903,9 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+  
 
 
 </body>

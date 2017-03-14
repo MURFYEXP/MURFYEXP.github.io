@@ -94,12 +94,10 @@ UDP提供非面向连接的、不可靠的数据报传输
 TCP数据安全可靠，UDP数据传输快
 
 
-TCP的三次握手过程：主机A向B发送连接请求
-主机B对收到的主机A的报文段进行确认
-主机A再次对主机B的确认进行确认
+TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报文段进行确认主机A再次对主机B的确认进行确认
 三次握手状态图
 
-TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？  采用三次握手是为了防止失效的连接请求报">
+TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效的连接请求报文段突然又传送">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三次握手与四次挥手">
 <meta property="og:url" content="https://murfyexp.github.io/2017/03/14/三次握手与四次挥手/index.html">
@@ -112,15 +110,13 @@ UDP提供非面向连接的、不可靠的数据报传输
 TCP数据安全可靠，UDP数据传输快
 
 
-TCP的三次握手过程：主机A向B发送连接请求
-主机B对收到的主机A的报文段进行确认
-主机A再次对主机B的确认进行确认
+TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报文段进行确认主机A再次对主机B的确认进行确认
 三次握手状态图
 
-TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？  采用三次握手是为了防止失效的连接请求报">
+TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效的连接请求报文段突然又传送">
 <meta property="og:image" content="https://murfyexp.github.io/images/三次握手.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/四次挥手.jpg">
-<meta property="og:updated_time" content="2017-03-14T22:34:06.000Z">
+<meta property="og:updated_time" content="2017-03-14T22:36:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三次握手与四次挥手">
 <meta name="twitter:description" content="前言TCP和UDP的区别
@@ -131,12 +127,10 @@ UDP提供非面向连接的、不可靠的数据报传输
 TCP数据安全可靠，UDP数据传输快
 
 
-TCP的三次握手过程：主机A向B发送连接请求
-主机B对收到的主机A的报文段进行确认
-主机A再次对主机B的确认进行确认
+TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报文段进行确认主机A再次对主机B的确认进行确认
 三次握手状态图
 
-TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？  采用三次握手是为了防止失效的连接请求报">
+TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效的连接请求报文段突然又传送">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/三次握手.png">
 
 
@@ -431,17 +425,15 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>TCP和UDP的区别</p>
 <blockquote>
 <ul>
-<li>TCP提供<code>面向连接的、可靠</code>的<code>数据流</code>传输</li>
-<li>UDP提供<code>非面向连接的、不可靠</code>的<code>数据报</code>传输</li>
+<li>TCP提供<code>面向连接的、可靠的数据流</code>传输</li>
+<li>UDP提供<code>非面向连接的、不可靠的数据报</code>传输</li>
 <li>TCP数据<code>安全可靠</code>，UDP数据<code>传输快</code></li>
 </ul>
 </blockquote>
-<h3 id="TCP的三次握手过程："><a href="#TCP的三次握手过程：" class="headerlink" title="TCP的三次握手过程："></a>TCP的三次握手过程：</h3><p>主机A向B发送连接请求
-主机B对收到的主机A的报文段进行确认
-主机A再次对主机B的确认进行确认</p>
+<h3 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p>主机A向B发送连接请求<br>主机B对收到的主机A的报文段进行确认<br>主机A再次对主机B的确认进行确认</p>
 <p>三次握手状态图
 <img src="/images/三次握手.png" alt=""></p>
-<p>TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？  采用三次握手是为了<code>防止失效的连接请求报文段突然又传送到主机</code>，因而产生错误</p>
+<p>TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?<br>采用三次握手是为了<code>防止失效的连接请求报文段突然又传送到主机</code>，因而产生错误</p>
 <p>考虑这样一种特殊情况，主机A第一次发送的<code>连接请求</code>并没有丢失，而是<code>因为网络节点导致延迟达到主机B</code>。主机B以为是主机A又发起的新连接，于是主机B同意连接，并向主机A发回确认，<code>此时主机A根本不会理会</code>，主机B就一直在<code>等待主机A发送数据，导致主机B的资源浪费</code></p>
 <p>如果采用<code>三次握手</code>，由于客户端不会向服务端发出确认，<code>服务端由于没有收到确认信息</code>，就知道客户端没有要求建立连接，<code>不建立该连接</code></p>
 <h4 id="SYN-flood攻击"><a href="#SYN-flood攻击" class="headerlink" title="SYN flood攻击"></a>SYN flood攻击</h4><p>假设一个<code>用户向服务器发送了SYN报文后突然死机或掉线</code>，那么第三次握手无法完成，这种情况下服务器端一般会重试（再次发送SYN+ACK给客户端）并等待一段时间后丢弃这个未完成的连接，这段时间的长度称为SYN Timeout。如 果大量模拟这种情况，<code>服务器端为了维护一个非常大的半连接列表而消耗非常多的资源</code></p>
@@ -657,7 +649,7 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的三次握手过程："><span class="nav-number">2.</span> <span class="nav-text">TCP的三次握手过程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SYN-flood攻击"><span class="nav-number">2.1.</span> <span class="nav-text">SYN flood攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的四次挥手过程"><span class="nav-number">3.</span> <span class="nav-text">TCP的四次挥手过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的三次握手"><span class="nav-number">2.</span> <span class="nav-text">TCP的三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SYN-flood攻击"><span class="nav-number">2.1.</span> <span class="nav-text">SYN flood攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的四次挥手过程"><span class="nav-number">3.</span> <span class="nav-text">TCP的四次挥手过程</span></a></li></ol></div>
             
 
           </div>

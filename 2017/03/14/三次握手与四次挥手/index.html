@@ -116,7 +116,7 @@ TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报�
 TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效">
 <meta property="og:image" content="https://murfyexp.github.io/images/三次握手.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/四次挥手.jpg">
-<meta property="og:updated_time" content="2017-03-14T22:38:10.000Z">
+<meta property="og:updated_time" content="2017-03-14T22:42:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三次握手与四次挥手">
 <meta name="twitter:description" content="前言TCP和UDP的区别
@@ -438,7 +438,7 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
 <p>如果采用<code>三次握手</code>，由于客户端不会向服务端发出确认，<code>服务端由于没有收到确认信息</code>，就知道客户端没有要求建立连接，<code>不建立该连接</code></p>
 <h4 id="SYN-flood攻击"><a href="#SYN-flood攻击" class="headerlink" title="SYN flood攻击"></a>SYN flood攻击</h4><p>假设一个<code>用户向服务器发送了SYN报文后突然死机或掉线</code>，那么第三次握手无法完成，这种情况下服务器端一般会重试（再次发送SYN+ACK给客户端）并等待一段时间后丢弃这个未完成的连接，这段时间的长度称为SYN Timeout。如 果大量模拟这种情况，<code>服务器端为了维护一个非常大的半连接列表而消耗非常多的资源</code></p>
 <p>SYN flood<code>只能攻击TCP服务</code>，由于UDP不需要连接，故不受影响。</p>
-<h3 id="TCP的四次挥手过程"><a href="#TCP的四次挥手过程" class="headerlink" title="TCP的四次挥手过程"></a>TCP的四次挥手过程</h3><p>由于接收到<code>FIN时意味将没有数据再发来</code>，但是还是<code>可以继续发送数据</code>，所以断开连接时必须是四次握手</p>
+<h3 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h3><p>由于接收到<code>FIN时意味将没有数据再发来</code>，但是还是<code>可以继续发送数据</code>，所以断开连接时必须是四次握手</p>
 <p>四次挥手状态图
 <img src="/images/四次挥手.jpg" alt=""></p>
 <p>为什么A在TIME—WAIT状态必须等待2MSL时间呢？</p>
@@ -649,7 +649,7 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的三次握手"><span class="nav-number">2.</span> <span class="nav-text">TCP的三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SYN-flood攻击"><span class="nav-number">2.1.</span> <span class="nav-text">SYN flood攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的四次挥手过程"><span class="nav-number">3.</span> <span class="nav-text">TCP的四次挥手过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的三次握手"><span class="nav-number">2.</span> <span class="nav-text">TCP的三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SYN-flood攻击"><span class="nav-number">2.1.</span> <span class="nav-text">SYN flood攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的四次挥手"><span class="nav-number">3.</span> <span class="nav-text">TCP的四次挥手</span></a></li></ol></div>
             
 
           </div>

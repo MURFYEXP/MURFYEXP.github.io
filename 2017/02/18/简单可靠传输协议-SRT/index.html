@@ -90,12 +90,15 @@
 就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。
 
 
-单向传输，即DATA段从客户端流向发送器端。
-连接管理：客户端发起和断开连接。
+单向传输，即DATA段从客户端流向接受端
+连接管理：客户端发起和断开连接
 不支持流量控制或拥塞控制
 
 
-SRT拥有以下机制">
+SRT拥有以下机制
+
+
+连">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单可靠传输协议(SRT)">
 <meta property="og:url" content="https://murfyexp.github.io/2017/02/18/简单可靠传输协议-SRT/index.html">
@@ -104,31 +107,37 @@ SRT拥有以下机制">
 就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。
 
 
-单向传输，即DATA段从客户端流向发送器端。
-连接管理：客户端发起和断开连接。
+单向传输，即DATA段从客户端流向接受端
+连接管理：客户端发起和断开连接
 不支持流量控制或拥塞控制
 
 
-SRT拥有以下机制">
+SRT拥有以下机制
+
+
+连">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Lab4 API.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Segment Header.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Connection Setup.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Connection Teardown.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Client FSM.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Server FSM.png">
-<meta property="og:updated_time" content="2017-02-20T06:40:38.000Z">
+<meta property="og:updated_time" content="2017-03-23T22:41:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单可靠传输协议(SRT)">
 <meta name="twitter:description" content="本篇文章主要介绍简单可靠传输的原理实现，我们只考虑由连接管理使用的控制，其它部分将在另外几篇博文中介绍。为了完成SRT的测试，我们需要编写一个客户端和一个服务器。
 就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。
 
 
-单向传输，即DATA段从客户端流向发送器端。
-连接管理：客户端发起和断开连接。
+单向传输，即DATA段从客户端流向接受端
+连接管理：客户端发起和断开连接
 不支持流量控制或拥塞控制
 
 
-SRT拥有以下机制">
+SRT拥有以下机制
+
+
+连">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/DartNet/Lab4 API.png">
 
 
@@ -424,18 +433,18 @@ SRT拥有以下机制">
 <p>就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。</p>
 <blockquote>
 <ul>
-<li>单向传输，即DATA段从客户端流向发送器端。</li>
-<li>连接管理：客户端发起和断开连接。</li>
+<li>单向传输，即DATA段从客户端流向接受端</li>
+<li>连接管理：客户端发起和断开连接</li>
 <li>不支持流量控制或拥塞控制</li>
 </ul>
 </blockquote>
 <p>SRT拥有以下机制</p>
 <blockquote>
 <ul>
-<li>连接管理（连接和断开）</li>
-<li>用于在接收器检测损坏数据的段上的校验和。</li>
-<li>返回N被实现用于在接收器处可靠地传送数据。序列号用于检测丢失 的数据和将数据重新排序。</li>
-<li>重传：发送方（客户端）使用超时和用于ACK的DATA接收来重传丢失的数据和控制分组（例如，SYN）。</li>
+<li>连接管理：连接和断开</li>
+<li>校验和用于检测接受的数据是否被破坏</li>
+<li>回退N步用于在接收端可靠地传送数据，序列号用于检测丢失的数据和将数据重新排序</li>
+<li>重传：客户端使用超时和ACK来重传丢失的数据和控制分组（例如SYN）</li>
 </ul>
 </blockquote>
 <h3 id="API：SRT，SNP和覆盖控制"><a href="#API：SRT，SNP和覆盖控制" class="headerlink" title="API：SRT，SNP和覆盖控制"></a>API：SRT，SNP和覆盖控制</h3><p>上一篇博文中，我们看到在DartNet协议栈的不同层之间有许多API。在实现SRT过程中，我们不使用SNP层转发，专注于客户端和服务器的实现与SRT API相关联的一组有限功能 。只考虑客户端和服 务器之间的连接相关的函数调用。SRT像TCP一样能够支持多个同时连接。我们将讨论数据结构和有限状态机(FSM)需要在本文后面支持这一点。</p>
@@ -467,14 +476,14 @@ SRT分组包括SRT头（参见下面的srt_hdr_t）和SRT段（参见seg_t-数�
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> svr_tcb &#123;</div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_nodeID;        <span class="comment">//node ID of server, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_portNum;       <span class="comment">//port number of server</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_nodeID;     <span class="comment">//node ID of client, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_portNum;    <span class="comment">//port number of client</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> state;             <span class="comment">//state of server</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> expect_seqNum;     <span class="comment">//sequence number of the data seg server is expecting</span></div><div class="line">  <span class="keyword">char</span>* recvBuf;                  <span class="comment">//a pointer pointing to a receive Buffer</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span>  usedBufLen;       <span class="comment">//size of received data in receiver buffer</span></div><div class="line">  <span class="keyword">pthread_mutex_t</span>* bufMutex;      <span class="comment">//a pointer pointing to a mutex for receive buffer access</span></div><div class="line">&#125; </div><div class="line"><span class="keyword">svr_tcb_t</span>;</div></pre></td></tr></table></figure></p>
 <p>对于每个连接，SRT客户端维护客户端和服务器TCB 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> client_tcb &#123;</div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_nodeID;        <span class="comment">//node ID of server, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_portNum;       <span class="comment">//port number of server</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_nodeID;     <span class="comment">//node ID of client, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_portNum;    <span class="comment">//port number of client</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span>  state;            <span class="comment">//state of client</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> next_seqNum;       <span class="comment">//next sequence number</span></div><div class="line">  <span class="keyword">pthread_mutex_t</span>* bufMutex;      <span class="comment">//a pointer pointing to a mutex for send buffer access</span></div><div class="line">  segBuf_t* sendBufHead;          <span class="comment">//used by send buffer</span></div><div class="line">  segBuf_t* sendBufunSent;        <span class="comment">//used by send buffer</span></div><div class="line">  segBuf_t* sendBufTail;          <span class="comment">//used by send buffer</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> unAck_segNum;      <span class="comment">//number of unAcked segments</span></div><div class="line">&#125; <span class="keyword">client_tcb_t</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p>SRT具有与TCP类似的连接设置和断开。然而SRT只是使用两次握手。
-连接设置
+<h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p>SRT具有与TCP类似的连接设置和断开。SRT只是使用两次握手。  </p>
+<p>连接设置
 当客户端发送SYN并且服务器用SYNACK响应时建立连接</p>
 <p>图5：SRT连接设置
 <img src="/images/DartNet/SRT Connection Setup.png" alt="SRT Connection Setup"></p>
 <p>But life is not that simple: corruption and loss of control messages get in the way</p>
-<p>设置和断开时可能发生的以下问题：在SYN中发生丢失或损坏;客户端知道它发送它，服务器没有知识。那么这个操作问题如何解决呢？此外，如果服务器接收到SYN，发送SYNACK但是SYNACK丢失，会发生什么。服务器知道它发送了一个SYNACK，并不知道客户端没有得到它。</p>
-<p>这些异常的解决方案如下。在丢失SYN的情况下，str_client需要设置SYN_TIMEOUT，如果在该周期内没有收到SYN ACK，则它会发送另一个SYN并再次设置定时器。它重复此操作，直到它获得SYNACK或超过SYN_MAX_RETRY。例如，客户端发送SYN并进入CONNECT状态。在该状态下，它很可能接收SYN。应该怎么办？发送SYNACK并让客户端移动到CONNECT。我们稍后在客户端和服务器FSM上讨论正确的状态转换。</p>
+<p>设置和断开时可能发生的以下问题：在SYN中发生丢失或损坏；客户端已经发送，服务器却不知道。这个问题如何解决？如果服务器接收到SYN，在发送SYNACK过程中丢失，会发生什么？</p>
+<p>这些异常的解决方案如下：在丢失SYN的情况下，str_client需要设置SYN_TIMEOUT，如果在该周期内没有收到SYN ACK，则它会发送另一个SYN并再次设置定时器。它重复此操作，直到它获得SYNACK或超过SYN_MAX_RETRY。在该状态下，它很可能接收SYN。</p>
 <p>SRT连接断开
 当客户端发送FIN并且服务器相应地使用FINACK进行响应时，采取（断开）连接</p>
 <p>图6：SRT连接断开
@@ -615,7 +624,7 @@ SRT客户端FSM
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

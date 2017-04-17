@@ -87,24 +87,22 @@
 
 
 <meta name="description" content="归并排序归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们重点来关注下合并过程。
-合并的主体过程为：分别从两区间的头部选择较小的一个插入到原数组中
-1234for ( Rank i = 0, j = 0, k = 0; ( j &amp;lt; lb ) || ( k &amp;lt; lc ); ) &amp;#123;      if ( ( j &amp;lt; lb ) &amp;am">
+合并过程示例图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冒泡排序与归并排序">
 <meta property="og:url" content="https://murfyexp.github.io/2017/04/16/冒泡排序与归并排序/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="归并排序归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们重点来关注下合并过程。
-合并的主体过程为：分别从两区间的头部选择较小的一个插入到原数组中
-1234for ( Rank i = 0, j = 0, k = 0; ( j &amp;lt; lb ) || ( k &amp;lt; lc ); ) &amp;#123;      if ( ( j &amp;lt; lb ) &amp;am">
+合并过程示例图">
+<meta property="og:image" content="https://murfyexp.github.io/images/归并排序.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/冒泡1.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/冒泡2.png">
-<meta property="og:updated_time" content="2017-04-17T15:50:19.000Z">
+<meta property="og:updated_time" content="2017-04-17T16:17:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="冒泡排序与归并排序">
 <meta name="twitter:description" content="归并排序归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们重点来关注下合并过程。
-合并的主体过程为：分别从两区间的头部选择较小的一个插入到原数组中
-1234for ( Rank i = 0, j = 0, k = 0; ( j &amp;lt; lb ) || ( k &amp;lt; lc ); ) &amp;#123;      if ( ( j &amp;lt; lb ) &amp;am">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/冒泡1.png">
+合并过程示例图">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/归并排序.png">
 
 
 
@@ -396,7 +394,10 @@
 
       
         <h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们<code>重点来关注下合并过程</code>。</p>
-<p>合并的主体过程为：<code>分别从两区间的头部选择较小的一个插入到原数组中</code>
+<p>合并过程示例图
+<img src="/images/归并排序.png" alt="ch1">
+<a id="more"></a>
+合并的主体过程为：<code>分别从两区间的头部选择较小的一个插入到原数组中</code>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> ( Rank i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>; ( j &lt; lb ) || ( k &lt; lc ); ) &#123;</div><div class="line">      <span class="keyword">if</span> ( ( j &lt; lb ) &amp;&amp; ( ! ( k &lt; lc ) || ( B[j] &lt;= C[k] ) ) ) A[i++] = B[j++];<span class="comment">//j位于区间内，k超出了C的右边界时，哨兵值为无穷大，将数组B的值放入A中</span></div><div class="line">      <span class="keyword">if</span> ( ( k &lt; lc ) &amp;&amp; ( ! ( j &lt; lb ) || ( C[k] &lt;  B[j] ) ) ) A[i++] = C[k++];<span class="comment">//k位于区间内，j超出了B的右边界时，哨兵值为无穷大，将数组C的值放入A中</span></div><div class="line">      &#125;</div></pre></td></tr></table></figure></p>
 <p><code>( j &lt; lb ) || ( k &lt; lc)</code>两区间同时越界才退出循环。<br>for语句内的if判断条件采用<code>短路求值</code>策略，<code>保证后面的数组访问不会越界</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>; j &lt; lb || k &lt; lc; ) &#123; <span class="comment">//for语句的写法值得学习&#125;</span></div></pre></td></tr></table></figure>

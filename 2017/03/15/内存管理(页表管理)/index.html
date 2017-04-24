@@ -89,16 +89,16 @@
 <meta name="description" content="背景在boot/boot.S文件中，引入了一个全局描述符表，这个表把所有的段的基址设置为0，界限设置为0xffffffff=4GB的方式，关闭了分段管理的功能。因此虚拟地址中的段选择子字段的内容没有意义，线性地址的值总是等于虚拟地址中段内偏移的值
 1234gdt:  SEG_NULL				# null seg  SEG(STA_X|STA_R, 0x0, 0xffffffff)	    # co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内存管理：页表管理">
+<meta property="og:title" content="内存管理(页表管理)">
 <meta property="og:url" content="https://murfyexp.github.io/2017/03/15/内存管理(页表管理)/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="背景在boot/boot.S文件中，引入了一个全局描述符表，这个表把所有的段的基址设置为0，界限设置为0xffffffff=4GB的方式，关闭了分段管理的功能。因此虚拟地址中的段选择子字段的内容没有意义，线性地址的值总是等于虚拟地址中段内偏移的值
 1234gdt:  SEG_NULL				# null seg  SEG(STA_X|STA_R, 0x0, 0xffffffff)	    # co">
 <meta property="og:image" content="https://murfyexp.github.io/images/JOS/地址转换.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/JOS/线性地址结构.png">
-<meta property="og:updated_time" content="2017-03-16T00:37:31.000Z">
+<meta property="og:updated_time" content="2017-04-24T17:47:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内存管理：页表管理">
+<meta name="twitter:title" content="内存管理(页表管理)">
 <meta name="twitter:description" content="背景在boot/boot.S文件中，引入了一个全局描述符表，这个表把所有的段的基址设置为0，界限设置为0xffffffff=4GB的方式，关闭了分段管理的功能。因此虚拟地址中的段选择子字段的内容没有意义，线性地址的值总是等于虚拟地址中段内偏移的值
 1234gdt:  SEG_NULL				# null seg  SEG(STA_X|STA_R, 0x0, 0xffffffff)	    # co">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/地址转换.png">
@@ -135,7 +135,7 @@
 
 
 
-  <title> 内存管理：页表管理 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 内存管理(页表管理) | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -298,7 +298,7 @@
             
             
               
-                内存管理：页表管理
+                内存管理(页表管理)
               
             
           </h1>
@@ -365,7 +365,7 @@
 
           
           
-             <span id="/2017/03/15/内存管理(页表管理)/" class="leancloud_visitors" data-flag-title="内存管理：页表管理">
+             <span id="/2017/03/15/内存管理(页表管理)/" class="leancloud_visitors" data-flag-title="内存管理(页表管理)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -515,7 +515,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/03/15/内存管理(页表管理)/"
-           data-title="内存管理：页表管理" data-url="https://murfyexp.github.io/2017/03/15/内存管理(页表管理)/">
+           data-title="内存管理(页表管理)" data-url="https://murfyexp.github.io/2017/03/15/内存管理(页表管理)/">
       </div>
     
   </div>

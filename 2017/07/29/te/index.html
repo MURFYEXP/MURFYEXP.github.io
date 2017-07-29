@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OS," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,43 +86,16 @@
 
 
 
-<meta name="description" content="内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
-完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。
-物理页面管理相关的函数:
-
-boot_alloc()
-page_init()
-page_alloc()
-page_free() 
-
-页">
+<meta name="description" content="学习总结 思考感悟 知识管理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JOS内存管理">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/28/JOS内存管理/index.html">
+<meta property="og:title" content="te">
+<meta property="og:url" content="https://murfyexp.github.io/2017/07/29/te/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
-完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。
-物理页面管理相关的函数:
-
-boot_alloc()
-page_init()
-page_alloc()
-page_free() 
-
-页">
-<meta property="og:updated_time" content="2017-03-01T00:17:12.000Z">
+<meta property="og:description" content="学习总结 思考感悟 知识管理">
+<meta property="og:updated_time" content="2017-07-29T20:22:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JOS内存管理">
-<meta name="twitter:description" content="内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
-完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。
-物理页面管理相关的函数:
-
-boot_alloc()
-page_init()
-page_alloc()
-page_free() 
-
-页">
+<meta name="twitter:title" content="te">
+<meta name="twitter:description" content="学习总结 思考感悟 知识管理">
 
 
 
@@ -150,13 +123,13 @@ page_free()
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/28/JOS内存管理/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/07/29/te/"/>
 
 
 
 
 
-  <title> JOS内存管理 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> te | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +268,7 @@ page_free()
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/28/JOS内存管理/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/07/29/te/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -319,7 +292,7 @@ page_free()
             
             
               
-                JOS内存管理
+                te
               
             
           </h1>
@@ -334,8 +307,8 @@ page_free()
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T16:16:13-08:00">
-                2017-02-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T13:22:07-07:00">
+                2017-07-29
               </time>
             
 
@@ -345,28 +318,6 @@ page_free()
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JOS操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">JOS操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -375,8 +326,8 @@ page_free()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/28/JOS内存管理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/JOS内存管理/" itemprop="commentCount"></span>
+                <a href="/2017/07/29/te/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/29/te/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -386,7 +337,7 @@ page_free()
 
           
           
-             <span id="/2017/02/28/JOS内存管理/" class="leancloud_visitors" data-flag-title="JOS内存管理">
+             <span id="/2017/07/29/te/" class="leancloud_visitors" data-flag-title="te">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -413,24 +364,7 @@ page_free()
       
 
       
-        <p>内存管理模块分为2部分:物理页面管理和页表管理。前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、处理分配和回收动作等;而后者主要是强调利用 Intel x86系列处理器的页式地址管理功能，
-完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。</p>
-<p>物理页面管理相关的函数:</p>
-<ul>
-<li>boot_alloc()</li>
-<li>page_init()</li>
-<li>page_alloc()</li>
-<li>page_free() </li>
-</ul>
-<p>页表管理相关的函数: </p>
-<ul>
-<li>pgdir_walk()</li>
-<li>boot_map_segment() </li>
-<li>page_lookup() </li>
-<li>page_remove() </li>
-<li>page_insert()</li>
-</ul>
-
+        
       
     </div>
 
@@ -456,19 +390,13 @@ page_free()
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/OS/" rel="tag"># OS</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/27/实模式-保护模式下的寻址/" rel="next" title="实模式/保护模式下的寻址">
-                <i class="fa fa-chevron-left"></i> 实模式/保护模式下的寻址
+              <a href="/2017/04/30/表达式求值/" rel="next" title="表达式求值">
+                <i class="fa fa-chevron-left"></i> 表达式求值
               </a>
             
           </div>
@@ -501,8 +429,8 @@ page_free()
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/28/JOS内存管理/"
-           data-title="JOS内存管理" data-url="https://murfyexp.github.io/2017/02/28/JOS内存管理/">
+      <div class="ds-thread" data-thread-key="2017/07/29/te/"
+           data-title="te" data-url="https://murfyexp.github.io/2017/07/29/te/">
       </div>
     
   </div>
@@ -540,7 +468,7 @@ page_free()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -549,7 +477,7 @@ page_free()
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -558,7 +486,7 @@ page_free()
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -896,7 +824,15 @@ page_free()
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+
+
+  <!-- 页面点击小红心 -->
+
+  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -914,10 +850,6 @@ page_free()
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-
 
 </body>
 </html>

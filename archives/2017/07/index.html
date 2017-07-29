@@ -86,27 +86,15 @@
 
 
 
-<meta name="description" content="内存管理模块完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。
-实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。
-前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
-而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建">
-<meta property="og:type" content="article">
+<meta name="description" content="学习总结 思考感悟 知识管理">
+<meta property="og:type" content="website">
 <meta property="og:title" content="1000 words a Day">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/28/内存管理模块/index.html">
+<meta property="og:url" content="https://murfyexp.github.io/archives/2017/07/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="内存管理模块完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。
-实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。
-前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
-而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建">
-<meta property="og:image" content="https://murfyexp.github.io/images/JOS/mem_layout1.png">
-<meta property="og:updated_time" content="2017-03-02T18:00:43.000Z">
+<meta property="og:description" content="学习总结 思考感悟 知识管理">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1000 words a Day">
-<meta name="twitter:description" content="内存管理模块完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。
-实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。
-前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
-而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/mem_layout1.png">
+<meta name="twitter:description" content="学习总结 思考感悟 知识管理">
 
 
 
@@ -134,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/28/内存管理模块/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/archives/2017/07/"/>
 
 
 
 
 
-  <title>  | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 归档 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -167,7 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,193 +257,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/28/内存管理模块/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="1000 words a Day">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="1000 words a Day" src="">
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 30 篇日志。 继续努力。
     </span>
-  </span>
 
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T16:00:13-08:00">
-                2017-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/28/内存管理模块/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/内存管理模块/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/02/28/内存管理模块/" class="leancloud_visitors" data-flag-title="">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
 
       
       
-
       
-        <h1 id="内存管理模块"><a href="#内存管理模块" class="headerlink" title="内存管理模块"></a>内存管理模块</h1><p>完成JOS的的内存管理模块，给JOS添加最基本的内存管理功能，即Kernel其余模块需要物理⻚页，这个模块可以分配出来。</p>
-<p>实际上，该实验可以分为 2 部分:物理 页面管理和页表管理。</p>
-<p>前者强调对机器拥有的物理内存的管理，包括建立对应的数据结构、 处理分配和回收动作等;
-而后者主要是强调利用 Intel x86 系列处理器的页式地址管理功能， 完成(虚拟)线性地址到物理地址的转换，包括建立页目录、页表等。</p>
-<p>在物理页面管理上，需要完成的函数包括:
-boot_alloc()
-page_init()
-page_alloc()
-page_free() </p>
-<p>在页表管理上，需要完成的函数包括: 
-pgdir_walk()
-boot_map_segment() 
-page_lookup() 
-page_remove() 
-page_insert()</p>
-<h3 id="JOS的内存组织"><a href="#JOS的内存组织" class="headerlink" title="JOS的内存组织"></a>JOS的内存组织</h3><p>由于页式地址管理机制的采用，物理内存不再成为限制条件，所以这里主要讨论的是 JOS 操作系统中线性地址的规划。
-同时，由于 JOS 系统中只用了一个页目录页面(不是像很多现代操作系统那样，每个 进程，无论是内核进程还是用户进程，都有自己的页目录)，所以整个系统的线性地址只有 4GB。如何规划和使用这 4GB 内存空间就成了问题。这里，我们分析 JOS 的线性地址规划， 如图 4-7 所示。</p>
-<p>按照 JOS 的要求，一共有三个线性地址到物理地址的映射是需要的:
-[UPAGES， sizeof(PAGES) ] =&gt; [pages， sizeof(PAGES)]
-这里 PAGES 代表页面管理结构所占用的空间;
-[KSTACKTOP – KSTKSIZE， 8] =&gt; [bootstack， 8]
-其中 bootstack 为内核编译时预先留下的 8 个页面(用做内核堆栈); [KERNBASE， pages in the memory] =&gt; [0， pages in the memory] 这个地址映射范围比较广，􏰁盖了所有物理内存。
-其中，最后一个地址映射最重要，因为 JOS 其后启动新的段式地址，新的段 base=0x0 (见 struct Segdesc gdt[])，如果没有这个地址映射，以前的内核地址(0xf0000000 开始的地 址是无法变换到实际的物理地址的)!</p>
-<h3 id="内存分页机制的实现"><a href="#内存分页机制的实现" class="headerlink" title="内存分页机制的实现"></a>内存分页机制的实现</h3><p>内存的分页机制实际上包􏰁页面管理和页表管理两个部分。对于前一个 部分，主要是讨论内核如何在如图4-1所示的物理内存中分配空间和建立合理的数据结构来 对物理页面进行管理，而后一个部分主要是讨论如何建立两级页目录(Page directory)和页 表(Page table)，从而在开启 x86 的分页管理后仍然能够进行合理的逻辑地址→物理地址的 转换。</p>
-<h4 id="页面管理"><a href="#页面管理" class="headerlink" title="页面管理"></a>页面管理</h4><p><img src="/images/JOS/mem_layout1.png" alt="1"></p>
-<h4 id="页表管理"><a href="#页表管理" class="headerlink" title="页表管理"></a>页表管理</h4>
-      
-    </div>
 
-    <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Shaojie Li wechat" style="width: 200px; max-width: 100%;"/>
-    <div>个人微信公众号，我的日常分享！</div>
-</div>
-
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/27/实模式-保护模式下的寻址/" rel="next" title="实模式/保护模式下的寻址">
-                <i class="fa fa-chevron-left"></i> 实模式/保护模式下的寻址
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
         </div>
       
+      
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/07/29/te/" itemprop="url">
+              
+                <span itemprop="name">te</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-07-29T13:22:07-07:00"
+              content="2017-07-29" >
+          07-29
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
           
           </div>
@@ -463,14 +324,6 @@ page_insert()</p>
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/02/28/内存管理模块/"
-           data-title="" data-url="https://murfyexp.github.io/2017/02/28/内存管理模块/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -490,17 +343,8 @@ page_insert()</p>
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -513,7 +357,7 @@ page_insert()</p>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -522,7 +366,7 @@ page_insert()</p>
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -531,7 +375,7 @@ page_insert()</p>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -583,22 +427,6 @@ page_insert()</p>
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存管理模块"><span class="nav-number">1.</span> <span class="nav-text">内存管理模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JOS的内存组织"><span class="nav-number">1.0.1.</span> <span class="nav-text">JOS的内存组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分页机制的实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">内存分页机制的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面管理"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">页面管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页表管理"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">页表管理</span></a></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
@@ -702,9 +530,11 @@ page_insert()</p>
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
@@ -759,6 +589,26 @@ page_insert()</p>
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
@@ -885,7 +735,15 @@ page_insert()</p>
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+  
+
+
+  <!-- 页面点击小红心 -->
+
+  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -903,10 +761,6 @@ page_insert()</p>
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-
 
 </body>
 </html>

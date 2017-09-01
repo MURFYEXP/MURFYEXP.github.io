@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="char *a 与 char a[]数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
-1234567891011121314#include &amp;lt;stdi">
+<meta name="description" content="数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
+12345678910111213#include &amp;lt;stdio.h&amp;gt;int main(void">
 <meta property="og:type" content="article">
-<meta property="og:title" content="char *a 与 char a[]">
+<meta property="og:title" content="char *a 与 char a[]的区别">
 <meta property="og:url" content="https://murfyexp.github.io/2017/08/31/char-a-与-char-a/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="char *a 与 char a[]数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
-1234567891011121314#include &amp;lt;stdi">
-<meta property="og:updated_time" content="2017-09-01T05:45:00.000Z">
+<meta property="og:description" content="数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
+12345678910111213#include &amp;lt;stdio.h&amp;gt;int main(void">
+<meta property="og:updated_time" content="2017-09-01T05:57:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="char *a 与 char a[]">
-<meta name="twitter:description" content="char *a 与 char a[]数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
-1234567891011121314#include &amp;lt;stdi">
+<meta name="twitter:title" content="char *a 与 char a[]的区别">
+<meta name="twitter:description" content="数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
+12345678910111213#include &amp;lt;stdio.h&amp;gt;int main(void">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <title> char *a 与 char a[] | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> char *a 与 char a[]的区别 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                char *a 与 char a[]
+                char *a 与 char a[]的区别
               
             
           </h1>
@@ -362,7 +362,7 @@
 
           
           
-             <span id="/2017/08/31/char-a-与-char-a/" class="leancloud_visitors" data-flag-title="char *a 与 char a[]">
+             <span id="/2017/08/31/char-a-与-char-a/" class="leancloud_visitors" data-flag-title="char *a 与 char a[]的区别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -389,22 +389,15 @@
       
 
       
-        <h1 id="char-a-与-char-a"><a href="#char-a-与-char-a" class="headerlink" title="char *a 与 char a[]"></a>char *a 与 char a[]</h1><h3 id="数组名与指针"><a href="#数组名与指针" class="headerlink" title="数组名与指针"></a>数组名与指针</h3><p>首先，<code>指针就是指针，数组就是数组</code>。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是<code>由于数组即数组的本身属性，使用&amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小</code>，而不是所指向第一个元素的大小。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">        char str[]=&quot;abcd&quot;;</div><div class="line"></div><div class="line">            printf(&quot; (*str) = %c \n&quot;,*str);</div><div class="line">                printf(&quot; addr (str[0]) = %#x \n&quot;,&amp;(str[0]));</div><div class="line">                    printf(&quot; addr (str[1]) = %#x \n&quot;,&amp;(str[1]));</div><div class="line">                       </div><div class="line">                           printf(&quot; addr of arrary param = %#x \n&quot;,&amp;str);</div><div class="line">                               printf(&quot; sizeof str = %d \n\n&quot;,sizeof(str));</div><div class="line">                                   return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h3 id="数组名与指针"><a href="#数组名与指针" class="headerlink" title="数组名与指针"></a>数组名与指针</h3><p>首先，<code>指针就是指针，数组就是数组</code>。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是<code>由于数组即数组的本身属性，使用&amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小</code>，而不是所指向第一个元素的大小。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">        char str[]=&quot;abcd&quot;;</div><div class="line">        printf(&quot; (*str) = %c \n&quot;,*str);</div><div class="line">        printf(&quot; addr (str[0]) = %#x \n&quot;,&amp;(str[0]));</div><div class="line">        printf(&quot; addr (str[1]) = %#x \n&quot;,&amp;(str[1]));</div><div class="line">                       </div><div class="line">        printf(&quot; addr of arrary param = %#x \n&quot;,&amp;str);</div><div class="line">        printf(&quot; sizeof str = %d \n\n&quot;,sizeof(str));</div><div class="line">        return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="指针声明和数组声明"><a href="#指针声明和数组声明" class="headerlink" title="指针声明和数组声明"></a>指针声明和数组声明</h3><p>首先看一段崩溃代码，Segment Default报错。<code>指针声明和数组声明若没弄清楚，分分钟让你掉坑里</code>。
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">        char *chas = &quot;ABCDE&quot;;</div><div class="line">            char chas_1[] = &quot;ABCDE&quot;;</div><div class="line">                chas[0] = &apos;X&apos;;</div><div class="line">                    chas_1[0] = &apos;X&apos;;</div><div class="line">                        return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上面代码崩溃的原因是：<code>*chas = &quot;ABCDE&quot;存放在常量区</code>是无法修改的（chas的指针值存放在栈中。而<code>数组是局部变量，存放在栈中</code>，是可以修改的。</p>
-<p>这两种变量的内存布局的不同，导致了指针声明和数组声明有以下区别：
- <code>”读“ ”写“ 能力</code>
- char *a = “abcd”;  此时”abcd”存放在常量区。通过指针只可以访问字符串常量，而不可以改变它。
- 而char a[20] = “abcd”； 此时 “abcd”存放在栈。可以通过指针去访问和修改数组内容。</p>
-<p> <code>赋值时刻</code>
- char *a = “abcd”; 是在<code>编译时就确定了</code>（因为为常量）。
- 而char a[20] = “abcd”； <code>在运行时确定</code></p>
-<p> <code>存取效率</code>
- char *a = “abcd”; 存于静态存储区。<code>在栈上的数组比指针所指向字符串快</code>。慢
- 而char a[20] = “abcd”； 存于栈上。快</p>
-<p> 再看看下面代码
+<p>这两种变量的内存布局的不同，导致了指针声明和数组声明有以下区别：<br><code>”读“ ”写“ 能力</code><br>char *a = “abcd”;  此时”abcd”存放在常量区。通过指针只可以访问字符串常量，而不可以改变它。<br>而char a[20] = “abcd”； 此时 “abcd”存放在栈。可以通过指针去访问和修改数组内容。</p>
+<p><code>赋值时刻</code><br>char *a = “abcd”; 是在<code>编译时就确定了</code>（因为为常量）。<br>而char a[20] = “abcd”； <code>在运行时确定</code></p>
+<p><code>存取效率</code><br>char *a = “abcd”; 存于静态存储区。<code>在栈上的数组比指针所指向字符串快</code>。慢<br>而char a[20] = “abcd”； 存于栈上。快</p>
+<p>再看看下面代码
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//合法</div><div class="line">char a[]=&quot;abcde&quot;;</div><div class="line">char *b;</div><div class="line">b = a;</div><div class="line"></div><div class="line">//不合法</div><div class="line">char *a=&quot;abcde&quot;;</div><div class="line">char b[6];</div><div class="line">b = a;</div></pre></td></tr></table></figure></p>
 <p> <code>char[] 可以隐式转换成 char*</code>，所以合法。<code>不存在</code>隐式转换使得 char* 被转换成 char[]，char[] 类型的变量不能被赋值，<code>数组不能作左值</code>，所以不合法。</p>
 
@@ -479,7 +472,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/08/31/char-a-与-char-a/"
-           data-title="char *a 与 char a[]" data-url="https://murfyexp.github.io/2017/08/31/char-a-与-char-a/">
+           data-title="char *a 与 char a[]的区别" data-url="https://murfyexp.github.io/2017/08/31/char-a-与-char-a/">
       </div>
     
   </div>
@@ -606,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#char-a-与-char-a"><span class="nav-number">1.</span> <span class="nav-text">char *a 与 char a[]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组名与指针"><span class="nav-number">1.0.1.</span> <span class="nav-text">数组名与指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针声明和数组声明"><span class="nav-number">1.0.2.</span> <span class="nav-text">指针声明和数组声明</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组名与指针"><span class="nav-number">1.</span> <span class="nav-text">数组名与指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针声明和数组声明"><span class="nav-number">2.</span> <span class="nav-text">指针声明和数组声明</span></a></li></ol></div>
             
 
           </div>

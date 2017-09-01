@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://murfyexp.github.io/2017/08/31/char-a-%E4%B8%8E-char-a/</loc>
+    <lastmod>2017-09-01T05:45:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>char *a 与 char a[]</title>
+        <pubTime>2017-09-01T05:41:40.000Z</pubTime>
+        
+        <tag>编程语言</tag>
+         
+         
+           
+             
+              <breadCrumb title="C/C++" url="https://murfyexp.github.io/categories/C-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://murfyexp.github.io/2017/07/29/%E6%AF%95%E4%B8%9A%E4%BA%86%EF%BC%8C%E4%B8%8A%E7%8F%AD%E4%BA%86/</loc>
     <lastmod>2017-08-27T05:44:53.000Z</lastmod>
     <data>
@@ -260,12 +280,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/09/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
+    <loc>https://murfyexp.github.io/2017/03/08/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单网络协议(SNP)</title>
-        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
+        <title>简单覆盖网络(SON)</title>
+        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
         
         <tag>网络</tag>
          
@@ -280,12 +300,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/08/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
+    <loc>https://murfyexp.github.io/2017/03/09/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单覆盖网络(SON)</title>
-        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
+        <title>简单网络协议(SNP)</title>
+        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
         
         <tag>网络</tag>
          

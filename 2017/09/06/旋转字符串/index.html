@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="网络," />
+  <meta name="keywords" content="面试 算法," />
 
 
 
@@ -86,57 +86,19 @@
 
 
 
-<meta name="description" content="socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。
-在客户端上建立套接字的步骤如下：
-
-
-socket()创建套接字
-connect()将套接字连接到服务器
-使用read()和write()发送和接收数据
-
-
-在服务器端建立套接字的步骤如下：
-
-
-socket()创建套接字
-使用bind()系统调用将套接字绑定到地址，地址由主机上的端口号组">
+<meta name="description" content="问题给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”
+要求：时间复杂度为 O(n)，空间复杂度为 O(1)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="socket套接字编程教程">
-<meta property="og:url" content="https://murfyexp.github.io/2017/03/03/socket套接字编程教程/index.html">
+<meta property="og:title" content="旋转字符串">
+<meta property="og:url" content="https://murfyexp.github.io/2017/09/06/旋转字符串/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。
-在客户端上建立套接字的步骤如下：
-
-
-socket()创建套接字
-connect()将套接字连接到服务器
-使用read()和write()发送和接收数据
-
-
-在服务器端建立套接字的步骤如下：
-
-
-socket()创建套接字
-使用bind()系统调用将套接字绑定到地址，地址由主机上的端口号组">
-<meta property="og:image" content="https://murfyexp.github.io/images/cs_Socket.png">
-<meta property="og:updated_time" content="2017-03-23T23:14:03.000Z">
+<meta property="og:description" content="问题给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”
+要求：时间复杂度为 O(n)，空间复杂度为 O(1)">
+<meta property="og:updated_time" content="2017-09-06T07:03:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="socket套接字编程教程">
-<meta name="twitter:description" content="socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。
-在客户端上建立套接字的步骤如下：
-
-
-socket()创建套接字
-connect()将套接字连接到服务器
-使用read()和write()发送和接收数据
-
-
-在服务器端建立套接字的步骤如下：
-
-
-socket()创建套接字
-使用bind()系统调用将套接字绑定到地址，地址由主机上的端口号组">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/cs_Socket.png">
+<meta name="twitter:title" content="旋转字符串">
+<meta name="twitter:description" content="问题给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”
+要求：时间复杂度为 O(n)，空间复杂度为 O(1)">
 
 
 
@@ -164,13 +126,13 @@ socket()创建套接字
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/03/03/socket套接字编程教程/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/09/06/旋转字符串/"/>
 
 
 
 
 
-  <title> socket套接字编程教程 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 旋转字符串 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -309,7 +271,7 @@ socket()创建套接字
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/03/03/socket套接字编程教程/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/09/06/旋转字符串/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -333,7 +295,7 @@ socket()创建套接字
             
             
               
-                socket套接字编程教程
+                旋转字符串
               
             
           </h1>
@@ -348,8 +310,8 @@ socket()创建套接字
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-03T23:22:09-08:00">
-                2017-03-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T00:02:36-07:00">
+                2017-09-06
               </time>
             
 
@@ -371,8 +333,8 @@ socket()创建套接字
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">网络编程</span>
+                  <a href="/categories/面试算法/" itemprop="url" rel="index">
+                    <span itemprop="name">面试算法</span>
                   </a>
                 </span>
 
@@ -389,8 +351,8 @@ socket()创建套接字
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/03/socket套接字编程教程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/03/socket套接字编程教程/" itemprop="commentCount"></span>
+                <a href="/2017/09/06/旋转字符串/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/06/旋转字符串/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +362,7 @@ socket()创建套接字
 
           
           
-             <span id="/2017/03/03/socket套接字编程教程/" class="leancloud_visitors" data-flag-title="socket套接字编程教程">
+             <span id="/2017/09/06/旋转字符串/" class="leancloud_visitors" data-flag-title="旋转字符串">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -427,60 +389,14 @@ socket()创建套接字
       
 
       
-        <p>socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。</p>
-<p>在客户端上建立套接字的步骤如下：</p>
-<blockquote>
-<ul>
-<li>socket()创建套接字</li>
-<li>connect()将套接字连接到服务器</li>
-<li>使用read()和write()发送和接收数据</li>
-</ul>
-</blockquote>
-<p>在服务器端建立套接字的步骤如下：</p>
-<blockquote>
-<ul>
-<li>socket()创建套接字</li>
-<li>使用bind()系统调用将套接字绑定到地址，地址由主机上的端口号组成。</li>
-<li>listen()监听连接</li>
-<li>accept()接受连接。此调用通常阻塞，直到客户端与服务器连接</li>
-<li>发送和接收数据</li>
-</ul>
-</blockquote>
-<p>CS模式下API图
-<img src="/images/cs_Socket.png" alt="CS模式"></p>
-<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>sockfd和newsockfd文件描述符，这两个变量存储套接字系统call和accept系统调用返回的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in serv_addr，cli_addr;</div></pre></td></tr></table></figure>
-<p>sockaddr_in是互联网地址结构。定义在<netinet in.h="">。变量serv_addr为服务器的地址，cli_addr是客户端的地址。
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in</div><div class="line">&#123;</div><div class="line">    <span class="keyword">short</span> sin_family;</div><div class="line">    u_short sin_port;</div><div class="line">    <span class="keyword">struct</span> in_addr sin_addr;</div><div class="line">    <span class="keyword">char</span> sin_zero [<span class="number">8</span>];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></netinet></p>
-<p>in_addr结构，在相同的头文件中定义，只包含一个无符号长整型s_addr。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (argc &lt; <span class="number">2</span>) </div><div class="line">&#123;</div><div class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"ERROR, no port provided\n"</span>);</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用户需要传入服务器的端口号，若未执行此操作就报错</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line"><span class="keyword">if</span> (sockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR opening socket"</span>);</div></pre></td></tr></table></figure>
-<p>socket()创建一个套接字，它需要三个参数。
-第一个是套接字的地址域。2种：共享文件系统的两个进程的unix域，以及Internet上任意两个主机的Internet域。符号常数AF_UNIX用于前者，而AF_INET后者</p>
-<p>第二个参数是套接字的类型。2种：来自文件或管道的流套接字，以及以块读取消息的数据报套接字。符号常量是SOCK_STREAM和SOCK_DGRAM。</p>
-<p>第三个参数是协议。如果此参数为零，操作系统将选择最适当的协议。它将选择TCP作为流套接字，UDP选择数据报套接字。</p>
-<p>套接字调用返回文件描述符表的一个表项。此值用于对此套接字的所有后续引用。如果套接字调用失败，它返回-1。在这种情况下，程序显示和错误消息并退出。
-上面是套接字调用的简化描述；还有许多其他选择域和类型，但这些是最常见的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bzero((<span class="keyword">char</span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr));</div></pre></td></tr></table></figure>
-<p>该函数bzero()将缓冲区中的所有值设置为零。它有两个参数，第一个是指向缓冲区的指针，第二个是缓冲区的大小。因此，此行初始化 serv_addr为零。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">portno = atoi(argv[<span class="number">1</span>]);</div></pre></td></tr></table></figure>
-<p>服务器将侦听连接的端口号作为参数传入，并使用该atoi()函数将其从数字字符串转换为整数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_family = AF_INET;</div></pre></td></tr></table></figure>
-<p>short sin_family用于记录地址，它始终设置为符号常量AF_INET。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_addr.s_addr = INADDR_ANY;</div></pre></td></tr></table></figure>
-<p>unsigned long s_addr，记录主机的IP地址。对于服务器，这将始终是运行服务器的计算机的IP地址，INADDR_ANY是获得此地址的符号常量。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_port = htons(portno);</div></pre></td></tr></table></figure>
-<p>unsigned short sin_port，记录端口号。这里需要使用将主机字节顺序中的端口号转换为网络字节顺序中的端口号。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (bind(sockfd, (<span class="keyword">struct</span> sockaddr *) &amp;serv_addr,</div><div class="line">        <span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</div><div class="line">error(<span class="string">"ERROR on binding"</span>);</div></pre></td></tr></table></figure>
-<p>bind()将套接字绑定到一个地址上。它需要三个参数：套接字文件描述符，绑定的地址和绑定的地址的大小。第二个参数是sockaddr类型，但传入的是sockaddr_in，因此必须将它转换为正确的类型。
-bind()过程失败的原因有很多，最明显的是该套接字已经在这台机器上使用。 </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">listen(sockfd,<span class="number">5</span>);</div><div class="line">```    </div><div class="line">listen（sockfd，<span class="number">5</span>）;</div><div class="line">listen监听该套接字连接。第一个参数是套接字文件描述符，第二个参数是等待连接的队列大小</div><div class="line"></div><div class="line">```C    </div><div class="line">clilen = <span class="keyword">sizeof</span>(cli_addr);</div><div class="line">newsockfd = accept(sockfd, (<span class="keyword">struct</span> sockaddr *) &amp;cli_addr, &amp;clilen);</div><div class="line"><span class="keyword">if</span> (newsockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR on accept"</span>);</div></pre></td></tr></table></figure>
-<p>accept()导致进程阻塞，直到客户端连接到服务器。当连接成功时，它唤醒该进程。返回一个新的文件描述符，并使用这个新的文件描述符完成此连接上的所有通信。第二个参数是指向连接另一端的客户端地址的引用指针，第三个参数是此结构的大小。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bzero(buffer,<span class="number">256</span>);</div><div class="line">n = read(newsockfd,buffer,<span class="number">255</span>);</div><div class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) error(<span class="string">"ERROR reading from socket"</span>);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"Here is the message: %s\n"</span>,buffer);</div></pre></td></tr></table></figure>
-<p>使用bzero()函数初始化缓冲区，然后从套接字读取信息。read()使用新的文件描述符，阻塞直到有一些东西可读，即客户端已经执行write()后。它将读取套接字中的字符，并返回读取的字符数。 </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">n = write(newsockfd,<span class="string">"I got your message"</span>,<span class="number">18</span>);</div><div class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) error(<span class="string">"ERROR writing to socket"</span>);</div></pre></td></tr></table></figure>
-<p>一旦建立了连接，两端都可以读写。</p>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”
+要求：时间复杂度为 O(n)，空间复杂度为 O(1)
+<a id="more"></a></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们将整个字符串分成两部分：<code>左侧为需要旋转的前n个字符，右侧为剩下的其余部分</code>；借助<code>“负负得正”</code>的思想，处理的策略即，<code>左右各部分独自反转字符串一次，最后统一反转处理整个字符串。</code></p>
+<p>具体代码如下:
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;String&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">reverse</span><span class="params">(<span class="keyword">char</span> *chas, <span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span>(from &lt; to)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> t = chas[from];</div><div class="line">        chas[from++] = chas[to];</div><div class="line">        chas[to--] = t;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; chas &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> chas;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">rotateString</span><span class="params">(<span class="keyword">char</span> str[], <span class="keyword">int</span> offset, <span class="keyword">int</span> len)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (str == <span class="literal">NULL</span> || len == <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">    reverse(str, <span class="number">0</span>, offset - <span class="number">1</span>);</div><div class="line">    reverse(str, offset, len - <span class="number">1</span>);</div><div class="line">    reverse(str, <span class="number">0</span>, len - <span class="number">1</span>);                                   </div><div class="line">    <span class="keyword">return</span> str;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> chas[] = <span class="string">"ABCD1234"</span>;</div><div class="line">    <span class="keyword">int</span> offset = <span class="number">3</span>;</div><div class="line">    <span class="keyword">int</span> length =  <span class="keyword">sizeof</span>(chas) - <span class="number">1</span>;</div><div class="line">    rotateString(chas, offset, length);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; chas &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的reverse函数利用<code>首尾指针双指针实现</code>。下面再看看python大法对字符串的反转：<a href="">切片法</a>，<code>简单明了强大。</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">"hello world"</span></div><div class="line"><span class="keyword">print</span> s[::<span class="number">-1</span>]</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -509,7 +425,7 @@ bind()过程失败的原因有很多，最明显的是该套接字已经在这�
       
         <div class="post-tags">
           
-            <a href="/tags/网络/" rel="tag"># 网络</a>
+            <a href="/tags/面试-算法/" rel="tag"># 面试 算法</a>
           
         </div>
       
@@ -518,8 +434,8 @@ bind()过程失败的原因有很多，最明显的是该套接字已经在这�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/02/内存管理(页面管理)/" rel="next" title="内存管理(页面管理)">
-                <i class="fa fa-chevron-left"></i> 内存管理(页面管理)
+              <a href="/2017/09/05/反转字符串/" rel="next" title="反转字符串">
+                <i class="fa fa-chevron-left"></i> 反转字符串
               </a>
             
           </div>
@@ -527,10 +443,6 @@ bind()过程失败的原因有很多，最明显的是该套接字已经在这�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/08/简单覆盖网络-SON/" rel="prev" title="简单覆盖网络(SON)">
-                简单覆盖网络(SON) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,8 +468,8 @@ bind()过程失败的原因有很多，最明显的是该套接字已经在这�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/03/socket套接字编程教程/"
-           data-title="socket套接字编程教程" data-url="https://murfyexp.github.io/2017/03/03/socket套接字编程教程/">
+      <div class="ds-thread" data-thread-key="2017/09/06/旋转字符串/"
+           data-title="旋转字符串" data-url="https://murfyexp.github.io/2017/09/06/旋转字符串/">
       </div>
     
   </div>
@@ -684,7 +596,7 @@ bind()过程失败的原因有很多，最明显的是该套接字已经在这�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端"><span class="nav-number">1.</span> <span class="nav-text">服务端</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li></ol></div>
             
 
           </div>

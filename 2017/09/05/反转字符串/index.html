@@ -86,16 +86,19 @@
 
 
 
-<meta name="description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
+<meta name="description" content="问题输入一个字符串，一个单词一个单词地反转。例如：
+12Given s = &quot;the sky is blue&quot;,return &quot;blue is sky the&quot;.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子矩阵的最大和">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/12/3-1/index.html">
+<meta property="og:title" content="反转字符串">
+<meta property="og:url" content="https://murfyexp.github.io/2017/09/05/反转字符串/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
-<meta property="og:updated_time" content="2017-02-18T07:38:11.000Z">
+<meta property="og:description" content="问题输入一个字符串，一个单词一个单词地反转。例如：
+12Given s = &quot;the sky is blue&quot;,return &quot;blue is sky the&quot;.">
+<meta property="og:updated_time" content="2017-09-06T06:57:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="子矩阵的最大和">
-<meta name="twitter:description" content="问题1给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和">
+<meta name="twitter:title" content="反转字符串">
+<meta name="twitter:description" content="问题输入一个字符串，一个单词一个单词地反转。例如：
+12Given s = &quot;the sky is blue&quot;,return &quot;blue is sky the&quot;.">
 
 
 
@@ -123,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/12/3-1/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2017/09/05/反转字符串/"/>
 
 
 
 
 
-  <title> 子矩阵的最大和 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 反转字符串 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +271,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/12/3-1/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/09/05/反转字符串/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -292,7 +295,7 @@
             
             
               
-                子矩阵的最大和
+                反转字符串
               
             
           </h1>
@@ -307,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T17:29:32-08:00">
-                2017-02-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-05T23:55:41-07:00">
+                2017-09-05
               </time>
             
 
@@ -348,8 +351,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/12/3-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/3-1/" itemprop="commentCount"></span>
+                <a href="/2017/09/05/反转字符串/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/05/反转字符串/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +362,7 @@
 
           
           
-             <span id="/2017/02/12/3-1/" class="leancloud_visitors" data-flag-title="子矩阵的最大和">
+             <span id="/2017/09/05/反转字符串/" class="leancloud_visitors" data-flag-title="反转字符串">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -386,17 +389,17 @@
       
 
       
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">给定一个无序矩阵,其中有正,有负,有 0,求子矩阵的最大和</div></pre></td></tr></table></figure>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>输入一个字符串，一个单词一个单词地反转。例如：
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Given s = <span class="string">"the sky is blue"</span>,</div><div class="line"><span class="keyword">return</span> <span class="string">"blue is sky the"</span>.</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><code>思路一：暴力枚举；</code>已知由左上顶点坐标与右下顶点坐标可唯一确定一个子矩阵。左上顶点与右下顶点的确定分别需要O(n^2)，遍历所有子矩阵需要O(n^2)。故<code>暴力枚举的总体时间复杂度O(n^6)</code>。  </p>
-<p>然而利用之前学习过的算法原型，可以<code>将时间复杂度降为O(n^3)，是不是感觉很吊，闭上眼睛小小的期待一下吧！</code></p>
-<p>前几篇文章介绍过子数组最大累加和<a href="https://murfyexp.github.io/"><font color="DarkSlateGray" size="3"> 子数组最大的累加和</font></a>，如果我们将二维矩阵压缩成一维，就<code>可以用O(n)的时间复杂度计算出子矩阵的最大</code>和。加上遍历所有子矩阵需要的O(n^2)，故<code>总体时间复杂度成功地降为O(n^3)</code></p>
-<p>如何将二维矩阵压缩成一维数组，并转化成子数组最大累加和问题。<code>我们将子矩阵的每一列求和，然后和值用s数组保存起来</code>，转型成功。这也是<code>压缩矩阵常用到的技巧</code>  </p>
-<p>若<code>矩阵为m*n矩阵</code>，在矩阵的长和宽中，我们应<code>选取数值较小的一个，作为最外层for循环的趟数</code></p>
-<p>核心代码
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">SubMatrixMaxSum</span><span class="params">(<span class="keyword">int</span> m[][line])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (m == <span class="literal">NULL</span> || row == <span class="number">0</span> || line == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//res初始化为非常小的负数</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">-65535</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span>* s = <span class="keyword">new</span> <span class="keyword">int</span>[line];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; row; j++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">int</span> cur = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; line; k++)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">//生成s数组</span></div><div class="line">                s[k] += m[j][k];</div><div class="line">                cur += s[k];</div><div class="line">                res = max(res, cur);</div><div class="line">                cur = cur &lt; <span class="number">0</span> ? <span class="number">0</span> : cur;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> matrix[row][line] = &#123; &#123; <span class="number">0</span>, <span class="number">-2</span>, <span class="number">-7</span>, <span class="number">0</span>&#125;, &#123;<span class="number">9</span>, <span class="number">2</span>, <span class="number">-6</span>, <span class="number">2</span>&#125;,</div><div class="line">        &#123;<span class="number">-4</span>, <span class="number">1</span>, <span class="number">-4</span>, <span class="number">1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">-2</span>&#125; &#125;;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"res: %d\n"</span>, SubMatrixMaxSum(matrix));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>每一个子矩阵对应一个s数组</code>，故在遍历的过程中，每趟都需要new一个新的s数组用来保存当前子矩阵。同理，当前和值变量<code>cur每趟都需要初始化为0</code><br><code>cur = cur &lt; 0 ? 0 : cur;</code>可放在过程的<code>开始或者结束</code>，意思没有差别。</p>
-<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p><code>二维数组的传参方法</code>，这里我们使用的是方法一，<code>形参为指向数组的指针并给出数组长度。</code><a href="http://blog.csdn.net/gqb_driver/article/details/8886687" target="_blank" rel="external"><font color="DarkSlateGray" size="3"> 具体C/C++ 语 言二维数组的传参方法总结</font></a></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>实现原理很简单，<code>首先将整个字符串反转，然后/Users/mac/Downloads/反转字符串.md依次反转每个单词即可</code>。</p>
+<p><code>storeIndex表示当前存储到的位置</code>。遇到空格直接跳过，如果是非空格字符，此时看storeIndex是否为0，为0的话表示第一个单词，不用增加空格；<code>如果不为0，说明不是第一个单词，需要在单词中间加一个空格。</code></p>
+<p>代码如下
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;String&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">//无需split,跳过所有空格符，在每个单词后，手动添加一个空格符</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverseWords</span><span class="params">(<span class="built_in">string</span> &amp;s)</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> storeIndex = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> n = s.size();</div><div class="line">    reverse(s.begin(), s.end());</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (s[i] != <span class="string">' '</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">int</span> j = i; <span class="comment">//j用于记录当前保存的位置</span></div><div class="line">            s[storeIndex++] = <span class="string">' '</span>; <span class="comment">//手动添加空格符，index++</span></div><div class="line">            <span class="keyword">while</span>(j &lt; n &amp;&amp; s[j] != <span class="string">' '</span>)   <span class="comment">//j移动，j出界循环终止</span></div><div class="line">            &#123;</div><div class="line">                s[storeIndex++] = s[j++];</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//j - i为单词的长度</span></div><div class="line">            reverse(s.begin() + storeIndex - (j - i), s.begin() + storeIndex);</div><div class="line">            <span class="comment">//s[storeIndex++] = ' '; //手动添加空格符，index++</span></div><div class="line">            i = j; <span class="comment">//更新已遍历过的位置</span></div><div class="line">        &#125;</div><div class="line">    &#125; </div><div class="line">    s.resize(storeIndex);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">str</span> <span class="params">(<span class="string">"I like   to code in     C"</span>)</span></span>;</div><div class="line">    reverseWords(str);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有个地方需要注意：<code>s[storeIndex++] = &#39; &#39;;</code>
+添加空格符的位置。若反转单词后，再添加的话。<code>在只有一个单词的情况下</code>，单词末尾会被手动添加一个空格符，这样的话就画蛇添足了。</p>
+<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p>string类的resize用法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">str</span> <span class="params">(<span class="string">"I like to code in C++"</span>)</span></span>;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="string">'\n'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">unsigned</span> sz = str.size();</div><div class="line"></div><div class="line">    str.resize (sz+<span class="number">3</span>,<span class="string">'+'</span>);</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="string">'\n'</span>;</div><div class="line"></div><div class="line">    str.resize (<span class="number">8</span>);</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="string">'\n'</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -434,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/09/2-2/" rel="next" title="最长子数组长度">
-                <i class="fa fa-chevron-left"></i> 最长子数组长度
+              <a href="/2017/08/31/char-a-与-char-a/" rel="next" title="char *a 与 char a[]的区别">
+                <i class="fa fa-chevron-left"></i> char *a 与 char a[]的区别
               </a>
             
           </div>
@@ -443,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/17/DartNet网络协议栈/" rel="prev" title="DartNet网络协议栈">
-                DartNet网络协议栈 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,8 +471,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/12/3-1/"
-           data-title="子矩阵的最大和" data-url="https://murfyexp.github.io/2017/02/12/3-1/">
+      <div class="ds-thread" data-thread-key="2017/09/05/反转字符串/"
+           data-title="反转字符串" data-url="https://murfyexp.github.io/2017/09/05/反转字符串/">
       </div>
     
   </div>
@@ -600,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-小知识"><span class="nav-number">3.</span> <span class="nav-text">C++小知识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-小知识"><span class="nav-number">3.</span> <span class="nav-text">C++小知识</span></a></li></ol></div>
             
 
           </div>

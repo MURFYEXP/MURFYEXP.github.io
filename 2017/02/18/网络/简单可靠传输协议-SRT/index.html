@@ -1,0 +1,1027 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="1000 words a Day" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要介绍简单可靠传输的原理实现，我们只考虑由连接管理使用的控制，其它部分将在另外几篇博文中介绍。为了完成SRT的测试，我们需要编写一个客户端和一个服务器。
+就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。
+
+
+单向传输，即DATA段从客户端流向接受端
+连接管理：客户端发起和断开连接
+不支持流量控制或拥塞控制
+
+
+SRT拥有以下机制
+
+
+连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单可靠传输协议(SRT)">
+<meta property="og:url" content="https://murfyexp.github.io/2017/02/18/网络/简单可靠传输协议-SRT/index.html">
+<meta property="og:site_name" content="1000 words a Day">
+<meta property="og:description" content="本篇文章主要介绍简单可靠传输的原理实现，我们只考虑由连接管理使用的控制，其它部分将在另外几篇博文中介绍。为了完成SRT的测试，我们需要编写一个客户端和一个服务器。
+就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。
+
+
+单向传输，即DATA段从客户端流向接受端
+连接管理：客户端发起和断开连接
+不支持流量控制或拥塞控制
+
+
+SRT拥有以下机制
+
+
+连">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Lab4 API.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Segment Header.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Connection Setup.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Connection Teardown.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Client FSM.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/SRT Server FSM.png">
+<meta property="og:updated_time" content="2017-03-23T22:41:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单可靠传输协议(SRT)">
+<meta name="twitter:description" content="本篇文章主要介绍简单可靠传输的原理实现，我们只考虑由连接管理使用的控制，其它部分将在另外几篇博文中介绍。为了完成SRT的测试，我们需要编写一个客户端和一个服务器。
+就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。
+
+
+单向传输，即DATA段从客户端流向接受端
+连接管理：客户端发起和断开连接
+不支持流量控制或拥塞控制
+
+
+SRT拥有以下机制
+
+
+连">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/DartNet/Lab4 API.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6382808465152148000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://murfyexp.github.io/2017/02/18/网络/简单可靠传输协议-SRT/"/>
+
+
+
+
+
+  <title> 简单可靠传输协议(SRT) | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">1000 words a Day</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/18/网络/简单可靠传输协议-SRT/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Shaojie Li">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="1000 words a Day">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="1000 words a Day" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                简单可靠传输协议(SRT)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-18T23:54:21-08:00">
+                2017-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DartNet网络协议栈/" itemprop="url" rel="index">
+                    <span itemprop="name">DartNet网络协议栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/18/网络/简单可靠传输协议-SRT/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/18/网络/简单可靠传输协议-SRT/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/18/网络/简单可靠传输协议-SRT/" class="leancloud_visitors" data-flag-title="简单可靠传输协议(SRT)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇文章主要介绍简单可靠传输的原理实现，我们只考虑由连接管理使用的控制，其它部分将在另外几篇博文中介绍。为了完成SRT的测试，我们需要编写一个客户端和一个服务器。</p>
+<p>就像TCP一样，SRT提供按顺序字节流的可靠传递。这里SRT做出了一些假设，以简化协议的设计和实现。</p>
+<blockquote>
+<ul>
+<li>单向传输，即DATA段从客户端流向接受端</li>
+<li>连接管理：客户端发起和断开连接</li>
+<li>不支持流量控制或拥塞控制</li>
+</ul>
+</blockquote>
+<p>SRT拥有以下机制</p>
+<blockquote>
+<ul>
+<li>连接管理：连接和断开</li>
+<li>校验和用于检测接受的数据是否被破坏</li>
+<li>回退N步用于在接收端可靠地传送数据，序列号用于检测丢失的数据和将数据重新排序</li>
+<li>重传：客户端使用超时和ACK来重传丢失的数据和控制分组（例如SYN）</li>
+</ul>
+</blockquote>
+<h3 id="API：SRT，SNP和覆盖控制"><a href="#API：SRT，SNP和覆盖控制" class="headerlink" title="API：SRT，SNP和覆盖控制"></a>API：SRT，SNP和覆盖控制</h3><p>上一篇博文中，我们看到在DartNet协议栈的不同层之间有许多API。在实现SRT过程中，我们不使用SNP层转发，专注于客户端和服务器的实现与SRT API相关联的一组有限功能 。只考虑客户端和服 务器之间的连接相关的函数调用。SRT像TCP一样能够支持多个同时连接。我们将讨论数据结构和有限状态机(FSM)需要在本文后面支持这一点。</p>
+<p>没有SNP时，SRT直接位于覆盖层上。在这种情况下，覆盖层简单地实现客户端和服务器SRT传输协议之间的TCP连接。我们的覆盖层也只包含客户端和服务器之间的直接TCP连接。</p>
+<p><code>overlay_start（）和 overlay_stop（）</code>函数创建客户端和服务器之间的TCP直接连接。overlay_start（）返回TCP套接字描述符。overlay_stop（）关闭TCP连接。</p>
+<p>首先需要实现的是snp _sendseg()和 snp_recvseg（）函数，以使用覆盖层的TCP连接发送和接段
+。在TCP数据作为字节流发送的情况下。为了通过覆盖层TCP连接发送数据段，我们需要在字节流中添加分隔符。</p>
+<p>在SRT中，使用特殊字符“！＆”表示段的开始，特殊字符“！＃”表示段的结束。这些分隔符不应该出现在客户端和服务之间发送的数据中。这是一个限制（并且如果“！＆”或“！＃”发生在客户端的字节流中，协议将不正确地操作，因此应该确保数据不包括这些特殊控制字符对)。分隔符是必要的，因为STR分组的接收侧（即STR标头+ STR段）需要知道它何时成功接收到SRT分组，这是一种方法。
+可能是最简单的方法。</p>
+<p><code>因为覆盖层是从TCP构建的，而不是说UDP，我们没有任何损失</code>。为了允许覆盖看起来像在有损链路上运行，并且分组可以在因特网中丢失，我们在接收到SRT分组时在snp _recvseg()中调用丢失 loss()函数，以丢弃具有概率PROBABILITY_LOSS的分段来<code>模拟分组丢失以迫使SRT恢复丢失的分段</code>，其可以是SRT DATA分组 ，SYN， SYNACK，FIN和FINACK。 SRT协议必须能够正确地从任何这些数 据包的丢失中恢复。</p>
+<p>图3：这些是DartNet API函数调用的子集
+<img src="/images/DartNet/Lab4 API.png" alt="Lab4 API"></p>
+<p>功能的流程如下
+app_client.c和app_server.c，应用程序层代码首先通过在overlay_start()中的客户端和服务器之间创建一个直接TCP链接来启动覆盖层。在app _client和 app _server中实 现overlay_start()。 服务器通过调用srt _svr _init()初始化SRT服务器，客户机通过调用srt _client _init()初始化 SRT客户机。</p>
+<p>然后服务器调用srt _svr _sock()创建服务器端套接字，srt _svr _accept()接受来自客户端的连 接请求（SRT层的控制消息SYN）客户端创建一个套接字，并分别通过调用srt _client _sock() 和 srt _client _connect()连接到服务器套接字。</p>
+<p>客户端和服务器在不同端口上建立两个连接，所以SRT可以处理多个连接：服务器创建另一个套接字并等待传入连接，客户端创建另一个套接字并连接到新的服务器套接字。通过这样做，SRT可以同时有多个连接。</p>
+<p>客户端在等待时间之后通过为每个连接调用srt _client _disconnect()断开与服务器的连接。最 后，服务器通过调用srt _svr _close()关闭套接字，客户端通过调用srt _client _close()关闭 套接字。</p>
+<p>该app_client和app_server通过调用终止其进程之前停止叠加层over_end()在客户端和服务器。实现了overlay_stop()，而且还实现了srt˙client.c和 srt_server.c中使用的所有SRT 函数。</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>SRT定义了实现将数据控制和分组成段的多个重要数据结构。
+SRT分组包括SRT头（参见下面的srt_hdr_t）和SRT段（参见seg_t-数据字节流在这里）。SRT分组被封装到SNP分组中，当我们进入SNP时我们将讨论该SNP分组。注意，SRT报头包括与分组相关联的重要信息，包括例如无符号短整型类型; 。</p>
+<p>报头中的type字段定义数据包的类型：
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  SYN  0 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  SYNACK  1 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  FIN  2 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  FINACK  3 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  DATA  4 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  DATAACK  5</span></div></pre></td></tr></table></figure></p>
+<p>SRT协议以段为单位发送和接收数据。
+图4：段头格式
+<img src="/images/DartNet/Segment Header.png" alt="SRT Segment Header"></p>
+<p>它在seg.h中定义：
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> srt_hdr &#123;</div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> src_port;        <span class="comment">//source port number</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> dest_port;       <span class="comment">//destination port number</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> seq_num;         <span class="comment">//sequence number</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> length;    <span class="comment">//segment data length</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span>  type;     <span class="comment">//segment type</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span>  rcv_win;  <span class="comment">//currently not used</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> checksum;  <span class="comment">//currently not used</span></div><div class="line">&#125; <span class="keyword">srt_hdr_t</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> segment &#123;</div><div class="line">  <span class="keyword">srt_hdr_t</span> header;</div><div class="line">  <span class="keyword">char</span> data[MAX_SEG_LEN];</div><div class="line">&#125; <span class="keyword">seg_t</span>;</div></pre></td></tr></table></figure></p>
+<p>SRT使用传输控制块（TCB）维护与连接相关联的所有状态。对于每个连接，客户端和服务器端初始化并维护TCB。当连接关闭时，TCB返回到未使用的TCB池。下图显示了为每个连接维护的服务器端TCB。当srt _svr _init()和 srt _client _init()分别由server_App 和client_App 调用时，TCB表 在启动时在客户端和服务器上初始化。在编码SRT时，始终对数据结构和数据结构表使用malloc()/ free()。
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> svr_tcb &#123;</div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_nodeID;        <span class="comment">//node ID of server, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_portNum;       <span class="comment">//port number of server</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_nodeID;     <span class="comment">//node ID of client, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_portNum;    <span class="comment">//port number of client</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> state;             <span class="comment">//state of server</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> expect_seqNum;     <span class="comment">//sequence number of the data seg server is expecting</span></div><div class="line">  <span class="keyword">char</span>* recvBuf;                  <span class="comment">//a pointer pointing to a receive Buffer</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span>  usedBufLen;       <span class="comment">//size of received data in receiver buffer</span></div><div class="line">  <span class="keyword">pthread_mutex_t</span>* bufMutex;      <span class="comment">//a pointer pointing to a mutex for receive buffer access</span></div><div class="line">&#125; </div><div class="line"><span class="keyword">svr_tcb_t</span>;</div></pre></td></tr></table></figure></p>
+<p>对于每个连接，SRT客户端维护客户端和服务器TCB 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> client_tcb &#123;</div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_nodeID;        <span class="comment">//node ID of server, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> svr_portNum;       <span class="comment">//port number of server</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_nodeID;     <span class="comment">//node ID of client, similar as IP address</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> client_portNum;    <span class="comment">//port number of client</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span>  state;            <span class="comment">//state of client</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> next_seqNum;       <span class="comment">//next sequence number</span></div><div class="line">  <span class="keyword">pthread_mutex_t</span>* bufMutex;      <span class="comment">//a pointer pointing to a mutex for send buffer access</span></div><div class="line">  segBuf_t* sendBufHead;          <span class="comment">//used by send buffer</span></div><div class="line">  segBuf_t* sendBufunSent;        <span class="comment">//used by send buffer</span></div><div class="line">  segBuf_t* sendBufTail;          <span class="comment">//used by send buffer</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> unAck_segNum;      <span class="comment">//number of unAcked segments</span></div><div class="line">&#125; <span class="keyword">client_tcb_t</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p>SRT具有与TCP类似的连接设置和断开。SRT只是使用两次握手。  </p>
+<p>连接设置
+当客户端发送SYN并且服务器用SYNACK响应时建立连接</p>
+<p>图5：SRT连接设置
+<img src="/images/DartNet/SRT Connection Setup.png" alt="SRT Connection Setup"></p>
+<p>But life is not that simple: corruption and loss of control messages get in the way</p>
+<p>设置和断开时可能发生的以下问题：在SYN中发生丢失或损坏；客户端已经发送，服务器却不知道。这个问题如何解决？如果服务器接收到SYN，在发送SYNACK过程中丢失，会发生什么？</p>
+<p>这些异常的解决方案如下：在丢失SYN的情况下，str_client需要设置SYN_TIMEOUT，如果在该周期内没有收到SYN ACK，则它会发送另一个SYN并再次设置定时器。它重复此操作，直到它获得SYNACK或超过SYN_MAX_RETRY。在该状态下，它很可能接收SYN。</p>
+<p>SRT连接断开
+当客户端发送FIN并且服务器相应地使用FINACK进行响应时，采取（断开）连接</p>
+<p>图6：SRT连接断开
+<img src="/images/DartNet/SRT Connection Teardown.png" alt="SRT SRT Connection Teardown"></p>
+<p>但是我们可以在这里丢包。在FIN中发生了什么？客户端需要在FIN_TIMEOUT之后发送另一个FIN，直到FIN_MAX_RETRY。如果FINACK丢失会发生什么？客户端必须等待重传FIN_MAX_RETRY以尝试获得FINACK。如果它没有得到FINACK，它在等待期后转换到CLOSE状态，并假定连接有时间以有序的方式关闭。</p>
+<h3 id="有限状态机-FSM）"><a href="#有限状态机-FSM）" class="headerlink" title="有限状态机(FSM）"></a>有限状态机(FSM）</h3><p>客户端和服务器端实现FSM。
+FSM由有限数量的状态组成。状态转换由状态机和EVENT / ACTION控制。基本上,在例如在客户端 FSM上的状态下，例如，假设其处于状态 = SYNSENT并且发生事件 SYN_TIMEOUT,则适当的ACTION 发送SYN。检查客户端FSM，看看是否是这种情况。</p>
+<p>客户端FSM
+在客户端TCB中在结构的“状态”元素中维护的状态如下：
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//states of client</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CLOSED 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SYNSENT 2</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CONNECTED 3</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FINWAIT 4</span></div></pre></td></tr></table></figure></p>
+<p>当实现协议时，您将需要咨询这里所示的状态机，以确定客户端和服务器的状态转换，因为在连接建立和拆除期间交换段。这里SRT服务器状态机如图2所示。8。SRT客户端状态机如图1所示。
+SRT客户端FSM
+<img src="/images/DartNet/SRT Client FSM.png" alt="SRT Client FSM"></p>
+<p>在服务器TCB中在结构的“状态”元素中维护的状态如下：
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//states of server</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CLOSED 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LISTENING 2</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CONNECTED 3</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CLOSEWAIT 4</span></div></pre></td></tr></table></figure></p>
+<p>服务器端FSM
+<img src="/images/DartNet/SRT Server FSM.png" alt="SRT Server FSM"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Shaojie Li wechat" style="width: 200px; max-width: 100%;"/>
+    <div>个人微信公众号，我的日常分享！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/17/网络/DartNet网络协议栈/" rel="next" title="DartNet网络协议栈">
+                <i class="fa fa-chevron-left"></i> DartNet网络协议栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/19/算法/Leetcode/3-2/" rel="prev" title="只含1最大的子矩阵">
+                只含1最大的子矩阵 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/18/网络/简单可靠传输协议-SRT/"
+           data-title="简单可靠传输协议(SRT)" data-url="https://murfyexp.github.io/2017/02/18/网络/简单可靠传输协议-SRT/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
+               alt="Shaojie Li" />
+          <p class="site-author-name" itemprop="name">Shaojie Li</p>
+          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#API：SRT，SNP和覆盖控制"><span class="nav-number">1.</span> <span class="nav-text">API：SRT，SNP和覆盖控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接管理"><span class="nav-number">3.</span> <span class="nav-text">连接管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有限状态机-FSM）"><span class="nav-number">4.</span> <span class="nav-text">有限状态机(FSM）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
+</div>
+ 
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"murfyexp"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  <!-- 页面点击小红心 -->
+
+  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

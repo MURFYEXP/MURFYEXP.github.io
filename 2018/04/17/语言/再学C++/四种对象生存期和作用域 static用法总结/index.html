@@ -86,22 +86,25 @@
 
 
 
-<meta name="description" content="static成员变量非static数据成员存在于类类型的每个对象中，static数据成员独立该类的任意对象存在，它是与类关联的对象，不与类对象关联。
-static成员的定义static成员需要在类定义体外进行初始化与定义
-特殊的整型static const成员整型static const成员可以在类定义体中初始化，该成员可以不在类体外进行定义">
+<meta name="description" content="四种对象生存期和作用域程序内存空间: 代码段，数据段，堆栈段
+文本段。存储可执行文件的指令；也有可能包含一些只读的常数变量，例如字符串常量等。
+栈对象隐含调用构造函数
+堆对象隐含调用构造函数，要显式释放">
 <meta property="og:type" content="article">
-<meta property="og:title" content="static成员变量 static成员函数 类/对象大小计算">
-<meta property="og:url" content="https://murfyexp.github.io/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/index.html">
+<meta property="og:title" content="四种对象生存期和作用域 static用法总结">
+<meta property="og:url" content="https://murfyexp.github.io/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/index.html">
 <meta property="og:site_name" content="1000 words a Day">
-<meta property="og:description" content="static成员变量非static数据成员存在于类类型的每个对象中，static数据成员独立该类的任意对象存在，它是与类关联的对象，不与类对象关联。
-static成员的定义static成员需要在类定义体外进行初始化与定义
-特殊的整型static const成员整型static const成员可以在类定义体中初始化，该成员可以不在类体外进行定义">
-<meta property="og:updated_time" content="2018-04-17T11:38:32.000Z">
+<meta property="og:description" content="四种对象生存期和作用域程序内存空间: 代码段，数据段，堆栈段
+文本段。存储可执行文件的指令；也有可能包含一些只读的常数变量，例如字符串常量等。
+栈对象隐含调用构造函数
+堆对象隐含调用构造函数，要显式释放">
+<meta property="og:updated_time" content="2018-04-17T11:40:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="static成员变量 static成员函数 类/对象大小计算">
-<meta name="twitter:description" content="static成员变量非static数据成员存在于类类型的每个对象中，static数据成员独立该类的任意对象存在，它是与类关联的对象，不与类对象关联。
-static成员的定义static成员需要在类定义体外进行初始化与定义
-特殊的整型static const成员整型static const成员可以在类定义体中初始化，该成员可以不在类体外进行定义">
+<meta name="twitter:title" content="四种对象生存期和作用域 static用法总结">
+<meta name="twitter:description" content="四种对象生存期和作用域程序内存空间: 代码段，数据段，堆栈段
+文本段。存储可执行文件的指令；也有可能包含一些只读的常数变量，例如字符串常量等。
+栈对象隐含调用构造函数
+堆对象隐含调用构造函数，要显式释放">
 
 
 
@@ -129,13 +132,13 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/"/>
 
 
 
 
 
-  <title> static成员变量 static成员函数 类/对象大小计算 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 四种对象生存期和作用域 static用法总结 | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +277,7 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -298,7 +301,7 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
             
             
               
-                static成员变量 static成员函数 类/对象大小计算
+                四种对象生存期和作用域 static用法总结
               
             
           </h1>
@@ -313,8 +316,8 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T21:16:12-07:00">
-                2018-04-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T20:16:12-07:00">
+                2018-04-17
               </time>
             
 
@@ -354,8 +357,8 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/" itemprop="commentCount"></span>
+                <a href="/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,7 +368,7 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
 
           
           
-             <span id="/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/" class="leancloud_visitors" data-flag-title="static成员变量 static成员函数 类/对象大小计算">
+             <span id="/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/" class="leancloud_visitors" data-flag-title="四种对象生存期和作用域 static用法总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,28 +395,31 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
       
 
       
-        <h3 id="static成员变量"><a href="#static成员变量" class="headerlink" title="static成员变量"></a>static成员变量</h3><p>非static数据成员存在于类类型的每个对象中，<code>static数据成员独立该类的任意对象存在</code>，它是<code>与类关联的对象</code>，不与类对象关联。</p>
-<h4 id="static成员的定义"><a href="#static成员的定义" class="headerlink" title="static成员的定义"></a>static成员的定义</h4><p>static成员需要在<code>类定义体外</code>进行初始化与定义</p>
-<h4 id="特殊的整型static-const成员"><a href="#特殊的整型static-const成员" class="headerlink" title="特殊的整型static const成员"></a>特殊的整型static const成员</h4><p>整型static const成员<code>可以在类定义体中初始化</code>，该成员可以不在类体外进行定义
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Test</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Test(): a(<span class="number">0</span>) &#123;&#125;</div><div class="line">    <span class="keyword">enum</span> &#123;size1 = <span class="number">100</span>, size2 = <span class="number">200</span>&#125;;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> a;   <span class="comment">//只能在构造函数初始化列表中初始化</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> b;    <span class="comment">//在类的实现文件中定义并初始化</span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">int</span> c;    <span class="comment">//与 static const int c; 相同。</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">int</span> Test::b = <span class="number">0</span>; <span class="comment">//static成员变量不能在构造函数初始化列表中初始化，因为它不属于某个对象。</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> Test::c = <span class="number">0</span>; <span class="comment">//注意：给静态成员变量赋值时，不需要加static修饰符，但要加const，需要加作用域</span></div></pre></td></tr></table></figure></p>
-<p>static成员变量<code>不能在构造函数初始化列表中初始化</code>，因为它不属于某个对象。</p>
-<h4 id="static成员优点"><a href="#static成员优点" class="headerlink" title="static成员优点"></a>static成员优点</h4><p>static成员的名字是在类的作用域中，因此可以<code>避免与其它类成员或全局对象名字冲突</code>。
-可以实施封装，<code>static成员可以是私有的</code>，而全局对象不可以。
-阅读程序容易看出static成员与某个类相关联，这种可见性可以<code>清晰地反映程序员的意图</code>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _COUNTED_OBJECT_H_</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _COUNTED_OBJECT_H_</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> CountedObject</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CountedObject();</div><div class="line">    ~CountedObject();</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetCount</span><span class="params">()</span></span>;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count_;      <span class="comment">// 静态成员的引用性声明</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// _COUNTED_OBJECT_H_</span></span></div></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CountedObject.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> CountedObject::count_ = <span class="number">0</span>;      <span class="comment">// 静态成员的定义性声明</span></div><div class="line"></div><div class="line">CountedObject::CountedObject()</div><div class="line">&#123;</div><div class="line">    ++count_;</div><div class="line">&#125;</div><div class="line"></div><div class="line">CountedObject::~CountedObject()</div><div class="line">&#123;</div><div class="line">    --count_;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> CountedObject::GetCount()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> count_;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CountedObject.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//cout&lt;&lt;CountedObject::count_&lt;&lt;endl;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; CountedObject::GetCount() &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    CountedObject co1;</div><div class="line">    <span class="comment">//cout&lt;&lt;CountedObject::count_&lt;&lt;endl;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; CountedObject::GetCount() &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    CountedObject *co2 = <span class="keyword">new</span> CountedObject;</div><div class="line">    <span class="comment">//cout&lt;&lt;CountedObject::count_&lt;&lt;endl;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; CountedObject::GetCount() &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">delete</span> co2;</div><div class="line">    <span class="comment">//cout&lt;&lt;CountedObject::count_&lt;&lt;endl;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; CountedObject::GetCount() &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>程序定义一个静态成员变量和静态成员函数。<code>可以通过类名:: 访问static 成员变量。也可以通过非/静态成员函数访问</code>。</p>
-<h3 id="static成员函数"><a href="#static成员函数" class="headerlink" title="static成员函数"></a>static成员函数</h3><p>static成员函数<code>没有隐含的this指针</code>
-非静态成员函数可以访问静态成员
-<code>静态成员函数不可以访问非静态成员</code>（实际上是直接访问是不可以的，间接地访问是可以的，比如通过类指针或类引用）
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Test</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Test(<span class="keyword">int</span> y) : y_(y)</div><div class="line">    &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    ~Test()</div><div class="line">    &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">TestFun</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"x="</span> &lt;&lt; x_ &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//OK,非静态成员函数可以访问静态成员</span></div><div class="line">        TestStaticFun();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">TestStaticFun</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"TestStaticFun ..."</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="comment">//TestFun();        Error,静态成员函数不能调用非静态成员函数</span></div><div class="line">        <span class="comment">//cout&lt;&lt;"y="&lt;&lt;y_&lt;&lt;endl;     Error,静态成员函数不能访问非静态成员</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> x_;      <span class="comment">// 静态成员的引用性说明</span></div><div class="line">    <span class="keyword">int</span> y_;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">int</span> Test::x_ = <span class="number">100</span>;     <span class="comment">// 静态成员的定义性说明</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(Test) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="类-对象大小计算"><a href="#类-对象大小计算" class="headerlink" title="类/对象大小计算"></a>类/对象大小计算</h3><p>类大小计算遵循前面学过的结构体对齐原则
-类的大小与数据成员有关与成员函数无关（空类大小为1个字节）
-类的大小与静态数据成员无关
-虚函数对类的大小的影响（虚表指针）
-虚继承对类的大小的影响</p>
+        <h3 id="四种对象生存期和作用域"><a href="#四种对象生存期和作用域" class="headerlink" title="四种对象生存期和作用域"></a>四种对象生存期和作用域</h3><p>程序内存空间: 代码段，数据段，堆栈段
+文本段。存储可执行文件的指令；也有可能包含一些只读的常数变量，例如字符串常量等。</p>
+<h4 id="栈对象"><a href="#栈对象" class="headerlink" title="栈对象"></a>栈对象</h4><p>隐含调用构造函数</p>
+<h4 id="堆对象"><a href="#堆对象" class="headerlink" title="堆对象"></a>堆对象</h4><p>隐含调用构造函数，<code>要显式释放</code>
+<a id="more"></a></p>
+<h4 id="全局对象"><a href="#全局对象" class="headerlink" title="全局对象"></a>全局对象</h4><p>全局对象的构造先于main函数，<code>对象在运行期间初始化，变量在编译器初始化</code>。</p>
+<p>已初始化的全局变量存储于.data段中
+未初始化的全局变量存储于.bss段中</p>
+<h4 id="静态对象-全局变量与局部变量"><a href="#静态对象-全局变量与局部变量" class="headerlink" title="静态对象(全局变量与局部变量)"></a>静态对象(全局变量与局部变量)</h4><p>已初始化的静态变量存储于.data段中
+未初始化的静态变量存储于.bss段中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Test</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Test(<span class="keyword">int</span> n) : n_(n)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Test "</span> &lt;&lt; n_ &lt;&lt; <span class="string">" ..."</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    ~Test()</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Test "</span> &lt;&lt; n_ &lt;&lt; <span class="string">" ..."</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> n_;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n;          <span class="comment">//未初始化的全局变量，初始值为0。n存储于.bss段中</span></div><div class="line"><span class="keyword">int</span> n2 = <span class="number">100</span>;   <span class="comment">//已初始化的全局变量，初始值为100。n2存储于.data段中。</span></div><div class="line"><span class="function">Test <span class="title">g</span><span class="params">(<span class="number">100</span>)</span></span>;    <span class="comment">// 全局对象的构造先于main函数</span></div><div class="line"><span class="function"><span class="keyword">static</span> Test <span class="title">g2</span><span class="params">(<span class="number">200</span>)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Entering main ..."</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="function">Test <span class="title">t</span><span class="params">(<span class="number">10</span>)</span></span>;     <span class="comment">// 栈上创建的对象，在生存期结束的时候自动释放</span></div><div class="line">    &#123;</div><div class="line">        <span class="function">Test <span class="title">t</span><span class="params">(<span class="number">20</span>)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    &#123;</div><div class="line">        Test *t3 = <span class="keyword">new</span> Test(<span class="number">30</span>);        <span class="comment">// 堆上创建的对象，要显式释放</span></div><div class="line">        <span class="keyword">delete</span> t3;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">static</span> <span class="keyword">int</span> n3;          <span class="comment">// n3存储于.bss段中 （编译期初始化）</span></div><div class="line">        <span class="keyword">static</span> <span class="keyword">int</span> n4 = <span class="number">100</span>;    <span class="comment">// n4存储于.data段中（编译期初始化）</span></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">static</span> Test <span class="title">t4</span><span class="params">(<span class="number">333</span>)</span></span>;    <span class="comment">// t4对象运行期初始化   .data段</span></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Exiting main ..."</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Test 100 ...</div><div class="line">Test 200 ...</div><div class="line">Entering main ...</div><div class="line">Test 10 ...</div><div class="line">Test 20 ...</div><div class="line">~Test 20 ...</div><div class="line">Test 30 ...</div><div class="line">~Test 30 ...</div><div class="line">Test 333 ...</div><div class="line">Exiting main ...</div><div class="line">~Test 10 ...</div><div class="line">~Test 333 ...</div><div class="line">~Test 200 ...</div><div class="line">~Test 100 ...</div></pre></td></tr></table></figure></p>
+<h3 id="static用法总结"><a href="#static用法总结" class="headerlink" title="static用法总结"></a>static用法总结</h3><ol>
+<li><p>用于函数内部修饰变量，即函数内的静态变量。
+这种变量的<code>生存期长于该函数</code>，使得函数具有一定的“状态”。使用静态变量的函数一般是<code>不可重入的，也不是线程安全的</code>。</p>
+</li>
+<li><p>用在文件级别（函数体之外），修饰变量或函数，表示<code>该变量或函数只在本文件可见</code>，其他文件看不到也访问不到该变量或函数。全局变量，一般<code>在.c文件中定义</code>。若在.h文件定义会出现重复定义的情况。<code>其他文件中使用全局变量，需要加extern申明</code>。</p>
+</li>
+</ol>
+<p>由于C++引入了类，在保持与C语言兼容的同时，static关键字又有了两种新用法：
+3. 用于修饰类的数据成员，即“静态成员”。这种数据成员的<code>生存期大于class的对象</code>。静态数据成员是每个class有一份，普通数据成员是每个instance 有一份。</p>
+<ol>
+<li>用于修饰class的成员函数，即“静态成员函数”。这种成员函数<code>只能访问静态成员和其他静态成员函数</code>，不能访问非静态成员和非静态成员函数。</li>
+</ol>
 
       
     </div>
@@ -451,8 +457,8 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/16/语言/再学C++/深拷贝与浅拷贝 禁止拷贝 空类与空数组/" rel="next" title="深拷贝与浅拷贝 禁止拷贝 空类与空数组">
-                <i class="fa fa-chevron-left"></i> 深拷贝与浅拷贝 禁止拷贝 空类与空数组
+              <a href="/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/" rel="next" title="static成员变量 static成员函数 类/对象大小计算">
+                <i class="fa fa-chevron-left"></i> static成员变量 static成员函数 类/对象大小计算
               </a>
             
           </div>
@@ -461,8 +467,8 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/" rel="prev" title="四种对象生存期和作用域 static用法总结">
-                四种对象生存期和作用域 static用法总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/17/语言/再学C++/static与单例模式 const成员函数:const对象:mutable修饰符/" rel="prev" title="static与单例模式 const成员函数/const对象/mutable修饰符">
+                static与单例模式 const成员函数/const对象/mutable修饰符 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -489,8 +495,8 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/"
-           data-title="static成员变量 static成员函数 类/对象大小计算" data-url="https://murfyexp.github.io/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/">
+      <div class="ds-thread" data-thread-key="2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/"
+           data-title="四种对象生存期和作用域 static用法总结" data-url="https://murfyexp.github.io/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/">
       </div>
     
   </div>
@@ -617,7 +623,7 @@ static成员的定义static成员需要在类定义体外进行初始化与定�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#static成员变量"><span class="nav-number">1.</span> <span class="nav-text">static成员变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#static成员的定义"><span class="nav-number">1.1.</span> <span class="nav-text">static成员的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊的整型static-const成员"><span class="nav-number">1.2.</span> <span class="nav-text">特殊的整型static const成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#static成员优点"><span class="nav-number">1.3.</span> <span class="nav-text">static成员优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static成员函数"><span class="nav-number">2.</span> <span class="nav-text">static成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类-对象大小计算"><span class="nav-number">3.</span> <span class="nav-text">类/对象大小计算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#四种对象生存期和作用域"><span class="nav-number">1.</span> <span class="nav-text">四种对象生存期和作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈对象"><span class="nav-number">1.1.</span> <span class="nav-text">栈对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆对象"><span class="nav-number">1.2.</span> <span class="nav-text">堆对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局对象"><span class="nav-number">1.3.</span> <span class="nav-text">全局对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态对象-全局变量与局部变量"><span class="nav-number">1.4.</span> <span class="nav-text">静态对象(全局变量与局部变量)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static用法总结"><span class="nav-number">2.</span> <span class="nav-text">static用法总结</span></a></li></ol></div>
             
 
           </div>

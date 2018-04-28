@@ -1,0 +1,1015 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="1000 words a Day" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在前面的文章中，我们在DartNet覆盖网络（ON）层上直接实现了SRT。现在我们需要添加路由和分组转发到DartNet。本篇文章将介绍DartNet网络层的设计，并实现简单网络协议（SNP），以提供类似于在互联网路由器上运行的IP协议和路由的转发。
+本篇文章的具体内容：
+
+
+SNP API
+SNP路由协议
+SNP数据包转发
+SNP过程实现
+
+
+DartNet在DartNet中，在每对相邻节点之间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单网络协议(SNP)">
+<meta property="og:url" content="https://murfyexp.github.io/2017/03/09/网络/DartNet/简单网络协议-SNP/index.html">
+<meta property="og:site_name" content="1000 words a Day">
+<meta property="og:description" content="在前面的文章中，我们在DartNet覆盖网络（ON）层上直接实现了SRT。现在我们需要添加路由和分组转发到DartNet。本篇文章将介绍DartNet网络层的设计，并实现简单网络协议（SNP），以提供类似于在互联网路由器上运行的IP协议和路由的转发。
+本篇文章的具体内容：
+
+
+SNP API
+SNP路由协议
+SNP数据包转发
+SNP过程实现
+
+
+DartNet在DartNet中，在每对相邻节点之间">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/DartNet.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/DartNet APIs.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Network_Files/Routing Table Structure.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Network_Files/DartNet topology.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Network_Files/Neighbor Cost Tables.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Network_Files/Distance Vector Tables in Step 1.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Network_Files/Distance Vector Tables in Step 2.png">
+<meta property="og:image" content="https://murfyexp.github.io/images/DartNet/Network_Files/Routing Tables.png">
+<meta property="og:updated_time" content="2017-03-09T23:27:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单网络协议(SNP)">
+<meta name="twitter:description" content="在前面的文章中，我们在DartNet覆盖网络（ON）层上直接实现了SRT。现在我们需要添加路由和分组转发到DartNet。本篇文章将介绍DartNet网络层的设计，并实现简单网络协议（SNP），以提供类似于在互联网路由器上运行的IP协议和路由的转发。
+本篇文章的具体内容：
+
+
+SNP API
+SNP路由协议
+SNP数据包转发
+SNP过程实现
+
+
+DartNet在DartNet中，在每对相邻节点之间">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/DartNet/DartNet.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6382808465152148000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://murfyexp.github.io/2017/03/09/网络/DartNet/简单网络协议-SNP/"/>
+
+
+
+
+
+  <title> 简单网络协议(SNP) | 1000 words a Day </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">1000 words a Day</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/03/09/网络/DartNet/简单网络协议-SNP/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Shaojie Li">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="1000 words a Day">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="1000 words a Day" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                简单网络协议(SNP)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T15:26:15-08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DartNet网络协议栈/" itemprop="url" rel="index">
+                    <span itemprop="name">DartNet网络协议栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/09/网络/DartNet/简单网络协议-SNP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/网络/DartNet/简单网络协议-SNP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/09/网络/DartNet/简单网络协议-SNP/" class="leancloud_visitors" data-flag-title="简单网络协议(SNP)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在前面的文章中，我们在DartNet覆盖网络（ON）层上直接实现了SRT。现在我们需要添加路由和分组转发到DartNet。本篇文章将<code>介绍DartNet网络层的设计，并实现简单网络协议（SNP），以提供类似于在互联网路由器上运行的IP协议和路由的转发。</code></p>
+<p>本篇文章的具体内容：</p>
+<blockquote>
+<ul>
+<li>SNP API</li>
+<li>SNP路由协议</li>
+<li>SNP数据包转发</li>
+<li>SNP过程实现</li>
+</ul>
+</blockquote>
+<h3 id="DartNet"><a href="#DartNet" class="headerlink" title="DartNet"></a>DartNet</h3><p>在DartNet中，<code>在每对相邻节点之间存在TCP连接</code>。<code>在每个节点上，存在覆盖网络（ON）层，简单网络协议（SNP）层，简单可靠传输（SRT）层和应用层</code></p>
+<p>ON进程包含n + 1个线程，其中n是相邻节点的数目。对于这些ON线程，<code>一个是主线程，另外n个线程是listen_to_neighbor线程</code>。实现覆盖网络（ON）层</p>
+<p>SNP进程包含3个线程：<code>主线程，pkthandler线程和routeupdate_daemon线程</code>。实现简单网络协议（SNP）层</p>
+<p>SRT进程包含两个线程：<code>主线程和seghandler线程</code>。实现SRT层和应用层。</p>
+<p>DartNet实现图
+<img src="/images/DartNet/DartNet.png" alt=""></p>
+<h3 id="SNP-API"><a href="#SNP-API" class="headerlink" title="SNP API"></a>SNP API</h3><p>DartNet API调用图
+<img src="/images/DartNet/DartNet APIs.png" alt=""></p>
+<p>SNP进程向SRT进程提供两个函数：snp_sendseg（）和snp_recvseg（）。我们之前实现了这两个SNP API。然而在那时，这些SNP API是使用两个节点之间的直接TCP连接来实现的。<code>在这里我们将使用ON层重新实现这些API</code></p>
+<p>SRT进程调用snp_sendseg（）将段发送到目标节点。当SRT进程调用<code>snp_sendseg（）</code>时，sendseg_arg_t结构被发送到本地SNP进程。本地SNP进程使用<code>getsegToSend（）接收此sendseg_arg_t结构。</code>然后，本地SNP进程将每个分段封装到一个分组中，并使用<code>overlay_sendpkt（）将分组发送到下一跳</code>。</p>
+<p>SNP进程通过调用<code>overlay_recvpkt（）</code>函数从本地ON进程接收数据包。在SNP过程接收到分组之后，SNP过程从分组的数据字段中提取分段，并且<code>向本地SRT过程转发sendseg_arg_t结构</code>。本地SRT进程调用<code>snp_recvseg（）</code>接收此sendseg_arg_t结构。</p>
+<p>sendseg_arg_t在seg.h中定义
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//This is the data structure exchanged between the SNP process and the SRT process.</span></div><div class="line"><span class="comment">//It contains a node ID and a segment.</span></div><div class="line"><span class="comment">//For snp_sendseg(), the node ID is the destination node ID of the segment.</span></div><div class="line"><span class="comment">//For snp_recvseg(), the node ID is the source node ID of the segment.</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> sendsegargument &#123;</div><div class="line">  <span class="keyword">int</span> nodeID;   <span class="comment">//node ID</span></div><div class="line">  <span class="keyword">seg_t</span> seg;    <span class="comment">//a segment</span></div><div class="line">&#125; <span class="keyword">sendseg_arg_t</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="SNP路由协议"><a href="#SNP路由协议" class="headerlink" title="SNP路由协议"></a>SNP路由协议</h3><p>SNP路由协议是<code>距离矢量路由协</code>议。SNP路由协议使用<code>链路成本作为路由度量</code>。当两个节点之间存在多条路径时，应选择总链路成本较小的路径。我们先看看SNP路由协议使用的数据结构。然后讨论SNP路由算法。</p>
+<p>SNP路由协议使用3个表：<code>邻居成本表，距离向量表和路由表</code>。我们将一一讨论它们。<code>覆盖中的每个节点都有一个SNP进程在其上运行</code>，每个SNP进程维护一个邻居成本表，一个距离向量表和一个路由表，用于运行它的节点。</p>
+<h4 id="邻居链路成本表"><a href="#邻居链路成本表" class="headerlink" title="邻居链路成本表"></a>邻居链路成本表</h4><p>节点的邻居成本表包含到其所有邻居的直接链路成本。邻居成本表具有n个条目，其中n是节点的邻居的数量。邻居成本表项在network / nbrcosttable.h中定义。
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//neighbor cost table entry definition</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> neighborcostentry &#123;</div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> nodeID;  <span class="comment">//neighbor’s node ID</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> cost;    <span class="comment">//direct link cost to the neighbor</span></div><div class="line">&#125; <span class="keyword">nbr_cost_entry_t</span>;</div></pre></td></tr></table></figure></p>
+<p>当<code>SNP过程开始时，动态创建邻居表</code>。邻居成本表通过<code>解析topology.dat中包含的拓扑信息来初始化</code>。</p>
+<h4 id="距离向量表"><a href="#距离向量表" class="headerlink" title="距离向量表"></a>距离向量表</h4><p><code>距离向量表包含从源节点到网络中所有节点的估计的链路成本</code>。距离向量结构在network / dvtable.h中定义
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//distance vector entry definition</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> distancevectorentry &#123;</div><div class="line">  <span class="keyword">int</span> nodeID;         <span class="comment">//destination nodeID</span></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> cost;  <span class="comment">//estimated link cost to the destination</span></div><div class="line">&#125; <span class="keyword">dv_entry_t</span>;</div><div class="line"></div><div class="line"><span class="comment">//distance vector definition</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> distancevector &#123;</div><div class="line">  <span class="keyword">int</span>         nodeID;   <span class="comment">//source nodeID</span></div><div class="line">  <span class="keyword">dv_entry_t</span>  *dvEntry; <span class="comment">//an array of N dv_entry_ts, each of which contains the</span></div><div class="line">                <span class="comment">//destination node ID and the estimated link cost to the destination</span></div><div class="line">                <span class="comment">//from the source node. N is the total number of nodes in the overlay.</span></div><div class="line">&#125; <span class="keyword">dv_t</span>;</div></pre></td></tr></table></figure></p>
+<p>dv_t是一个距离向量，其包含<code>源nodeID和N个dv_entry_t结构的数组</code>，其中N是覆盖中的节点总数(表中的横坐标)。<code>dv_entry_t包含目的节点ID和到目的地节点的链路成本</code>。距离向量表包含n + 1个距离向量 (表中的纵坐标)，其中<code>n是节点的邻居的数目，另一个为节点本身</code>。</p>
+<p><code>当SNP过程开始时，动态创建距离向量表</code>。使用来自topology.dat文件的链路成本信息来<code>初始化节点自身的距离向量</code>。目的地节点为节点本身，则链路成本为0。目的地节点是相邻节点，链路成本是直接链路成本。否则，估计的链接成本为INFINITE_COST。距离向量表中的相邻节点的其他距离向量用INFINITE_COST初始化。</p>
+<h4 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h4><p>路由表是具有MAX_ROUTINGTABLE_SLOTS个元素的散列表。每个元素指向一个routingtable_entry_t链表。<code>使用链表解决冲突。</code>routingtable_entry_t结构和路由表本身在network/routingtable.h中定义。</p>
+<p>路由表
+<img src="/images/DartNet/Network_Files/Routing Table Structure.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//routingtable_entry_t is the routing entry contained in the routing table.</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> routingtable_entry &#123;</div><div class="line">  <span class="keyword">int</span> destNodeID;                   <span class="comment">//destination node ID</span></div><div class="line">  <span class="keyword">int</span> nextNodeID;                   <span class="comment">//next node ID to which the packet should be forwarded</span></div><div class="line">  <span class="keyword">struct</span> routingtable_entry* next;  <span class="comment">//pointer to the next routingtable_entry_t in the same routing table slot</span></div><div class="line">&#125; <span class="keyword">routingtable_entry_t</span>;</div><div class="line"></div><div class="line"><span class="comment">//A routing table is a hash table containing MAX_ROUTINGTABLE_SLOTS slots.</span></div><div class="line"><span class="comment">//Each slot is a linked list of routing entries.</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> routingtable &#123;</div><div class="line">  <span class="keyword">routingtable_entry_t</span>* hash[MAX_ROUTINGTABLE_SLOTS];</div><div class="line">&#125; <span class="keyword">routingtable_t</span>;</div></pre></td></tr></table></figure>
+<p><code>routing_entry_t结构包含此目标节点的ID和下一跳的nodeID</code>。路由表是一个哈希表。makehash（）是哈希表的散列函数，<code>键值为目标节点ID，散列值为目标节点在哈希表的槽号</code></p>
+<p>要将路由entry<code>添加</code>到路由表，首先使用散列函数makehash（）来获取应存储此路由entry槽号。然后将路由entry插入该槽中的链表中。要<code>查找</code>一个目标路由entry，过程与添加类似</p>
+<p><code>通过为所有相邻节点添加路由entry来初始化路由表</code>，对于作为目的地节点的每个相邻节点，将下一跳节点设置为相邻节点本身。</p>
+<h3 id="SNP路由算法"><a href="#SNP路由算法" class="headerlink" title="SNP路由算法"></a>SNP路由算法</h3><p>SNP路由协议使用距离向量路由算法。具体原理与实现，可以自行阅读《计算机网咯：自顶向下方法》中的距离矢量（DV）路由算法。</p>
+<p>当SNP进程启动时，它启动一个routeupdate_daemon线程。<code>routeupdate_daemon线程每ROUTEUPDATE_INTERVAL时间间隔广播一个路由更新包</code>。该路由更新包的内容是源节点的距离向量。<code>接收方的距离向量表和路由表根据此距离向量信息
+更新相应的表项</code>。接收方不会转发接收到的路由更新包，<code>路由更新只会被源节点的直接邻居接收</code>。</p>
+<p>SNP路由算法实现过程中，用图片的形式，表示各表内容的变化。</p>
+<p>DartNet拓扑
+<img src="/images/DartNet/Network_Files/DartNet topology.png" alt=""></p>
+<p>邻居链路成本表
+<img src="/images/DartNet/Network_Files/Neighbor Cost Tables.png" alt=""></p>
+<p><code>初始化后</code>，节点的距离向量表和路由表<code>显示在图的左侧</code>。<br>在所有节点接收到来自它们的邻居的所有<code>第一路由更新分组之后</code>，距离向量表更新并且在<code>图的右侧示出</code>
+<img src="/images/DartNet/Network_Files/Distance Vector Tables in Step 1.png" alt=""></p>
+<p>在所有节点从其邻居接收到<code>第二路由更新分组之后的距离向量表和路由表</code>
+<img src="/images/DartNet/Network_Files/Distance Vector Tables in Step 2.png" alt=""></p>
+<p><img src="/images/DartNet/Network_Files/Routing Tables.png" alt=""></p>
+<h3 id="数据包转发"><a href="#数据包转发" class="headerlink" title="数据包转发"></a>数据包转发</h3><p>在SNP过程中，<code>分组转发在pkthandler线程中完成</code>。pkthandler线程通过调用overlay_recvpkt（）从<code>ON进程接收数据包</code>。</p>
+<p>如果接收的<code>分组是SNP分组，并且目的地节点是该节点</code>，则pkthandler线程将分组转发到SRT进程。
+如果分组是<code>SNP分组，并且目的地节点不是该节点</code>，则pkthandler线程根据路由表将分组转发到下一跳。
+如果该分组是<code>路由更新分组</code>，则pkthandler线程使用我们上面描述的SNP路由算法来更新距离向量表和路由表。</p>
+<h3 id="SNP过程实现"><a href="#SNP过程实现" class="headerlink" title="SNP过程实现"></a>SNP过程实现</h3><p><code>SNP作为进程运行</code>。<code>覆盖层中的每个节点</code>都有一个SNP进程在其上运行。SNP进程的代码如下所示：
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span>(<span class="string">"network layer is starting, pls wait...\n"</span>);</div><div class="line"></div><div class="line">  <span class="comment">//initialize global variables</span></div><div class="line">  nct = nbrcosttable_create();</div><div class="line">  dv = dvtable_create();</div><div class="line">  dv_mutex = (<span class="keyword">pthread_mutex_t</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">pthread_mutex_t</span>));</div><div class="line">  pthread_mutex_init(dv_mutex,<span class="literal">NULL</span>);</div><div class="line">  routingtable = routingtable_create();</div><div class="line">  routingtable_mutex = (<span class="keyword">pthread_mutex_t</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">pthread_mutex_t</span>));</div><div class="line">  pthread_mutex_init(routingtable_mutex,<span class="literal">NULL</span>);</div><div class="line">  overlay_conn = <span class="number">-1</span>;</div><div class="line">  transport_conn = <span class="number">-1</span>;</div><div class="line"></div><div class="line">  nbrcosttable_print(nct);</div><div class="line">  dvtable_print(dv);</div><div class="line">  routingtable_print(routingtable);</div><div class="line"></div><div class="line">  <span class="comment">//register a signal handler which is used to terminate the process</span></div><div class="line">  signal(SIGINT, network_stop);</div><div class="line"></div><div class="line">  <span class="comment">//connect to local ON process</span></div><div class="line">  overlay_conn = connectToOverlay();</div><div class="line">  <span class="keyword">if</span> (overlay_conn&lt;<span class="number">0</span>) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"can’t connect to overlay process\n"</span>);</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//start a thread that handles incoming packets from ON process</span></div><div class="line">  <span class="keyword">pthread_t</span> pkt_handler_thread;</div><div class="line">  pthread_create(&amp;pkt_handler_thread,<span class="literal">NULL</span>,pkthandler,(<span class="keyword">void</span>*)<span class="number">0</span>);</div><div class="line"></div><div class="line">  <span class="comment">//start a route update thread</span></div><div class="line">  <span class="keyword">pthread_t</span> routeupdate_thread;</div><div class="line">  pthread_create(&amp;routeupdate_thread,<span class="literal">NULL</span>,routeupdate_daemon,(<span class="keyword">void</span>*)<span class="number">0</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"network layer is started...\n"</span>);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"waiting for routes to be established\n"</span>);</div><div class="line">  sleep(NETWORK_WAITTIME);</div><div class="line">  routingtable_print(routingtable);</div><div class="line"></div><div class="line">  <span class="comment">//wait connection from SRT process</span></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"waiting for connection from SRT process\n"</span>);</div><div class="line">  waitTransport();</div></pre></td></tr></table></figure></p>
+<p>当SNP过程开始时，首先建表并初始化这些表。SNP过程还创建和初始化<code>两个互斥：一个用于向量表，另一个用于路由表</code>。</p>
+<p><code>overlay_conn为SNP进程与本地ON进程的连接的TCP描述符和transport_conn为SNP进程与本地SRT进程的连接的TCP描述符</code>。当SNP过程开始时，SNP过程将overlay_conn和transport_conn初始化为-1作为无效。</p>
+<p>然后，SNP进程将信号处理程序network_stop（）注册到信号SIGINT，使得当接收到SIGINT信号时，调用network_stop（）以终止SNP进程。SNP进程调用函数<code>connectToOverlay（）连接到端口OVERLAY_PORT上的本地ON进程</code></p>
+<p><code>在建立与ON进程的TCP连接之后，SNP进程启动pkthandler线程。接着启动routeupdate_daemon线程</code>。然后，SNP过程等待一段时间，<code>以便路由表更新完成</code></p>
+<p>SNP进程然后调用<code>waitTransport（）函数在NETWORK_PORT上打开一个端口来等待来自本地SRT进程的TCP连接</code>。连接本地SRT进程后，waitTransport（）函数接收sendseg_arg_t结构，<code>其中包含来自SRT进程的段及其目标nodeID。将接收的段封装重新封装，并使用overlay_sendpkt发送到下一跳</code>。从路由表中检索下一跳的节点ID。</p>
+<p>SNP过程在接收到<code>SIGINT信号时终止</code>。当接收到SIGINT信号时，信号处理器函数<code>network_stop（）通过关闭所有TCP连接，释放所有动态分配的内存并终止SNP进程来停止覆盖</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Shaojie Li wechat" style="width: 200px; max-width: 100%;"/>
+    <div>个人微信公众号，我的日常分享！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/网络/DartNet/简单覆盖网络-SON/" rel="next" title="简单覆盖网络(SON)">
+                <i class="fa fa-chevron-left"></i> 简单覆盖网络(SON)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/10/语言/c系语言static-extern-const/" rel="prev" title="C/C++ static extern const关键字">
+                C/C++ static extern const关键字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/09/网络/DartNet/简单网络协议-SNP/"
+           data-title="简单网络协议(SNP)" data-url="https://murfyexp.github.io/2017/03/09/网络/DartNet/简单网络协议-SNP/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
+               alt="Shaojie Li" />
+          <p class="site-author-name" itemprop="name">Shaojie Li</p>
+          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DartNet"><span class="nav-number">1.</span> <span class="nav-text">DartNet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNP-API"><span class="nav-number">2.</span> <span class="nav-text">SNP API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNP路由协议"><span class="nav-number">3.</span> <span class="nav-text">SNP路由协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#邻居链路成本表"><span class="nav-number">3.1.</span> <span class="nav-text">邻居链路成本表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#距离向量表"><span class="nav-number">3.2.</span> <span class="nav-text">距离向量表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由表"><span class="nav-number">3.3.</span> <span class="nav-text">路由表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNP路由算法"><span class="nav-number">4.</span> <span class="nav-text">SNP路由算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据包转发"><span class="nav-number">5.</span> <span class="nav-text">数据包转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNP过程实现"><span class="nav-number">6.</span> <span class="nav-text">SNP过程实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
+</div>
+ 
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"murfyexp"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  <!-- 页面点击小红心 -->
+
+  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

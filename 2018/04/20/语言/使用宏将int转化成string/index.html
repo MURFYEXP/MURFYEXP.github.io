@@ -92,7 +92,7 @@
 <meta property="og:url" content="https://murfyexp.github.io/2018/04/20/语言/使用宏将int转化成string/index.html">
 <meta property="og:site_name" content="1000 words a Day">
 <meta property="og:description" content="12345678910#define TOSTR2(x) #x#define TOSTR(x) TOSTR2(x)int main(void)&amp;#123;    string str;    str = TOSTR(10);    cout &amp;lt;&amp;lt; str &amp;lt;&amp;lt; endl;    return 0;&amp;#125;">
-<meta property="og:updated_time" content="2018-04-28T06:37:32.000Z">
+<meta property="og:updated_time" content="2018-04-28T06:40:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用宏将int转化成string">
 <meta name="twitter:description" content="12345678910#define TOSTR2(x) #x#define TOSTR(x) TOSTR2(x)int main(void)&amp;#123;    string str;    str = TOSTR(10);    cout &amp;lt;&amp;lt; str &amp;lt;&amp;lt; endl;    return 0;&amp;#125;">
@@ -386,7 +386,7 @@
       
 
       
-        <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TOSTR2(x) #x</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TOSTR(x) TOSTR2(x)</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">string</span> str;</div><div class="line">    str = TOSTR(<span class="number">10</span>);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#define TOSTR2(x) #x</div><div class="line">#define TOSTR(x) TOSTR2(x)</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    string str;</div><div class="line">    str = TOSTR(10);</div><div class="line">    cout &lt;&lt; str &lt;&lt; endl;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
       
     </div>

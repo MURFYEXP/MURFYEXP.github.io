@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OS," />
+  <meta name="keywords" content="网络编程," />
 
 
 
@@ -86,31 +86,19 @@
 
 
 
-<meta name="description" content="操作系统，江湖流传着
-计算机三大浪漫之一。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-体会不到其中的浪漫。
-MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的。开始折腾吧，它值得你付出时间和精力。
-我将该项目的目前完成Lab的">
+<meta name="description" content="之前学过的系统函数都是成功返回0，失败返回-1，而错误号保存在全局变量errno中，而pthread库的函数都是通过返回值返回错误号。虽然每个线程也都有一个errno。
+由于pthread线程系列函数的错误码不保存在errno中，因此不能直接用perror(3)打印错误信息，可以先用strerror(3)把错误号转换成错误信息再打印。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JOS操作系统">
-<meta property="og:url" content="https://murfyexp.github.io/2017/02/20/操作系统/JOS操作系统/index.html">
+<meta property="og:title" content="pthread线程系列函数">
+<meta property="og:url" content="https://murfyexp.github.io/2018/04/29/linux网络编程/pthread线程系列函数/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="操作系统，江湖流传着
-计算机三大浪漫之一。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-体会不到其中的浪漫。
-MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的。开始折腾吧，它值得你付出时间和精力。
-我将该项目的目前完成Lab的">
-<meta property="og:updated_time" content="2017-03-05T23:34:03.000Z">
+<meta property="og:description" content="之前学过的系统函数都是成功返回0，失败返回-1，而错误号保存在全局变量errno中，而pthread库的函数都是通过返回值返回错误号。虽然每个线程也都有一个errno。
+由于pthread线程系列函数的错误码不保存在errno中，因此不能直接用perror(3)打印错误信息，可以先用strerror(3)把错误号转换成错误信息再打印。">
+<meta property="og:updated_time" content="2018-05-23T15:32:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JOS操作系统">
-<meta name="twitter:description" content="操作系统，江湖流传着
-计算机三大浪漫之一。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-体会不到其中的浪漫。
-MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的。开始折腾吧，它值得你付出时间和精力。
-我将该项目的目前完成Lab的">
+<meta name="twitter:title" content="pthread线程系列函数">
+<meta name="twitter:description" content="之前学过的系统函数都是成功返回0，失败返回-1，而错误号保存在全局变量errno中，而pthread库的函数都是通过返回值返回错误号。虽然每个线程也都有一个errno。
+由于pthread线程系列函数的错误码不保存在errno中，因此不能直接用perror(3)打印错误信息，可以先用strerror(3)把错误号转换成错误信息再打印。">
 
 
 
@@ -138,13 +126,13 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/20/操作系统/JOS操作系统/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/04/29/linux网络编程/pthread线程系列函数/"/>
 
 
 
 
 
-  <title> JOS操作系统 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> pthread线程系列函数 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +271,7 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/20/操作系统/JOS操作系统/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/29/linux网络编程/pthread线程系列函数/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -307,7 +295,7 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
             
             
               
-                JOS操作系统
+                pthread线程系列函数
               
             
           </h1>
@@ -322,8 +310,8 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T00:25:47-08:00">
-                2017-02-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-29T11:10:12-07:00">
+                2018-04-29
               </time>
             
 
@@ -345,8 +333,8 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JOS操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">JOS操作系统</span>
+                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux网络编程</span>
                   </a>
                 </span>
 
@@ -363,8 +351,8 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/20/操作系统/JOS操作系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/操作系统/JOS操作系统/" itemprop="commentCount"></span>
+                <a href="/2018/04/29/linux网络编程/pthread线程系列函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/29/linux网络编程/pthread线程系列函数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,7 +362,7 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
 
           
           
-             <span id="/2017/02/20/操作系统/JOS操作系统/" class="leancloud_visitors" data-flag-title="JOS操作系统">
+             <span id="/2018/04/29/linux网络编程/pthread线程系列函数/" class="leancloud_visitors" data-flag-title="pthread线程系列函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -401,52 +389,29 @@ MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏�
       
 
       
-        <p><code>操作系统，江湖流传着
-计算机三大浪漫之一</code>。在学习这门课时，如果仅仅把目光停留在课本上一些关于操作系统概念上的叙述，并不能对操作系统有着深层次的理解。 当然也
-<code>体会不到其中的浪漫</code>。</p>
-<p>MIT的操作系统课程6.828是大家口中的OS神课。麻雀虽小，五脏俱全。它能够
-<code>帮助我们真正的了解操作系统在做什么以及一个小型OS具体到代码是如何实现的</code>。开始折腾吧，它值得你付出时间和精力。</p>
-<p>我将该项目的目前完成Lab的代码实现托管在github上，<a href="https://github.com/MURFYEXP/CS8.628-JOS" target="_blank" rel="external">传送们</a>.欢迎star</p>
-<p>虽然之前读过《深入理解计算机系统》，读完之后对很多OS的概念和实现细节都是只见树木不见森林。然后从寒假回家就窝家里开始刷Lab。目前对OS的理解清楚了很多，
-<code>从书本概念到0距离接触代码这一过程，将很多之前学习过的知识点都串了起来</code>。比如elf文件的理解，函数调用的底层机制实现。当然汇编代码的阅读能力，没有了之前对它的恐惧感，算是得到质的提升吧。</p>
-<p>不可否认的是有些Exercise真的非常让人头痛、一个bug可能会调很久甚至几天没有进展。一
-<code>个概念查阅大量的资料，反复的理解，一遍又一遍地认识</code>。</p>
-<p>具体每个Lab所完成的工作(目前只刷到lab4)</p>
-<blockquote>
-<ul>
-<li><p>Lab1是熟悉的过程，需要学习QEMU模拟器的使用、开机启动流程、调试工具、bootloader、以及整个加载kernel的流程。做完这个lab会具备基本的内核调试能力，以及掌握开机到通电，
-<code>bootloader是如何加载kernel</code>的。</p>
-</li>
-<li><p>Lab2要完成
-<code>JOS的的内存管理模块</code>，需要学习一些计算机基础知识，如虚拟地址系统是如何工作的，地址空间是如何切分的，物理页面是如何管理的。做完这个lab将会给JOS添加最基本的内存管理功能，即
-<code>Kernel其余模块需要物理页，这个模块可以分配出来</code>。</p>
-</li>
-<li><p>Lab3为
-<code>JOS添加进程的支持、异常/中断的支持、系统调用和页中断的支持</code>。这个lab内容比较多，但收获也比较大，做完后会对从用户态陷入内核态，执行系统调用，然后返回这整个流程都非常清楚（不是泛泛的清楚，而是代码级别的清楚，这是和学概念不同的地方）。</p>
-</li>
-</ul>
-</blockquote>
-<p>由于考研，准备实习，该项目也就暂时搁浅了。Lab4为
-<code>JOS添加多核支持、RR调度、COW的fork、抢占式内核、时钟中断和最基本的IPC机制</code>。Lab6为
-<code>JOS添加网络的支持</code>。这两个Lab对我来说，还是有很大的吸引力。日后一定会抠出时间，将它们完成。至于Lab5的文件系统，本人不太感冒。
-PS：想想之后
-<code>将Dartnet协议栈移植到JOS就激动，先在这挖个大坑吧</code>。</p>
-<p>归根结底这只一个课程OS，JOS还有很大的提升空间，离工业级使用还差很多，以下是一些改进点：</p>
-<blockquote>
-<ul>
-<li><p>JOS和xv6的内存管理方式都是空闲链表，这导致
-<code>如果内核想要连续的物理内存，将十分困难</code>，所以linux采用了buddy system来解决碎片问题。</p>
-</li>
-<li><p>JOS和xv6的进程调度是最简单的RR方式，这使得它们
-<code>无法应用在某些特殊的场景下，而且父进程很容易fork子进程把CPU时间全抢了</code>。</p>
-</li>
-</ul>
-</blockquote>
-<p>打算之后再读读《Linux内核设计与实现》，
-<code>发现JOS到底哪里做得不好以及Linux是如何解决的</code>。
-最后
-<code>感谢开源</code>，在刷Lab的过程中遇到不少的坑，总能从前辈的经验中学习，帮助自己更有方向性的解决问题</p>
-<p><font size="3"> 参考链接 </font><br><a href="http://lifeofzjs.com/blog/2016/02/24/recommmend-6-dot-828/" target="_blank" rel="external"><font color="DarkSlateGray" size="3"> 推荐一门课：6.828 </font></a></p>
+        <p>之前学过的系统函数都是成功返回0，失败返回-1，而错误号保存在全局变量errno中，而pthread库的函数都是通过返回值返回错误号。虽然每个线程也都有一个errno。</p>
+<p>由于pthread线程系列函数的错误码不保存在errno中，因此不能直接用perror(3)打印错误信息，可以先<code>用strerror(3)把错误号转换成错误信息再打印。</code>
+<a id="more"></a></p>
+<h3 id="pthread线程系列函数"><a href="#pthread线程系列函数" class="headerlink" title="pthread线程系列函数"></a>pthread线程系列函数</h3><p>创建一个新的线程
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">原型 int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void*), void *arg);</div><div class="line"></div><div class="line">参数</div><div class="line">thread:返回线程ID</div><div class="line">attr:设置线程的属性，attr为NULL表示使用默认属性</div><div class="line">start_routine:是个函数地址，线程启动后要执行的函数</div><div class="line">arg:传给线程启动函数的参数</div><div class="line">返回值：成功返回0；失败返回错误码</div></pre></td></tr></table></figure></p>
+<p>线程终止
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">原型 void pthread_exit(void *value_ptr);</div><div class="line">参数</div><div class="line">value_ptr：value_ptr不要指向一个局部变量，因为当其它线程得到这个返回指针时线程函数已经退出了。</div><div class="line">返回值：无返回值</div></pre></td></tr></table></figure></p>
+<p>任意一个线程调用了exit或_exit，<code>整个进程的所有线程都终止。</code></p>
+<p>等待线程结束
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">原型 int pthread_join(pthread_t thread, void **value_ptr);</div><div class="line">参数</div><div class="line">thread:线程ID</div><div class="line">value_ptr:它指向一个指针，后者指向线程的返回值</div><div class="line">返回值：成功返回0；失败返回错误码</div></pre></td></tr></table></figure></p>
+<p>返回线程ID
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">原型 pthread_t pthread_self(void);</div><div class="line">返回值：成功返回线程id</div></pre></td></tr></table></figure></p>
+<p>取消一个执行中的线程
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">原型 int pthread_cancel(pthread_t thread);</div><div class="line">参数</div><div class="line">thread:线程ID</div><div class="line">返回值：成功返回0；失败返回错误码</div></pre></td></tr></table></figure></p>
+<p>将一个线程分离
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">原型 int pthread_detach(pthread_t thread);</div><div class="line">参数</div><div class="line">thread:线程ID</div><div class="line">返回值：成功返回0；失败返回错误码</div></pre></td></tr></table></figure></p>
+<p>线程被置为detach状态，这样的线程一旦终止就<code>立刻回收它占用的所有资源</code>，而不保留终止状态。<code>不能对一个已经处于detach状态的线程调用pthread_join，这样的调用将返回EINVAL</code></p>
+<p>最后对比下进程与线程的相关函数
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">进程                线程</div><div class="line">pid_t               pthread_t</div><div class="line">frok                pthread_create</div><div class="line">waitpid             pthread_join</div><div class="line">exit                pthread_exit</div><div class="line">在main函数中return   在线程入口函数中return</div><div class="line">僵尸进程             僵尸线程</div><div class="line">waitpid             pthread_join pthread_detach</div><div class="line">kill                pthread_cancel</div></pre></td></tr></table></figure></p>
+<p>自杀方式结束线程：<code>pthread_exit，在线程入口函数中return</code>
+它杀方式线程结束： <code>pthread_cancel</code></p>
+<h3 id="pthread线程系列函数小程序"><a href="#pthread线程系列函数小程序" class="headerlink" title="pthread线程系列函数小程序"></a>pthread线程系列函数小程序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/ipc.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/msg.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;pthread.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ERR_EXIT(m) \</span></div><div class="line">    do &#123; \</div><div class="line">        perror(m); \</div><div class="line">        exit(EXIT_FAILURE); \</div><div class="line">    &#125; while(0)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">routine</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"B"</span>);</div><div class="line">        fflush(<span class="built_in">stdout</span>);</div><div class="line">        usleep(<span class="number">20</span>);</div><div class="line">        <span class="comment">/*</span></div><div class="line">            if (i == 3)</div><div class="line">                pthread_exit("ABC");</div><div class="line">            */</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="string">"DEF"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">pthread_t</span> tid;</div><div class="line">    <span class="keyword">int</span> ret;</div><div class="line">    <span class="keyword">if</span> ((ret = pthread_create(&amp;tid, <span class="literal">NULL</span>, routine, <span class="literal">NULL</span>)) != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"pthread create: %s\n"</span>, strerror(ret));</div><div class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"A"</span>);</div><div class="line">        fflush(<span class="built_in">stdout</span>);</div><div class="line">        usleep(<span class="number">20</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">void</span> *value;</div><div class="line">    <span class="keyword">if</span> ((ret = pthread_join(tid, &amp;value)) != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"pthread create: %s\n"</span>, strerror(ret));</div><div class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"return msg=%s\n"</span>, (<span class="keyword">char</span> *)value);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建一个线程，主线程打印A，新线程打印B，主线程调用<code>pthread_join</code>等待新线程退出，打印退出值。在新线程中也可调用<code>pthread_exit</code>退出。</p>
 
       
     </div>
@@ -475,7 +440,7 @@ PS：想想之后
       
         <div class="post-tags">
           
-            <a href="/tags/OS/" rel="tag"># OS</a>
+            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
           
         </div>
       
@@ -484,8 +449,8 @@ PS：想想之后
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/19/算法/Leetcode/3-2/" rel="next" title="只含1最大的子矩阵">
-                <i class="fa fa-chevron-left"></i> 只含1最大的子矩阵
+              <a href="/2018/04/28/linux网络编程/多进程和多线程实现并发回射服务器/" rel="next" title="多进程和多线程实现并发回射服务器">
+                <i class="fa fa-chevron-left"></i> 多进程和多线程实现并发回射服务器
               </a>
             
           </div>
@@ -493,10 +458,6 @@ PS：想想之后
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/21/算法/Leetcode/3-3/" rel="prev" title="完全二叉树节点个数">
-                完全二叉树节点个数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,8 +483,8 @@ PS：想想之后
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/20/操作系统/JOS操作系统/"
-           data-title="JOS操作系统" data-url="https://murfyexp.github.io/2017/02/20/操作系统/JOS操作系统/">
+      <div class="ds-thread" data-thread-key="2018/04/29/linux网络编程/pthread线程系列函数/"
+           data-title="pthread线程系列函数" data-url="https://murfyexp.github.io/2018/04/29/linux网络编程/pthread线程系列函数/">
       </div>
     
   </div>
@@ -547,8 +508,17 @@ PS：想想之后
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -631,6 +601,22 @@ PS：想想之后
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread线程系列函数"><span class="nav-number">1.</span> <span class="nav-text">pthread线程系列函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread线程系列函数小程序"><span class="nav-number">2.</span> <span class="nav-text">pthread线程系列函数小程序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

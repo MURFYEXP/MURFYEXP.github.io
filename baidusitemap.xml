@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://murfyexp.github.io/2018/04/28/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%B9%B6%E5%8F%91%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2018-05-23T14:19:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>多进程和多线程实现并发回射服务器</title>
+        <pubTime>2018-04-29T04:10:12.000Z</pubTime>
+        
+        <tag>网络编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux网络编程" url="https://murfyexp.github.io/categories/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://murfyexp.github.io/2018/04/24/%E7%BD%91%E7%BB%9C/miniftp/miniftp%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/</loc>
     <lastmod>2018-05-22T16:19:03.000Z</lastmod>
     <data>
@@ -780,12 +800,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/09/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
+    <loc>https://murfyexp.github.io/2017/03/08/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单网络协议(SNP)</title>
-        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
+        <title>简单覆盖网络(SON)</title>
+        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
         
         <tag>网络</tag>
          
@@ -800,12 +820,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/08/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
+    <loc>https://murfyexp.github.io/2017/03/09/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单覆盖网络(SON)</title>
-        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
+        <title>简单网络协议(SNP)</title>
+        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
         
         <tag>网络</tag>
          

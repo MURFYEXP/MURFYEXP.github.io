@@ -86,26 +86,20 @@
 
 
 
-<meta name="description" content="MutexLock类
-MutexLock类的实现
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class MutexLock : boost::noncopyable&amp;#123; public:  MutexLock()    : holder_(0)  &amp;">
+<meta name="description" content="MutexLock类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="muduo库MutexLock类 MutexLockGuard类 Condition类 CountDownLatch类封装 ptr_vector小知识">
 <meta property="og:url" content="https://murfyexp.github.io/2018/05/02/网络/muduo/muduo库MutexLock类 MutexLockGuard类 Condition类 CountDownLatch类封装/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="MutexLock类
-MutexLock类的实现
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class MutexLock : boost::noncopyable&amp;#123; public:  MutexLock()    : holder_(0)  &amp;">
+<meta property="og:description" content="MutexLock类">
 <meta property="og:image" content="https://murfyexp.github.io/images/muduo/mutexlock.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/muduo/mutexlockguard.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/muduo/condition.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/muduo/countdownlatch.png">
-<meta property="og:updated_time" content="2018-05-26T10:22:02.000Z">
+<meta property="og:updated_time" content="2018-05-26T10:24:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="muduo库MutexLock类 MutexLockGuard类 Condition类 CountDownLatch类封装 ptr_vector小知识">
-<meta name="twitter:description" content="MutexLock类
-MutexLock类的实现
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class MutexLock : boost::noncopyable&amp;#123; public:  MutexLock()    : holder_(0)  &amp;">
+<meta name="twitter:description" content="MutexLock类">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/muduo/mutexlock.png">
 
 
@@ -397,7 +391,8 @@ MutexLock类的实现
       
 
       
-        <h3 id="MutexLock类"><a href="#MutexLock类" class="headerlink" title="MutexLock类"></a>MutexLock类</h3><p><img src="/images/muduo/mutexlock.png" alt="DartNet"></p>
+        <h3 id="MutexLock类"><a href="#MutexLock类" class="headerlink" title="MutexLock类"></a>MutexLock类</h3><p><img src="/images/muduo/mutexlock.png" alt="DartNet">
+<a id="more"></a></p>
 <p>MutexLock类的实现
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MutexLock : boost::noncopyable</div><div class="line">&#123;</div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  MutexLock()</div><div class="line">    : holder_(<span class="number">0</span>)</div><div class="line">  &#123;</div><div class="line">    <span class="keyword">int</span> ret = pthread_mutex_init(&amp;mutex_, <span class="literal">NULL</span>);</div><div class="line">    assert(ret == <span class="number">0</span>); (<span class="keyword">void</span>) ret;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  ~MutexLock()</div><div class="line">  &#123;</div><div class="line">    assert(holder_ == <span class="number">0</span>);</div><div class="line">    <span class="keyword">int</span> ret = pthread_mutex_destroy(&amp;mutex_);</div><div class="line">    assert(ret == <span class="number">0</span>); (<span class="keyword">void</span>) ret;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">isLockedByThisThread</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> holder_ == CurrentThread::tid();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">assertLocked</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    assert(isLockedByThisThread());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// internal usage</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    pthread_mutex_lock(&amp;mutex_);</div><div class="line">    holder_ = CurrentThread::tid();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    holder_ = <span class="number">0</span>;</div><div class="line">    pthread_mutex_unlock(&amp;mutex_);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">pthread_mutex_t</span>* getPthreadMutex() <span class="comment">/* non-const */</span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> &amp;mutex_;</div><div class="line">  &#125;</div><div class="line"></div><div class="line"> <span class="keyword">private</span>:</div><div class="line"></div><div class="line">  <span class="keyword">pthread_mutex_t</span> mutex_;</div><div class="line">  <span class="keyword">pid_t</span> holder_;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <h3 id="MutexLockGuard类"><a href="#MutexLockGuard类" class="headerlink" title="MutexLockGuard类"></a>MutexLockGuard类</h3><p><img src="/images/muduo/mutexlockguard.png" alt="DartNet"></p>

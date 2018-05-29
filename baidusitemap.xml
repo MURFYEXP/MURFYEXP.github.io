@@ -4,6 +4,66 @@
 
     
   <url>
+    <loc>https://murfyexp.github.io/2018/05/03/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/##%20recv%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2018-05-29T13:35:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>利用recv和readn函数实现readline函数</title>
+        <pubTime>2018-05-04T06:22:09.000Z</pubTime>
+        
+        <tag>网络编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux网络编程" url="https://murfyexp.github.io/categories/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://murfyexp.github.io/2017/03/14/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/TCP%E5%8D%8F%E8%AE%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-05-29T13:33:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>TCP协议产生的粘包问题</title>
+        <pubTime>2017-03-15T04:06:40.000Z</pubTime>
+        
+        <tag>网络编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux网络编程" url="https://murfyexp.github.io/categories/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://murfyexp.github.io/2017/03/03/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2018-05-29T13:33:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>socket套接字编程教程</title>
+        <pubTime>2017-03-04T07:22:09.000Z</pubTime>
+        
+        <tag>网络编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux网络编程" url="https://murfyexp.github.io/categories/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://murfyexp.github.io/2018/05/02/%E7%BD%91%E7%BB%9C/muduo/muduo%E5%BA%93MutexLock%E7%B1%BB%20MutexLockGuard%E7%B1%BB%20Condition%E7%B1%BB%20CountDownLatch%E7%B1%BB%E5%B0%81%E8%A3%85/</loc>
     <lastmod>2018-05-26T10:42:03.000Z</lastmod>
     <data>
@@ -740,26 +800,6 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/03/%E7%BD%91%E7%BB%9C/socket%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2017-03-23T23:14:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>socket套接字编程教程</title>
-        <pubTime>2017-03-04T07:22:09.000Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="网络编程" url="https://murfyexp.github.io/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://murfyexp.github.io/2017/02/18/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE-SRT/</loc>
     <lastmod>2017-03-23T22:41:50.000Z</lastmod>
     <data>
@@ -773,26 +813,6 @@
            
              
               <breadCrumb title="DartNet网络协议栈" url="https://murfyexp.github.io/categories/DartNet%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://murfyexp.github.io/2017/03/14/%E7%BD%91%E7%BB%9C/TCP%E5%8D%8F%E8%AE%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2017-03-15T04:12:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>TCP协议产生的粘包问题</title>
-        <pubTime>2017-03-15T04:06:40.000Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="网络编程" url="https://murfyexp.github.io/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
           
         </display>
     </data>
@@ -840,12 +860,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/09/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
+    <loc>https://murfyexp.github.io/2017/03/08/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单网络协议(SNP)</title>
-        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
+        <title>简单覆盖网络(SON)</title>
+        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
         
         <tag>网络</tag>
          
@@ -860,12 +880,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/08/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
+    <loc>https://murfyexp.github.io/2017/03/09/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单覆盖网络(SON)</title>
-        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
+        <title>简单网络协议(SNP)</title>
+        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
         
         <tag>网络</tag>
          

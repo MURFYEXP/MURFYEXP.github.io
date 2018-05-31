@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://murfyexp.github.io/2018/05/06/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8select%E5%87%BD%E6%95%B0%E6%94%B9%E8%BF%9B%E5%AE%A2%E6%88%B7%E7%AB%AF:%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2018-05-31T02:43:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用select函数改进客户端/服务器端程序</title>
+        <pubTime>2018-05-06T20:22:09.000Z</pubTime>
+        
+        <tag>网络编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux网络编程" url="https://murfyexp.github.io/categories/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://murfyexp.github.io/2018/05/05/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E4%BA%94%E7%A7%8DI:O%E6%A8%A1%E5%9E%8B%E5%92%8Cselect%E5%87%BD%E6%95%B0%E7%AE%80%E4%BB%8B/</loc>
     <lastmod>2018-05-30T09:05:11.000Z</lastmod>
     <data>
@@ -900,12 +920,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/09/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
+    <loc>https://murfyexp.github.io/2017/03/08/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单网络协议(SNP)</title>
-        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
+        <title>简单覆盖网络(SON)</title>
+        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
         
         <tag>网络</tag>
          
@@ -920,12 +940,12 @@
 
     
   <url>
-    <loc>https://murfyexp.github.io/2017/03/08/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E8%A6%86%E7%9B%96%E7%BD%91%E7%BB%9C-SON/</loc>
+    <loc>https://murfyexp.github.io/2017/03/09/%E7%BD%91%E7%BB%9C/DartNet/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-SNP/</loc>
     <lastmod>2017-03-09T23:27:50.000Z</lastmod>
     <data>
         <display>
-        <title>简单覆盖网络(SON)</title>
-        <pubTime>2017-03-09T00:48:51.000Z</pubTime>
+        <title>简单网络协议(SNP)</title>
+        <pubTime>2017-03-09T23:26:15.000Z</pubTime>
         
         <tag>网络</tag>
          

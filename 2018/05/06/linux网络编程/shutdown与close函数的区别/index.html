@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="编程语言," />
+  <meta name="keywords" content="网络编程," />
 
 
 
@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
-1234567891011121314#include &amp;lt;stdio.h&amp;gt;int main(vo">
+<meta name="description" content="有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="char *a 与 char a[]的区别">
-<meta property="og:url" content="https://murfyexp.github.io/2017/08/31/语言/char-a-与-char-a/index.html">
+<meta property="og:title" content="shutdown与close函数的区别">
+<meta property="og:url" content="https://murfyexp.github.io/2018/05/06/linux网络编程/shutdown与close函数的区别/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
-1234567891011121314#include &amp;lt;stdio.h&amp;gt;int main(vo">
-<meta property="og:updated_time" content="2017-09-01T06:03:51.000Z">
+<meta property="og:description" content="有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。">
+<meta property="og:updated_time" content="2018-05-31T03:38:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="char *a 与 char a[]的区别">
-<meta name="twitter:description" content="数组名与指针首先，指针就是指针，数组就是数组。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是由于数组即数组的本身属性，使用&amp;amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小，而不是所指向第一个元素的大小。
-1234567891011121314#include &amp;lt;stdio.h&amp;gt;int main(vo">
+<meta name="twitter:title" content="shutdown与close函数的区别">
+<meta name="twitter:description" content="有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。">
 
 
 
@@ -126,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/08/31/语言/char-a-与-char-a/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/05/06/linux网络编程/shutdown与close函数的区别/"/>
 
 
 
 
 
-  <title> char *a 与 char a[]的区别 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> shutdown与close函数的区别 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/08/31/语言/char-a-与-char-a/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/06/linux网络编程/shutdown与close函数的区别/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -295,7 +292,7 @@
             
             
               
-                char *a 与 char a[]的区别
+                shutdown与close函数的区别
               
             
           </h1>
@@ -310,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-31T22:41:40-07:00">
-                2017-08-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-06T18:22:09-07:00">
+                2018-05-06
               </time>
             
 
@@ -333,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
+                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux网络编程</span>
                   </a>
                 </span>
 
@@ -351,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/31/语言/char-a-与-char-a/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/31/语言/char-a-与-char-a/" itemprop="commentCount"></span>
+                <a href="/2018/05/06/linux网络编程/shutdown与close函数的区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/06/linux网络编程/shutdown与close函数的区别/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,7 +359,7 @@
 
           
           
-             <span id="/2017/08/31/语言/char-a-与-char-a/" class="leancloud_visitors" data-flag-title="char *a 与 char a[]的区别">
+             <span id="/2018/05/06/linux网络编程/shutdown与close函数的区别/" class="leancloud_visitors" data-flag-title="shutdown与close函数的区别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -389,17 +386,19 @@
       
 
       
-        <h3 id="数组名与指针"><a href="#数组名与指针" class="headerlink" title="数组名与指针"></a>数组名与指针</h3><p>首先，<code>指针就是指针，数组就是数组</code>。两个是不同的东西。这两个概念之所以经常被混淆，是因为编译器把数组名当作指向该数组第一个元素的指针。正是<code>由于数组即数组的本身属性，使用&amp;操作符取的是数组的地址，sizeof()的操作数得到的是整个数组的大小</code>，而不是所指向第一个元素的大小。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> str[]=<span class="string">"abcd"</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">" (*str) = %c \n"</span>,*str);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">" addr (str[0]) = %#x \n"</span>,&amp;(str[<span class="number">0</span>]));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">" addr (str[1]) = %#x \n"</span>,&amp;(str[<span class="number">1</span>]));</div><div class="line">   </div><div class="line">    <span class="built_in">printf</span>(<span class="string">" addr of arrary param = %#x \n"</span>,&amp;str);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">" sizeof str = %d \n\n"</span>,<span class="keyword">sizeof</span>(str));</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="指针声明和数组声明"><a href="#指针声明和数组声明" class="headerlink" title="指针声明和数组声明"></a>指针声明和数组声明</h3><p>首先看一段崩溃代码，Segment Default报错。<code>指针声明和数组声明若没弄清楚，分分钟让你掉坑里</code>。
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> *chas = <span class="string">"ABCDE"</span>;</div><div class="line">    <span class="keyword">char</span> chas_1[] = <span class="string">"ABCDE"</span>;</div><div class="line">    chas[<span class="number">0</span>] = <span class="string">'X'</span>;</div><div class="line">    chas_1[<span class="number">0</span>] = <span class="string">'X'</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上面代码崩溃的原因是：<code>*chas = &quot;ABCDE&quot;存放在常量区</code>是无法修改的（chas的指针值存放在栈中。而<code>数组是局部变量，存放在栈中</code>，是可以修改的。</p>
-<p>这两种变量的内存布局的不同，导致了指针声明和数组声明有以下区别：<br><code>”读“ ”写“ 能力</code><br>char *a = “abcd”;  此时”abcd”存放在常量区。通过指针只可以访问字符串常量，而不可以改变它。<br>而char a[20] = “abcd”； 此时 “abcd”存放在栈。可以通过指针去访问和修改数组内容。</p>
-<p><code>赋值时刻</code><br>char *a = “abcd”; 是在<code>编译时就确定了</code>（因为为常量）。<br>而char a[20] = “abcd”； <code>在运行时确定</code></p>
-<p><code>存取效率</code><br>char *a = “abcd”; 存于静态存储区。<code>在栈上的数组比指针所指向字符串快</code>。慢<br>而char a[20] = “abcd”； 存于栈上。快</p>
-<p>再看看下面代码
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//合法</span></div><div class="line"><span class="keyword">char</span> a[]=<span class="string">"abcde"</span>;</div><div class="line"><span class="keyword">char</span> *b;</div><div class="line">b = a;</div><div class="line"></div><div class="line"><span class="comment">//不合法</span></div><div class="line"><span class="keyword">char</span> *a=<span class="string">"abcde"</span>;</div><div class="line"><span class="keyword">char</span> b[<span class="number">6</span>];</div><div class="line">b = a;</div></pre></td></tr></table></figure></p>
-<p> <code>char[] 可以隐式转换成 char*</code>，所以合法。<code>不存在</code>隐式转换使得 char* 被转换成 char[]，char[] 类型的变量不能被赋值，<code>数组不能作左值</code>，所以不合法。</p>
+        <p>有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。
+<a id="more"></a></p>
+<p>close函数
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>close 关闭了自身数据传输的两个方向。</p>
+<p>shutdown函数
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#include &lt;sys/socket.h&gt;</div><div class="line">int shutdown(int sockfd, int how);</div></pre></td></tr></table></figure></p>
+<p>shutdown可以选择<code>关闭某个方向或者同时关闭两个方向</code>，shutdown how = 0 or how = 1 or how = 2 (SHUT_RD or SHUT_WR or SHUT_RDWR)。</p>
+<p>shutdown<code>可以保证对等方接收到一个EOF字符</code>，即发送了一个FIN段，而不管其他进程是否已经打开了这个套接字。而<code>close不能保证，只有当某个sockfd的引用计数为0，close才会发送FIN段</code>，否则只是将引用计数减1而已。也就是说只有当所有进程（可能fork多个子进程都打开了这个套接字）都关闭了这个套接字，close才会发送FIN段。</p>
+<p>如果是调用shutdown how = 1
+，则意味着往一个已经发送出FIN的套接字中写是允许的，<code>接收到FIN段仅代表对方不再发送数据，但对方还是可以读取数据的，可以让对方可以继续读取缓冲区剩余的数据。</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (FD_ISSET(fd_stdin, &amp;rset))</div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (fgets(sendbuf, <span class="keyword">sizeof</span>(sendbuf), <span class="built_in">stdin</span>) == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        stdineof = <span class="number">1</span>; <span class="comment">//表示已经输入完毕</span></div><div class="line">        <span class="comment">/* 关闭sock的写端，还能够接收数据 */</span></div><div class="line">        shutdown(sock, SHUT_WR);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        writen(sock, sendbuf, <span class="built_in">strlen</span>(sendbuf));</div><div class="line">        <span class="built_in">memset</span>(sendbuf, <span class="number">0</span>, <span class="keyword">sizeof</span>(sendbuf));</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>select阻塞等待时发现套接字的读端已经关闭，不能再关心可读事件了，select会返回-1，<code>错误码是 EBADF: Bad File Descriptor</code>。</p>
 
       
     </div>
@@ -428,7 +427,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编程语言/" rel="tag"># 编程语言</a>
+            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
           
         </div>
       
@@ -437,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/26/杂货铺/别了，不见/" rel="next" title="别了，不见">
-                <i class="fa fa-chevron-left"></i> 别了，不见
+              <a href="/2018/05/06/linux网络编程/使用select函数改进客户端:服务器端程序/" rel="next" title="使用select函数改进客户端/服务器端程序">
+                <i class="fa fa-chevron-left"></i> 使用select函数改进客户端/服务器端程序
               </a>
             
           </div>
@@ -446,10 +445,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/05/算法/Leetcode/反转字符串/" rel="prev" title="反转字符串">
-                反转字符串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -475,8 +470,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/08/31/语言/char-a-与-char-a/"
-           data-title="char *a 与 char a[]的区别" data-url="https://murfyexp.github.io/2017/08/31/语言/char-a-与-char-a/">
+      <div class="ds-thread" data-thread-key="2018/05/06/linux网络编程/shutdown与close函数的区别/"
+           data-title="shutdown与close函数的区别" data-url="https://murfyexp.github.io/2018/05/06/linux网络编程/shutdown与close函数的区别/">
       </div>
     
   </div>
@@ -500,17 +495,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -593,22 +579,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组名与指针"><span class="nav-number">1.</span> <span class="nav-text">数组名与指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针声明和数组声明"><span class="nav-number">2.</span> <span class="nav-text">指针声明和数组声明</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>

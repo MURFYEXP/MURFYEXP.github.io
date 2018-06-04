@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="底层网络库," />
 
 
 
@@ -86,15 +86,25 @@
 
 
 
-<meta name="description" content="学习总结 思考感悟 知识管理">
-<meta property="og:type" content="website">
-<meta property="og:title" content="大傻与小火机写字的地方">
-<meta property="og:url" content="https://murfyexp.github.io/tags/面试-算法/index.html">
+<meta name="description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
+多线程能提高并发度吗？如果指的是“并发连接数”，不能。
+假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发服务器模式的几个问题">
+<meta property="og:url" content="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="学习总结 思考感悟 知识管理">
+<meta property="og:description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
+多线程能提高并发度吗？如果指的是“并发连接数”，不能。
+假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
+<meta property="og:updated_time" content="2018-06-04T13:14:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大傻与小火机写字的地方">
-<meta name="twitter:description" content="学习总结 思考感悟 知识管理">
+<meta name="twitter:title" content="并发服务器模式的几个问题">
+<meta name="twitter:description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
+多线程能提高并发度吗？如果指的是“并发连接数”，不能。
+假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
 
 
 
@@ -122,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/tags/面试-算法/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/"/>
 
 
 
 
 
-  <title> 标签: 面试 算法 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 并发服务器模式的几个问题 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -155,7 +165,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,302 +267,218 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        面试 算法
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/26/算法/Leetcode/最长回文子串/" itemprop="url">
-              
-                <span itemprop="name">最长回文子串</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-26T13:55:41-08:00"
-              content="2018-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/06/算法/Leetcode/旋转字符串/" itemprop="url">
-              
-                <span itemprop="name">旋转字符串</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-06T00:02:36-07:00"
-              content="2017-09-06" >
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/05/算法/Leetcode/反转字符串/" itemprop="url">
-              
-                <span itemprop="name">反转字符串</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-05T23:55:41-07:00"
-              content="2017-09-05" >
-          09-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/30/算法/Leetcode/表达式求值/" itemprop="url">
-              
-                <span itemprop="name">表达式求值</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-30T20:24:52-07:00"
-              content="2017-04-30" >
-          04-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/23/算法/Leetcode/字符串相似度-编辑距离/" itemprop="url">
-              
-                <span itemprop="name">字符串相似度(编辑距离)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-23T21:14:53-07:00"
-              content="2017-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/25/算法/Leetcode/两单链表相交的一系列问题/" itemprop="url">
-              
-                <span itemprop="name">两单链表相交的一系列问题</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-25T10:29:44-07:00"
-              content="2017-03-25" >
-          03-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/27/算法/Leetcode/8-5/" itemprop="url">
-              
-                <span itemprop="name">二叉树中累加和为指定值的最长路径</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-27T13:07:42-08:00"
-              content="2017-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/26/算法/Leetcode/8-1/" itemprop="url">
-              
-                <span itemprop="name">二叉树后序非递归遍历</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-26T12:30:28-08:00"
-              content="2017-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/21/算法/Leetcode/3-3/" itemprop="url">
-              
-                <span itemprop="name">完全二叉树节点个数</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-21T23:49:20-08:00"
-              content="2017-02-21" >
-          02-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/19/算法/Leetcode/3-2/" itemprop="url">
-              
-                <span itemprop="name">只含1最大的子矩阵</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-19T22:27:23-08:00"
-              content="2017-02-19" >
-          02-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/面试-算法/page/2/">2</a><a class="extend next" rel="next" href="/tags/面试-算法/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Shaojie Li">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="大傻与小火机写字的地方">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                并发服务器模式的几个问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-09T18:24:12-07:00">
+                2018-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/muduo网络库/" itemprop="url" rel="index">
+                    <span itemprop="name">muduo网络库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/09/网络/muduo/并发服务器模式的几个问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/09/网络/muduo/并发服务器模式的几个问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/05/09/网络/muduo/并发服务器模式的几个问题/" class="leancloud_visitors" data-flag-title="并发服务器模式的几个问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Linux能同时启动多少个线程？"><a href="#Linux能同时启动多少个线程？" class="headerlink" title="Linux能同时启动多少个线程？"></a>Linux能同时启动多少个线程？</h3><p>对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。</p>
+<h3 id="多线程能提高并发度吗？"><a href="#多线程能提高并发度吗？" class="headerlink" title="多线程能提高并发度吗？"></a>多线程能提高并发度吗？</h3><p><code>如果指的是“并发连接数”，不能。</code></p>
+<p>假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能轻松达到的并发连接数（几千上万，甚至几万）。所谓“基于事件”，指的是用IO multiplexing event loop的编程模型，又称Reactor模式。
+<a id="more"></a></p>
+<h3 id="多线程能提高吞吐量吗？"><a href="#多线程能提高吞吐量吗？" class="headerlink" title="多线程能提高吞吐量吗？"></a>多线程能提高吞吐量吗？</h3><p><code>对于计算密集型服务，不能。</code></p>
+<p>如果要在一个8核的机器上压缩100个1G的文本文件，每个core的处理能力为200MB/s，那么“每次起8个进程，一个进程压缩一个文件”与“只启动一个进程（8个线程并发压缩一个文件）”，这两种方式总耗时相当，但是第二种方式能较快的拿到第一个压缩完的文件。</p>
+<h3 id="多线程能提高响应时间吗？"><a href="#多线程能提高响应时间吗？" class="headerlink" title="多线程能提高响应时间吗？"></a>多线程能提高响应时间吗？</h3><p>可以。参考问题3</p>
+<h3 id="多线程程序日志库要求"><a href="#多线程程序日志库要求" class="headerlink" title="多线程程序日志库要求"></a>多线程程序日志库要求</h3><p>线程安全，即多个线程可以并发写日志，两个线程的日志消息不会出现交织。
+1. 用一个全局的mutex保护IO
+2. 每个线程单独写一个日志文件
+<code>前者造成全部线程抢占一个锁（串行写入）
+后者有可能让业务线程阻塞在写磁盘操作上。（磁盘IO时间比较长）</code></p>
+<p>解决办法：用一个logging线程负责收集日志消息，并写入日志文件，其他业务线程只管往这个“日志线程”发送日志消息，这称为“异步日志”，也是一个<code>经典的生产者消费者模型。</code></p>
+<h3 id="线程池大小的选择"><a href="#线程池大小的选择" class="headerlink" title="线程池大小的选择"></a>线程池大小的选择</h3><p>如果池中执行任务时，密集计算所占时间比重为P（0&lt;P&lt;=1)，而系统一共有C个CPU，为了让C个CPU跑满而不过载，线程池大小的经验公式T=C/P，即<code>T*P=C（让CPU刚好跑满 ）</code>
+假设C=8，P=1.0，线程池的任务完全密集计算，只要8个活动线程就能让CPU饱和
+假设C=8，P=0.5，线程池的任务有一半是计算，一半是IO，那么T=16，也就是16个“50%繁忙的线程”能让8个CPU忙个不停。</p>
+<h3 id="线程分类"><a href="#线程分类" class="headerlink" title="线程分类"></a>线程分类</h3><ol>
+<li>I/O线程（这里特指网络I/O）</li>
+<li>计算线程</li>
+<li>第三方库所用线程，如logging，又比如database</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Shaojie Li wechat" style="width: 200px; max-width: 100%;"/>
+    <div>个人微信公众号，我的日常分享！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/底层网络库/" rel="tag"># 底层网络库</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/08/网络/muduo/Reactor事件处理框架/" rel="next" title="Reactor事件处理框架">
+                <i class="fa fa-chevron-left"></i> Reactor事件处理框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -560,6 +486,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/05/09/网络/muduo/并发服务器模式的几个问题/"
+           data-title="并发服务器模式的几个问题" data-url="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -579,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -663,6 +606,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux能同时启动多少个线程？"><span class="nav-number">1.</span> <span class="nav-text">Linux能同时启动多少个线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程能提高并发度吗？"><span class="nav-number">2.</span> <span class="nav-text">多线程能提高并发度吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程能提高吞吐量吗？"><span class="nav-number">3.</span> <span class="nav-text">多线程能提高吞吐量吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程能提高响应时间吗？"><span class="nav-number">4.</span> <span class="nav-text">多线程能提高响应时间吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程程序日志库要求"><span class="nav-number">5.</span> <span class="nav-text">多线程程序日志库要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池大小的选择"><span class="nav-number">6.</span> <span class="nav-text">线程池大小的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程分类"><span class="nav-number">7.</span> <span class="nav-text">线程分类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -766,6 +725,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -819,26 +782,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

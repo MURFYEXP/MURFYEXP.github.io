@@ -86,25 +86,34 @@
 
 
 
-<meta name="description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
-多线程能提高并发度吗？如果指的是“并发连接数”，不能。
-假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
+<meta name="description" content="TCP网络编程最本质是的处理三个半事件
+
+连接的建立，包括服务端接受(accept)新连接和客户端成功发起(connect)连接。TCP 连接一旦建立，客户端和服务端是平等的，可以各自收发数据。
+
+连接的断开，包括主动断开(close或shutdown)和被动断开(read返回0)。
+
+消息到达，文件描述符可读。这是最为重要的一个事件，对它的处理方式决定了网络编程的风格（阻塞还是非阻塞，如何处理分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并发服务器模式的几个问题">
-<meta property="og:url" content="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/index.html">
+<meta property="og:title" content="TCP网络编程的本质">
+<meta property="og:url" content="https://murfyexp.github.io/2018/05/10/网络/muduo/TCP网络编程的本质/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
-多线程能提高并发度吗？如果指的是“并发连接数”，不能。
-假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
-<meta property="og:updated_time" content="2018-06-04T13:14:48.000Z">
+<meta property="og:description" content="TCP网络编程最本质是的处理三个半事件
+
+连接的建立，包括服务端接受(accept)新连接和客户端成功发起(connect)连接。TCP 连接一旦建立，客户端和服务端是平等的，可以各自收发数据。
+
+连接的断开，包括主动断开(close或shutdown)和被动断开(read返回0)。
+
+消息到达，文件描述符可读。这是最为重要的一个事件，对它的处理方式决定了网络编程的风格（阻塞还是非阻塞，如何处理分">
+<meta property="og:updated_time" content="2018-06-04T13:31:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并发服务器模式的几个问题">
-<meta name="twitter:description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
-多线程能提高并发度吗？如果指的是“并发连接数”，不能。
-假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
+<meta name="twitter:title" content="TCP网络编程的本质">
+<meta name="twitter:description" content="TCP网络编程最本质是的处理三个半事件
+
+连接的建立，包括服务端接受(accept)新连接和客户端成功发起(connect)连接。TCP 连接一旦建立，客户端和服务端是平等的，可以各自收发数据。
+
+连接的断开，包括主动断开(close或shutdown)和被动断开(read返回0)。
+
+消息到达，文件描述符可读。这是最为重要的一个事件，对它的处理方式决定了网络编程的风格（阻塞还是非阻塞，如何处理分">
 
 
 
@@ -132,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/05/10/网络/muduo/TCP网络编程的本质/"/>
 
 
 
 
 
-  <title> 并发服务器模式的几个问题 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> TCP网络编程的本质 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +286,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/10/网络/muduo/TCP网络编程的本质/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -301,7 +310,7 @@
             
             
               
-                并发服务器模式的几个问题
+                TCP网络编程的本质
               
             
           </h1>
@@ -316,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-09T18:24:12-07:00">
-                2018-05-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T13:24:12-07:00">
+                2018-05-10
               </time>
             
 
@@ -357,8 +366,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/09/网络/muduo/并发服务器模式的几个问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/09/网络/muduo/并发服务器模式的几个问题/" itemprop="commentCount"></span>
+                <a href="/2018/05/10/网络/muduo/TCP网络编程的本质/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/10/网络/muduo/TCP网络编程的本质/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,7 +377,7 @@
 
           
           
-             <span id="/2018/05/09/网络/muduo/并发服务器模式的几个问题/" class="leancloud_visitors" data-flag-title="并发服务器模式的几个问题">
+             <span id="/2018/05/10/网络/muduo/TCP网络编程的本质/" class="leancloud_visitors" data-flag-title="TCP网络编程的本质">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -395,28 +404,16 @@
       
 
       
-        <h3 id="Linux能同时启动多少个线程？"><a href="#Linux能同时启动多少个线程？" class="headerlink" title="Linux能同时启动多少个线程？"></a>Linux能同时启动多少个线程？</h3><p>对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。</p>
-<h3 id="多线程能提高并发度吗？"><a href="#多线程能提高并发度吗？" class="headerlink" title="多线程能提高并发度吗？"></a>多线程能提高并发度吗？</h3><p><code>如果指的是“并发连接数”，不能。</code></p>
-<p>假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能轻松达到的并发连接数（几千上万，甚至几万）。所谓“基于事件”，指的是用IO multiplexing event loop的编程模型，又称Reactor模式。
-<a id="more"></a></p>
-<h3 id="多线程能提高吞吐量吗？"><a href="#多线程能提高吞吐量吗？" class="headerlink" title="多线程能提高吞吐量吗？"></a>多线程能提高吞吐量吗？</h3><p><code>对于计算密集型服务，不能。</code></p>
-<p>如果要在一个8核的机器上压缩100个1G的文本文件，每个core的处理能力为200MB/s，那么“每次起8个进程，一个进程压缩一个文件”与“只启动一个进程（8个线程并发压缩一个文件）”，这两种方式总耗时相当，但是第二种方式能较快的拿到第一个压缩完的文件。</p>
-<h3 id="多线程能提高响应时间吗？"><a href="#多线程能提高响应时间吗？" class="headerlink" title="多线程能提高响应时间吗？"></a>多线程能提高响应时间吗？</h3><p>可以。参考问题3</p>
-<h3 id="多线程程序日志库要求"><a href="#多线程程序日志库要求" class="headerlink" title="多线程程序日志库要求"></a>多线程程序日志库要求</h3><p>线程安全，即多个线程可以并发写日志，两个线程的日志消息不会出现交织。
-1. 用一个全局的mutex保护IO
-2. 每个线程单独写一个日志文件
-<code>前者造成全部线程抢占一个锁（串行写入）
-后者有可能让业务线程阻塞在写磁盘操作上。（磁盘IO时间比较长）</code></p>
-<p>解决办法：用一个logging线程负责收集日志消息，并写入日志文件，其他业务线程只管往这个“日志线程”发送日志消息，这称为“异步日志”，也是一个<code>经典的生产者消费者模型。</code></p>
-<h3 id="线程池大小的选择"><a href="#线程池大小的选择" class="headerlink" title="线程池大小的选择"></a>线程池大小的选择</h3><p>如果池中执行任务时，密集计算所占时间比重为P（0&lt;P&lt;=1)，而系统一共有C个CPU，为了让C个CPU跑满而不过载，线程池大小的经验公式T=C/P，即<code>T*P=C（让CPU刚好跑满 ）</code>
-假设C=8，P=1.0，线程池的任务完全密集计算，只要8个活动线程就能让CPU饱和
-假设C=8，P=0.5，线程池的任务有一半是计算，一半是IO，那么T=16，也就是16个“50%繁忙的线程”能让8个CPU忙个不停。</p>
-<h3 id="线程分类"><a href="#线程分类" class="headerlink" title="线程分类"></a>线程分类</h3><ol>
-<li>I/O线程（这里特指网络I/O）</li>
-<li>计算线程</li>
-<li>第三方库所用线程，如logging，又比如database</li>
+        <p>TCP网络编程最本质是的处理三个半事件</p>
+<ol>
+<li><p><code>连接的建立</code>，包括服务端接受(accept)新连接和客户端成功发起(connect)连接。TCP 连接一旦建立，客户端和服务端是平等的，可以各自收发数据。</p>
+</li>
+<li><p><code>连接的断开</code>，包括主动断开(close或shutdown)和被动断开(read返回0)。</p>
+</li>
+<li><p><code>消息到达</code>，文件描述符可读。这是最为重要的一个事件，对它的处理方式决定了网络编程的风格（阻塞还是非阻塞，如何处理分包，应用层的缓冲如何设计等等）。</p>
+</li>
 </ol>
+<p>3.5. <code>消息发送完毕</code>，这算半个。对于低流量的服务，可以不必关心这个事件；另外，这里“发送完毕”是指将数据写入操作系统的缓冲区，将由TCP协议栈负责数据的发送与重传，<code>不代表对方已经收到数据。</code></p>
 
       
     </div>
@@ -454,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/08/网络/muduo/Reactor事件处理框架/" rel="next" title="Reactor事件处理框架">
-                <i class="fa fa-chevron-left"></i> Reactor事件处理框架
+              <a href="/2018/05/09/网络/muduo/并发服务器模式的几个问题/" rel="next" title="并发服务器模式的几个问题">
+                <i class="fa fa-chevron-left"></i> 并发服务器模式的几个问题
               </a>
             
           </div>
@@ -463,10 +460,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/10/网络/muduo/TCP网络编程的本质/" rel="prev" title="TCP网络编程的本质">
-                TCP网络编程的本质 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -492,8 +485,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/05/09/网络/muduo/并发服务器模式的几个问题/"
-           data-title="并发服务器模式的几个问题" data-url="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/">
+      <div class="ds-thread" data-thread-key="2018/05/10/网络/muduo/TCP网络编程的本质/"
+           data-title="TCP网络编程的本质" data-url="https://murfyexp.github.io/2018/05/10/网络/muduo/TCP网络编程的本质/">
       </div>
     
   </div>
@@ -517,17 +510,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -610,22 +594,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux能同时启动多少个线程？"><span class="nav-number">1.</span> <span class="nav-text">Linux能同时启动多少个线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程能提高并发度吗？"><span class="nav-number">2.</span> <span class="nav-text">多线程能提高并发度吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程能提高吞吐量吗？"><span class="nav-number">3.</span> <span class="nav-text">多线程能提高吞吐量吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程能提高响应时间吗？"><span class="nav-number">4.</span> <span class="nav-text">多线程能提高响应时间吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程程序日志库要求"><span class="nav-number">5.</span> <span class="nav-text">多线程程序日志库要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池大小的选择"><span class="nav-number">6.</span> <span class="nav-text">线程池大小的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程分类"><span class="nav-number">7.</span> <span class="nav-text">线程分类</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>

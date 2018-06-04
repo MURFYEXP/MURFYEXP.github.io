@@ -104,7 +104,7 @@
 连接的断开，包括主动断开(close或shutdown)和被动断开(read返回0)。
 
 消息到达，文件描述符可读。这是最为重要的一个事件，对它的处理方式决定了网络编程的风格（阻塞还是非阻塞，如何处理分">
-<meta property="og:updated_time" content="2018-06-04T13:31:31.000Z">
+<meta property="og:updated_time" content="2018-06-04T13:39:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP网络编程的本质">
 <meta name="twitter:description" content="TCP网络编程最本质是的处理三个半事件
@@ -412,8 +412,9 @@
 </li>
 <li><p><code>消息到达</code>，文件描述符可读。这是最为重要的一个事件，对它的处理方式决定了网络编程的风格（阻塞还是非阻塞，如何处理分包，应用层的缓冲如何设计等等）。</p>
 </li>
+<li><p><code>消息发送完毕</code>，这算半个。对于低流量的服务，可以不必关心这个事件；另外，这里“发送完毕”是指将数据写入操作系统的缓冲区，将由TCP协议栈负责数据的发送与重传，<code>不代表对方已经收到数据。</code></p>
+</li>
 </ol>
-<p>3.5. <code>消息发送完毕</code>，这算半个。对于低流量的服务，可以不必关心这个事件；另外，这里“发送完毕”是指将数据写入操作系统的缓冲区，将由TCP协议栈负责数据的发送与重传，<code>不代表对方已经收到数据。</code></p>
 
       
     </div>

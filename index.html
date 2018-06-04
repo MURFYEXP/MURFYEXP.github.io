@@ -566,8 +566,7 @@
       
         
           <h3 id="Linux能同时启动多少个线程？"><a href="#Linux能同时启动多少个线程？" class="headerlink" title="Linux能同时启动多少个线程？"></a>Linux能同时启动多少个线程？</h3><p>对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。</p>
-<h3 id="多线程能提高并发度吗？"><a href="#多线程能提高并发度吗？" class="headerlink" title="多线程能提高并发度吗？"></a>多线程能提高并发度吗？</h3><p><code>如果指的是“并发连接数”，不能。</code></p>
-<p>假如单纯采用 thread per connection
+<h3 id="多线程能提高并发度吗？"><a href="#多线程能提高并发度吗？" class="headerlink" title="多线程能提高并发度吗？"></a>多线程能提高并发度吗？</h3><p><code>如果指的是“并发连接数”，不能。</code>假如单纯采用 thread per connection
 的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能轻松达到的并发连接数（几千上万，甚至几万）。所谓“基于事件”，指的是用IO multiplexing event loop的编程模型，又称Reactor模式。
           <!--noindex-->
           <div class="post-button text-center">

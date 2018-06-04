@@ -87,24 +87,21 @@
 
 
 <meta name="description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
-多线程能提高并发度吗？如果指的是“并发连接数”，不能。
-假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
+多线程能提高并发度吗？如果指的是“并发连接数”，不能。假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并发服务器模式的几个问题">
 <meta property="og:url" content="https://murfyexp.github.io/2018/05/09/网络/muduo/并发服务器模式的几个问题/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
 <meta property="og:description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
-多线程能提高并发度吗？如果指的是“并发连接数”，不能。
-假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
-<meta property="og:updated_time" content="2018-06-04T13:14:48.000Z">
+多线程能提高并发度吗？如果指的是“并发连接数”，不能。假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能">
+<meta property="og:updated_time" content="2018-06-04T13:36:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="并发服务器模式的几个问题">
 <meta name="twitter:description" content="Linux能同时启动多少个线程？对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。
-多线程能提高并发度吗？如果指的是“并发连接数”，不能。
-假如单纯采用 thread per connection
-的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所">
+多线程能提高并发度吗？如果指的是“并发连接数”，不能。假如单纯采用 thread per connection
+的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能">
 
 
 
@@ -396,12 +393,10 @@
 
       
         <h3 id="Linux能同时启动多少个线程？"><a href="#Linux能同时启动多少个线程？" class="headerlink" title="Linux能同时启动多少个线程？"></a>Linux能同时启动多少个线程？</h3><p>对于 32-bit Linux，一个进程的地址空间是 4G，其中用户态能访问3G左右，而一个线程的默认栈 (stack)大小是8M，心算可知，一个进程大约最多能同时启动350个线程左右。</p>
-<h3 id="多线程能提高并发度吗？"><a href="#多线程能提高并发度吗？" class="headerlink" title="多线程能提高并发度吗？"></a>多线程能提高并发度吗？</h3><p><code>如果指的是“并发连接数”，不能。</code></p>
-<p>假如单纯采用 thread per connection
+<h3 id="多线程能提高并发度吗？"><a href="#多线程能提高并发度吗？" class="headerlink" title="多线程能提高并发度吗？"></a>多线程能提高并发度吗？</h3><p><code>如果指的是“并发连接数”，不能。</code>假如单纯采用 thread per connection
 的模型，那么并发连接数大约350，这远远低于基于事件的单线程程序所能轻松达到的并发连接数（几千上万，甚至几万）。所谓“基于事件”，指的是用IO multiplexing event loop的编程模型，又称Reactor模式。
 <a id="more"></a></p>
-<h3 id="多线程能提高吞吐量吗？"><a href="#多线程能提高吞吐量吗？" class="headerlink" title="多线程能提高吞吐量吗？"></a>多线程能提高吞吐量吗？</h3><p><code>对于计算密集型服务，不能。</code></p>
-<p>如果要在一个8核的机器上压缩100个1G的文本文件，每个core的处理能力为200MB/s，那么“每次起8个进程，一个进程压缩一个文件”与“只启动一个进程（8个线程并发压缩一个文件）”，这两种方式总耗时相当，但是第二种方式能较快的拿到第一个压缩完的文件。</p>
+<h3 id="多线程能提高吞吐量吗？"><a href="#多线程能提高吞吐量吗？" class="headerlink" title="多线程能提高吞吐量吗？"></a>多线程能提高吞吐量吗？</h3><p><code>对于计算密集型服务，不能。</code>如果要在一个8核的机器上压缩100个1G的文本文件，每个core的处理能力为200MB/s，那么“每次起8个进程，一个进程压缩一个文件”与“只启动一个进程（8个线程并发压缩一个文件）”，这两种方式总耗时相当，但是第二种方式能较快的拿到第一个压缩完的文件。</p>
 <h3 id="多线程能提高响应时间吗？"><a href="#多线程能提高响应时间吗？" class="headerlink" title="多线程能提高响应时间吗？"></a>多线程能提高响应时间吗？</h3><p>可以。参考问题3</p>
 <h3 id="多线程程序日志库要求"><a href="#多线程程序日志库要求" class="headerlink" title="多线程程序日志库要求"></a>多线程程序日志库要求</h3><p>线程安全，即多个线程可以并发写日志，两个线程的日志消息不会出现交织。
 1. 用一个全局的mutex保护IO
@@ -412,11 +407,7 @@
 <h3 id="线程池大小的选择"><a href="#线程池大小的选择" class="headerlink" title="线程池大小的选择"></a>线程池大小的选择</h3><p>如果池中执行任务时，密集计算所占时间比重为P（0&lt;P&lt;=1)，而系统一共有C个CPU，为了让C个CPU跑满而不过载，线程池大小的经验公式T=C/P，即<code>T*P=C（让CPU刚好跑满 ）</code>
 假设C=8，P=1.0，线程池的任务完全密集计算，只要8个活动线程就能让CPU饱和
 假设C=8，P=0.5，线程池的任务有一半是计算，一半是IO，那么T=16，也就是16个“50%繁忙的线程”能让8个CPU忙个不停。</p>
-<h3 id="线程分类"><a href="#线程分类" class="headerlink" title="线程分类"></a>线程分类</h3><ol>
-<li>I/O线程（这里特指网络I/O）</li>
-<li>计算线程</li>
-<li>第三方库所用线程，如logging，又比如database</li>
-</ol>
+<h3 id="线程分类"><a href="#线程分类" class="headerlink" title="线程分类"></a>线程分类</h3><p>1.I/O线程（这里特指网络I/O）2.计算线程 3.第三方库所用线程，如logging，又比如database</p>
 
       
     </div>

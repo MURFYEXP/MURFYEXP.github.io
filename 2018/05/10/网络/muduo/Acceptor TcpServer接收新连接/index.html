@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="底层网络库," />
 
 
 
@@ -86,22 +86,24 @@
 
 
 
-<meta name="description" content="读了你的文字，能感受到愤怒与生气。我还是说几句吧，刚回来，没有手机，白天没法看到微信。
-为什么会找同事打电话，第一次迫不得已，真的想见到你。这一次依旧迫不得已，没有号码，没有手机。第一次，去之前我就知道，见到你之后还是会放不下。这一次，去之前就感觉是去见个老朋友。没有提前通知，是因为一个月前，被挂了几次电话，微信消息接着被拒绝。内心深处那微弱的安全感，使我害怕又是一次冰冷的不理会。
-昨上午去燕郊帮">
+<meta name="description" content="TcpServer供用户直接使用，生命期由用户控制。用户只需设置好callback，再调用start即可。TcpServer内部使用Acceptor来获取新连接的fd。TcpServer会为新连接创建对应的TcpConnection对象。
+在TcpServer构造函数中先初始化acceptor成员，acceptor(new Acceptor(loop, listenAddr))
+1234// Ac">
 <meta property="og:type" content="article">
-<meta property="og:title" content="别了，不见">
-<meta property="og:url" content="https://murfyexp.github.io/2017/08/26/杂货铺/别了，不见/index.html">
+<meta property="og:title" content="Acceptor TcpServer接收新连接">
+<meta property="og:url" content="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="读了你的文字，能感受到愤怒与生气。我还是说几句吧，刚回来，没有手机，白天没法看到微信。
-为什么会找同事打电话，第一次迫不得已，真的想见到你。这一次依旧迫不得已，没有号码，没有手机。第一次，去之前我就知道，见到你之后还是会放不下。这一次，去之前就感觉是去见个老朋友。没有提前通知，是因为一个月前，被挂了几次电话，微信消息接着被拒绝。内心深处那微弱的安全感，使我害怕又是一次冰冷的不理会。
-昨上午去燕郊帮">
-<meta property="og:updated_time" content="2017-08-27T05:44:29.000Z">
+<meta property="og:description" content="TcpServer供用户直接使用，生命期由用户控制。用户只需设置好callback，再调用start即可。TcpServer内部使用Acceptor来获取新连接的fd。TcpServer会为新连接创建对应的TcpConnection对象。
+在TcpServer构造函数中先初始化acceptor成员，acceptor(new Acceptor(loop, listenAddr))
+1234// Ac">
+<meta property="og:image" content="https://murfyexp.github.io/images/muduo/connect.pg">
+<meta property="og:updated_time" content="2018-06-05T14:29:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="别了，不见">
-<meta name="twitter:description" content="读了你的文字，能感受到愤怒与生气。我还是说几句吧，刚回来，没有手机，白天没法看到微信。
-为什么会找同事打电话，第一次迫不得已，真的想见到你。这一次依旧迫不得已，没有号码，没有手机。第一次，去之前我就知道，见到你之后还是会放不下。这一次，去之前就感觉是去见个老朋友。没有提前通知，是因为一个月前，被挂了几次电话，微信消息接着被拒绝。内心深处那微弱的安全感，使我害怕又是一次冰冷的不理会。
-昨上午去燕郊帮">
+<meta name="twitter:title" content="Acceptor TcpServer接收新连接">
+<meta name="twitter:description" content="TcpServer供用户直接使用，生命期由用户控制。用户只需设置好callback，再调用start即可。TcpServer内部使用Acceptor来获取新连接的fd。TcpServer会为新连接创建对应的TcpConnection对象。
+在TcpServer构造函数中先初始化acceptor成员，acceptor(new Acceptor(loop, listenAddr))
+1234// Ac">
+<meta name="twitter:image" content="https://murfyexp.github.io/images/muduo/connect.pg">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2017/08/26/杂货铺/别了，不见/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/"/>
 
 
 
 
 
-  <title> 别了，不见 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Acceptor TcpServer接收新连接 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +276,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/08/26/杂货铺/别了，不见/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -298,7 +300,7 @@
             
             
               
-                别了，不见
+                Acceptor TcpServer接收新连接
               
             
           </h1>
@@ -313,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-26T22:41:14-07:00">
-                2017-08-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T12:24:12-07:00">
+                2018-05-10
               </time>
             
 
@@ -336,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/老李的杂货铺/" itemprop="url" rel="index">
-                    <span itemprop="name">老李的杂货铺</span>
+                  <a href="/categories/muduo网络库/" itemprop="url" rel="index">
+                    <span itemprop="name">muduo网络库</span>
                   </a>
                 </span>
 
@@ -354,8 +356,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/26/杂货铺/别了，不见/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/26/杂货铺/别了，不见/" itemprop="commentCount"></span>
+                <a href="/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,7 +367,7 @@
 
           
           
-             <span id="/2017/08/26/杂货铺/别了，不见/" class="leancloud_visitors" data-flag-title="别了，不见">
+             <span id="/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/" class="leancloud_visitors" data-flag-title="Acceptor TcpServer接收新连接">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,11 +394,19 @@
       
 
       
-        <p>读了你的文字，能感受到愤怒与生气。我还是说几句吧，刚回来，没有手机，白天没法看到微信。</p>
-<p>为什么会找同事打电话，第一次迫不得已，真的想见到你。这一次依旧迫不得已，没有号码，没有手机。第一次，去之前我就知道，见到你之后还是会放不下。这一次，去之前就感觉是去见个老朋友。没有提前通知，是因为一个月前，被挂了几次电话，微信消息接着被拒绝。内心深处那微弱的安全感，使我害怕又是一次冰冷的不理会。</p>
-<p>昨上午去燕郊帮朋友搬家(她一个人我不放心。一来，我已开始习惯自己独立的生活，工作状态也火力全开。二来，平时性格就是不愿跟人说太多，你是我掏过心窝对待的人。不想一直这样一声不吭地活在朋友圈里。觉得可以以朋友的身份，请你吃我答应的那顿大大大大大餐了。就决定，解决她的事情后，等你下班出来，当面邀请。后面的事情，你也知道了。现实就是那么戏剧化，想说的一个字也没机会说出来。现在，如果我靠近你，你不慌张，拥抱你，你不躲闪，对我来说，就是浪漫。</p>
-<p>就这么多吧。</p>
-
+        <p>TcpServer供<code>用户直接使用</code>，生命期由用户控制。<code>用户只需设置好callback，再调用start即可。</code>TcpServer内部<code>使用Acceptor来获取新连接的fd</code>。TcpServer会<code>为新连接创建对应的TcpConnection对象。</code></p>
+<p>在TcpServer构造函数中先初始化acceptor<em>成员，acceptor</em>(new Acceptor(loop, listenAddr))
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Acceptor::handleRead函数中会回调用TcpServer::newConnection</span></div><div class="line"><span class="comment">// _1对应的是socket文件描述符，_2对应的是对等方的地址(InetAddress)</span></div><div class="line">acceptor_-&gt;setNewConnectionCallback(</div><div class="line">    boost::bind(&amp;TcpServer::newConnection, <span class="keyword">this</span>, _1, _2));</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>调用TcpServer::start()，开始Acceptor::listen()。新的连接到达，TcpServer::acceptor<em>.acceptChannel</em>可读，poll返回，调用Channel::handleEvent()处理活动通道，调用Acceptor::handleRead()，函数中调用accept(2)来接受新连接，并回调TcpServer::newConnection()。
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Acceptor::handleRead()</div><div class="line">&#123;</div><div class="line">    loop_-&gt;assertInLoopThread();</div><div class="line">    <span class="function">InetAddress <span class="title">peerAddr</span><span class="params">(<span class="number">0</span>)</span></span>;</div><div class="line">    <span class="comment">//FIXME loop until no more</span></div><div class="line">    <span class="keyword">int</span> connfd = acceptSocket_.accept(&amp;peerAddr);</div><div class="line">    <span class="keyword">if</span> (connfd &gt;= <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// string hostport = peerAddr.toIpPort();</span></div><div class="line">        <span class="comment">// LOG_TRACE &lt;&lt; "Accepts of " &lt;&lt; hostport;</span></div><div class="line">        <span class="keyword">if</span> (newConnectionCallback_)</div><div class="line">        &#123;</div><div class="line">            newConnectionCallback_(connfd, peerAddr);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            sockets::close(connfd);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// Read the section named "The special problem of</span></div><div class="line">        <span class="comment">// accept()ing when you can't" in libev's doc.</span></div><div class="line">        <span class="comment">// By Marc Lehmann, author of libev.</span></div><div class="line">        <span class="keyword">if</span> (errno == EMFILE)</div><div class="line">        &#123;</div><div class="line">            ::close(idleFd_);</div><div class="line">            idleFd_ = ::accept(acceptSocket_.fd(), <span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">            ::close(idleFd_);</div><div class="line">            idleFd_ = ::open(<span class="string">"/dev/null"</span>, O_RDONLY | O_CLOEXEC);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>TcpServer::newConnection中，创建TcpConnection对象coon，把它加入ConnectionMap，设置好callback，再调用coon-&gt;connectEstablished，回调用户提供的connectionCallback_。
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//传入connfd</div><div class="line">void TcpServer::newConnection(int sockfd, const InetAddress &amp;peerAddr)</div><div class="line">&#123;</div><div class="line">    ......</div><div class="line">    TcpConnectionPtr conn(new TcpConnection(ioLoop, connName, sockfd, localAddr, peerAddr));</div><div class="line"></div><div class="line">    connections_[connName] = conn; // conn 是TcpConnectionPtr 对象</div><div class="line">    conn-&gt;setConnectionCallback(connectionCallback_);</div><div class="line">    conn-&gt;setMessageCallback(messageCallback_);</div><div class="line">    conn-&gt;connectEstablished();</div><div class="line">&#125;</div><div class="line"></div><div class="line">void TcpConnection::connectEstablished()</div><div class="line">&#123;</div><div class="line">    channel_-&gt;enableReading();  // TcpConnection所对应的通道加入到Poller关注</div><div class="line">    connectionCallback_(shared_from_this());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在一个新连接已建立，对等方发送数据到connfd，内核接收缓冲区不为空，TcpConnection::channel_可读事件发生，poll返回，调用Channel::handleEvent()处理活动通道，调用TcpConnection::handleRead()。
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/ 通道可读事件到来的时候，回调TcpConnection::handleRead，_1是事件发生时间</div><div class="line">channel_-&gt;setReadCallback(</div><div class="line">    boost::bind(&amp;TcpConnection::handleRead, <span class="keyword">this</span>, _1));</div><div class="line"></div><div class="line"><span class="keyword">void</span> TcpConnection::handleRead(Timestamp receiveTime)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">ssize_t</span> n = ::read(channel_-&gt;fd(), buf, <span class="keyword">sizeof</span> buf);</div><div class="line">    messageCallback_(shared_from_this(), buf, n);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Acceptor TcpServer接收新连接时序图
+<img src="/images/muduo/connect.pg" alt="Reactor"></p>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;muduo/net/TcpServer.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;muduo/net/EventLoop.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;muduo/net/InetAddress.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> muduo;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> muduo::net;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onConnection</span><span class="params">(<span class="keyword">const</span> TcpConnectionPtr &amp;conn)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (conn-&gt;connected())</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"onConnection(): new connection [%s] from %s\n"</span>,</div><div class="line">               conn-&gt;name().c_str(),</div><div class="line">               conn-&gt;peerAddress().toIpPort().c_str());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"onConnection(): connection [%s] is down\n"</span>,</div><div class="line">               conn-&gt;name().c_str());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(<span class="keyword">const</span> TcpConnectionPtr &amp;conn,</span></span></div><div class="line">               <span class="keyword">const</span> <span class="keyword">char</span> *data,</div><div class="line">               <span class="keyword">ssize_t</span> len)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"onMessage(): received %zd bytes from connection [%s]\n"</span>,</div><div class="line">           len, conn-&gt;name().c_str());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"main(): pid = %d\n"</span>, getpid());</div><div class="line"></div><div class="line">    <span class="function">InetAddress <span class="title">listenAddr</span><span class="params">(<span class="number">8888</span>)</span></span>;</div><div class="line">    EventLoop loop;</div><div class="line"></div><div class="line">    <span class="function">TcpServer <span class="title">server</span><span class="params">(&amp;loop, listenAddr, <span class="string">"TestServer"</span>)</span></span>;</div><div class="line">    server.setConnectionCallback(onConnection);</div><div class="line">    server.setMessageCallback(onMessage);</div><div class="line">    server.start();</div><div class="line"></div><div class="line">    loop.loop();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -422,13 +432,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/底层网络库/" rel="tag"># 底层网络库</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/29/杂货铺/毕业了，上班了/" rel="next" title="毕业了，上班了">
-                <i class="fa fa-chevron-left"></i> 毕业了，上班了
+              <a href="/2018/05/09/网络/muduo/并发服务器模式的几个问题/" rel="next" title="并发服务器模式的几个问题">
+                <i class="fa fa-chevron-left"></i> 并发服务器模式的几个问题
               </a>
             
           </div>
@@ -437,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/31/语言/char-a-与-char-a/" rel="prev" title="char *a 与 char a[]的区别">
-                char *a 与 char a[]的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/10/网络/muduo/TCP网络编程的本质/" rel="prev" title="TCP网络编程的本质">
+                TCP网络编程的本质 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,8 +481,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/08/26/杂货铺/别了，不见/"
-           data-title="别了，不见" data-url="https://murfyexp.github.io/2017/08/26/杂货铺/别了，不见/">
+      <div class="ds-thread" data-thread-key="2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/"
+           data-title="Acceptor TcpServer接收新连接" data-url="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/">
       </div>
     
   </div>
@@ -490,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
@@ -574,6 +599,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">1.</span> <span class="nav-text">测试代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

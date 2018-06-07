@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="网络编程," />
+  <meta name="keywords" content="面试 算法," />
 
 
 
@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="在前面的文章中，我们为了避免粘包问题，实现了一个readn函数读取固定字节的数据。如果应用层协议的各字段长度固定，用readn来读是非常方便的。
-常见的应用层协议都是带有可变长字段的，字段之间的分隔符用换行’\n’的比用’\0’的更常见，如HTTP协议。可变长字段的协议用readn来读就很不方便了，为此我们实现一个类似于fgets的readline函数。">
+<meta name="description" content="问题12345Given a sorted linked list, delete all duplicates such that each element appear only once.For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用recv和readn函数实现readline函数">
-<meta property="og:url" content="https://murfyexp.github.io/2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/index.html">
+<meta property="og:title" content="删除排序链表中的数值相同节点">
+<meta property="og:url" content="https://murfyexp.github.io/2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="在前面的文章中，我们为了避免粘包问题，实现了一个readn函数读取固定字节的数据。如果应用层协议的各字段长度固定，用readn来读是非常方便的。
-常见的应用层协议都是带有可变长字段的，字段之间的分隔符用换行’\n’的比用’\0’的更常见，如HTTP协议。可变长字段的协议用readn来读就很不方便了，为此我们实现一个类似于fgets的readline函数。">
-<meta property="og:updated_time" content="2018-05-29T13:35:13.000Z">
+<meta property="og:description" content="问题12345Given a sorted linked list, delete all duplicates such that each element appear only once.For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3">
+<meta property="og:updated_time" content="2018-06-07T14:44:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用recv和readn函数实现readline函数">
-<meta name="twitter:description" content="在前面的文章中，我们为了避免粘包问题，实现了一个readn函数读取固定字节的数据。如果应用层协议的各字段长度固定，用readn来读是非常方便的。
-常见的应用层协议都是带有可变长字段的，字段之间的分隔符用换行’\n’的比用’\0’的更常见，如HTTP协议。可变长字段的协议用readn来读就很不方便了，为此我们实现一个类似于fgets的readline函数。">
+<meta name="twitter:title" content="删除排序链表中的数值相同节点">
+<meta name="twitter:description" content="问题12345Given a sorted linked list, delete all duplicates such that each element appear only once.For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3">
 
 
 
@@ -126,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/"/>
 
 
 
 
 
-  <title> 利用recv和readn函数实现readline函数 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 删除排序链表中的数值相同节点 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -295,7 +292,7 @@
             
             
               
-                利用recv和readn函数实现readline函数
+                删除排序链表中的数值相同节点
               
             
           </h1>
@@ -310,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T23:22:09-07:00">
-                2018-05-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-12T14:29:44-07:00">
+                2018-05-12
               </time>
             
 
@@ -333,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux网络编程</span>
+                  <a href="/categories/面试算法/" itemprop="url" rel="index">
+                    <span itemprop="name">面试算法</span>
                   </a>
                 </span>
 
@@ -351,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/" itemprop="commentCount"></span>
+                <a href="/2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,7 +359,7 @@
 
           
           
-             <span id="/2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/" class="leancloud_visitors" data-flag-title="利用recv和readn函数实现readline函数">
+             <span id="/2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/" class="leancloud_visitors" data-flag-title="删除排序链表中的数值相同节点">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -389,21 +386,12 @@
       
 
       
-        <p>在前面的文章中，我们为了避免粘包问题，实现了一个readn函数读取固定字节的数据。如果应用层协议的各字段长度固定，用readn来读是非常方便的。</p>
-<p>常见的应用层协议都是带有可变长字段的，字段之间的分隔符用换行’\n’的比用’\0’的更常见，如HTTP协议。可变长字段的协议用readn来读就很不方便了，为此我们实现一个类似于fgets的readline函数。
-<a id="more"></a></p>
-<h3 id="recv函数"><a href="#recv函数" class="headerlink" title="recv函数"></a>recv函数</h3><p>首先来看一个跟read 相似的系统函数recv。
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></div><div class="line"><span class="keyword">ssize_t</span> recv(<span class="keyword">int</span> sockfd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len, <span class="keyword">int</span> flags);</div></pre></td></tr></table></figure></p>
-<p>recv函数与read函数类似，<code>但只能读取套接字描述符</code>，而不能是一般的文件描述符，且多了一个标志参数。</p>
-<p>recv有两个比较重要的flags参数，<code>一个是MSG_PEEK，即从缓冲区返回数据但不清空缓冲区，这点与read是不同的</code>，另一个是MSG_OOB，即读取带外数据时候的选项，tcp头部有一个紧急指针16位的值</p>
-<h3 id="readline函数的实现"><a href="#readline函数的实现" class="headerlink" title="readline函数的实现"></a>readline函数的实现</h3><p>使用封装后的recv函数实现readline函数
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* recv()只能读写套接字，而不能是一般的文件描述符 */</span></div><div class="line"><span class="keyword">ssize_t</span> recv_peek(<span class="keyword">int</span> sockfd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> ret = recv(sockfd, buf, len, MSG_PEEK); <span class="comment">// 设置标志位后读取后不清除缓冲区</span></div><div class="line">        <span class="keyword">if</span> (ret == <span class="number">-1</span> &amp;&amp; errno == EINTR) <span class="comment">//被信号中断</span></div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 读到'\n'就返回，加上'\n' 一行最多为maxline个字符 */</span></div><div class="line"><span class="keyword">ssize_t</span> readline(<span class="keyword">int</span> sockfd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> maxline)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret;</div><div class="line">    <span class="keyword">int</span> nread;</div><div class="line">    <span class="keyword">char</span> *bufp = buf;</div><div class="line">    <span class="keyword">int</span> nleft = maxline;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        ret = recv_peek(sockfd, bufp, nleft);</div><div class="line">        <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> ret; <span class="comment">// 返回小于0表示失败</span></div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> ret; <span class="comment">//返回0表示对方关闭连接了</span></div><div class="line"></div><div class="line">        nread = ret;</div><div class="line">        <span class="keyword">int</span> i;</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nread; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (bufp[i] == <span class="string">'\n'</span>)</div><div class="line">            &#123;</div><div class="line">                ret = readn(sockfd, bufp, i + <span class="number">1</span>);</div><div class="line">                <span class="keyword">if</span> (ret != i + <span class="number">1</span>) <span class="comment">//判断下返回值，做相应的错误处理</span></div><div class="line">                    <span class="built_in">exit</span>(EXIT_FAILURE);</div><div class="line">                </div><div class="line">                <span class="keyword">return</span> ret + count;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (nread &gt; nleft)</div><div class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</div><div class="line">        nleft -= nread;</div><div class="line">        ret = readn(sockfd, bufp, nread);</div><div class="line">        <span class="keyword">if</span> (ret != nread)</div><div class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</div><div class="line"></div><div class="line">        bufp += nread;</div><div class="line">        count += nread;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div></pre></td></tr></table></figure></p>
-<p>在readline函数中，我们先用<code>recv_peek”偷窥“</code>一下现在缓冲区有多少个字符并读取到bufp，然后查看是否存在换行符’\n’。如果存在，则使用readn连通换行符一起读取，并清空缓冲区。<code>如果不存在，也清空一下缓冲区,且移动bufp的位置，回到while循环开头，再次窥看。</code></p>
-<p>需注意一点是，如果第二次才读取到了’\n’，则先用<code>count保存了第一次读取的字符个数</code>，然后返回的ret需加上原先的数据大小。</p>
-<p>使用其他的方法，也可实现readline。先将缓冲区的数据读到缓存，在缓存中读取\n。由于此方法需要用到static，static带状态，不可重入。</p>
-<h3 id="readline函数的使用"><a href="#readline函数的使用" class="headerlink" title="readline函数的使用"></a>readline函数的使用</h3><p>使用<code>readline函数也可以认为是解决粘包问题的一个办法</code>，即以’\n’为结尾当作一条消息。对于服务器端来说可以在前面的fork程序的基础上把do_service函数更改如下
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_echoser</span><span class="params">(<span class="keyword">int</span> conn)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> recvbuf[<span class="number">1024</span>];</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">memset</span>(recvbuf, <span class="number">0</span>, <span class="keyword">sizeof</span>(recvbuf));</div><div class="line">        <span class="keyword">int</span> ret = readline(conn, recvbuf, <span class="number">1024</span>);</div><div class="line">        <span class="keyword">if</span> (ret == <span class="number">-1</span>)</div><div class="line">            ERR_EXIT(<span class="string">"readline error"</span>);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret  == <span class="number">0</span>)   <span class="comment">//客户端关闭</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"client close\n"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="built_in">fputs</span>(recvbuf, <span class="built_in">stdout</span>);</div><div class="line">        writen(conn, recvbuf, <span class="built_in">strlen</span>(recvbuf));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Given a sorted linked list, delete all duplicates such that each element appear only once.</div><div class="line"></div><div class="line">For example,</div><div class="line">Given 1-&gt;1-&gt;2, return 1-&gt;2.</div><div class="line">Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>记录当前节点cur和前一个节点pre。每次更新这两个节点。记得释放删除的节点，防止内存泄漏。
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">ListNode* <span class="title">deleteDuplicates</span><span class="params">(ListNode* head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line">        ListNode* pre = head;</div><div class="line">        ListNode* l = head;</div><div class="line">        ListNode* cur = head-&gt;next;</div><div class="line">        <span class="keyword">while</span>(cur != <span class="literal">NULL</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(cur-&gt;val == pre-&gt;val)</div><div class="line">            &#123;</div><div class="line">                ListNode* tmp = pre-&gt;next;</div><div class="line">                pre-&gt;next = cur-&gt;next; </div><div class="line">                cur = cur-&gt;next;</div><div class="line">                <span class="keyword">delete</span> tmp;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                pre = pre-&gt;next;</div><div class="line">                cur = cur-&gt;next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> l;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>递归版本</p>
+<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3>
       
     </div>
 
@@ -431,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
+            <a href="/tags/面试-算法/" rel="tag"># 面试 算法</a>
           
         </div>
       
@@ -440,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/02/网络/muduo/muduo库MutexLock类 MutexLockGuard类 Condition类 CountDownLatch类封装/" rel="next" title="muduo库MutexLock类 MutexLockGuard类 Condition类 CountDownLatch类封装 ptr_vector小知识">
-                <i class="fa fa-chevron-left"></i> muduo库MutexLock类 MutexLockGuard类 Condition类 CountDownLatch类封装 ptr_vector小知识
+              <a href="/2018/05/12/算法/Leetcode/平衡二叉树/" rel="next" title="平衡二叉树">
+                <i class="fa fa-chevron-left"></i> 平衡二叉树
               </a>
             
           </div>
@@ -450,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/05/linux网络编程/一个进程发起多个连接 gethostbyname等函数/" rel="prev" title="一个进程发起多个连接 gethostbyname等函数">
-                一个进程发起多个连接 gethostbyname等函数 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/13/网络/muduo/muduo库TcpConnection生存期管理 shared_from_this/" rel="prev" title="muduo库TcpConnection生存期管理 shared_from_this">
+                muduo库TcpConnection生存期管理 shared_from_this <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -478,8 +466,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/"
-           data-title="利用recv和readn函数实现readline函数" data-url="https://murfyexp.github.io/2018/05/03/linux网络编程/利用recv和readn函数实现readline函数/">
+      <div class="ds-thread" data-thread-key="2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/"
+           data-title="删除排序链表中的数值相同节点" data-url="https://murfyexp.github.io/2018/05/12/算法/Leetcode/删除排序链表中的数值相同节点/">
       </div>
     
   </div>
@@ -606,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#recv函数"><span class="nav-number">1.</span> <span class="nav-text">recv函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readline函数的实现"><span class="nav-number">2.</span> <span class="nav-text">readline函数的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readline函数的使用"><span class="nav-number">3.</span> <span class="nav-text">readline函数的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-小知识"><span class="nav-number">3.</span> <span class="nav-text">C++小知识</span></a></li></ol></div>
             
 
           </div>

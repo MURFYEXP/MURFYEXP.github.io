@@ -392,8 +392,7 @@
       
         
           <h1 id="Connector"><a href="#Connector" class="headerlink" title="Connector"></a>Connector</h1><p>Connector主要用于发起连接，并带有自动重连的功能，成员主要有一个channel_。Connector只负责建立socket连接，不负责创建TcpConnection。一般也不单独使用，作为TcpClient的成员。主动发起连接比被动接受连接要更复杂，一方面是错误处理麻烦，另一方面是要考虑重试。当socket变得可写时表明连接建立完毕。Connector的实现几个难点：</p>
-<ol>
-<li>socket是一次性的，一旦出错(比如对方拒绝连接)。就无法恢复，只能关闭重来。<code>但Connector 是可以反复使用的，因此每次尝试连接都要使用新的socket文件描述符和新的Channel对象。</code>
+<p>socket是一次性的，一旦出错(比如对方拒绝连接)。就无法恢复，只能关闭重来。<code>但Connector 是可以反复使用的，因此每次尝试连接都要使用新的socket文件描述符和新的Channel对象。</code><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/13/网络/muduo/muduo网络库 Connector TcpClient发起新连接/#more" rel="contents">

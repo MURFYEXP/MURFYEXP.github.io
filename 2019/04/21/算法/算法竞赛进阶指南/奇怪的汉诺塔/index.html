@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="底层网络库," />
+  <meta name="keywords" content="数据结构 算法," />
 
 
 
@@ -86,24 +86,16 @@
 
 
 
-<meta name="description" content="TcpServer供用户直接使用，生命期由用户控制。用户只需设置好callback，再调用start即可。TcpServer内部使用Acceptor来获取新连接的fd。TcpServer会为新连接创建对应的TcpConnection对象。
-在TcpServer构造函数中先初始化acceptor成员，acceptor(new Acceptor(loop, listenAddr))
-1234// Ac">
+<meta name="description" content="题目12345678汉诺塔问题，条件如下：1、这里有A、B、C和D四座塔。2、这里有n个圆盘，n的数量是恒定的。3、每个圆盘的尺寸都不相同。4、所有的圆盘在开始时都堆叠在塔A上，且圆盘尺寸从塔顶到塔底逐渐增大。5、我们需要将所有的圆盘都从塔A转移到塔D上。6、每次可以移动一个圆盘，当塔为空塔或者塔顶圆盘尺寸大于被移动圆盘时，可将圆盘移至这座塔上。请你求出将所有圆盘从塔A移动到塔D，所需的最小移动次">
 <meta property="og:type" content="article">
-<meta property="og:title" content="muduo库Acceptor TcpServer接收新连接">
-<meta property="og:url" content="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/index.html">
+<meta property="og:title" content="奇怪的汉诺塔">
+<meta property="og:url" content="https://murfyexp.github.io/2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="TcpServer供用户直接使用，生命期由用户控制。用户只需设置好callback，再调用start即可。TcpServer内部使用Acceptor来获取新连接的fd。TcpServer会为新连接创建对应的TcpConnection对象。
-在TcpServer构造函数中先初始化acceptor成员，acceptor(new Acceptor(loop, listenAddr))
-1234// Ac">
-<meta property="og:image" content="https://murfyexp.github.io/images/muduo/connect.jpg">
-<meta property="og:updated_time" content="2018-06-13T14:36:51.000Z">
+<meta property="og:description" content="题目12345678汉诺塔问题，条件如下：1、这里有A、B、C和D四座塔。2、这里有n个圆盘，n的数量是恒定的。3、每个圆盘的尺寸都不相同。4、所有的圆盘在开始时都堆叠在塔A上，且圆盘尺寸从塔顶到塔底逐渐增大。5、我们需要将所有的圆盘都从塔A转移到塔D上。6、每次可以移动一个圆盘，当塔为空塔或者塔顶圆盘尺寸大于被移动圆盘时，可将圆盘移至这座塔上。请你求出将所有圆盘从塔A移动到塔D，所需的最小移动次">
+<meta property="og:updated_time" content="2019-04-21T02:34:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="muduo库Acceptor TcpServer接收新连接">
-<meta name="twitter:description" content="TcpServer供用户直接使用，生命期由用户控制。用户只需设置好callback，再调用start即可。TcpServer内部使用Acceptor来获取新连接的fd。TcpServer会为新连接创建对应的TcpConnection对象。
-在TcpServer构造函数中先初始化acceptor成员，acceptor(new Acceptor(loop, listenAddr))
-1234// Ac">
-<meta name="twitter:image" content="https://murfyexp.github.io/images/muduo/connect.jpg">
+<meta name="twitter:title" content="奇怪的汉诺塔">
+<meta name="twitter:description" content="题目12345678汉诺塔问题，条件如下：1、这里有A、B、C和D四座塔。2、这里有n个圆盘，n的数量是恒定的。3、每个圆盘的尺寸都不相同。4、所有的圆盘在开始时都堆叠在塔A上，且圆盘尺寸从塔顶到塔底逐渐增大。5、我们需要将所有的圆盘都从塔A转移到塔D上。6、每次可以移动一个圆盘，当塔为空塔或者塔顶圆盘尺寸大于被移动圆盘时，可将圆盘移至这座塔上。请你求出将所有圆盘从塔A移动到塔D，所需的最小移动次">
 
 
 
@@ -131,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/"/>
+  <link rel="canonical" href="https://murfyexp.github.io/2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/"/>
 
 
 
 
 
-  <title> muduo库Acceptor TcpServer接收新连接 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 奇怪的汉诺塔 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Shaojie Li">
@@ -300,7 +292,7 @@
             
             
               
-                muduo库Acceptor TcpServer接收新连接
+                奇怪的汉诺塔
               
             
           </h1>
@@ -315,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T12:24:12-07:00">
-                2018-05-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T10:37:47-07:00">
+                2019-04-21
               </time>
             
 
@@ -338,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/muduo网络库/" itemprop="url" rel="index">
-                    <span itemprop="name">muduo网络库</span>
+                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
+                    <span itemprop="name">算法竞赛进阶指南</span>
                   </a>
                 </span>
 
@@ -356,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/" itemprop="commentCount"></span>
+                <a href="/2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,7 +359,7 @@
 
           
           
-             <span id="/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/" class="leancloud_visitors" data-flag-title="muduo库Acceptor TcpServer接收新连接">
+             <span id="/2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/" class="leancloud_visitors" data-flag-title="奇怪的汉诺塔">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -394,22 +386,23 @@
       
 
       
-        <p>TcpServer供<code>用户直接使用</code>，生命期由用户控制。<code>用户只需设置好callback，再调用start即可。</code>TcpServer内部<code>使用Acceptor来获取新连接的fd</code>。TcpServer会<code>为新连接创建对应的TcpConnection对象。</code></p>
-<p>在TcpServer构造函数中先初始化acceptor<em>成员，acceptor</em>(new Acceptor(loop, listenAddr))
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Acceptor::handleRead函数中会回调用TcpServer::newConnection</span></div><div class="line"><span class="comment">// _1对应的是socket文件描述符，_2对应的是对等方的地址(InetAddress)</span></div><div class="line">acceptor_-&gt;setNewConnectionCallback(</div><div class="line">    boost::bind(&amp;TcpServer::newConnection, <span class="keyword">this</span>, _1, _2));</div></pre></td></tr></table></figure></p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">汉诺塔问题，条件如下：</div><div class="line">1、这里有A、B、C和D四座塔。</div><div class="line">2、这里有n个圆盘，n的数量是恒定的。</div><div class="line">3、每个圆盘的尺寸都不相同。</div><div class="line">4、所有的圆盘在开始时都堆叠在塔A上，且圆盘尺寸从塔顶到塔底逐渐增大。</div><div class="line">5、我们需要将所有的圆盘都从塔A转移到塔D上。</div><div class="line">6、每次可以移动一个圆盘，当塔为空塔或者塔顶圆盘尺寸大于被移动圆盘时，可将圆盘移至这座塔上。</div><div class="line">请你求出将所有圆盘从塔A移动到塔D，所需的最小移动次数是多少。</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>调用TcpServer::start()，开始Acceptor::listen()。新的连接到达，TcpServer::acceptor<em>.acceptChannel</em>可读，poll返回，调用Channel::handleEvent()处理活动通道，调用Acceptor::handleRead()，函数中调用accept(2)来接受新连接，并回调TcpServer::newConnection()。
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Acceptor::handleRead()</div><div class="line">&#123;</div><div class="line">    loop_-&gt;assertInLoopThread();</div><div class="line">    <span class="function">InetAddress <span class="title">peerAddr</span><span class="params">(<span class="number">0</span>)</span></span>;</div><div class="line">    <span class="comment">//FIXME loop until no more</span></div><div class="line">    <span class="keyword">int</span> connfd = acceptSocket_.accept(&amp;peerAddr);</div><div class="line">    <span class="keyword">if</span> (connfd &gt;= <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// string hostport = peerAddr.toIpPort();</span></div><div class="line">        <span class="comment">// LOG_TRACE &lt;&lt; "Accepts of " &lt;&lt; hostport;</span></div><div class="line">        <span class="keyword">if</span> (newConnectionCallback_)</div><div class="line">        &#123;</div><div class="line">            newConnectionCallback_(connfd, peerAddr);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            sockets::close(connfd);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// Read the section named "The special problem of</span></div><div class="line">        <span class="comment">// accept()ing when you can't" in libev's doc.</span></div><div class="line">        <span class="comment">// By Marc Lehmann, author of libev.</span></div><div class="line">        <span class="keyword">if</span> (errno == EMFILE)</div><div class="line">        &#123;</div><div class="line">            ::close(idleFd_);</div><div class="line">            idleFd_ = ::accept(acceptSocket_.fd(), <span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">            ::close(idleFd_);</div><div class="line">            idleFd_ = ::open(<span class="string">"/dev/null"</span>, O_RDONLY | O_CLOEXEC);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>TcpServer::newConnection中，创建TcpConnection对象coon，把它加入ConnectionMap，设置好callback，再调用coon-&gt;connectEstablished，回调用户提供的connectionCallback_。
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//传入connfd</div><div class="line">void TcpServer::newConnection(int sockfd, const InetAddress &amp;peerAddr)</div><div class="line">&#123;</div><div class="line">    ......</div><div class="line">    TcpConnectionPtr conn(new TcpConnection(ioLoop, connName, sockfd, localAddr, peerAddr));</div><div class="line"></div><div class="line">    connections_[connName] = conn; // conn 是TcpConnectionPtr 对象</div><div class="line">    conn-&gt;setConnectionCallback(connectionCallback_);</div><div class="line">    conn-&gt;setMessageCallback(messageCallback_);</div><div class="line">    conn-&gt;connectEstablished();</div><div class="line">&#125;</div><div class="line"></div><div class="line">void TcpConnection::connectEstablished()</div><div class="line">&#123;</div><div class="line">    channel_-&gt;enableReading();  // TcpConnection所对应的通道加入到Poller关注</div><div class="line">    connectionCallback_(shared_from_this());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>现在一个新连接已建立，对等方发送数据到connfd，内核接收缓冲区不为空，TcpConnection::channel_可读事件发生，poll返回，调用Channel::handleEvent()处理活动通道，调用TcpConnection::handleRead()。
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/ 通道可读事件到来的时候，回调TcpConnection::handleRead，_1是事件发生时间</div><div class="line">channel_-&gt;setReadCallback(</div><div class="line">    boost::bind(&amp;TcpConnection::handleRead, <span class="keyword">this</span>, _1));</div><div class="line"></div><div class="line"><span class="keyword">void</span> TcpConnection::handleRead(Timestamp receiveTime)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">ssize_t</span> n = ::read(channel_-&gt;fd(), buf, <span class="keyword">sizeof</span> buf);</div><div class="line">    messageCallback_(shared_from_this(), buf, n);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Acceptor TcpServer接收新连接时序图
-<img src="/images/muduo/connect.jpg" alt="Reactor"></p>
-<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;muduo/net/TcpServer.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;muduo/net/EventLoop.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;muduo/net/InetAddress.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> muduo;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> muduo::net;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onConnection</span><span class="params">(<span class="keyword">const</span> TcpConnectionPtr &amp;conn)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (conn-&gt;connected())</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"onConnection(): new connection [%s] from %s\n"</span>,</div><div class="line">               conn-&gt;name().c_str(),</div><div class="line">               conn-&gt;peerAddress().toIpPort().c_str());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"onConnection(): connection [%s] is down\n"</span>,</div><div class="line">               conn-&gt;name().c_str());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(<span class="keyword">const</span> TcpConnectionPtr &amp;conn,</span></span></div><div class="line">               <span class="keyword">const</span> <span class="keyword">char</span> *data,</div><div class="line">               <span class="keyword">ssize_t</span> len)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"onMessage(): received %zd bytes from connection [%s]\n"</span>,</div><div class="line">           len, conn-&gt;name().c_str());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"main(): pid = %d\n"</span>, getpid());</div><div class="line"></div><div class="line">    <span class="function">InetAddress <span class="title">listenAddr</span><span class="params">(<span class="number">8888</span>)</span></span>;</div><div class="line">    EventLoop loop;</div><div class="line"></div><div class="line">    <span class="function">TcpServer <span class="title">server</span><span class="params">(&amp;loop, listenAddr, <span class="string">"TestServer"</span>)</span></span>;</div><div class="line">    server.setConnectionCallback(onConnection);</div><div class="line">    server.setMessageCallback(onMessage);</div><div class="line">    server.start();</div><div class="line"></div><div class="line">    loop.loop();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="多线程TcpServer"><a href="#多线程TcpServer" class="headerlink" title="多线程TcpServer"></a>多线程TcpServer</h3><p>one loop per thread的思想实现多线程TcpServer的关键步骤是<code>在新建TcpConnection时从evenloop pool里挑一个给TcpConnection用</code>。ioLoop和loop_间的<code>线程切换都发生在连接建立和断开的时刻</code>，不影响正常业务的性能。</p>
-<p>也就是说多线程TcpServer<code>自己的EvenLoop只用来接受新连接，而新连接会使用其他的EvenLoop来执行IO。</code>单线程TcpServer的EvenLoop是与TcpConnection共享的。muduo的evenloop pool由EventLoopThreadPool实现。</p>
-
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>没有输入</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>对于每一个整数n(1≤n≤12),输出一个满足条件的最小移动次数，每个结果占一行。</p>
+<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><p>没有输入</p>
+<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><p>参考输出格式</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我简直弱透了，汉诺塔问题算是递归的入门的经典例子。然鹅一开始却写不出代码来模拟移动过程。
+递归版
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) </div><div class="line">    &#123;</div><div class="line">        cnt++;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    move(n<span class="number">-1</span>);</div><div class="line">    move(<span class="number">1</span>);</div><div class="line">    move(n<span class="number">-1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>递推版
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">12</span>; i++) <span class="comment">//递推计算i个盘子3根棍子的情况</span></div><div class="line">&#123;</div><div class="line">    d[i] = d[i<span class="number">-1</span>]*<span class="number">2</span> + <span class="number">1</span>; <span class="comment">//将n-1个盘子挪到第2根棍子上，接着将第n个盘子挪到第3根棍子，最后将n-1个盘子也挪到第3根棍子</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>4根棍子的汉诺塔玩法：先将j个盘子放到一根棍子上，接着将第i-j个盘子挪到第4根棍子。由于j个盘子的那跟棍子不能再放，故此时为3根棍子的情形，故有d[i-j]次挪动。最后再将j个盘子也挪到第4根棍子。  </p>
+<p>f[i]为i次移动中的最小值：<code>f[i] = min(f[i], f[j]*2 + d[i-j]);</code>  </p>
+<p>综上可得，n根棍子的汉诺塔，可由n-1根棍子递推求得。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="知识积累"><a href="#知识积累" class="headerlink" title="知识积累"></a>知识积累</h4><p>数组定义为全局变量，初始化为0<br>将f数组初始化为大值0x3f，sizeof在编译期间运行: <code>memset(f, 0x3f, sizeof f);</code>   </p>
+<h4 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a>调试过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1.递推初值f[0]为0</div><div class="line">2.j从0开始枚举</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> d[<span class="number">15</span>], f[<span class="number">15</span>]; <span class="comment">//定义为全局变量，初始化为0</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">12</span>; i++) <span class="comment">//递推计算i个盘子3根棍子的情况</span></div><div class="line">    &#123;</div><div class="line">        d[i] = d[i<span class="number">-1</span>]*<span class="number">2</span> + <span class="number">1</span>; <span class="comment">//将n-1个盘子挪到第2根棍子上，接着将第n个盘子挪到第3根棍子，最后将n-1个盘子也挪到第3根棍子</span></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">memset</span>(f, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> f); <span class="comment">//将f数组初始化为大值0x3f，sizeof在编译期间运行</span></div><div class="line">    f[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">//递推初值f[0]为0</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">12</span>; i++) <span class="comment">//递推计算i个盘子4根棍子的情况</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">//从0开始枚举，表示只用到3根棍子，j &lt; i</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) f[i] = min(f[i], f[j]*<span class="number">2</span> + d[i-j]); <span class="comment">//先将j个盘子放到一根棍子上，接着将第i-j个盘子挪到第4根棍子，最后将j个盘子也挪到第4根棍子</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">12</span>; i++) <span class="built_in">cout</span> &lt;&lt; f[i] &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -437,7 +430,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/底层网络库/" rel="tag"># 底层网络库</a>
+            <a href="/tags/数据结构-算法/" rel="tag"># 数据结构 算法</a>
           
         </div>
       
@@ -446,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/09/网络/muduo/并发服务器模式的几个问题/" rel="next" title="并发服务器模式的几个问题">
-                <i class="fa fa-chevron-left"></i> 并发服务器模式的几个问题
+              <a href="/2019/04/16/算法/算法竞赛进阶指南/费解的开关/" rel="next" title="费解的开关">
+                <i class="fa fa-chevron-left"></i> 费解的开关
               </a>
             
           </div>
@@ -455,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/10/网络/muduo/TCP网络编程的本质/" rel="prev" title="TCP网络编程的本质">
-                TCP网络编程的本质 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -484,8 +473,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/"
-           data-title="muduo库Acceptor TcpServer接收新连接" data-url="https://murfyexp.github.io/2018/05/10/网络/muduo/Acceptor TcpServer接收新连接/">
+      <div class="ds-thread" data-thread-key="2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/"
+           data-title="奇怪的汉诺塔" data-url="https://murfyexp.github.io/2019/04/21/算法/算法竞赛进阶指南/奇怪的汉诺塔/">
       </div>
     
   </div>
@@ -612,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">1.</span> <span class="nav-text">测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程TcpServer"><span class="nav-number">2.</span> <span class="nav-text">多线程TcpServer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">1.3.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">1.4.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#知识积累"><span class="nav-number">3.1.</span> <span class="nav-text">知识积累</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调试过程"><span class="nav-number">3.2.</span> <span class="nav-text">调试过程</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -96,8 +96,7 @@ TCP数据安全可靠，UDP数据传输快
 
 TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报文段进行确认主机A再次对主机B的确认进行确认
 三次握手状态图(第二次ack应为x+1)
-
-TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效">
+TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三次握手与四次挥手">
 <meta property="og:url" content="https://murfyexp.github.io/2017/03/14/网络/DartNet/三次握手与四次挥手/index.html">
@@ -112,8 +111,7 @@ TCP数据安全可靠，UDP数据传输快
 
 TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报文段进行确认主机A再次对主机B的确认进行确认
 三次握手状态图(第二次ack应为x+1)
-
-TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效">
+TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效的">
 <meta property="og:image" content="https://murfyexp.github.io/images/三次握手.png">
 <meta property="og:image" content="https://murfyexp.github.io/images/四次挥手.jpg">
 <meta property="og:updated_time" content="2017-03-14T22:42:39.000Z">
@@ -129,8 +127,7 @@ TCP数据安全可靠，UDP数据传输快
 
 TCP的三次握手主机A向B发送连接请求主机B对收到的主机A的报文段进行确认主机A再次对主机B的确认进行确认
 三次握手状态图(第二次ack应为x+1)
-
-TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效">
+TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?采用三次握手是为了防止失效的">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/三次握手.png">
 
 
@@ -431,23 +428,19 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
 </ul>
 </blockquote>
 <h3 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p>主机A向B发送连接请求<br>主机B对收到的主机A的报文段进行确认<br>主机A再次对主机B的确认进行确认</p>
-<p>三次握手状态图(第二次ack应为x+1)
-<img src="/images/三次握手.png" alt=""></p>
+<p>三次握手状态图(第二次ack应为x+1)<br><img src="/images/三次握手.png" alt=""></p>
 <p>TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗?<br>采用三次握手是为了<code>防止失效的连接请求报文段突然又传送到主机</code>，因而产生错误</p>
 <p>考虑这样一种特殊情况，主机A第一次发送的<code>连接请求</code>并没有丢失，而是<code>因为网络节点导致延迟达到主机B</code>。主机B以为是主机A又发起的新连接，于是主机B同意连接，并向主机A发回确认，<code>此时主机A根本不会理会</code>，主机B就一直在<code>等待主机A发送数据，导致主机B的资源浪费</code></p>
 <p>如果采用<code>三次握手</code>，由于客户端不会向服务端发出确认，<code>服务端由于没有收到确认信息</code>，就知道客户端没有要求建立连接，<code>不建立该连接</code></p>
 <h4 id="SYN-flood攻击"><a href="#SYN-flood攻击" class="headerlink" title="SYN flood攻击"></a>SYN flood攻击</h4><p>假设一个<code>用户向服务器发送了SYN报文后突然死机或掉线</code>，那么第三次握手无法完成，这种情况下服务器端一般会重试（再次发送SYN+ACK给客户端）并等待一段时间后丢弃这个未完成的连接，这段时间的长度称为SYN Timeout。如 果大量模拟这种情况，<code>服务器端为了维护一个非常大的半连接列表而消耗非常多的资源</code></p>
 <p>SYN flood<code>只能攻击TCP服务</code>，由于UDP不需要连接，故不受影响。</p>
 <h3 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h3><p>由于接收到<code>FIN时意味将没有数据再发来</code>，但是还是<code>可以继续发送数据</code>，所以断开连接时必须是四次握手</p>
-<p>四次挥手状态图
-<img src="/images/四次挥手.jpg" alt=""></p>
+<p>四次挥手状态图<br><img src="/images/四次挥手.jpg" alt=""></p>
 <p>为什么A在TIME—WAIT状态必须等待2MSL时间呢？</p>
 <ul>
-<li><p><code>为了保证A发送的最后一个ACK报文段能够到达B</code>
-若该ACK报文段很有可能丢失，如果A在TIME—WAIT状态<code>不等待一段时间就直接释放连接到CLOSED状态</code>，那么就<code>无法收到B重传的FIN+ACK报文段</code>，也<code>不会再发送一次确认ACK报文段</code>，那么<code>B就无法正常进入CLOSED状态</code></p>
+<li><p><code>为了保证A发送的最后一个ACK报文段能够到达B</code><br>若该ACK报文段很有可能丢失，如果A在TIME—WAIT状态<code>不等待一段时间就直接释放连接到CLOSED状态</code>，那么就<code>无法收到B重传的FIN+ACK报文段</code>，也<code>不会再发送一次确认ACK报文段</code>，那么<code>B就无法正常进入CLOSED状态</code></p>
 </li>
-<li><p><code>防止已失效的请求连接出现在本连接中</code>
-在连接处于2MSL等待时，<code>任何迟到的报文段将被丢弃</code>，这样可以使下一个新的连接中不会出现这种旧的连接之前延迟的报文段。</p>
+<li><p><code>防止已失效的请求连接出现在本连接中</code><br>在连接处于2MSL等待时，<code>任何迟到的报文段将被丢弃</code>，这样可以使下一个新的连接中不会出现这种旧的连接之前延迟的报文段。</p>
 </li>
 </ul>
 
@@ -487,7 +480,7 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/语言/c系语言static-extern-const/" rel="next" title="C/C++ static extern const关键字">
+              <a href="/2017/03/10/c系语言static-extern-const/" rel="next" title="C/C++ static extern const关键字">
                 <i class="fa fa-chevron-left"></i> C/C++ static extern const关键字
               </a>
             
@@ -573,7 +566,7 @@ TCP的三次握手过程？为什么会采用三次握手，若采用二次握�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

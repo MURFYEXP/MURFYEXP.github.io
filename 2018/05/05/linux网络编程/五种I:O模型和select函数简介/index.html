@@ -396,12 +396,10 @@
 
       
         <p>同步和异步的区别在于是不是要求处理消息者<code>自己来完成将数据从内核缓冲区复制回进程缓冲区的过程</code>。</p>
-<p>消息者阻塞和非阻塞应该是发生在消息的处理的时刻。<code>阻塞其实就是等待</code>，发出通知，等待结果完成。非阻塞属于发出通知，立即返回结果，<code>没有等待过程</code>。
-<a id="more"></a></p>
+<p>消息者阻塞和非阻塞应该是发生在消息的处理的时刻。<code>阻塞其实就是等待</code>，发出通知，等待结果完成。非阻塞属于发出通知，立即返回结果，<code>没有等待过程</code>。<br><a id="more"></a></p>
 <h3 id="阻塞I-O"><a href="#阻塞I-O" class="headerlink" title="阻塞I/O"></a>阻塞I/O</h3><p><img src="/images/网络/阻塞IO模型.png" alt="connect"></p>
 <p>调用recv系统调用，如果没有数据则阻塞等待，当数据到来则将数据从内核空间（套接口缓冲区）拷贝到用户空间（recv函数提供的buf），然后recv返回，进行数据处理。</p>
-<h3 id="非阻塞I-O"><a href="#非阻塞I-O" class="headerlink" title="非阻塞I/O"></a>非阻塞I/O</h3><p><img src="/images/网络/非阻塞IO模型.png" alt="connect">
-<code>fcntl(fd, F_SETFL, flag | O_NONBLOCK);</code>将套接字标志变成非阻塞。</p>
+<h3 id="非阻塞I-O"><a href="#非阻塞I-O" class="headerlink" title="非阻塞I/O"></a>非阻塞I/O</h3><p><img src="/images/网络/非阻塞IO模型.png" alt="connect"><br><code>fcntl(fd, F_SETFL, flag | O_NONBLOCK);</code>将套接字标志变成非阻塞。</p>
 <p>调用recv，如果设备暂时没有数据可读就<code>返回-1，同时置errno为EWOULDBLOCK</code>（或者EAGAIN，这两个宏定义的值相同），表示本来应该阻塞在这里，事实上并没有阻塞而是直接返回错误，调用者应该试着再读一次。调用者只是查询一下，而不是阻塞在这里死等，这样<code>可以同时监视多个设备</code>。</p>
 <p>非阻塞I/O有一个缺点，如果所有设备都一直没有数据到达，调用者需要反复查询做无用功，<code>如果阻塞在那里，操作系统可以调度别的进程执行，就不会做无用功了</code>，在实际应用中<code>非阻塞I/O模型经常与IO multiplexing</code>一起使用。</p>
 <h3 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I/O复用"></a>I/O复用</h3><p><img src="/images/网络/IO复用模型.png" alt="connect"></p>
@@ -412,23 +410,24 @@
 <p>aio_read 函数也会提供一个buf，系统调用进入内核，如果没有数据则立即返回，进程继续执行其他操作，所以叫异步I/O，<code>当数据到来时内核自动复制数据，然后推送给用户空间，通过在aio_read中指定的信号通知进程，让其处理数据</code>。</p>
 <p>异步I/O跟信号驱动I/O的不同之处在于，<code>它不用调用recv进行数据的复制</code>，如果将后者比做”拉pull“，则前者可以认为是”push推“，push的效率会高点，但aio_read的实现或多或少存在问题，用得也比较少。<code>实践中用得比较多的如boost库的asio也是异步IO</code>。</p>
 <h3 id="select函数简介"><a href="#select函数简介" class="headerlink" title="select函数简介"></a>select函数简介</h3><p>用select管理多个I/O，select阻塞等待，一旦其中的一个或多个I/O检测到我们所感兴趣的事件，select函数返回，返回值为检测到的事件个数，并且返回哪些I/O发送了事件，遍历这些事件，进而处理事件。</p>
-<p>当select阻塞返回后，此时调用accept接收连接是不会阻塞的，直接返回已连接套接字，可以认为是select 提前阻塞了。但此时调用write还是可能阻塞的，因为需要写入的空间大小可能缓冲区还不满足。
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* According to POSIX.1-2001 */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/select.h&gt;</span></span></div><div class="line"><span class="comment">/* According to earlier standards */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, <span class="keyword">struct</span> timeval *timeout)</span></span>;</div><div class="line"></div><div class="line">参数<span class="number">1</span>：读写异常集合中的文件描述符的最大值加<span class="number">1</span>；</div><div class="line">参数<span class="number">2</span>：读集合，关心可读事件；</div><div class="line">参数<span class="number">3</span>：写集合，关心可写事件；</div><div class="line">参数<span class="number">4</span>：异常集合，关心异常事件；</div><div class="line">参数<span class="number">5</span>：超时时间结构体</div></pre></td></tr></table></figure></p>
+<p>当select阻塞返回后，此时调用accept接收连接是不会阻塞的，直接返回已连接套接字，可以认为是select 提前阻塞了。但此时调用write还是可能阻塞的，因为需要写入的空间大小可能缓冲区还不满足。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* According to POSIX.1-2001 */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/select.h&gt;</span></span></div><div class="line"><span class="comment">/* According to earlier standards */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, <span class="keyword">struct</span> timeval *timeout)</span></span>;</div><div class="line"></div><div class="line">参数<span class="number">1</span>：读写异常集合中的文件描述符的最大值加<span class="number">1</span>；</div><div class="line">参数<span class="number">2</span>：读集合，关心可读事件；</div><div class="line">参数<span class="number">3</span>：写集合，关心可写事件；</div><div class="line">参数<span class="number">4</span>：异常集合，关心异常事件；</div><div class="line">参数<span class="number">5</span>：超时时间结构体</div></pre></td></tr></table></figure></p>
 <p>文件描述符的监视范围与第一个参数有关，select函数要求通过第一个参数传递监视对象文件描述符的数量。因此，需要得到注册在fd_set变量中的文件描述符数。但每次新建文件描述符时，其值都会增1，故<code>需将最大的文件描述符值加1再传递到select函数即可。</code></p>
 <p>对于参数2，3，4来说，如果不关心对应事件则设置为NULL即可。注意5个参数都是输入输出参数，即select返回时可能对其进行了修改。时间结构体的传出参数是<code>剩余的时间</code>，如果设置为<code>NULL表示永不超时。</code></p>
-<p>可读事件:
-1. 套接口缓冲区有数据可读
-2. 对等连接的写一半关闭。即<code>接收到FIN段，读操作将返回0</code>
-3. 如果是监听套接口，<code>已完成连接队列不为空时</code>。
-4. 套接口上发生了一个错误待处理，错误可以通过getsockopt指定SO_ERROR选项来获取。</p>
-<p>可写事件:
-1. 套接口发送缓冲区有空间容纳数据。（连接一旦建立就可写）
-2. 对等连接的读一半关闭。即<code>收到RST段之后，再次调用write操作。</code>
-3. 套接口上发生了一个错误待处理，错误可以通过getsockopt指定SO_ERROR选项来获取。</p>
-<p>异常事件:
-套接口存在带外数据（TCP头部 URG标志，16位紧急指针字段）</p>
-<p>下面是4个可以对集合进行操作的宏：
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_CLR</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 清除出集合</span></div><div class="line"><span class="function"><span class="keyword">int</span>  <span class="title">FD_ISSET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 判断是否在集合中</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_SET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 添加进集合中</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_ZERO</span><span class="params">(fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 将集合清零</span></div></pre></td></tr></table></figure></p>
+<p>可读事件:</p>
+<ol>
+<li>套接口缓冲区有数据可读</li>
+<li>对等连接的写一半关闭。即<code>接收到FIN段，读操作将返回0</code></li>
+<li>如果是监听套接口，<code>已完成连接队列不为空时</code>。</li>
+<li>套接口上发生了一个错误待处理，错误可以通过getsockopt指定SO_ERROR选项来获取。</li>
+</ol>
+<p>可写事件:</p>
+<ol>
+<li>套接口发送缓冲区有空间容纳数据。（连接一旦建立就可写）</li>
+<li>对等连接的读一半关闭。即<code>收到RST段之后，再次调用write操作。</code></li>
+<li>套接口上发生了一个错误待处理，错误可以通过getsockopt指定SO_ERROR选项来获取。</li>
+</ol>
+<p>异常事件:<br>套接口存在带外数据（TCP头部 URG标志，16位紧急指针字段）</p>
+<p>下面是4个可以对集合进行操作的宏：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_CLR</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 清除出集合</span></div><div class="line"><span class="function"><span class="keyword">int</span>  <span class="title">FD_ISSET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 判断是否在集合中</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_SET</span><span class="params">(<span class="keyword">int</span> fd, fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 添加进集合中</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_ZERO</span><span class="params">(fd_set *<span class="built_in">set</span>)</span></span>; <span class="comment">// 将集合清零</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -552,7 +551,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

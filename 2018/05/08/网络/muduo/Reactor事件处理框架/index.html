@@ -394,28 +394,22 @@
 
       
         <p>Reactor模式是事件驱动模型的一个实现。它是一个同步的按照事件到达顺序处理事件的分发器。简单的说就是<code>有一个线程不断轮询事件源，然后将其分发给对应的处理器</code>。</p>
-<p>餐厅点菜的Reactor模式图
-<img src="/images/muduo/Reactor.png" alt="Reactor">
-<a id="more"></a></p>
+<p>餐厅点菜的Reactor模式图<br><img src="/images/muduo/Reactor.png" alt="Reactor"><br><a id="more"></a></p>
 <h3 id="EvenLoop循环机制"><a href="#EvenLoop循环机制" class="headerlink" title="EvenLoop循环机制"></a>EvenLoop循环机制</h3><p>one loop per thread每个线程只有一个EvenLoop对象，EvenLoop的构造函数会检查当前线程是否已经创建了其他EvenLoop对象。把TimerQueue的成员函数调用移到其IO线程，这样可以不用锁的情况保证线程安全性。</p>
 <p><code>创建了EvenLoop对象的线程是IO线程</code>，其主要功能是运行事件循环EvenLoop::loop()。EvenLoop::loop函数的真正工作内容是，<code>调用Poller::poll获得当前活动事件的Channel列表，然后依次调用每个Channel的handleEvent函数</code>。</p>
-<p>EvenLoop::loop可以<code>终止事件循环</code>，只要将quit<em>设为true即可。`但quit不是立刻发生的，它会在下一次检查while(!quit</em>)的时候起效。`如果在非当前IO线程调用quit，延迟可以长达数秒，wakeup函数唤醒当前IO线程。如果EvenLoop::loop正阻塞在某个调用中，quit不会立刻生效。
-<img src="/images/muduo/runinloop.jpg" alt="Reactor"></p>
+<p>EvenLoop::loop可以<code>终止事件循环</code>，只要将quit<em>设为true即可。`但quit不是立刻发生的，它会在下一次检查while(!quit</em>)的时候起效。`如果在非当前IO线程调用quit，延迟可以长达数秒，wakeup函数唤醒当前IO线程。如果EvenLoop::loop正阻塞在某个调用中，quit不会立刻生效。<br><img src="/images/muduo/runinloop.jpg" alt="Reactor"></p>
 <p>EvenLoop可以在<code>线程间调配任务</code>，在它的IO线程内执行某个用户任务回调，即EventLoop::runInLoop(const Functor&amp; cb)，如果用户在当前IO线程调用这个函数，回调会同步进行；<code>如果用户在其他IO线程调用，cb会被加入队列，IO线程会被唤醒来调用这个Functor。</code></p>
 <p>由于IO线程平时阻塞在事件循环loop的poll调用中，<code>为了让IO线程能立刻执行用户回调，需要设法唤醒。</code>传统的做法，使用pipe，IO线程始终监视此管道的readable事件。<code>eventfd是一个比pipe更高效的线程间事件通知机制</code>，一方面它比pipe少用一个file descripor，节省了资源；另一方面，eventfd的缓冲区管理也简单得多，全部“buffer” 只有定长8 bytes，不像pipe那样可能有不定长的真正buffer。   </p>
 <h3 id="事件分发机制"><a href="#事件分发机制" class="headerlink" title="事件分发机制"></a>事件分发机制</h3><p>Reactor最核心的是事件分发机制，将IO multiplexing拿到的IO事件分给各个文件描述符的处理函数。</p>
 <h4 id="Channel-class"><a href="#Channel-class" class="headerlink" title="Channel class"></a>Channel class</h4><p>每个Channel对象<code>只属于某一个IO线程，只负责一个文件描述符的IO事件分发</code>，但并不拥有这个fd。Channel把不同的IO事件分发为不同的回调，例如ReadCallback，WriteCallback等。</p>
 <p>muduo<code>用户一般不直接使用Channel</code>，而会使用更上层的封装，<code>Channel的生命期由其owner class负责管理</code>。用户一般只要set<em>Callback和enable</em>函数。</p>
 <p><code>Channel::handleEvent()是Channel的核心</code>，它<code>由EventLoop::loop()调用，它的功能是根据revents_的值分别调用不同的用户回调</code>。</p>
-<p><code>enable*函数中调用update()。</code>Channel::update()会调用EventLoop::updateChannel()，转而调用Poller::updateChannel()。
-<img src="/images/muduo/eventloop.jpg" alt="Reactor"></p>
-<h4 id="Poller-class"><a href="#Poller-class" class="headerlink" title="Poller class"></a>Poller class</h4><p>poll函数
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/poll.h&gt;</span> </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">poll</span><span class="params">(<span class="keyword">struct</span> pollfd *ufds, <span class="keyword">unsigned</span> <span class="keyword">int</span> nfds, <span class="keyword">int</span> timeout)</span></span>; </div><div class="line"></div><div class="line">ufds 指向<span class="keyword">struct</span> pollfd数组 </div><div class="line">nfds 指定pollfd 数组元素的个数，也就是要监测几个pollfd</div><div class="line"></div><div class="line"><span class="keyword">struct</span> pollfd </div><div class="line">&#123; </div><div class="line">    <span class="keyword">int</span> fd; </div><div class="line">    <span class="keyword">short</span> <span class="keyword">int</span> events; <span class="comment">/* fd上，我们感兴趣的事件*/</span> </div><div class="line">    <span class="keyword">short</span> <span class="keyword">int</span> revents; <span class="comment">/* Types of events that actually occurred. */</span> </div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><code>enable*函数中调用update()。</code>Channel::update()会调用EventLoop::updateChannel()，转而调用Poller::updateChannel()。<br><img src="/images/muduo/eventloop.jpg" alt="Reactor"></p>
+<h4 id="Poller-class"><a href="#Poller-class" class="headerlink" title="Poller class"></a>Poller class</h4><p>poll函数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/poll.h&gt;</span> </span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">poll</span><span class="params">(<span class="keyword">struct</span> pollfd *ufds, <span class="keyword">unsigned</span> <span class="keyword">int</span> nfds, <span class="keyword">int</span> timeout)</span></span>; </div><div class="line"></div><div class="line">ufds 指向<span class="keyword">struct</span> pollfd数组 </div><div class="line">nfds 指定pollfd 数组元素的个数，也就是要监测几个pollfd</div><div class="line"></div><div class="line"><span class="keyword">struct</span> pollfd </div><div class="line">&#123; </div><div class="line">    <span class="keyword">int</span> fd; </div><div class="line">    <span class="keyword">short</span> <span class="keyword">int</span> events; <span class="comment">/* fd上，我们感兴趣的事件*/</span> </div><div class="line">    <span class="keyword">short</span> <span class="keyword">int</span> revents; <span class="comment">/* Types of events that actually occurred. */</span> </div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p><code>一个EventLoop对象对应一个Poller成员对象，</code>Poller在muduo中是一个抽象基类，因为muduo同时要支持poll和epoll两种IO multiplexing机制。<code>Poller是EvenLoop的间接成员，只供其owner EventLoop在IO线程调用</code>，无须加锁。其生命期与EventLoop相等。</p>
 <p>Poller供EventLoop调用的函数就只有两个，<code>poll和updateChannel。</code></p>
 <p>poll通过<code>fillActiveChannels遍历pollfds_，找出有活动事件的fd，把对应的Channel填入activeChannel。</code>然后在逐一处理handleEvent。值得注意的是，我们不能一边遍历pollfds<em>，一边调用Channel::handleEvent，因为后者会添加或者删除Channel，从而造成pollfds</em>在遍历期间改变大小，这非常危险。</p>
-<p>Poller::updateChannel的主要功能是<code>维护和更新pollfds_数组</code>。
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, Channel*&gt; ChannelMap; <span class="comment">//fd到Channel*的映射</span></div><div class="line">PollFdList pollfds_; <span class="comment">//不会在每次调用poll之前临时构造pollfd数组</span></div></pre></td></tr></table></figure></p>
+<p>Poller::updateChannel的主要功能是<code>维护和更新pollfds_数组</code>。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, Channel*&gt; ChannelMap; <span class="comment">//fd到Channel*的映射</span></div><div class="line">PollFdList pollfds_; <span class="comment">//不会在每次调用poll之前临时构造pollfd数组</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -539,7 +533,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

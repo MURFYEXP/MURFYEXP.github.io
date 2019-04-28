@@ -269,6 +269,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/20/语言/使用宏将int转化成string/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Shaojie Li">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="大傻与小火机写字的地方">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/20/语言/使用宏将int转化成string/" itemprop="url">
+                  使用宏将int转化成string
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T14:26:26-07:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/20/语言/使用宏将int转化成string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/20/语言/使用宏将int转化成string/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/04/20/语言/使用宏将int转化成string/" class="leancloud_visitors" data-flag-title="使用宏将int转化成string">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#define TOSTR2(x) #x</div><div class="line">#define TOSTR(x) TOSTR2(x)</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    string str;</div><div class="line">    str = TOSTR(10);</div><div class="line">    cout &lt;&lt; str &lt;&lt; endl;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/20/语言/使用宏将int转化成string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/20/语言/再学C++/公有:私有:保护继承 继承与组合 overload:overwrite:override之间的区别/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -391,10 +557,8 @@
 
       
         
-          <h3 id="公有-私有-保护成员"><a href="#公有-私有-保护成员" class="headerlink" title="公有/私有/保护成员"></a>公有/私有/保护成员</h3><p>在关键字public后面声明，它们是类与外部的接口，任何外部函数都可以访问公有类型数据和函数。
-在关键字private后面声明，只允许本类中的函数访问，而类外部的任何函数都不能访问。
-在关键字protected后面声明，与private类似，<code>其差别表现在继承与派生时对派生类的影响不同</code></p>
-<h3 id="公有-私有-保护继承"><a href="#公有-私有-保护继承" class="headerlink" title="公有/私有/保护继承"></a>公有/私有/保护继承</h3><p>private成员<code>任何形式继承</code>，均不可访问。private继承，所有成员私有化。protected继承，public转为protected。
+          <h3 id="公有-私有-保护成员"><a href="#公有-私有-保护成员" class="headerlink" title="公有/私有/保护成员"></a>公有/私有/保护成员</h3><p>在关键字public后面声明，它们是类与外部的接口，任何外部函数都可以访问公有类型数据和函数。<br>在关键字private后面声明，只允许本类中的函数访问，而类外部的任何函数都不能访问。<br>在关键字protected后面声明，与private类似，<code>其差别表现在继承与派生时对派生类的影响不同</code></p>
+<h3 id="公有-私有-保护继承"><a href="#公有-私有-保护继承" class="headerlink" title="公有/私有/保护继承"></a>公有/私有/保护继承</h3><p>private成员<code>任何形式继承</code>，均不可访问。private继承，所有成员私有化。protected继承，public转为protected。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/20/语言/再学C++/公有:私有:保护继承 继承与组合 overload:overwrite:override之间的区别/#more" rel="contents">
@@ -560,11 +724,9 @@
 
       
         
-          <h3 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h3><p>运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。
-运算符被重载后，其优先级和结合性不会改变。</p>
+          <h3 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h3><p>运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。<br>运算符被重载后，其优先级和结合性不会改变。</p>
 <h3 id="成员函数重载"><a href="#成员函数重载" class="headerlink" title="成员函数重载"></a>成员函数重载</h3><p>成员函数原型的格式：函数类型 operator 运算符(参数表);</p>
-<p>成员函数定义的格式：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">函数类型 类名::operator 运算符(参数表)</div><div class="line">&#123;</div><div class="line">    函数体;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>成员函数定义的格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">函数类型 类名::operator 运算符(参数表)</div><div class="line">&#123;</div><div class="line">    函数体;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/19/语言/再学C++/运算符重载以成员函数方式重载 以友元函数方式重载/#more" rel="contents">
@@ -732,8 +894,7 @@
         
           <h3 id="友元介绍"><a href="#友元介绍" class="headerlink" title="友元介绍"></a>友元介绍</h3><p>类的外部函数只能访问类的公有成员，<code>友元是一种允许非类成员函数访问类的非公有成员的一种机制</code>。可以把一个函数指定为类的友元(友元函数)，也可以把整个类指定为另一个类的友元(友元类)。</p>
 <h3 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h3><p>友元函数<code>在类作用域外定义，但它需要在类体中进行说明</code>。友元的作用在于<code>提高程序的运行效率，无需调用接口函数，访问私有数据</code>。</p>
-<p>为了与该类的成员函数加以区别，定义的方式是在类中用关键字friend说明该函数，格式如下：
-<code>friend  类型 友元函数名(参数表);</code>
+<p>为了与该类的成员函数加以区别，定义的方式是在类中用关键字friend说明该函数，格式如下：<br><code>friend  类型 友元函数名(参数表);</code><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/18/语言/再学C++/友元函数与友元类/#more" rel="contents">
@@ -899,7 +1060,7 @@
 
       
         
-          <h3 id="static与单例模式"><a href="#static与单例模式" class="headerlink" title="static与单例模式"></a>static与单例模式</h3><p>单例模式保证一个类只有一个实例，并提供一个全局访问点，禁止拷贝
+          <h3 id="static与单例模式"><a href="#static与单例模式" class="headerlink" title="static与单例模式"></a>static与单例模式</h3><p>单例模式保证一个类只有一个实例，并提供一个全局访问点，禁止拷贝<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/17/语言/再学C++/static与单例模式 const成员函数:const对象:mutable修饰符/#more" rel="contents">
@@ -1065,10 +1226,9 @@
 
       
         
-          <h3 id="四种对象生存期和作用域"><a href="#四种对象生存期和作用域" class="headerlink" title="四种对象生存期和作用域"></a>四种对象生存期和作用域</h3><p>程序内存空间: 代码段，数据段，堆栈段
-文本段。存储可执行文件的指令；也有可能包含一些只读的常数变量，例如字符串常量等。</p>
+          <h3 id="四种对象生存期和作用域"><a href="#四种对象生存期和作用域" class="headerlink" title="四种对象生存期和作用域"></a>四种对象生存期和作用域</h3><p>程序内存空间: 代码段，数据段，堆栈段<br>文本段。存储可执行文件的指令；也有可能包含一些只读的常数变量，例如字符串常量等。</p>
 <h4 id="栈对象"><a href="#栈对象" class="headerlink" title="栈对象"></a>栈对象</h4><p>隐含调用构造函数</p>
-<h4 id="堆对象"><a href="#堆对象" class="headerlink" title="堆对象"></a>堆对象</h4><p>隐含调用构造函数，<code>要显式释放</code>
+<h4 id="堆对象"><a href="#堆对象" class="headerlink" title="堆对象"></a>堆对象</h4><p>隐含调用构造函数，<code>要显式释放</code><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/17/语言/再学C++/四种对象生存期和作用域 static用法总结/#more" rel="contents">
@@ -1236,7 +1396,7 @@
         
           <h3 id="static成员变量"><a href="#static成员变量" class="headerlink" title="static成员变量"></a>static成员变量</h3><p>非static数据成员存在于类类型的每个对象中，<code>static数据成员独立该类的任意对象存在</code>，它是<code>与类关联的对象</code>，不与类对象关联。</p>
 <h4 id="static成员的定义"><a href="#static成员的定义" class="headerlink" title="static成员的定义"></a>static成员的定义</h4><p>static成员需要在<code>类定义体外</code>进行初始化与定义</p>
-<h4 id="特殊的整型static-const成员"><a href="#特殊的整型static-const成员" class="headerlink" title="特殊的整型static const成员"></a>特殊的整型static const成员</h4><p>整型static const成员<code>可以在类定义体中初始化</code>，该成员可以不在类体外进行定义
+<h4 id="特殊的整型static-const成员"><a href="#特殊的整型static-const成员" class="headerlink" title="特殊的整型static const成员"></a>特殊的整型static const成员</h4><p>整型static const成员<code>可以在类定义体中初始化</code>，该成员可以不在类体外进行定义<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/16/语言/再学C++/static成员变量 static成员函数 类:对象大小计算/#more" rel="contents">
@@ -1403,7 +1563,7 @@
       
         
           <h3 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h3><p>一个<code>类有指针成员</code>，如果在拷贝的时候顺带<code>连指针指向的内存也分配了</code>，就称为深拷贝。如果<code>只是分配指针本身的内存</code>，那就是浅拷贝</p>
-<p>浅拷贝造成的问题是有两个指针指向同块内存，delete其中一个指针，那么<code>剩下的指针将成为野指针</code>。编译器生成的<code>默认拷贝构造函数和赋值运算符是浅拷贝的</code>
+<p>浅拷贝造成的问题是有两个指针指向同块内存，delete其中一个指针，那么<code>剩下的指针将成为野指针</code>。编译器生成的<code>默认拷贝构造函数和赋值运算符是浅拷贝的</code><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/16/语言/再学C++/深拷贝与浅拷贝 禁止拷贝 空类与空数组/#more" rel="contents">
@@ -1569,10 +1729,12 @@
 
       
         
-          <h3 id="构造函数初始化列表"><a href="#构造函数初始化列表" class="headerlink" title="构造函数初始化列表"></a>构造函数初始化列表</h3><p>构造函数的执行分为两个阶段
-1. 初始化段
-2. 普通计算段 </p>
-<p>在普通计算段中，其实是<code>赋值操作</code>，推荐在<code>构造函数初始化列表中进行初始化</code>
+          <h3 id="构造函数初始化列表"><a href="#构造函数初始化列表" class="headerlink" title="构造函数初始化列表"></a>构造函数初始化列表</h3><p>构造函数的执行分为两个阶段</p>
+<ol>
+<li>初始化段</li>
+<li>普通计算段 </li>
+</ol>
+<p>在普通计算段中，其实是<code>赋值操作</code>，推荐在<code>构造函数初始化列表中进行初始化</code><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/16/语言/再学C++/构造函数初始化列表(const和引用成员) 拷贝构造函数/#more" rel="contents">
@@ -1739,183 +1901,10 @@
       
         
           <h3 id="构造函数-默认构造函数"><a href="#构造函数-默认构造函数" class="headerlink" title="构造函数 默认构造函数"></a>构造函数 默认构造函数</h3><p>构造函数是为了保证对象的每个数据成员都被正确初始化，通常情况下构造函数应声明为<code>公有函数</code>，一般被隐式地调用。构造函数被声明为<code>私有有特殊的用途，比如单例模式</code></p>
-<p><code>栈上的对象</code>生存期到了会<code>自动调用析构函数</code>；
-new operator做了两件事，一个是创建了对象内存，一个是调用构造函数；
-<code>堆上的内存需要delete释放</code>，做了两件事，一是调用析构函数，二是释放内存。堆上new的对象，不delete的话，不会自动调用析构函数
+<p><code>栈上的对象</code>生存期到了会<code>自动调用析构函数</code>；<br>new operator做了两件事，一个是创建了对象内存，一个是调用构造函数；<br><code>堆上的内存需要delete释放</code>，做了两件事，一是调用析构函数，二是释放内存。堆上new的对象，不delete的话，不会自动调用析构函数<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/15/语言/再学C++/构造函数与默认构造函数 赋值与初始化 explicit关键字/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/05/语言/再学C++/类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="大傻与小火机写字的地方">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/04/05/语言/再学C++/类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类/" itemprop="url">
-                  类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-05T19:44:12-07:00">
-                2018-04-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/再学C/" itemprop="url" rel="index">
-                    <span itemprop="name">再学C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/05/语言/再学C++/类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/05/语言/再学C++/类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2018/04/05/语言/再学C++/类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类/" class="leancloud_visitors" data-flag-title="类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><p>在关键字public后面声明，它们是<code>类与外部的接口</code>，任何外部函数都可以访问公有类型数据和函数。
-在关键字private后面声明，<code>只允许本类中的函数访问</code>，而类外部的任何函数都不能访问。
-在关键字protected后面声明，<code>与private类似</code>，其差别表现在<code>继承与派生时对派生类的影响</code>不同</p>
-<h3 id="内联成员函数"><a href="#内联成员函数" class="headerlink" title="内联成员函数"></a>内联成员函数</h3><p>内联函数，编译的时候将代码直接嵌入到调用的地方，从而减少函数调用的开销，从而<code>提高效率</code>。内联只是<code>对编译器的建议</code>，实际上即使加了inline也不一定宏展开，比如遇到switch，for语句的时候就往往不会。</p>
-<p><code>类内部实现的函数都是内联函数</code>。若在类内部实现，inline关键字可加可不加；
-<code>在类外部实现，需加inline</code>，如<code>inline void Clock::SetHour(int hour) { }</code>。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/05/语言/再学C++/类声明 内联成员函数 类与结构体 this指针 前向声明  嵌套类/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1994,7 +1983,7 @@ new operator做了两件事，一个是创建了对象内存，一个是调用�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

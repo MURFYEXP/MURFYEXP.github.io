@@ -394,16 +394,13 @@ s">
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ret = sockets::connect(sockfd, serverAddr_.getSockAddrInet());</div><div class="line"><span class="keyword">int</span> savedErrno = (ret == <span class="number">0</span>) ? <span class="number">0</span> : errno;</div><div class="line"></div><div class="line"><span class="comment">// errno本身是一个整型的全局变量。在执行出错时，具体的出错原因会被赋值到errno中。</span></div><div class="line"><span class="comment">// 通过查询errno可以确定具体的出错原因。</span></div><div class="line"><span class="keyword">switch</span> (savedErrno)</div><div class="line">&#123;</div><div class="line">  <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">  <span class="keyword">case</span> EINPROGRESS:  </div><div class="line">  <span class="keyword">case</span> EINTR:</div><div class="line">  <span class="keyword">case</span> EISCONN:</div><div class="line">    connecting(sockfd);</div><div class="line">    <span class="keyword">break</span>;</div></pre></td></tr></table></figure>
 <p>case执行哪句应该看break在哪里</p>
 <p><code>socket可写，也不一定意味着连接已成功建立</code>，还需要用getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &amp;optval, &amp;optlen) 再次确认一下</p>
-<p>重试的间隔应该逐渐延长，例如0.5s, 1s, 2s, 4s,
-直到30s。这会造成对象生命周期管理方面的困难，如果使用EventLoop::runAfter定时而<code>Connector 在定时器到期之前析构了怎么办</code>，在Connector的析构函数中注销定时器。</p>
-<p><code>要处理自连接</code>。出现这种情况的原因：在发起连接时，TCP/IP协议栈会选择 source IP 和
-source port，在没有显示调用bind的情况下，source IP 由路由表确定，source port在选取本地未使用的port。如果目标IP正好是本机，而目标端口没有服务程序监听的话，source IP可能正好选中目标端口。此时就发生了自连接。</p>
+<p>重试的间隔应该逐渐延长，例如0.5s, 1s, 2s, 4s,<br>直到30s。这会造成对象生命周期管理方面的困难，如果使用EventLoop::runAfter定时而<code>Connector 在定时器到期之前析构了怎么办</code>，在Connector的析构函数中注销定时器。</p>
+<p><code>要处理自连接</code>。出现这种情况的原因：在发起连接时，TCP/IP协议栈会选择 source IP 和<br>source port，在没有显示调用bind的情况下，source IP 由路由表确定，source port在选取本地未使用的port。如果目标IP正好是本机，而目标端口没有服务程序监听的话，source IP可能正好选中目标端口。此时就发生了自连接。</p>
 <p><code>处理的办法是断开连接再次重连</code>，否则原本监听该端口的服务进程也无法启动了。</p>
 <h3 id="TcpClient"><a href="#TcpClient" class="headerlink" title="TcpClient"></a>TcpClient</h3><p>有了Connector，TcpClient就不难实现了，它的代码与TcpServer相似(都有newConnection 和 removeConnection)，只不过TcpClient只管理一个TcpConnection。</p>
 <p><code>TcpClient具备TcpConnection断开之后重新连接的功能</code>，加上<code>Connector具备反复尝试连接的功能</code>，因此客户端和服务端的启动顺序无关紧要。可以先启动客户端，一旦服务端启动，半分钟内可以恢复连接。<code>在客户端运行期间服务端可以重启，客户端也会自动重连。</code></p>
 <p>连接断开后初次重试的延迟应该有随机性，比如服务器端崩溃，它的所以客户端连接同时断开，然后0.5s之后同时再次发起连接，这样既可能造成SYN丢包，也可能给服务器带来短期大负载，影响其服务质量。<code>因此每个TcpClient应该等待一段随机的时间(0.5~2s)，再重试，避免拥塞。</code></p>
-<p>发起连接的时候如果发生TCP SYN
-丢包，那么系统默认的重试间隔是3s，这期间不会返回错误码，而且这个间隔似乎不容易修改。如果需要缩短间隔，可以再用一个定时器，在0.5s或者1s之后发起另一个连接。如果有需求的话，这个功能可以做到Connector中。</p>
+<p>发起连接的时候如果发生TCP SYN<br>丢包，那么系统默认的重试间隔是3s，这期间不会返回错误码，而且这个间隔似乎不容易修改。如果需要缩短间隔，可以再用一个定时器，在0.5s或者1s之后发起另一个连接。如果有需求的话，这个功能可以做到Connector中。</p>
 
       
     </div>
@@ -527,7 +524,7 @@ source port，在没有显示调用bind的情况下，source IP 由路由表确�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

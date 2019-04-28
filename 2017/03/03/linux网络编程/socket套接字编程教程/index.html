@@ -446,22 +446,18 @@ socket()创建套接字
 <li>发送和接收数据</li>
 </ul>
 </blockquote>
-<p>CS模式下API图
-<img src="/images/cs_Socket.png" alt="CS模式"></p>
+<p>CS模式下API图<br><img src="/images/cs_Socket.png" alt="CS模式"></p>
 <h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>sockfd和newsockfd文件描述符，这两个变量存储套接字系统call和accept系统调用返回的</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in serv_addr，cli_addr;</div></pre></td></tr></table></figure>
-<p>sockaddr_in是互联网地址结构。定义在<netinet in.h="">。变量serv_addr为服务器的地址，cli_addr是客户端的地址。
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in</div><div class="line">&#123;</div><div class="line">    <span class="keyword">short</span> sin_family;</div><div class="line">    u_short sin_port;</div><div class="line">    <span class="keyword">struct</span> in_addr sin_addr;</div><div class="line">    <span class="keyword">char</span> sin_zero [<span class="number">8</span>];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></netinet></p>
+<p>sockaddr_in是互联网地址结构。定义在<netinet in.h="">。变量serv_addr为服务器的地址，cli_addr是客户端的地址。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in</div><div class="line">&#123;</div><div class="line">    <span class="keyword">short</span> sin_family;</div><div class="line">    u_short sin_port;</div><div class="line">    <span class="keyword">struct</span> in_addr sin_addr;</div><div class="line">    <span class="keyword">char</span> sin_zero [<span class="number">8</span>];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></netinet></p>
 <p>in_addr结构，在相同的头文件中定义，只包含一个无符号长整型s_addr。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (argc &lt; <span class="number">2</span>) </div><div class="line">&#123;</div><div class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"ERROR, no port provided\n"</span>);</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>用户需要传入服务器的端口号，若未执行此操作就报错</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line"><span class="keyword">if</span> (sockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR opening socket"</span>);</div></pre></td></tr></table></figure>
-<p>socket()创建一个套接字，它需要三个参数。
-第一个是套接字的地址域。2种：共享文件系统的两个进程的unix域，以及Internet上任意两个主机的Internet域。符号常数AF_UNIX用于前者，而AF_INET后者</p>
+<p>socket()创建一个套接字，它需要三个参数。<br>第一个是套接字的地址域。2种：共享文件系统的两个进程的unix域，以及Internet上任意两个主机的Internet域。符号常数AF_UNIX用于前者，而AF_INET后者</p>
 <p>第二个参数是套接字的类型。2种：来自文件或管道的流套接字，以及以块读取消息的数据报套接字。符号常量是SOCK_STREAM和SOCK_DGRAM。</p>
 <p>第三个参数是协议。如果此参数为零，操作系统将选择最适当的协议。它将选择TCP作为流套接字，UDP选择数据报套接字。</p>
-<p>套接字调用返回文件描述符表的一个表项。此值用于对此套接字的所有后续引用。如果套接字调用失败，它返回-1。在这种情况下，程序显示和错误消息并退出。
-上面是套接字调用的简化描述；还有许多其他选择域和类型，但这些是最常见的</p>
+<p>套接字调用返回文件描述符表的一个表项。此值用于对此套接字的所有后续引用。如果套接字调用失败，它返回-1。在这种情况下，程序显示和错误消息并退出。<br>上面是套接字调用的简化描述；还有许多其他选择域和类型，但这些是最常见的</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bzero((<span class="keyword">char</span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr));</div></pre></td></tr></table></figure>
 <p>该函数bzero()将缓冲区中的所有值设置为零。它有两个参数，第一个是指向缓冲区的指针，第二个是缓冲区的大小。因此，此行初始化 serv_addr为零。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">portno = atoi(argv[<span class="number">1</span>]);</div></pre></td></tr></table></figure>
@@ -473,8 +469,7 @@ socket()创建套接字
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_port = htons(portno);</div></pre></td></tr></table></figure>
 <p>unsigned short sin_port，记录端口号。这里需要使用将主机字节顺序中的端口号转换为网络字节顺序中的端口号。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (bind(sockfd, (<span class="keyword">struct</span> sockaddr *) &amp;serv_addr,</div><div class="line">        <span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</div><div class="line">error(<span class="string">"ERROR on binding"</span>);</div></pre></td></tr></table></figure>
-<p>bind()将套接字绑定到一个地址上。它需要三个参数：套接字文件描述符，绑定的地址和绑定的地址的大小。第二个参数是sockaddr类型，但传入的是sockaddr_in，因此必须将它转换为正确的类型。
-bind()过程失败的原因有很多，最明显的是该套接字已经在这台机器上使用。 </p>
+<p>bind()将套接字绑定到一个地址上。它需要三个参数：套接字文件描述符，绑定的地址和绑定的地址的大小。第二个参数是sockaddr类型，但传入的是sockaddr_in，因此必须将它转换为正确的类型。<br>bind()过程失败的原因有很多，最明显的是该套接字已经在这台机器上使用。 </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">listen(sockfd,<span class="number">5</span>);</div><div class="line">```    </div><div class="line">listen（sockfd，<span class="number">5</span>）;</div><div class="line">listen监听该套接字连接。第一个参数是套接字文件描述符，第二个参数是等待连接的队列大小</div><div class="line"></div><div class="line">```C    </div><div class="line">clilen = <span class="keyword">sizeof</span>(cli_addr);</div><div class="line">newsockfd = accept(sockfd, (<span class="keyword">struct</span> sockaddr *) &amp;cli_addr, &amp;clilen);</div><div class="line"><span class="keyword">if</span> (newsockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR on accept"</span>);</div></pre></td></tr></table></figure>
 <p>accept()导致进程阻塞，直到客户端连接到服务器。当连接成功时，它唤醒该进程。返回一个新的文件描述符，并使用这个新的文件描述符完成此连接上的所有通信。第二个参数是指向连接另一端的客户端地址的引用指针，第三个参数是此结构的大小。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bzero(buffer,<span class="number">256</span>);</div><div class="line">n = read(newsockfd,buffer,<span class="number">255</span>);</div><div class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) error(<span class="string">"ERROR reading from socket"</span>);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"Here is the message: %s\n"</span>,buffer);</div></pre></td></tr></table></figure>
@@ -604,7 +599,7 @@ bind()过程失败的原因有很多，最明显的是该套接字已经在这�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

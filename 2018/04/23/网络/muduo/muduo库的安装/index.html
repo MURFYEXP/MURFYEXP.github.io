@@ -394,16 +394,11 @@
 
       
         <p>muduo库的安装，总得来说，每一步都走的不太顺利。安装过程中，各种报错，各种坑，在这里记录下折腾过程。</p>
-<p>虚拟机一开始安装的是14.04版本的ubuntu，得手动安装g++。出现依赖，各种报错。试了网上各种方法，无果。最后换成了16.04的版本，自带g++。上公司的电脑，虚拟机安装Ubuntu。花了半个下午的时间，一启动就失败。最终只能选择放弃。转移至家里的电脑，进行远程调试。
-<a id="more"></a></p>
-<p>系统环境准备好了，接下来就是跟着muduo开发手册上的指令， 安装boost库<code>apt-get install libboost1.40-dev</code>
-<img src="/images/muduo/boostinstall.png" alt="DartNet"></p>
-<p>于是上boost官网下载源码包，进行编译安装。结果机器慢地要死，1个小时过去了，还没编完。上网查找能apt-get安装的boost版本。<code>apt-get install libboost-dev</code>5分钟解决问题，
-这个速度很快，因为直接拷贝了lib文件到系统，boost库安装成功。</p>
-<p>终于到了编译muduo库这一步了，想着马上可以收工。现实从来没有让我失望过。编译报错。
-<img src="/images/muduo/build2.png" alt="DartNet"></p>
-<p>看着报错信息，还好只是个警告，虚惊一场。修改下CMakeLists.txt文件，将Werro选项注释掉。放过警告即可。最后简单地测试下，muduo安装是否成功。用的开发手册上的例子。
-<img src="/images/muduo/test.png" alt="DartNet"></p>
+<p>虚拟机一开始安装的是14.04版本的ubuntu，得手动安装g++。出现依赖，各种报错。试了网上各种方法，无果。最后换成了16.04的版本，自带g++。上公司的电脑，虚拟机安装Ubuntu。花了半个下午的时间，一启动就失败。最终只能选择放弃。转移至家里的电脑，进行远程调试。<br><a id="more"></a></p>
+<p>系统环境准备好了，接下来就是跟着muduo开发手册上的指令， 安装boost库<code>apt-get install libboost1.40-dev</code><br><img src="/images/muduo/boostinstall.png" alt="DartNet"></p>
+<p>于是上boost官网下载源码包，进行编译安装。结果机器慢地要死，1个小时过去了，还没编完。上网查找能apt-get安装的boost版本。<code>apt-get install libboost-dev</code>5分钟解决问题，<br>这个速度很快，因为直接拷贝了lib文件到系统，boost库安装成功。</p>
+<p>终于到了编译muduo库这一步了，想着马上可以收工。现实从来没有让我失望过。编译报错。<br><img src="/images/muduo/build2.png" alt="DartNet"></p>
+<p>看着报错信息，还好只是个警告，虚惊一场。修改下CMakeLists.txt文件，将Werro选项注释掉。放过警告即可。最后简单地测试下，muduo安装是否成功。用的开发手册上的例子。<br><img src="/images/muduo/test.png" alt="DartNet"></p>
 <p>完工，终于可以开始调试玩弄了。</p>
 
       
@@ -519,7 +514,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

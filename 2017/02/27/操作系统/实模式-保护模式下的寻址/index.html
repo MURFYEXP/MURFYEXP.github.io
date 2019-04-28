@@ -412,14 +412,10 @@ x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄�
 <h4 id="实模式下段的管理"><a href="#实模式下段的管理" class="headerlink" title="实模式下段的管理"></a>实模式下段的管理</h4><p>实模式采用16位寻址模式，在该模式中，最大寻址空间为1MB，最大分段为64KB。</p>
 <p>8086处理器地址总线扩展到20位，但算术逻辑运算单元(ALU)宽度即数据总线却只有16位，也就是说<code>直接参与运算的数值都是16位的</code>。寻址时，采用以下公式计算实际访问的物理内存地址:<code>实际物理地址 = (段寄存器 &lt;&lt; 4) + 偏移地址</code>这样，便实现了16位内存地址到20位物理地址的转换</p>
 <p>80x86系列是<code>使用CS寄存器配合IP寄存器的组合来通知CPU指令在内存中的位置</code>。程序指令在执行过程中一般还需要有各种数据，<code>80x86系列有DS、ES、FS、GS、SS等用于指示不同用途的数据段在内存中的位置</code>。80x86系列使用中断机制来实现系统服务。总的来说，这些就是实模式一个程序运行所需的主要内容。</p>
-<h4 id="保护模式下段的管理"><a href="#保护模式下段的管理" class="headerlink" title="保护模式下段的管理"></a>保护模式下段的管理</h4><p><code>保护模式下的分段机制</code>
-利用段选择子到全局描述符表中找到需要的段描述符，段描述符中就存放着真正的段的物理首地址，再加上偏移地址量便得到了最后的物理地址</p>
-<p><img src="/images/JOS/保护模式段式寻址.jpg" alt="保护模式段式寻址">
-一般保护模式段式寻址可用 xxxx:yyyyyyyy表示。其中xxxx表示索引，也就是 段选择子，是16位的;yyyyyyyy是偏移量，是32位的。</p>
-<p>到哪里去寻找全局描述符表呢?80386以及以后的处理器专门设计了<code>一个寄存器GDTR</code>(Global Descriptor Table Register)，<code>专门用于存储全局描述符表在内</code>。GDTR寄存器有48位，其中有32位记录描述符表的物理地址，16位记录全局描述符表的长度(该表占据的物理内存字节数)
-<img src="/images/JOS/GDTR位分布图.jpg" alt="GDTR位分布图"></p>
-<p>再来看看段描述符，段描述符实际上是一个占据64位内存(8个字节)的结构体
-<img src="/images/JOS/段描述符的结构.jpg" alt="段描述符的结构"></p>
+<h4 id="保护模式下段的管理"><a href="#保护模式下段的管理" class="headerlink" title="保护模式下段的管理"></a>保护模式下段的管理</h4><p><code>保护模式下的分段机制</code><br>利用段选择子到全局描述符表中找到需要的段描述符，段描述符中就存放着真正的段的物理首地址，再加上偏移地址量便得到了最后的物理地址</p>
+<p><img src="/images/JOS/保护模式段式寻址.jpg" alt="保护模式段式寻址"><br>一般保护模式段式寻址可用 xxxx:yyyyyyyy表示。其中xxxx表示索引，也就是 段选择子，是16位的;yyyyyyyy是偏移量，是32位的。</p>
+<p>到哪里去寻找全局描述符表呢?80386以及以后的处理器专门设计了<code>一个寄存器GDTR</code>(Global Descriptor Table Register)，<code>专门用于存储全局描述符表在内</code>。GDTR寄存器有48位，其中有32位记录描述符表的物理地址，16位记录全局描述符表的长度(该表占据的物理内存字节数)<br><img src="/images/JOS/GDTR位分布图.jpg" alt="GDTR位分布图"></p>
+<p>再来看看段描述符，段描述符实际上是一个占据64位内存(8个字节)的结构体<br><img src="/images/JOS/段描述符的结构.jpg" alt="段描述符的结构"></p>
 <p>一个64位的<code>段描述符包含了段的物理首地址、段的界限以及段的属性</code>。在描述符中，段基址占32位，段限长占20位，属性占12位</p>
 <h3 id="保护模式寻址实例"><a href="#保护模式寻址实例" class="headerlink" title="保护模式寻址实例"></a>保护模式寻址实例</h3><p>下面将通过一个例子来加深对保护模式寻址方式的理解。在这个程序开始执行的时候cs寄存器的值为0</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">.set</span> PROT_MODE_CSEG， <span class="number">0x8</span>         # kernel code <span class="meta">segment</span> selector</div><div class="line"><span class="meta">.set</span> PROT_MODE_DSEG， <span class="number">0x10</span>        # kernel data <span class="meta">segment</span> selector</div><div class="line"><span class="meta">.set</span> CR0_PE_ON，      <span class="number">0x1</span>         # protected mode enable flag</div><div class="line"><span class="keyword">lgdt</span>    gdtdesc</div><div class="line"></div><div class="line">  movl    %cr0， %eax</div><div class="line">  orl     $CR0_PE_ON， %eax</div><div class="line">  movl    %eax， %cr0</div><div class="line">  </div><div class="line">  # Jump to next instruction， but <span class="keyword">in</span> <span class="number">32</span>-bit code <span class="meta">segment</span>.</div><div class="line">  # Switches processor <span class="keyword">into</span> <span class="number">32</span>-bit mode.</div><div class="line">  #  实模式跳转到保护模式</div><div class="line">  ljmp    $PROT_MODE_CSEG， $protcseg</div><div class="line"><span class="symbol"></span></div><div class="line">protcseg:</div><div class="line">  movw    <span class="number">0x10</span>， %ax</div><div class="line">  movw    %ax，  %dx</div><div class="line">  movl    <span class="number">0xf0000000</span>， %ebx</div><div class="line">  movl    <span class="number">0x20</span>(%ebx)， %eax</div><div class="line"><span class="symbol"></span></div><div class="line">gdt:                                    #gdt表的内容</div><div class="line">  SEG_NULL				                # null <span class="built_in">seg</span></div><div class="line">  <span class="built_in">SEG</span>(STA_X|STA_R， <span class="number">0x0</span>， <span class="number">0xffffffff</span>)	    # code <span class="built_in">seg</span></div><div class="line">  <span class="built_in">SEG</span>(STA_W， <span class="number">0x0</span>， <span class="number">0xffffffff</span>)	        # data <span class="built_in">seg</span></div><div class="line"><span class="symbol"></span></div><div class="line">gdtdesc:</div><div class="line"><span class="meta">  .word</span>   <span class="number">0x17</span>                            # sizeof(gdt) - <span class="number">1</span></div><div class="line"><span class="meta">  .long</span>   gdt</div></pre></td></tr></table></figure>
@@ -428,8 +424,7 @@ x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄�
 <p>接着再将<code>CR0的保护模式开启位打开，系统便进入了保护模式</code>，开始采用保护模式的寻址模式进行地址的转换。这个时候，<code>内存中有GDT的3个表项</code>。</p>
 <p>进入保护模式后系统立即执行了一个长跳转指令，<code>由于是在保护模式中，所以
 PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选择子的值是0x8，于是对应的段描述符会是表中的第一项，即是<code>SEG(STA_X|STA_R， 0x0， 0xffffffff)</code>这一项，0x0表示段首地址是0，所以最终得到的物理地址为0 + protcseg，程序便会跳到 protcseg 所标识的位置来执行。</p>
-<p>之后执行指令: <code>movl 0x20(%ebx)， %eax</code>， 如图所示可知段基址为0，于是物理地址是0+0x20+0xf000000=0xf000020，内存中这个位置的一个双字会被复制到eax寄存器中
-<img src="/images/JOS/保护模式寻址过程.jpg" alt="保护模式寻址过程"></p>
+<p>之后执行指令: <code>movl 0x20(%ebx)， %eax</code>， 如图所示可知段基址为0，于是物理地址是0+0x20+0xf000000=0xf000020，内存中这个位置的一个双字会被复制到eax寄存器中<br><img src="/images/JOS/保护模式寻址过程.jpg" alt="保护模式寻址过程"></p>
 <p>这里能访问的到的0到4G的地址空间实际上是虚拟地址空间，在<code>开启分页机制后，还要经过页表转换才能得到真实地址</code>，而<code>在开启分页之前系统一般会控制只访问低地址</code>，这些问题到内存管理我们会进行更深入的讨论</p>
 
       
@@ -554,7 +549,7 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

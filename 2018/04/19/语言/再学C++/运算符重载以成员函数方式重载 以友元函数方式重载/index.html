@@ -86,28 +86,22 @@
 
 
 
-<meta name="description" content="运算符重载运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。
-运算符被重载后，其优先级和结合性不会改变。
+<meta name="description" content="运算符重载运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。运算符被重载后，其优先级和结合性不会改变。
 成员函数重载成员函数原型的格式：函数类型 operator 运算符(参数表);
-成员函数定义的格式：
-1234函数类型 类名::operator 运算符(参数表)&amp;#123;    函数体;&amp;#125;">
+成员函数定义的格式：1234函数类型 类名::operator 运算符(参数表)&amp;#123;    函数体;&amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运算符重载以成员函数方式重载 以友元函数方式重载">
 <meta property="og:url" content="https://murfyexp.github.io/2018/04/19/语言/再学C++/运算符重载以成员函数方式重载 以友元函数方式重载/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="运算符重载运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。
-运算符被重载后，其优先级和结合性不会改变。
+<meta property="og:description" content="运算符重载运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。运算符被重载后，其优先级和结合性不会改变。
 成员函数重载成员函数原型的格式：函数类型 operator 运算符(参数表);
-成员函数定义的格式：
-1234函数类型 类名::operator 运算符(参数表)&amp;#123;    函数体;&amp;#125;">
+成员函数定义的格式：1234函数类型 类名::operator 运算符(参数表)&amp;#123;    函数体;&amp;#125;">
 <meta property="og:updated_time" content="2018-05-18T14:10:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运算符重载以成员函数方式重载 以友元函数方式重载">
-<meta name="twitter:description" content="运算符重载运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。
-运算符被重载后，其优先级和结合性不会改变。
+<meta name="twitter:description" content="运算符重载运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。运算符被重载后，其优先级和结合性不会改变。
 成员函数重载成员函数原型的格式：函数类型 operator 运算符(参数表);
-成员函数定义的格式：
-1234函数类型 类名::operator 运算符(参数表)&amp;#123;    函数体;&amp;#125;">
+成员函数定义的格式：1234函数类型 类名::operator 运算符(参数表)&amp;#123;    函数体;&amp;#125;">
 
 
 
@@ -398,25 +392,18 @@
       
 
       
-        <h3 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h3><p>运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。
-运算符被重载后，其优先级和结合性不会改变。</p>
+        <h3 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h3><p>运算符重载，本质上是函数重载。运算符重载不允许发明新的运算符。不能改变运算符操作对象的个数。<br>运算符被重载后，其优先级和结合性不会改变。</p>
 <h3 id="成员函数重载"><a href="#成员函数重载" class="headerlink" title="成员函数重载"></a>成员函数重载</h3><p>成员函数原型的格式：函数类型 operator 运算符(参数表);</p>
-<p>成员函数定义的格式：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">函数类型 类名::operator 运算符(参数表)</div><div class="line">&#123;</div><div class="line">    函数体;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>成员函数定义的格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">函数类型 类名::operator 运算符(参数表)</div><div class="line">&#123;</div><div class="line">    函数体;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="非成员函数重载-友元"><a href="#非成员函数重载-友元" class="headerlink" title="非成员函数重载(友元)"></a>非成员函数重载(友元)</h3><p>友元函数原型的格式：friend 函数类型 operator 运算符(参数表);</p>
-<p>友元函数定义的格式：
-函数类型 operator 运算符(参数表)
-{
-    函数体;
-}</p>
+<p>友元函数定义的格式：<br>函数类型 operator 运算符(参数表)<br>{<br>    函数体;<br>}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#ifndef _COMPLEX_H_</div><div class="line">#define _COMPLEX_H_</div><div class="line"></div><div class="line">class Complex</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Complex(int real, int imag);</div><div class="line">    Complex(void);</div><div class="line">    ~Complex(void);</div><div class="line"></div><div class="line">    Complex &amp;Add(const Complex &amp;other);</div><div class="line"></div><div class="line">    void Display() const;</div><div class="line"></div><div class="line">    Complex operator+(const Complex &amp;other);</div><div class="line"></div><div class="line">    friend Complex operator+(const Complex &amp;c1, const Complex &amp;c2);</div><div class="line"></div><div class="line">private:</div><div class="line">    int real_;</div><div class="line">    int imag_;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">#endif</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">#include &quot;Complex.h&quot;</div><div class="line">#include&lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">Complex::Complex(int real, int imag): imag_(imag), real_(real)</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line">Complex::Complex(void)</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Complex::~Complex(void)</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Complex &amp;Complex::Add(const Complex &amp;other)</div><div class="line">&#123;</div><div class="line">    real_ += other.real_;</div><div class="line">    imag_ += other.imag_;</div><div class="line">    return *this;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">void Complex::Display() const</div><div class="line">&#123;</div><div class="line">    cout &lt;&lt; real_ &lt;&lt; &quot;+&quot; &lt;&lt; imag_ &lt;&lt; &quot;i&quot; &lt;&lt; endl;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Complex Complex::operator+(const Complex &amp;other)</div><div class="line">&#123;</div><div class="line">    int r = real_ + other.real_;</div><div class="line">    int i = imag_ + other.imag_;</div><div class="line"></div><div class="line">    return Complex(r, i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Complex operator+(const Complex &amp;c1, const Complex &amp;c2)</div><div class="line">&#123;</div><div class="line">    int r = c1.real_ + c2.real_;</div><div class="line">    int i = c1.imag_ + c2.imag_;</div><div class="line"></div><div class="line">    return Complex(r, i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#include &quot;Complex.h&quot;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    Complex c1(3, 5);</div><div class="line">    Complex c2(4, 6);</div><div class="line"></div><div class="line">    c1.Add(c2);</div><div class="line">    c1.Display();</div><div class="line"></div><div class="line">    Complex c3 = c1 + c2; // 等价于c1.opertor+(c2); 或 operator+(c1, c2);</div><div class="line"></div><div class="line">    c3.Display();</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>成员函数重载，1个参数。友元函数重载，2个参数。</p>
 <p>我们实现了Add成员函数，但c1.Add(c2); 改变的是c1 本身；如果我们想实现加号表达式，c3 = c1 + c2; 那么可以实现operator+ 运算符重载，可以是成员函数形式，也可以是友元形式，如果两者共存的话成员函数优先。</p>
-<p>加法运算符不能返回引用，因为不应该改变传入的参数。并且，引用不能返回局部变量。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String operator+(const String &amp;s1, const String &amp;s2)</div><div class="line">&#123;</div><div class="line">    //int len = strlen(s1.str_) + strlen(s2.str_) + 1;</div><div class="line">    //char* newstr = new char[len];</div><div class="line">    //memset(newstr, 0, len);</div><div class="line">    //strcpy(newstr, s1.str_);</div><div class="line">    //strcat(newstr, s2.str_);</div><div class="line">    //</div><div class="line">    //String tmp(newstr);</div><div class="line">    //delete newstr; 动态分配的内存，必须手动的释放掉</div><div class="line">    String str = s1;</div><div class="line">    str += s2;</div><div class="line">    return str;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>加法运算符不能返回引用，因为不应该改变传入的参数。并且，引用不能返回局部变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String operator+(const String &amp;s1, const String &amp;s2)</div><div class="line">&#123;</div><div class="line">    //int len = strlen(s1.str_) + strlen(s2.str_) + 1;</div><div class="line">    //char* newstr = new char[len];</div><div class="line">    //memset(newstr, 0, len);</div><div class="line">    //strcpy(newstr, s1.str_);</div><div class="line">    //strcat(newstr, s2.str_);</div><div class="line">    //</div><div class="line">    //String tmp(newstr);</div><div class="line">    //delete newstr; 动态分配的内存，必须手动的释放掉</div><div class="line">    String str = s1;</div><div class="line">    str += s2;</div><div class="line">    return str;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>加法运算符，必须用友员的方式实现。若使用成员函数的话，第一个函数必须是成员对象，隐含this指针。<code>String s6 = &quot;aaa&quot; + s3;</code>第一个参数是字符串，编译报错。</p>
 
       
@@ -541,7 +528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

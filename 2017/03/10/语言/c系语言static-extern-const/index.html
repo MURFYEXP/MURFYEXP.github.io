@@ -428,15 +428,13 @@ C static静态成员变量在C语言中，static可以">
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a=<span class="number">1</span>; a++;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    fun();</div><div class="line">    fun();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>程序执行结果为: 2  3</code><br>说明在第二次调用fun()函数时，a的值为2，并且没有进行初始化赋值，直接进行自增运算。</p>
 <h5 id="修饰全局变量"><a href="#修饰全局变量" class="headerlink" title="修饰全局变量"></a>修饰全局变量</h5><p>一个全局变量，它既可以<code>在本源文件中被访问到，也可以在同一个工程的
-其它源文件中被访问(需用extern进行声明）</code>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//file1.c</div><div class="line">int a=1;</div><div class="line"></div><div class="line">//file2.c</div><div class="line">#include&lt;stdio.h&gt;</div><div class="line">extern int a;</div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    printf("%d\",a);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+其它源文件中被访问(需用extern进行声明）</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//file1.c</div><div class="line">int a=1;</div><div class="line"></div><div class="line">//file2.c</div><div class="line">#include&lt;stdio.h&gt;</div><div class="line">extern int a;</div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    printf("%d\",a);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>执行结果为 1</code><br>但是如果在file1.c中把int a = 1改为<code>static int a=1;</code>在file2.c是<code>无法访问到变量a</code>。因为<code>static对全局变量进行修饰改变了其作用域的范围，由原来的整个工程可见变为本源文件可见</code></p>
 <h5 id="修饰函数"><a href="#修饰函数" class="headerlink" title="修饰函数"></a>修饰函数</h5><p>用static修饰函数的话，情况与修饰全局变量大同小异，<code>改变了函数的作用域</code></p>
 <h4 id="C-static静态成员变量-1"><a href="#C-static静态成员变量-1" class="headerlink" title="C++ static静态成员变量"></a>C++ static静态成员变量</h4><p>有时候我们希望<code>在多个对象之间共享数据</code>，对象a改变了某份数据后对象 b可以检测到。共享数据的典型使用场景是计数，以前面的Student类为例，如果我们想知道班级中共有多少名学生，就可以设置一份共享的变量，每次创建对象时让该变量加1。</p>
 <p>类静态成员变量等同于全局变量。声明一个类静态成员变量做到多个实例共享一个全局变量。在C++中，我们可以<code>使用静态成员变量来实现多个对象共享数据的目标</code></p>
 <p><code>static成员变量属于类，不属于某个具体的对象，即使创建多个对象，也只为 m_total分配一份内存，所有对象使用的都是这份内存中的数据</code>。当某个对象修改了m_total，也会影响到其他对象。</p>
-<p>static成员变量<code>必须在类声明的外部初始化 type class::name = value;</code> 
-静态成员变量既可以<code>通过对象名访问，也可以通过类名访问，但要遵循 private、protected 和 public关键字的访问权限限制</code>。</p>
+<p>static成员变量<code>必须在类声明的外部初始化 type class::name = value;</code><br>静态成员变量既可以<code>通过对象名访问，也可以通过类名访问，但要遵循 private、protected 和 public关键字的访问权限限制</code>。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//通过类类访问 static 成员变量</span></div><div class="line">Student::m_total = <span class="number">10</span>;</div><div class="line"><span class="comment">//通过对象来访问 static 成员变量</span></div><div class="line"><span class="function">Student <span class="title">stu</span><span class="params">(<span class="string">"小明"</span>, <span class="number">15</span>, <span class="number">92.5f</span>)</span></span>;</div><div class="line">stu.m_total = <span class="number">20</span>;</div><div class="line"><span class="comment">//通过对象指针来访问 static 成员变量</span></div><div class="line">Student *pstu = <span class="keyword">new</span> Student(<span class="string">"李华"</span>, <span class="number">16</span>, <span class="number">96</span>);</div><div class="line">pstu -&gt; m_total = <span class="number">20</span>;</div></pre></td></tr></table></figure>
 <p>static成员变量的内存既不是在声明类时分配，也不是在创建对象时分配，而是<code>在（类外）初始化时分配</code>。反过来说，<code>没有在类外初始化的static成员变量不能使用</code></p>
 <p>static成员变量不占用对象的内存，即使不创建对象也可以访问。<code>static成员变量和普通的static变量类似，都在内存分区中的全局数据区分配内存到程序结束时才释放</code>。这就意味着，static成员变量不随对象的创建而分配内存，也不随对象的销毁而释放内存。而<code>普通成员变量在对象创建时分配内存，在对象销毁时释放内存</code></p>
@@ -485,8 +483,8 @@ C static静态成员变量在C语言中，static可以">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/c系语言static-extern-const/" rel="next" title="C/C++ static extern const关键字">
-                <i class="fa fa-chevron-left"></i> C/C++ static extern const关键字
+              <a href="/2017/03/09/网络/DartNet/简单网络协议-SNP/" rel="next" title="简单网络协议(SNP)">
+                <i class="fa fa-chevron-left"></i> 简单网络协议(SNP)
               </a>
             
           </div>
@@ -495,8 +493,8 @@ C static静态成员变量在C语言中，static可以">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/14/网络/DartNet/三次握手与四次挥手/" rel="prev" title="三次握手与四次挥手">
-                三次握手与四次挥手 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/10/c系语言static-extern-const/" rel="prev" title="C/C++ static extern const关键字">
+                C/C++ static extern const关键字 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +569,7 @@ C static静态成员变量在C语言中，static可以">
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

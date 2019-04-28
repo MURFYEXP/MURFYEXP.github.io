@@ -386,17 +386,13 @@
       
 
       
-        <p>有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。
-<a id="more"></a></p>
-<p>close函数
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</div></pre></td></tr></table></figure></p>
+        <p>有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。<br><a id="more"></a></p>
+<p>close函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</div></pre></td></tr></table></figure></p>
 <p>close 关闭了自身数据传输的两个方向。</p>
-<p>shutdown函数
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#include &lt;sys/socket.h&gt;</div><div class="line">int shutdown(int sockfd, int how);</div></pre></td></tr></table></figure></p>
+<p>shutdown函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#include &lt;sys/socket.h&gt;</div><div class="line">int shutdown(int sockfd, int how);</div></pre></td></tr></table></figure></p>
 <p>shutdown可以选择<code>关闭某个方向或者同时关闭两个方向</code>，shutdown how = 0 or how = 1 or how = 2 (SHUT_RD or SHUT_WR or SHUT_RDWR)。</p>
 <p>shutdown<code>可以保证对等方接收到一个EOF字符</code>，即发送了一个FIN段，而不管其他进程是否已经打开了这个套接字。而<code>close不能保证，只有当某个sockfd的引用计数为0，close才会发送FIN段</code>，否则只是将引用计数减1而已。也就是说只有当所有进程（可能fork多个子进程都打开了这个套接字）都关闭了这个套接字，close才会发送FIN段。</p>
-<p>如果是调用shutdown how = 1
-，则意味着往一个已经发送出FIN的套接字中写是允许的，<code>接收到FIN段仅代表对方不再发送数据，但对方还是可以读取数据的，可以让对方可以继续读取缓冲区剩余的数据。</code></p>
+<p>如果是调用shutdown how = 1<br>，则意味着往一个已经发送出FIN的套接字中写是允许的，<code>接收到FIN段仅代表对方不再发送数据，但对方还是可以读取数据的，可以让对方可以继续读取缓冲区剩余的数据。</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (FD_ISSET(fd_stdin, &amp;rset))</div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (fgets(sendbuf, <span class="keyword">sizeof</span>(sendbuf), <span class="built_in">stdin</span>) == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        stdineof = <span class="number">1</span>; <span class="comment">//表示已经输入完毕</span></div><div class="line">        <span class="comment">/* 关闭sock的写端，还能够接收数据 */</span></div><div class="line">        shutdown(sock, SHUT_WR);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        writen(sock, sendbuf, <span class="built_in">strlen</span>(sendbuf));</div><div class="line">        <span class="built_in">memset</span>(sendbuf, <span class="number">0</span>, <span class="keyword">sizeof</span>(sendbuf));</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>select阻塞等待时发现套接字的读端已经关闭，不能再关心可读事件了，select会返回-1，<code>错误码是 EBADF: Bad File Descriptor</code>。</p>
 
@@ -513,7 +509,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

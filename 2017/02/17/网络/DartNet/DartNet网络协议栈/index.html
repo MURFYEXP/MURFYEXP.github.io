@@ -395,17 +395,13 @@
       
         <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>要想弄懂一个技术，我一贯的学习路线，<code>就去读它的源码，再动手实现它</code>。自己动手主动学习，一点一点地将它搭建起来。<code>一来满足自己的好奇欲，二来本质的深刻理解使我能够更放心地使用它</code>。于是上知乎搜索如何更好的学习TCP/IP协议，就淘到了达特茅斯的lab DartNet，该实验有框架代 码。省去很多琐碎的工作。正合我意，撸起袖子开启了网络协议栈的不归路。</p>
 <p>我将该项目的所有代码实现托管在github上，<a href="https://github.com/MURFYEXP/CS60-DartNet" target="_blank" rel="external"><font color="DarkSlateGray" size="4"> 传送门 </font></a>.欢迎start</p>
-<h3 id="DartNet介绍"><a href="#DartNet介绍" class="headerlink" title="DartNet介绍"></a>DartNet介绍</h3><p>DartNet是一个<code>类TCP/IP协议栈</code>。<code>它的核心是简单可靠传输(SRT)层和简单网络协议 (SNP)层</code>。
-Simple Reliable Transport(SRT)实现了运输层TCP的功能 ，保证数据流的可靠传输。Simple Network Protocol (SNP)实现了网络层IP的功能，完成网络层的两个重要功能：转发和选路。</p>
-<p>DartNet整个<code>实验运行起来的框架</code>
-<img src="/images/DartNet/DartNet.png" alt="DartNet"></p>
+<h3 id="DartNet介绍"><a href="#DartNet介绍" class="headerlink" title="DartNet介绍"></a>DartNet介绍</h3><p>DartNet是一个<code>类TCP/IP协议栈</code>。<code>它的核心是简单可靠传输(SRT)层和简单网络协议 (SNP)层</code>。<br>Simple Reliable Transport(SRT)实现了运输层TCP的功能 ，保证数据流的可靠传输。Simple Network Protocol (SNP)实现了网络层IP的功能，完成网络层的两个重要功能：转发和选路。</p>
+<p>DartNet整个<code>实验运行起来的框架</code><br><img src="/images/DartNet/DartNet.png" alt="DartNet"></p>
 <p><code>由于DartNet不能在互联网的路由器上运行我们的代码，为了绕过不能更改路由器代码的限制，于是设计了覆盖网络层(overlap)，在终端系统中构建网络节点作为路由</code>。最终DartNet的简单可靠传输(SRT)层和简单网络协议(SNP)层在构建的覆盖网络层(overlap)上运行，完成DartNet协议栈的测试与实验。</p>
 <p>下图所示的DartNet协议栈，<code>客户端和服务器创建套接字来完成两个主机间的数据传输</code>。DartNet是一个自顶向下的分层架构。第n-1层为第n层提供服务和API。SRT为应用程序提供字节流的可靠传送，SNP提供类似于IP的端系统之间的转发和选路。覆盖层运行DartNet堆栈的端主机网络。</p>
-<p>DartNet的<code>通信协议栈</code>
-<img src="/images/DartNet/DartNet Communications Stack.png" alt="DartNet Communications Stack"></p>
+<p>DartNet的<code>通信协议栈</code><br><img src="/images/DartNet/DartNet Communications Stack.png" alt="DartNet Communications Stack"></p>
 <p>在DartNet中，每对相邻节点之间存在TCP连接。<code>在每个节点上，存在覆盖网络(overlap)层，简单网络协议(SNP)层，简单可靠传输(SRT)层和应用层</code></p>
-<p>DartNet <code>API函数调用</code>
-<img src="/images/DartNet/DartNet APIs.png" alt="DartNet API"></p>
+<p>DartNet <code>API函数调用</code><br><img src="/images/DartNet/DartNet APIs.png" alt="DartNet API"></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>接下来的几篇文章，<code>会对每一层的功能原理，以及数据结构</code>进行相关的介绍。上图中的<code>API函数将在对应层一一实现</code>。</p>
 
       
@@ -444,8 +440,8 @@ Simple Reliable Transport(SRT)实现了运输层TCP的功能 ，保证数据流�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/12/算法/Leetcode/3-1/" rel="next" title="子矩阵的最大和">
-                <i class="fa fa-chevron-left"></i> 子矩阵的最大和
+              <a href="/2017/02/17/网络/DartNet网络协议栈/" rel="next" title="DartNet网络协议栈">
+                <i class="fa fa-chevron-left"></i> DartNet网络协议栈
               </a>
             
           </div>
@@ -454,8 +450,8 @@ Simple Reliable Transport(SRT)实现了运输层TCP的功能 ，保证数据流�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/17/网络/DartNet网络协议栈/" rel="prev" title="DartNet网络协议栈">
-                DartNet网络协议栈 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/18/网络/DartNet/简单可靠传输协议-SRT/" rel="prev" title="简单可靠传输协议(SRT)">
+                简单可靠传输协议(SRT) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,7 +526,7 @@ Simple Reliable Transport(SRT)实现了运输层TCP的功能 ，保证数据流�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

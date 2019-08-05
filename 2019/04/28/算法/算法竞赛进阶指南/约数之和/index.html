@@ -86,40 +86,37 @@
 
 
 
-<meta name="description" content="mathjax的渲染有问题，需要发时间解决下相关问题。
-题目假设现在有两个自然数A和B，S是AB的所有约数之和。请你求出S mod 9901的值是多少。
+<meta name="description" content="题目假设现在有两个自然数A和B，S是AB的所有约数之和。请你求出S mod 9901的值是多少。
 输入格式在一行中输入用空格隔开的两个整数A和B。
 输出格式输出一个整数，代表S mod 9901的值。
 输入样例2 3
 输出样例15
 思路快速幂，朴素求约数的方法。
 之前写过，没有笔记，现在又是一片空白。重新整理吧
-快速幂原理，利用指数的二进制，">
+快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。12345678$$$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="约数之和">
 <meta property="og:url" content="https://murfyexp.github.io/2019/04/28/算法/算法竞赛进阶指南/约数之和/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="mathjax的渲染有问题，需要发时间解决下相关问题。
-题目假设现在有两个自然数A和B，S是AB的所有约数之和。请你求出S mod 9901的值是多少。
+<meta property="og:description" content="题目假设现在有两个自然数A和B，S是AB的所有约数之和。请你求出S mod 9901的值是多少。
 输入格式在一行中输入用空格隔开的两个整数A和B。
 输出格式输出一个整数，代表S mod 9901的值。
 输入样例2 3
 输出样例15
 思路快速幂，朴素求约数的方法。
 之前写过，没有笔记，现在又是一片空白。重新整理吧
-快速幂原理，利用指数的二进制，">
-<meta property="og:updated_time" content="2019-05-03T03:41:50.000Z">
+快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。12345678$$$">
+<meta property="og:updated_time" content="2019-08-05T23:00:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="约数之和">
-<meta name="twitter:description" content="mathjax的渲染有问题，需要发时间解决下相关问题。
-题目假设现在有两个自然数A和B，S是AB的所有约数之和。请你求出S mod 9901的值是多少。
+<meta name="twitter:description" content="题目假设现在有两个自然数A和B，S是AB的所有约数之和。请你求出S mod 9901的值是多少。
 输入格式在一行中输入用空格隔开的两个整数A和B。
 输出格式输出一个整数，代表S mod 9901的值。
 输入样例2 3
 输出样例15
 思路快速幂，朴素求约数的方法。
 之前写过，没有笔记，现在又是一片空白。重新整理吧
-快速幂原理，利用指数的二进制，">
+快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。12345678$$$">
 
 
 
@@ -410,8 +407,7 @@
       
 
       
-        <p>mathjax的渲染有问题，需要发时间解决下相关问题。</p>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>假设现在有两个自然数A和B，S是AB的所有约数之和。<br>请你求出S mod 9901的值是多少。</p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>假设现在有两个自然数A和B，S是AB的所有约数之和。<br>请你求出S mod 9901的值是多少。</p>
 <h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>在一行中输入用空格隔开的两个整数A和B。</p>
 <h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，代表S mod 9901的值。</p>
 <h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><p>2 3</p>
@@ -421,7 +417,36 @@
 <p>快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$$$$</div><div class="line"></div><div class="line"></div><div class="line">$$\begin&#123;split&#125;</div><div class="line">a^&#123;11&#125; &amp;= a^&#123;1011&#125;\\</div><div class="line">&amp;=a^&#123;&#123;2^3&#125;+&#123;2^1&#125;+&#123;2^0&#125;&#125;\\</div><div class="line">&amp;=a^&#123;2^3&#125; \cdot a^&#123;2^1&#125; \cdot a^&#123;2^0&#125;</div><div class="line">\end&#123;split&#125;$$</div></pre></td></tr></table></figure></p>
 <p>模运算与乘法性质：<code>(x*y)%d=((x%d)*(y%d))%d</code> </p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//b^k%m 时间复杂度O(logk)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmi</span><span class="params">(<span class="keyword">int</span> b, <span class="keyword">int</span> k, <span class="keyword">int</span> m)</span></span></div><div class="line">&#123;</div><div class="line">    b %= m; <span class="comment">//根据乘积模运算的性质，每个因子均可mod</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(k)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (k&amp;<span class="number">1</span>) res = res * b % m;</div><div class="line">        b = b * b % m; <span class="comment">//不取mod也可，取模可防止乘积溢出</span></div><div class="line">        k &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>小学奥数题，约数个数定理，约数和定理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$\prod_&#123;i=1&#125;^&#123;k&#125;&#123;p_i&#125;^&#123;a_i&#125; = p_1^&#123;a_1&#125;\cdot p_2^&#123;a_2&#125;\dots p_k^&#123;a_k&#125;$ </div><div class="line"></div><div class="line">$f(x) = \prod_&#123;i=1&#125;^&#123;k&#125;&#123;a_i&#125;&#123;\small+1&#125; = &#123;\small(a_1&#123;\small+1&#125;)&#125;&#123;\small(a_2&#123;\small+1&#125;)&#125; \dots &#123;\small(a_k&#123;\small+1&#125;)&#125;$</div><div class="line"></div><div class="line">$sum\small(A) = &#123;\small(p_1^&#123;0&#125; &#123;\small+&#125; p_1^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p_1^&#123;a_1&#125;)</div><div class="line">\small(p_2^&#123;0&#125; &#123;\small+&#125; p_2^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p_2^&#123;a_2&#125;)</div><div class="line">\dots</div><div class="line">\small(p_k^&#123;0&#125; &#123;\small+&#125; p_k^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p_k^&#123;a_k&#125;)</div><div class="line">&#125;$</div><div class="line"></div><div class="line">$sum(\small&#123;A^B&#125;) = &#123;\small(p_1^&#123;0&#125; &#123;\small+&#125; p_1^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p_1^&#123;Ba_1&#125;)</div><div class="line">\small(p_2^&#123;0&#125; &#123;\small+&#125; p_2^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p_2^&#123;Ba_2&#125;)</div><div class="line">\dots</div><div class="line">\small(p_k^&#123;0&#125; &#123;\small+&#125; p_k^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p_k^&#123;Ba_k&#125;)</div><div class="line">&#125;$</div></pre></td></tr></table></figure></p>
+<p>小学奥数题，约数个数定理，约数和定理</p>
+<p></p><h4>约数个数定理</h4><p></p>
+<p>对一个大于1的整数$n$，$n$可以分解质因数为$\prod_{i=1}^{k}p_i^{a_i} = {p_1}^{a_1}·{p_2}^{a_2}···{p_k}^{a_k}$</p>
+<p>则n的正约数的个数就是$f(n) = \prod_{i=1}^{k}a_i+1=(a_1+1)(a_2+1)···(a_k+1)$，这个很好证明，因为$p_1^{a_1}$的约数有$p_1^0,p_1^1,p_1^2&hellip;p_1^{a1}$，共$(a_1+1)$个，同理$p_k^{a_k}$的约数有$(a_k+1)$个</p>
+<h4>约数定理</h4>
+<p>$n$的$(a_1+1)(a_2+1)···(a_k+1)$个正约数的和为：<br>
+$$<br>
+(p_1^0+p_1^1+&hellip;+p_1^{a_1})(p_2^0+p_2^1+&hellip;p_2^{a_2})&hellip;(p_k^0+p_k^1+&hellip;p_k^{a_k})<br>
+$$</p>
+<p>举个例子，$180 = 2^2*3^2*5^1$</p>
+<p>约数个数：$(2+1)(2+1)(1+1) = 18$</p>
+<p>约数和：$(1+2+4)(1+3+9)(1+5) = 546$</p>
+<h4>回到题目</h4>
+<p>对于这题来说，根据约数定理就有$A^B$的约数和为：<br>
+$$<br>
+(1+p_1^1+&hellip;+p_1^{Ba_1})(1+p_2^1+&hellip;p_2^{Ba_2})&hellip;(1+p_k^1+&hellip;p_k^{Ba_k})<br>
+$$</p>
+<p>定义<code>sum(n,k)</code>为$p^0+p^1+&hellip;+p^k$，分成两部分的和变为$(p^0+&hellip;+p^{\frac{k}{2}})+(p^{\frac{k}{2}+1}+&hellip;p^k)$</p>
+<p>后面的多项式提取$p^{\frac{k}{2}+1}$，变成$(p^0+&hellip;+p^{\frac{k}{2}})+p^{\frac{k}{2}+1} * (p^0+&hellip;p^{\frac{k}{2}})$</p>
+<p>将两项合并$(1+p^{\frac{k}{2}+1}) * (p^0+&hellip;+p^{\frac{k}{2}})$，这个式子可以转化为$(1+p^{\frac{k}{2}}) * sum(p, \frac{k}{2})$</p>
+
+<script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+              showMathMenu: false
+            });
+</script>
+
+<script type="text/javascript" src="https://cdn.acwing.com/static/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 <p>提取公因式，获得递归方程，分类讨论k的奇偶性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$\begin&#123;split&#125;</div><div class="line">\small(p^&#123;0&#125; &#123;\small+&#125; p^&#123;1&#125; &#123;\small+&#125; \dots &#123;\small+&#125; p^&#123;k&#125;)=sum(p,k/2)\cdot(1 + p^&#123;k/2+ 1&#125;)</div><div class="line">\end&#123;split&#125;$</div><div class="line"></div><div class="line">$$sum(p,k)=\begin&#123;cases&#125;</div><div class="line">sum(p,k/2)\cdot (1 + p^&#123;k/2 \small+ 1&#125;), \quad &amp;x为奇数 \\</div><div class="line">\\</div><div class="line">sum(p,k-1)\cdot q \small+ 1, &amp;x为偶数</div><div class="line">\end&#123;cases&#125;$$</div></pre></td></tr></table></figure></p>
 <p>将前k-1项的和乘q,相当于求第2项到第k项的和,最后加上第一项的1<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//等比数列递归求和</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> b, <span class="keyword">int</span> k)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (k == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//递归出口</span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (k&amp;<span class="number">1</span> == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span> + b * sum(b, k<span class="number">-1</span>) % mod; <span class="comment">//共奇数项,将前k-1项的和乘q,相当于求第2项到第k项的和,最后加上第一项的1</span></div><div class="line">    <span class="keyword">return</span> sum(b, k/<span class="number">2</span>) % mod * (<span class="number">1</span> + qmi(b, (k/<span class="number">2</span>)+<span class="number">1</span>, mod)); <span class="comment">//共偶数项</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上面函数调试两次出错</p>
@@ -628,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">1.3.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">1.4.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">1.3.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">1.4.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">约数个数定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">约数定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.</span> <span class="nav-text">回到题目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>

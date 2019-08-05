@@ -92,7 +92,7 @@
 <meta property="og:url" content="https://murfyexp.github.io/2019/04/16/算法/算法竞赛进阶指南/费解的开关/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
 <meta property="og:description" content="问题你玩过“拉灯”游戏吗？25盏灯排成一个5x5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。">
-<meta property="og:updated_time" content="2019-04-16T04:08:07.000Z">
+<meta property="og:updated_time" content="2019-08-05T22:20:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="费解的开关">
 <meta name="twitter:description" content="问题你玩过“拉灯”游戏吗？25盏灯排成一个5x5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。">
@@ -395,8 +395,9 @@
 <p>对于某一个游戏初始状态，若6步以内无法使所有灯变亮，则输出“-1”。</p>
 <h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">3</div><div class="line">00111</div><div class="line">01011</div><div class="line">10001</div><div class="line">11010</div><div class="line">11100</div><div class="line"></div><div class="line">11101</div><div class="line">11101</div><div class="line">11110</div><div class="line">11111</div><div class="line">11111</div><div class="line"></div><div class="line">01111</div><div class="line">11111</div><div class="line">11111</div><div class="line">11111</div><div class="line">11111</div></pre></td></tr></table></figure>
 <h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">3</div><div class="line">2</div><div class="line">-1</div></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><code>递推</code>，<code>枚举所有状态搜索</code></p>
 <p>没什么刷题经验，一开始看这道题比较懵。若毫无章法的瞎按灯，前面按亮的灯，可能在后序的操作中，使其再次被按灭。所以需要一个按灯方案，使得后序操作不影响前面已经按亮的灯。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>枚举第1行的所有操作，共2^5种按灯方案。使得第一行的状态确定，再由第一行依次递推出后面的操作。最后判断方案可行。</p>
+<p>枚举第1行的所有操作，共2^5种按灯方案。使得第一行的状态确定，再由第一行依次递推出后面的操作。最后判断方案可行。</p>
 <p>只通过下一行去打开上一行的灯。这样我们可以由第i行的状态，可确定递推出下一行，即i+1行的操作。需要注意的是，最后一行的状态，由上一行确定。在最后查看第五行的状态，即可确定该方案是否可行。</p>
 <p>如何进行枚举：if (k &gt;&gt; j &amp; 1) //第j位是否为1，1表示该位置需要按下操作。<br>备份操作：开始之前将初始状态进行备份，以便枚举下一方案。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="知识积累"><a href="#知识积累" class="headerlink" title="知识积累"></a>知识积累</h4><p>二进制进行状态压缩：<code>k &gt;&gt; j &amp; 1, 字符，int 0/1可直接异或</code><br>二维数组的定义，必须确定列数：<code>dx[][4]</code><br>利用一维数组，进行前后左右4个方向的遍历：<code>dx[] = {0, -1, 0, 1, 0}, nx = x + dx[i]</code><br>数组的拷贝：<code>memcpy(backup, light, sizeof(light));</code></p>

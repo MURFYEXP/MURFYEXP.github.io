@@ -92,7 +92,7 @@
 <meta property="og:url" content="https://murfyexp.github.io/2019/08/06/算法/模板与总结/快速幂/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
 <meta property="og:description" content="原理快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。">
-<meta property="og:updated_time" content="2019-08-06T00:02:09.000Z">
+<meta property="og:updated_time" content="2019-08-06T00:03:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速幂">
 <meta name="twitter:description" content="原理快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。">
@@ -364,17 +364,9 @@
       
 
       
-        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。</p>
-<a id="more"></a>
+        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>快速幂原理，利用指数的二进制，只需循环计算k的二进制位数次即可。<br><a id="more"></a></p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>四则运算中的模运算，中间变量可以取模，结果再最终取模。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//b^k%m 时间复杂度O(logk)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmi</span><span class="params">(<span class="keyword">int</span> b, <span class="keyword">int</span> k, <span class="keyword">int</span> m)</span></span></div><div class="line">&#123;</div><div class="line">    b %= m; <span class="comment">//根据乘积模运算的性质，每个因子均可mod</span></div><div class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(k)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (k&amp;<span class="number">1</span>) res = res * b % m;</div><div class="line">        b = b * b % m; <span class="comment">//不取mod也可，取模可防止乘积溢出</span></div><div class="line">        k &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<script type="text/x-mathjax-config">
-            MathJax.Hub.Config({
-              tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-              showMathMenu: false
-            });
-</script>
 
-<script type="text/javascript" src="https://cdn.acwing.com/static/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
     </div>
 

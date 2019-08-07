@@ -86,47 +86,17 @@
 
 
 
-<meta name="description" content="绕原点二维旋转
-旋转矩阵
-$\begin{bmatrix}
-        x&apos;\\
-        y&apos;\\
-    \end{bmatrix} =
-    \begin{bmatrix}
-        cos\theta&amp;-sin\theta\\
-        sin\theta&amp;cos\theta\\
-    \end{bmatrix} \cdot
-    \begin{bmatrix}">
+<meta name="description" content="绕原点二维旋转">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵旋转">
 <meta property="og:url" content="https://murfyexp.github.io/2019/08/06/数学/矩阵旋转/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="绕原点二维旋转
-旋转矩阵
-$\begin{bmatrix}
-        x&apos;\\
-        y&apos;\\
-    \end{bmatrix} =
-    \begin{bmatrix}
-        cos\theta&amp;-sin\theta\\
-        sin\theta&amp;cos\theta\\
-    \end{bmatrix} \cdot
-    \begin{bmatrix}">
+<meta property="og:description" content="绕原点二维旋转">
 <meta property="og:image" content="https://murfyexp.github.io/images/math/rotate.png">
-<meta property="og:updated_time" content="2019-08-07T23:17:44.000Z">
+<meta property="og:updated_time" content="2019-08-07T23:31:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="矩阵旋转">
-<meta name="twitter:description" content="绕原点二维旋转
-旋转矩阵
-$\begin{bmatrix}
-        x&apos;\\
-        y&apos;\\
-    \end{bmatrix} =
-    \begin{bmatrix}
-        cos\theta&amp;-sin\theta\\
-        sin\theta&amp;cos\theta\\
-    \end{bmatrix} \cdot
-    \begin{bmatrix}">
+<meta name="twitter:description" content="绕原点二维旋转">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/math/rotate.png">
 
 
@@ -418,7 +388,7 @@ $\begin{bmatrix}
       
 
       
-        <h3 id="绕原点二维旋转"><a href="#绕原点二维旋转" class="headerlink" title="绕原点二维旋转"></a>绕原点二维旋转</h3><p><img src="/images/math/rotate.png" alt=""></p>
+        <h3 id="绕原点二维旋转"><a href="#绕原点二维旋转" class="headerlink" title="绕原点二维旋转"></a>绕原点二维旋转</h3><p><img src="/images/math/rotate.png" alt=""><br><a id="more"></a></p>
 <p>旋转矩阵</p>
 <p>$\begin{bmatrix}
         x'\\
@@ -443,12 +413,17 @@ $\begin{bmatrix}
 <p>旋转矩阵 = 平移矩阵 <em> 旋转矩阵 </em> 平移矩阵</p>
 <p>$\begin{bmatrix}
         1&0&tx\\
-        0&1& ty\\
+        0&1&ty\\
         0&0&1\\
       \end{bmatrix} \cdot 
       \begin{bmatrix}
         cos\theta&-sin\theta&0\\
         sin\theta&cos\theta&0\\
+        0&0&1\\
+      \end{bmatrix}
+      begin{bmatrix} \cdot
+        1&0&-tx\\
+        0&1&-ty\\
         0&0&1\\
       \end{bmatrix} =
       \begin{bmatrix}

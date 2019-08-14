@@ -1,117 +1,11 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.ico?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-  <link rel="manifest" href="/images/manifest.json">
-
-
-  <meta name="msapplication-config" content="/images/browserconfig.xml" />
-
-
-
-  <meta name="keywords" content="OS," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式
+  <title>实模式/保护模式下的寻址 | 大傻与小火机写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式
 x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为通用寄存器，专用寄存器和段寄存器三类总共15个，其中通用寄存器有AX">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实模式/保护模式下的寻址">
@@ -130,276 +24,77 @@ x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄�
 <meta name="twitter:description" content="8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式
 x86寄存器在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为通用寄存器，专用寄存器和段寄存器三类总共15个，其中通用寄存器有AX">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/8086与80386寄存器对比表.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://murfyexp.github.io/2017/02/27/操作系统/实模式-保护模式下的寻址/"/>
-
-
-
-
-
-  <title>实模式/保护模式下的寻址 | 大傻与小火机写字的地方</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">大傻与小火机写字的地方</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">大傻与小火机写字的地方</a>
+      </h1>
+      
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://murfyexp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-操作系统/实模式-保护模式下的寻址" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/27/操作系统/实模式-保护模式下的寻址/" class="article-date">
+  <time datetime="2017-02-28T00:30:13.000Z" itemprop="datePublished">2017-02-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JOS操作系统/">JOS操作系统</a>
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/27/操作系统/实模式-保护模式下的寻址/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shaojie Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大傻与小火机写字的地方">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">实模式/保护模式下的寻址</h1>
-        
+  
+    <h1 class="article-title" itemprop="name">
+      实模式/保护模式下的寻址
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T16:30:13-08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JOS操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">JOS操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/27/操作系统/实模式-保护模式下的寻址/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/操作系统/实模式-保护模式下的寻址/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-entry" itemprop="articleBody">
       
         <p>8086处理器是一个16位的处理器，它的数据总线是16位，而地址总线是20位的，最多可以寻址1MB的地址空间。之后的80286处理器也是16位，但是地址总线有24位，从80286开始CPU演变出两种工作模式:实模式和保护模式</p>
 <h3 id="x86寄存器"><a href="#x86寄存器" class="headerlink" title="x86寄存器"></a>x86寄存器</h3><p>在x86架构中，16位的处理器与32位处理器所对应的寄存器是有所不同的。8086寄存器组就分为<code>通用寄存器，专用寄存器和段寄存器三类总共15个</code>，其中通用寄存器有AX、BX、CX、DX、SP、BP、DI及 SI，<code>专用寄存器包括IP、SP 和FLAGS三个</code>16位寄存器， 而段寄存器则有CS、DS、SS、ES，这些寄存器都是 16位的</p>
@@ -463,370 +158,124 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
 
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/OS/" rel="tag"># OS</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://murfyexp.github.io/2017/02/27/操作系统/实模式-保护模式下的寻址/" data-id="cjzbvs3ai001n9txp6s19ewqd" class="article-share-link">Share</a>
       
       
-      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/">OS</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/27/算法/Leetcode/8-5/" rel="next" title="二叉树中累加和为指定值的最长路径">
-                <i class="fa fa-chevron-left"></i> 二叉树中累加和为指定值的最长路径
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/02/操作系统/内存管理(页面管理)/" rel="prev" title="内存管理(页面管理)">
-                内存管理(页面管理) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017/02/27/操作系统/实模式-保护模式下的寻址/"
-           data-title="实模式/保护模式下的寻址" data-url="https://murfyexp.github.io/2017/02/27/操作系统/实模式-保护模式下的寻址/">
-      </div>
-    </div>
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
     
-    <div class="sidebar-inner">
+<nav id="article-nav">
+  
+    <a href="/2017/03/02/操作系统/内存管理(页面管理)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          内存管理(页面管理)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/27/算法/Leetcode/8-5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">二叉树中累加和为指定值的最长路径</div>
+    </a>
+  
+</nav>
 
-      
+  
+</article>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux系统编程和网络编程/" style="font-size: 10px;">Linux系统编程和网络编程</a> <a href="/tags/OS/" style="font-size: 12.5px;">OS</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/底层网络库/" style="font-size: 15px;">底层网络库</a> <a href="/tags/心得体会/" style="font-size: 10px;">心得体会</a> <a href="/tags/数据结构-算法/" style="font-size: 16.25px;">数据结构 算法</a> <a href="/tags/数据结构-算法-二分/" style="font-size: 10px;">数据结构 算法 二分</a> <a href="/tags/概率论/" style="font-size: 10px;">概率论</a> <a href="/tags/线性代数/" style="font-size: 10px;">线性代数</a> <a href="/tags/编程语言/" style="font-size: 18.75px;">编程语言</a> <a href="/tags/网络/" style="font-size: 13.75px;">网络</a> <a href="/tags/网络编程/" style="font-size: 17.5px;">网络编程</a> <a href="/tags/软件/" style="font-size: 11.25px;">软件</a> <a href="/tags/面试-算法/" style="font-size: 20px;">面试 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/13/数学/极大似然估计的理解/">极大似然估计的理解</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+        
+          <li>
+            <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/">分形之城</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
-                alt="Shaojie Li" />
-            
-              <p class="site-author-name" itemprop="name">Shaojie Li</p>
-              <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">106</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#x86寄存器"><span class="nav-number">1.</span> <span class="nav-text">x86寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段式内存管理"><span class="nav-number">2.</span> <span class="nav-text">段式内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实模式下段的管理"><span class="nav-number">2.1.</span> <span class="nav-text">实模式下段的管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保护模式下段的管理"><span class="nav-number">2.2.</span> <span class="nav-text">保护模式下段的管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保护模式寻址实例"><span class="nav-number">3.</span> <span class="nav-text">保护模式寻址实例</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+        
+          <li>
+            <a href="/2019/08/06/数学/矩阵旋转/">矩阵旋转</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/06/算法/算法竞赛进阶指南/递归求解等比数列求和/">递归求解等比数列求和</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/05/杂货铺/hexo的LaTeX渲染问题/">hexo的LaTeX渲染问题</a>
+          </li>
+        
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Shaojie Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
+    <a href="/" class="mobile-nav-link">Home</a>
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-  
+</nav>
     
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"murfyexp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-  
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -844,45 +293,5 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
 </body>
 </html>

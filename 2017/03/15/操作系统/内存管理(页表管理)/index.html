@@ -3,7 +3,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>内存管理(页表管理) | 大傻与小火机写字的地方</title>
+  <title>内存管理(页表管理) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="背景在boot/boot.S文件中，引入了一个全局描述符表，这个表把所有的段的基址设置为0，界限设置为0xffffffff=4GB的方式，关闭了分段管理的功能。因此虚拟地址中的段选择子字段的内容没有意义，线性地址的值总是等于虚拟地址中段内偏移的值
 gdt:
@@ -12,7 +12,7 @@ gdt:
 <meta property="og:type" content="article">
 <meta property="og:title" content="内存管理(页表管理)">
 <meta property="og:url" content="https://murfyexp.github.io/2017/03/15/操作系统/内存管理(页表管理)/index.html">
-<meta property="og:site_name" content="大傻与小火机写字的地方">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="背景在boot/boot.S文件中，引入了一个全局描述符表，这个表把所有的段的基址设置为0，界限设置为0xffffffff=4GB的方式，关闭了分段管理的功能。因此虚拟地址中的段选择子字段的内容没有意义，线性地址的值总是等于虚拟地址中段内偏移的值
 gdt:
   SEG_NULL                # null seg
@@ -28,7 +28,7 @@ gdt:
   SEG(STA_X|STA_R, 0x0, 0xffffffff">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/地址转换.png">
   
-    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -47,7 +47,7 @@ gdt:
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">大傻与小火机写字的地方</a>
+        <a href="/" id="logo">Hexo</a>
       </h1>
       
     </div>

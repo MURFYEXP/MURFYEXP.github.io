@@ -3,7 +3,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>bootloader加载kernel | 大傻与小火机写字的地方</title>
+  <title>bootloader加载kernel | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="bootloader实际做了两件事：进入保护模式和加载内核程序。这篇文章将介绍bootloader加载内核程序的过程
 内核的装入过程对 ELF 文件有了基础地认识后,我们再来研究一下 Boot Loadr 具体是如何将 kernel 的可执行 ELF 文件加载到内存中的。boot/main.c 就是从硬盘读取 kernel,下面我们就分块来分析一下这个C程序
@@ -11,7 +11,7 @@ void bootmain(void)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bootloader加载kernel">
 <meta property="og:url" content="https://murfyexp.github.io/2017/02/22/操作系统/bootloader加载kernel/index.html">
-<meta property="og:site_name" content="大傻与小火机写字的地方">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="bootloader实际做了两件事：进入保护模式和加载内核程序。这篇文章将介绍bootloader加载内核程序的过程
 内核的装入过程对 ELF 文件有了基础地认识后,我们再来研究一下 Boot Loadr 具体是如何将 kernel 的可执行 ELF 文件加载到内存中的。boot/main.c 就是从硬盘读取 kernel,下面我们就分块来分析一下这个C程序
 void bootmain(void)">
@@ -24,7 +24,7 @@ void bootmain(void)">
 void bootmain(void)">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/JOS/Kernel的分段和分节.png">
   
-    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -43,7 +43,7 @@ void bootmain(void)">
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">大傻与小火机写字的地方</a>
+        <a href="/" id="logo">Hexo</a>
       </h1>
       
     </div>

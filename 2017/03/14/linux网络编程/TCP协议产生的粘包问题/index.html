@@ -3,14 +3,14 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>TCP协议产生的粘包问题 | 大傻与小火机写字的地方</title>
+  <title>TCP协议产生的粘包问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="粘包所谓的粘包问题主要是因为接收方不知道消息之间的界限，不知道一次性提取多少字节的数据所造成的。发送方引起的粘包跟TCP协议本身有关，TCP为提高传输效率，发送方往往要收集到足够多的数据后才发送一个TCP段，这样接收方就收到了粘包数据。而UDP是面向消息的协议，每个UDP段都是一条消息，应用程序必须以消息为单位提取数据，不能一次提取任意字节的数据。
 粘包问题的解决方案从本质上解决，在应用层维护消息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP协议产生的粘包问题">
 <meta property="og:url" content="https://murfyexp.github.io/2017/03/14/linux网络编程/TCP协议产生的粘包问题/index.html">
-<meta property="og:site_name" content="大傻与小火机写字的地方">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="粘包所谓的粘包问题主要是因为接收方不知道消息之间的界限，不知道一次性提取多少字节的数据所造成的。发送方引起的粘包跟TCP协议本身有关，TCP为提高传输效率，发送方往往要收集到足够多的数据后才发送一个TCP段，这样接收方就收到了粘包数据。而UDP是面向消息的协议，每个UDP段都是一条消息，应用程序必须以消息为单位提取数据，不能一次提取任意字节的数据。
 粘包问题的解决方案从本质上解决，在应用层维护消息">
 <meta property="og:updated_time" content="2018-05-29T13:33:42.000Z">
@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="粘包所谓的粘包问题主要是因为接收方不知道消息之间的界限，不知道一次性提取多少字节的数据所造成的。发送方引起的粘包跟TCP协议本身有关，TCP为提高传输效率，发送方往往要收集到足够多的数据后才发送一个TCP段，这样接收方就收到了粘包数据。而UDP是面向消息的协议，每个UDP段都是一条消息，应用程序必须以消息为单位提取数据，不能一次提取任意字节的数据。
 粘包问题的解决方案从本质上解决，在应用层维护消息">
   
-    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -38,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">大傻与小火机写字的地方</a>
+        <a href="/" id="logo">Hexo</a>
       </h1>
       
     </div>

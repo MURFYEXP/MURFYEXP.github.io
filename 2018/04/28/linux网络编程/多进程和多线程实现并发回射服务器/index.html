@@ -3,14 +3,14 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>多进程和多线程实现并发回射服务器 | 大傻与小火机写字的地方</title>
+  <title>多进程和多线程实现并发回射服务器 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="服务器只能处理一个客户端的请求，如何同时服务多个客户端呢？一个简单的方法就是使用fork来实现。网络服务器通常用fork来同时服务多个客户端，父进程专门负责监听端口，每次accept一个新的客户端连接就fork出一个子进程专门服务这个客户端。
 由于子进程退出时会产生僵尸进程，父进程要注意处理SIGCHLD信号和调用wait清理僵尸进程，最简单的办法就是直接忽略SIGCHLD信号。将僵尸进程交给in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多进程和多线程实现并发回射服务器">
 <meta property="og:url" content="https://murfyexp.github.io/2018/04/28/linux网络编程/多进程和多线程实现并发回射服务器/index.html">
-<meta property="og:site_name" content="大傻与小火机写字的地方">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="服务器只能处理一个客户端的请求，如何同时服务多个客户端呢？一个简单的方法就是使用fork来实现。网络服务器通常用fork来同时服务多个客户端，父进程专门负责监听端口，每次accept一个新的客户端连接就fork出一个子进程专门服务这个客户端。
 由于子进程退出时会产生僵尸进程，父进程要注意处理SIGCHLD信号和调用wait清理僵尸进程，最简单的办法就是直接忽略SIGCHLD信号。将僵尸进程交给in">
 <meta property="og:updated_time" content="2018-05-23T14:21:40.000Z">
@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="服务器只能处理一个客户端的请求，如何同时服务多个客户端呢？一个简单的方法就是使用fork来实现。网络服务器通常用fork来同时服务多个客户端，父进程专门负责监听端口，每次accept一个新的客户端连接就fork出一个子进程专门服务这个客户端。
 由于子进程退出时会产生僵尸进程，父进程要注意处理SIGCHLD信号和调用wait清理僵尸进程，最简单的办法就是直接忽略SIGCHLD信号。将僵尸进程交给in">
   
-    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -38,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">大傻与小火机写字的地方</a>
+        <a href="/" id="logo">Hexo</a>
       </h1>
       
     </div>

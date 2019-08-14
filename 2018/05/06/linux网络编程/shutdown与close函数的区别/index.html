@@ -3,20 +3,20 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>shutdown与close函数的区别 | 大傻与小火机写字的地方</title>
+  <title>shutdown与close函数的区别 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shutdown与close函数的区别">
 <meta property="og:url" content="https://murfyexp.github.io/2018/05/06/linux网络编程/shutdown与close函数的区别/index.html">
-<meta property="og:site_name" content="大傻与小火机写字的地方">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。">
 <meta property="og:updated_time" content="2018-05-31T03:38:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shutdown与close函数的区别">
 <meta name="twitter:description" content="有时候代码中需要连续多次调用write，可能还来不及调用read得知对方已关闭了连接就被SIGPIPE信号终止掉了，这就需要在初始化时调用sigaction处理SIGPIPE信号，对于这个信号的处理我们通常忽略即可，signal(SIGPIPE, SIG_IGN);如果SIGPIPE信号没有导致进程异常退出（捕捉信号/忽略信号），write返回-1并且errno为EPIPE。">
   
-    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -35,7 +35,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">大傻与小火机写字的地方</a>
+        <a href="/" id="logo">Hexo</a>
       </h1>
       
     </div>

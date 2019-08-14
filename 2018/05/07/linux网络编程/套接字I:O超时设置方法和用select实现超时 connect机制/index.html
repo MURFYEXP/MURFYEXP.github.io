@@ -1,916 +1,564 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <title>套接字I/O超时设置方法和用select实现超时 connect机制 | 大傻与小火机写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用alarm函数设置超时void handler(int sig)
+{
+}
+signal(SIGALRM, handler);
 
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="网络编程," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta name="description" content="使用alarm函数设置超时1234567891011void handler(int sig)&amp;#123;&amp;#125;signal(SIGALRM, handler);alarm(5);int ret = read(fd, buf, sizeof(buf));if (ret == -1 &amp;amp;&amp;amp; errno == EINTR)     errno = ETIMEOUT;else if">
+alarm(5);
+int ret = read(fd, buf, sizeof(buf));
+if (ret == -1 &amp;amp;&amp;amp; errno == EINTR) 
+    errno = ETIMEOUT;
+else if (ret &amp;gt;= 0)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="套接字I/O超时设置方法和用select实现超时 connect机制">
 <meta property="og:url" content="https://murfyexp.github.io/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="使用alarm函数设置超时1234567891011void handler(int sig)&amp;#123;&amp;#125;signal(SIGALRM, handler);alarm(5);int ret = read(fd, buf, sizeof(buf));if (ret == -1 &amp;amp;&amp;amp; errno == EINTR)     errno = ETIMEOUT;else if">
+<meta property="og:description" content="使用alarm函数设置超时void handler(int sig)
+{
+}
+signal(SIGALRM, handler);
+
+alarm(5);
+int ret = read(fd, buf, sizeof(buf));
+if (ret == -1 &amp;amp;&amp;amp; errno == EINTR) 
+    errno = ETIMEOUT;
+else if (ret &amp;gt;= 0)">
 <meta property="og:updated_time" content="2018-05-31T09:02:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="套接字I/O超时设置方法和用select实现超时 connect机制">
-<meta name="twitter:description" content="使用alarm函数设置超时1234567891011void handler(int sig)&amp;#123;&amp;#125;signal(SIGALRM, handler);alarm(5);int ret = read(fd, buf, sizeof(buf));if (ret == -1 &amp;amp;&amp;amp; errno == EINTR)     errno = ETIMEOUT;else if">
+<meta name="twitter:description" content="使用alarm函数设置超时void handler(int sig)
+{
+}
+signal(SIGALRM, handler);
 
+alarm(5);
+int ret = read(fd, buf, sizeof(buf));
+if (ret == -1 &amp;amp;&amp;amp; errno == EINTR) 
+    errno = ETIMEOUT;
+else if (ret &amp;gt;= 0)">
+  
+    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '6382808465152148000',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://murfyexp.github.io/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/"/>
-
-
-
-
-
-  <title> 套接字I/O超时设置方法和用select实现超时 connect机制 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">大傻与小火机写字的地方</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Writing 1000 Words a Day Changes My Life</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://murfyexp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/" class="article-date">
+  <time datetime="2018-05-08T01:22:09.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux网络编程/">Linux网络编程</a>
   </div>
 
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">大傻与小火机写字的地方</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
   </div>
+  <div class="article-inner">
     
-      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
     
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      套接字I/O超时设置方法和用select实现超时 connect机制
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="大傻与小火机写字的地方">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                套接字I/O超时设置方法和用select实现超时 connect机制
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T18:22:09-07:00">
-                2018-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/" class="leancloud_visitors" data-flag-title="套接字I/O超时设置方法和用select实现超时 connect机制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
+        <h3 id="使用alarm函数设置超时"><a href="#使用alarm函数设置超时" class="headerlink" title="使用alarm函数设置超时"></a>使用alarm函数设置超时</h3><pre><code class="lang-C">void handler(int sig)
+{
+}
+signal(SIGALRM, handler);
 
-      
-        <h3 id="使用alarm函数设置超时"><a href="#使用alarm函数设置超时" class="headerlink" title="使用alarm函数设置超时"></a>使用alarm函数设置超时</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">(<span class="keyword">int</span> sig)</span></span></div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line">signal(SIGALRM, handler);</div><div class="line"></div><div class="line">alarm(<span class="number">5</span>);</div><div class="line"><span class="keyword">int</span> ret = read(fd, buf, <span class="keyword">sizeof</span>(buf));</div><div class="line"><span class="keyword">if</span> (ret == <span class="number">-1</span> &amp;&amp; errno == EINTR) </div><div class="line">    errno = ETIMEOUT;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (ret &gt;= <span class="number">0</span>)</div><div class="line">    alarm(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+alarm(5);
+int ret = read(fd, buf, sizeof(buf));
+if (ret == -1 &amp;&amp; errno == EINTR) 
+    errno = ETIMEOUT;
+else if (ret &gt;= 0)
+    alarm(0);
+</code></pre>
 <p>EINTR为中断信号，如果read在5s内被SIGALRM信号中断而返回，则表示超时，否则未超时已读取到数据，取消闹钟。但这种方法不常用，因为有时可能在其他地方使用了alarm会造成混乱。<br><a id="more"></a></p>
-<h3 id="使用套接字选项SO-SNDTIMEO、SO-RCVTIMEO"><a href="#使用套接字选项SO-SNDTIMEO、SO-RCVTIMEO" class="headerlink" title="使用套接字选项SO_SNDTIMEO、SO_RCVTIMEO"></a>使用套接字选项SO_SNDTIMEO、SO_RCVTIMEO</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> timeval timeout = &#123;<span class="number">3</span>,<span class="number">0</span>&#125;; </div><div class="line">setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (<span class="keyword">char</span> *)&amp;timeout, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> timeval));</div><div class="line"></div><div class="line"><span class="keyword">int</span> ret = read(sock, buf, <span class="keyword">sizeof</span>(buf));</div><div class="line"><span class="keyword">if</span> (ret == <span class="number">-1</span> &amp;&amp; errno == EWOULDBLOCK)</div><div class="line">    errno = ETIMEOUT;</div></pre></td></tr></table></figure>
+<h3 id="使用套接字选项SO-SNDTIMEO、SO-RCVTIMEO"><a href="#使用套接字选项SO-SNDTIMEO、SO-RCVTIMEO" class="headerlink" title="使用套接字选项SO_SNDTIMEO、SO_RCVTIMEO"></a>使用套接字选项SO_SNDTIMEO、SO_RCVTIMEO</h3><pre><code class="lang-C">struct timeval timeout = {3,0}; 
+setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char *)&amp;timeout, sizeof(struct timeval));
+
+int ret = read(sock, buf, sizeof(buf));
+if (ret == -1 &amp;&amp; errno == EWOULDBLOCK)
+    errno = ETIMEOUT;
+</code></pre>
 <p>使用setsockopt 函数进行设置，但这种方法可移植性比较差，不是每种系统实现都有这些选项。</p>
-<h3 id="使用select-实现超时"><a href="#使用select-实现超时" class="headerlink" title="使用select 实现超时"></a>使用select 实现超时</h3><p><code>read_timeout、write_timeout、accept_timeout、connect_timeout</code>四个函数封装<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sysutil.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">/* read_timeout - 读超时检测函数，不含读操作</span></div><div class="line"> * fd:文件描述符</div><div class="line"> * wait_seconds:等待超时秒数， 如果为0表示不检测超时；</div><div class="line"> * 成功（未超时）返回0，失败返回-1，超时返回-1并且errno = ETIMEDOUT</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read_timeout</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">unsigned</span> <span class="keyword">int</span> wait_seconds)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (wait_seconds &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line"></div><div class="line">        fd_set read_fdset;</div><div class="line">        <span class="keyword">struct</span> timeval timeout;</div><div class="line"></div><div class="line">        FD_ZERO(&amp;read_fdset);</div><div class="line">        FD_SET(fd, &amp;read_fdset);</div><div class="line"></div><div class="line">        timeout.tv_sec = wait_seconds;</div><div class="line">        timeout.tv_usec = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">do</span></div><div class="line">        &#123;</div><div class="line">            ret = select(fd + <span class="number">1</span>, &amp;read_fdset, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;timeout); <span class="comment">//select会阻塞直到检测到事件或者超时</span></div><div class="line">            <span class="comment">// 如果select检测到可读事件发送，则此时调用read不会阻塞</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (ret &lt; <span class="number">0</span> &amp;&amp; errno == EINTR);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (ret == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            ret = <span class="number">-1</span>;</div><div class="line">            errno = ETIMEDOUT;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* write_timeout - 写超时检测函数，不含写操作</span></div><div class="line"> * fd:文件描述符</div><div class="line"> * wait_seconds:等待超时秒数， 如果为0表示不检测超时；</div><div class="line"> * 成功（未超时）返回0，失败返回-1，超时返回-1并且errno = ETIMEDOUT</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">write_timeout</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">unsigned</span> <span class="keyword">int</span> wait_seconds)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (wait_seconds &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line"></div><div class="line">        fd_set write_fdset;</div><div class="line">        <span class="keyword">struct</span> timeval timeout;</div><div class="line"></div><div class="line">        FD_ZERO(&amp;write_fdset);</div><div class="line">        FD_SET(fd, &amp;write_fdset);</div><div class="line"></div><div class="line">        timeout.tv_sec = wait_seconds;</div><div class="line">        timeout.tv_usec = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">do</span></div><div class="line">        &#123;</div><div class="line">            ret = select(fd + <span class="number">1</span>, <span class="literal">NULL</span>, &amp;write_fdset, <span class="literal">NULL</span>, &amp;timeout);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (ret &lt; <span class="number">0</span> &amp;&amp; errno == EINTR);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (ret == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            ret = <span class="number">-1</span>;</div><div class="line">            errno = ETIMEDOUT;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* accept_timeout - 带超时的accept</span></div><div class="line"> * fd: 套接字</div><div class="line"> * addr: 输出参数，返回对方地址</div><div class="line"> * wait_seconds: 等待超时秒数，如果为0表示正常模式</div><div class="line"> * 成功（未超时）返回已连接套接字，失败返回-1，超时返回-1并且errno = ETIMEDOUT</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">accept_timeout</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">struct</span> sockaddr_in *addr, <span class="keyword">unsigned</span> <span class="keyword">int</span> wait_seconds)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret;</div><div class="line">    <span class="keyword">socklen_t</span> addrlen = <span class="keyword">sizeof</span>(<span class="keyword">struct</span> sockaddr_in);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (wait_seconds &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line"></div><div class="line">        fd_set accept_fdset;</div><div class="line">        <span class="keyword">struct</span> timeval timeout;</div><div class="line">        FD_ZERO(&amp;accept_fdset);</div><div class="line">        FD_SET(fd, &amp;accept_fdset);</div><div class="line"></div><div class="line">        timeout.tv_sec = wait_seconds;</div><div class="line">        timeout.tv_usec = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">do</span></div><div class="line">        &#123;</div><div class="line">            ret = select(fd + <span class="number">1</span>, &amp;accept_fdset, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;timeout);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (ret &lt; <span class="number">0</span> &amp;&amp; errno == EINTR);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (ret == <span class="number">-1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            errno = ETIMEDOUT;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (addr != <span class="literal">NULL</span>) <span class="comment">//addr为传出参数</span></div><div class="line">        ret = accept(fd, (<span class="keyword">struct</span> sockaddr *)addr, &amp;addrlen);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        ret = accept(fd, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</div><div class="line">        ERR_EXIT(<span class="string">"accpet error"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* activate_nonblock - 设置IO为非阻塞模式</span></div><div class="line"> * fd: 文件描述符</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">activate_nonblock</span><span class="params">(<span class="keyword">int</span> fd)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret;</div><div class="line">    <span class="keyword">int</span> flags = fcntl(fd, F_GETFL);</div><div class="line">    <span class="keyword">if</span> (flags == <span class="number">-1</span>)</div><div class="line">        ERR_EXIT(<span class="string">"fcntl error"</span>);</div><div class="line"></div><div class="line">    flags |= O_NONBLOCK;</div><div class="line">    ret = fcntl(fd, F_SETFL, flags);</div><div class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</div><div class="line">        ERR_EXIT(<span class="string">"fcntl error"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* deactivate_nonblock - 设置IO为阻塞模式</span></div><div class="line"> * fd: 文件描述符</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deactivate_nonblock</span><span class="params">(<span class="keyword">int</span> fd)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret;</div><div class="line">    <span class="keyword">int</span> flags = fcntl(fd, F_GETFL);</div><div class="line">    <span class="keyword">if</span> (flags == <span class="number">-1</span>)</div><div class="line">        ERR_EXIT(<span class="string">"fcntl error"</span>);</div><div class="line"></div><div class="line">    flags &amp;= ~O_NONBLOCK;</div><div class="line">    ret = fcntl(fd, F_SETFL, flags);</div><div class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</div><div class="line">        ERR_EXIT(<span class="string">"fcntl error"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* connect_timeout - 带超时的connect</span></div><div class="line"> * fd: 套接字</div><div class="line"> * addr: 输出参数，返回对方地址</div><div class="line"> * wait_seconds: 等待超时秒数，如果为0表示正常模式</div><div class="line"> * 成功（未超时）返回0，失败返回-1，超时返回-1并且errno = ETIMEDOUT</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">connect_timeout</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">struct</span> sockaddr_in *addr, <span class="keyword">unsigned</span> <span class="keyword">int</span> wait_seconds)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret;</div><div class="line">    <span class="keyword">socklen_t</span> addrlen = <span class="keyword">sizeof</span>(<span class="keyword">struct</span> sockaddr_in);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (wait_seconds &gt; <span class="number">0</span>)</div><div class="line">        activate_nonblock(fd);</div><div class="line"></div><div class="line">    ret = connect(fd, (<span class="keyword">struct</span> sockaddr *)addr, addrlen);</div><div class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span> &amp;&amp; errno == EINPROGRESS)</div><div class="line">    &#123;</div><div class="line"></div><div class="line">        fd_set connect_fdset;</div><div class="line">        <span class="keyword">struct</span> timeval timeout;</div><div class="line">        FD_ZERO(&amp;connect_fdset);</div><div class="line">        FD_SET(fd, &amp;connect_fdset);</div><div class="line"></div><div class="line">        timeout.tv_sec = wait_seconds;</div><div class="line">        timeout.tv_usec = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">do</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">/* 一旦连接建立，套接字就可写 */</span></div><div class="line">            ret = select(fd + <span class="number">1</span>, <span class="literal">NULL</span>, &amp;connect_fdset, <span class="literal">NULL</span>, &amp;timeout);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (ret &lt; <span class="number">0</span> &amp;&amp; errno == EINTR);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (ret == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            errno = ETIMEDOUT;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line"></div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="comment">/* ret返回为1，可能有两种情况，一种是连接建立成功，一种是套接字产生错误</span></div><div class="line">             * 此时错误信息不会保存至errno变量中（select没出错）,因此，需要调用</div><div class="line">             * getsockopt来获取 */</div><div class="line">            <span class="keyword">int</span> err;</div><div class="line">            <span class="keyword">socklen_t</span> socklen = <span class="keyword">sizeof</span>(err);</div><div class="line">            <span class="keyword">int</span> sockoptret = getsockopt(fd, SOL_SOCKET, SO_ERROR, &amp;err, &amp;socklen);</div><div class="line">            <span class="keyword">if</span> (sockoptret == <span class="number">-1</span>)</div><div class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">            <span class="keyword">if</span> (err == <span class="number">0</span>)</div><div class="line">                ret = <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                errno = err;</div><div class="line">                ret = <span class="number">-1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (wait_seconds &gt; <span class="number">0</span>)</div><div class="line">        deactivate_nonblock(fd);</div><div class="line">        </div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="使用select-实现超时"><a href="#使用select-实现超时" class="headerlink" title="使用select 实现超时"></a>使用select 实现超时</h3><p><code>read_timeout、write_timeout、accept_timeout、connect_timeout</code>四个函数封装</p>
+<pre><code class="lang-C">#include &quot;sysutil.h&quot;
+
+/* read_timeout - 读超时检测函数，不含读操作
+ * fd:文件描述符
+ * wait_seconds:等待超时秒数， 如果为0表示不检测超时；
+ * 成功（未超时）返回0，失败返回-1，超时返回-1并且errno = ETIMEDOUT
+ */
+
+int read_timeout(int fd, unsigned int wait_seconds)
+{
+    int ret = 0;
+    if (wait_seconds &gt; 0)
+    {
+
+        fd_set read_fdset;
+        struct timeval timeout;
+
+        FD_ZERO(&amp;read_fdset);
+        FD_SET(fd, &amp;read_fdset);
+
+        timeout.tv_sec = wait_seconds;
+        timeout.tv_usec = 0;
+
+        do
+        {
+            ret = select(fd + 1, &amp;read_fdset, NULL, NULL, &amp;timeout); //select会阻塞直到检测到事件或者超时
+            // 如果select检测到可读事件发送，则此时调用read不会阻塞
+        }
+        while (ret &lt; 0 &amp;&amp; errno == EINTR);
+
+        if (ret == 0)
+        {
+            ret = -1;
+            errno = ETIMEDOUT;
+        }
+        else if (ret == 1)
+            return 0;
+
+    }
+
+    return ret;
+}
+
+/* write_timeout - 写超时检测函数，不含写操作
+ * fd:文件描述符
+ * wait_seconds:等待超时秒数， 如果为0表示不检测超时；
+ * 成功（未超时）返回0，失败返回-1，超时返回-1并且errno = ETIMEDOUT
+ */
+
+int write_timeout(int fd, unsigned int wait_seconds)
+{
+    int ret = 0;
+    if (wait_seconds &gt; 0)
+    {
+
+        fd_set write_fdset;
+        struct timeval timeout;
+
+        FD_ZERO(&amp;write_fdset);
+        FD_SET(fd, &amp;write_fdset);
+
+        timeout.tv_sec = wait_seconds;
+        timeout.tv_usec = 0;
+
+        do
+        {
+            ret = select(fd + 1, NULL, &amp;write_fdset, NULL, &amp;timeout);
+        }
+        while (ret &lt; 0 &amp;&amp; errno == EINTR);
+
+        if (ret == 0)
+        {
+            ret = -1;
+            errno = ETIMEDOUT;
+        }
+        else if (ret == 1)
+            return 0;
+
+    }
+
+    return ret;
+}
+
+/* accept_timeout - 带超时的accept
+ * fd: 套接字
+ * addr: 输出参数，返回对方地址
+ * wait_seconds: 等待超时秒数，如果为0表示正常模式
+ * 成功（未超时）返回已连接套接字，失败返回-1，超时返回-1并且errno = ETIMEDOUT
+ */
+
+int accept_timeout(int fd, struct sockaddr_in *addr, unsigned int wait_seconds)
+{
+    int ret;
+    socklen_t addrlen = sizeof(struct sockaddr_in);
+
+    if (wait_seconds &gt; 0)
+    {
+
+        fd_set accept_fdset;
+        struct timeval timeout;
+        FD_ZERO(&amp;accept_fdset);
+        FD_SET(fd, &amp;accept_fdset);
+
+        timeout.tv_sec = wait_seconds;
+        timeout.tv_usec = 0;
+
+        do
+        {
+            ret = select(fd + 1, &amp;accept_fdset, NULL, NULL, &amp;timeout);
+        }
+        while (ret &lt; 0 &amp;&amp; errno == EINTR);
+
+        if (ret == -1)
+            return -1;
+        else if (ret == 0)
+        {
+            errno = ETIMEDOUT;
+            return -1;
+        }
+    }
+
+    if (addr != NULL) //addr为传出参数
+        ret = accept(fd, (struct sockaddr *)addr, &amp;addrlen);
+    else
+        ret = accept(fd, NULL, NULL);
+    if (ret == -1)
+        ERR_EXIT(&quot;accpet error&quot;);
+
+    return ret;
+}
+
+/* activate_nonblock - 设置IO为非阻塞模式
+ * fd: 文件描述符
+ */
+void activate_nonblock(int fd)
+{
+    int ret;
+    int flags = fcntl(fd, F_GETFL);
+    if (flags == -1)
+        ERR_EXIT(&quot;fcntl error&quot;);
+
+    flags |= O_NONBLOCK;
+    ret = fcntl(fd, F_SETFL, flags);
+    if (ret == -1)
+        ERR_EXIT(&quot;fcntl error&quot;);
+}
+
+/* deactivate_nonblock - 设置IO为阻塞模式
+ * fd: 文件描述符
+ */
+void deactivate_nonblock(int fd)
+{
+    int ret;
+    int flags = fcntl(fd, F_GETFL);
+    if (flags == -1)
+        ERR_EXIT(&quot;fcntl error&quot;);
+
+    flags &amp;= ~O_NONBLOCK;
+    ret = fcntl(fd, F_SETFL, flags);
+    if (ret == -1)
+        ERR_EXIT(&quot;fcntl error&quot;);
+}
+
+/* connect_timeout - 带超时的connect
+ * fd: 套接字
+ * addr: 输出参数，返回对方地址
+ * wait_seconds: 等待超时秒数，如果为0表示正常模式
+ * 成功（未超时）返回0，失败返回-1，超时返回-1并且errno = ETIMEDOUT
+ */
+int connect_timeout(int fd, struct sockaddr_in *addr, unsigned int wait_seconds)
+{
+    int ret;
+    socklen_t addrlen = sizeof(struct sockaddr_in);
+
+    if (wait_seconds &gt; 0)
+        activate_nonblock(fd);
+
+    ret = connect(fd, (struct sockaddr *)addr, addrlen);
+    if (ret &lt; 0 &amp;&amp; errno == EINPROGRESS)
+    {
+
+        fd_set connect_fdset;
+        struct timeval timeout;
+        FD_ZERO(&amp;connect_fdset);
+        FD_SET(fd, &amp;connect_fdset);
+
+        timeout.tv_sec = wait_seconds;
+        timeout.tv_usec = 0;
+
+        do
+        {
+            /* 一旦连接建立，套接字就可写 */
+            ret = select(fd + 1, NULL, &amp;connect_fdset, NULL, &amp;timeout);
+        }
+        while (ret &lt; 0 &amp;&amp; errno == EINTR);
+
+        if (ret == 0)
+        {
+            errno = ETIMEDOUT;
+            return -1;
+        }
+        else if (ret &lt; 0)
+            return -1;
+
+        else if (ret == 1)
+        {
+            /* ret返回为1，可能有两种情况，一种是连接建立成功，一种是套接字产生错误
+             * 此时错误信息不会保存至errno变量中（select没出错）,因此，需要调用
+             * getsockopt来获取 */
+            int err;
+            socklen_t socklen = sizeof(err);
+            int sockoptret = getsockopt(fd, SOL_SOCKET, SO_ERROR, &amp;err, &amp;socklen);
+            if (sockoptret == -1)
+                return -1;
+            if (err == 0)
+                ret = 0;
+            else
+            {
+                errno = err;
+                ret = -1;
+            }
+        }
+    }
+
+    if (wait_seconds &gt; 0)
+        deactivate_nonblock(fd);
+
+    return ret;
+}
+</code></pre>
 <p>在<code>调用connect前需要使用fcntl函数将套接字标志设置为非阻塞</code>，如果<code>网络环境很好</code>，则connect立即返回0，不进入if大括号执行；如果<code>网络环境拥塞</code>，则connect返回-1且errno ==<br>EINPROGRESS，表示正在处理。</p>
 <p>还需要注意的是当select返回1，可能有两种情况:<code>一种是连接成功，一种是套接字产生错误。</code>这两种情况都会产生可写事件，所以需要使用<code>getsockopt来获取</code>一下。</p>
 <p>在<code>退出之前还需重新将套接字设置为阻塞</code>。</p>
-<p>connect_timeout函数测试程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sysutil.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> sock;</div><div class="line">    <span class="keyword">if</span> ((sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) &lt; <span class="number">0</span>)</div><div class="line">        ERR_EXIT(<span class="string">"socket"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">struct</span> sockaddr_in servaddr;</div><div class="line">    <span class="built_in">memset</span>(&amp;servaddr, <span class="number">0</span>, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">    servaddr.sin_family = AF_INET;</div><div class="line">    servaddr.sin_port = htons(<span class="number">5188</span>);</div><div class="line">    servaddr.sin_addr.s_addr = inet_addr(<span class="string">"127.0.0.1"</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">int</span> ret = connect_timeout(sock, &amp;servaddr, <span class="number">5</span>);</div><div class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span> &amp;&amp; errno == ETIMEDOUT)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"timeout...\n"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">-1</span>)</div><div class="line">        ERR_EXIT(<span class="string">"connect_timeout"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">struct</span> sockaddr_in localaddr;</div><div class="line">    <span class="keyword">socklen_t</span> addrlen = <span class="keyword">sizeof</span>(localaddr);</div><div class="line">    <span class="keyword">if</span> (getsockname(sock, (<span class="keyword">struct</span> sockaddr *)&amp;localaddr, &amp;addrlen) &lt; <span class="number">0</span>)</div><div class="line">        ERR_EXIT(<span class="string">"getsockname"</span>);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"ip=%s port=%d\n"</span>, inet_ntoa(localaddr.sin_addr), ntohs(localaddr.sin_port));</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>read_timeout函数的使用<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ret;</div><div class="line">ret = read_timeout(fd, <span class="number">5</span>);</div><div class="line"><span class="keyword">if</span> (ret == <span class="number">0</span>)</div><div class="line">    read(fd, buf, <span class="keyword">sizeof</span>(buf));</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (ret == <span class="number">-1</span> &amp;&amp; errno == ETIMEOUT)</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"timeout...\n"</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">    ERR_EXIT(<span class="string">"read_timeout"</span>);</div></pre></td></tr></table></figure></p>
+<p>connect_timeout函数测试程序</p>
+<pre><code class="lang-C">#include &quot;sysutil.h&quot;
+
+int main(void)
+{
+    int sock;
+    if ((sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) &lt; 0)
+        ERR_EXIT(&quot;socket&quot;);
+
+    struct sockaddr_in servaddr;
+    memset(&amp;servaddr, 0, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(5188);
+    servaddr.sin_addr.s_addr = inet_addr(&quot;127.0.0.1&quot;);
+
+
+    int ret = connect_timeout(sock, &amp;servaddr, 5);
+    if (ret == -1 &amp;&amp; errno == ETIMEDOUT)
+    {
+        printf(&quot;timeout...\n&quot;);
+        return 1;
+    }
+    else if (ret == -1)
+        ERR_EXIT(&quot;connect_timeout&quot;);
+
+    struct sockaddr_in localaddr;
+    socklen_t addrlen = sizeof(localaddr);
+    if (getsockname(sock, (struct sockaddr *)&amp;localaddr, &amp;addrlen) &lt; 0)
+        ERR_EXIT(&quot;getsockname&quot;);
+
+    printf(&quot;ip=%s port=%d\n&quot;, inet_ntoa(localaddr.sin_addr), ntohs(localaddr.sin_port));
+
+    return 0;
+}
+</code></pre>
+<p>read_timeout函数的使用</p>
+<pre><code class="lang-C">int ret;
+ret = read_timeout(fd, 5);
+if (ret == 0)
+    read(fd, buf, sizeof(buf));
+else if (ret == -1 &amp;&amp; errno == ETIMEOUT)
+    printf(&quot;timeout...\n&quot;);
+else
+    ERR_EXIT(&quot;read_timeout&quot;);
+</code></pre>
 <h3 id="tcp-connect机制"><a href="#tcp-connect机制" class="headerlink" title="tcp connect机制"></a>tcp connect机制</h3><p>connect<code>只是完成发送syn的过程</code>，后续的两次握手由协议栈成。如果fd是阻塞的，则connect会一直等到超时或者连接成功返回；如果fd是非阻塞的，则connect会立刻返回，但此时协议栈是否已经完成连接要判断下返回值和errno；<code>如果是非阻塞方式，判断返回值；如果是阻塞方式，可以用setsockopt设置SO_SNDTIMEO。</code></p>
 
       
     </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/05/06/linux网络编程/shutdown与close函数的区别/" rel="next" title="shutdown与close函数的区别">
-                <i class="fa fa-chevron-left"></i> shutdown与close函数的区别
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/08/网络/muduo/Reactor事件处理框架/" rel="prev" title="Reactor事件处理框架">
-                Reactor事件处理框架 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://murfyexp.github.io/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/" data-id="cjzbt3mf00016z1xpkvvszom9" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络编程/">网络编程</a></li></ul>
+
     </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
-
-          
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/"
-           data-title="套接字I/O超时设置方法和用select实现超时 connect机制" data-url="https://murfyexp.github.io/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/08/网络/muduo/Reactor事件处理框架/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Reactor事件处理框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/06/linux网络编程/shutdown与close函数的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">shutdown与close函数的区别</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DartNet网络协议栈/">DartNet网络协议栈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JOS操作系统/">JOS操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux网络编程/">Linux网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/miniftp服务器/">miniftp服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/muduo网络库/">muduo网络库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/再学C/">再学C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/模板与总结/">模板与总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法竞赛进阶指南/">算法竞赛进阶指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络编程/">网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/老李的杂货铺/">老李的杂货铺</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试算法/">面试算法</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux系统编程和网络编程/">Linux系统编程和网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层网络库/">底层网络库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得体会/">心得体会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法-二分/">数据结构 算法 二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性代数/">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试-算法/">面试 算法</a></li></ul>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux系统编程和网络编程/" style="font-size: 10px;">Linux系统编程和网络编程</a> <a href="/tags/OS/" style="font-size: 12.5px;">OS</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/底层网络库/" style="font-size: 15px;">底层网络库</a> <a href="/tags/心得体会/" style="font-size: 10px;">心得体会</a> <a href="/tags/数据结构-算法/" style="font-size: 16.25px;">数据结构 算法</a> <a href="/tags/数据结构-算法-二分/" style="font-size: 10px;">数据结构 算法 二分</a> <a href="/tags/概率论/" style="font-size: 10px;">概率论</a> <a href="/tags/线性代数/" style="font-size: 10px;">线性代数</a> <a href="/tags/编程语言/" style="font-size: 18.75px;">编程语言</a> <a href="/tags/网络/" style="font-size: 13.75px;">网络</a> <a href="/tags/网络编程/" style="font-size: 17.5px;">网络编程</a> <a href="/tags/软件/" style="font-size: 11.25px;">软件</a> <a href="/tags/面试-算法/" style="font-size: 20px;">面试 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/13/数学/极大似然估计的理解/">极大似然估计的理解</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/">分形之城</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
-               alt="Shaojie Li" />
-          <p class="site-author-name" itemprop="name">Shaojie Li</p>
-          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
-        </div>
-        <nav class="site-state motion-element">
         
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+          <li>
+            <a href="/2019/08/06/数学/矩阵旋转/">矩阵旋转</a>
+          </li>
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/08/06/算法/算法竞赛进阶指南/递归求解等比数列求和/">递归求解等比数列求和</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-zhihu"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/08/05/杂货铺/hexo的LaTeX渲染问题/">hexo的LaTeX渲染问题</a>
+          </li>
         
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用alarm函数设置超时"><span class="nav-number">1.</span> <span class="nav-text">使用alarm函数设置超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用套接字选项SO-SNDTIMEO、SO-RCVTIMEO"><span class="nav-number">2.</span> <span class="nav-text">使用套接字选项SO_SNDTIMEO、SO_RCVTIMEO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用select-实现超时"><span class="nav-number">3.</span> <span class="nav-text">使用select 实现超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp-connect机制"><span class="nav-number">4.</span> <span class="nav-text">tcp connect机制</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
-</div>
- 
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
-
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+      </ul>
     </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-
-
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Shaojie Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-  
+</nav>
     
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"murfyexp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
-
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-
-  <!-- 页面点击小红心 -->
-
-  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

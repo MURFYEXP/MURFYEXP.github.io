@@ -1,92 +1,11 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="数据结构 算法," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta name="description" content="问题城市的规划在城市建设中是个大问题。不幸的是，很多城市在开始建设的时候并没有很好的规划，城市规模扩大之后规划不合理的问题就开始显现。而这座名为Fractal的城市设想了这样的一个规划方案，如下图所示">
+  <title>分形之城 | 大傻与小火机写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题城市的规划在城市建设中是个大问题。不幸的是，很多城市在开始建设的时候并没有很好的规划，城市规模扩大之后规划不合理的问题就开始显现。而这座名为Fractal的城市设想了这样的一个规划方案，如下图所示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分形之城">
 <meta property="og:url" content="https://murfyexp.github.io/2019/08/08/算法/算法竞赛进阶指南/分形之城/index.html">
@@ -99,309 +18,110 @@
 <meta name="twitter:title" content="分形之城">
 <meta name="twitter:description" content="问题城市的规划在城市建设中是个大问题。不幸的是，很多城市在开始建设的时候并没有很好的规划，城市规模扩大之后规划不合理的问题就开始显现。而这座名为Fractal的城市设想了这样的一个规划方案，如下图所示">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/算法/fx.png">
+  
+    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '6382808465152148000',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://murfyexp.github.io/2019/08/08/算法/算法竞赛进阶指南/分形之城/"/>
-
-
-
-
-
-  <title> 分形之城 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">大傻与小火机写字的地方</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Writing 1000 Words a Day Changes My Life</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://murfyexp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-算法/算法竞赛进阶指南/分形之城" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/" class="article-date">
+  <time datetime="2019-08-08T17:26:47.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法竞赛进阶指南/">算法竞赛进阶指南</a>
   </div>
 
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">大傻与小火机写字的地方</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
   </div>
+  <div class="article-inner">
     
-      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
     
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分形之城
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2019/08/08/算法/算法竞赛进阶指南/分形之城/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="大傻与小火机写字的地方">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                分形之城
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-08T10:26:47-07:00">
-                2019-08-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法竞赛进阶指南/" itemprop="url" rel="index">
-                    <span itemprop="name">算法竞赛进阶指南</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/08/08/算法/算法竞赛进阶指南/分形之城/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2019/08/08/算法/算法竞赛进阶指南/分形之城/" class="leancloud_visitors" data-flag-title="分形之城">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-entry" itemprop="articleBody">
       
         <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>城市的规划在城市建设中是个大问题。不幸的是，很多城市在开始建设的时候并没有很好的规划，城市规模扩大之后规划不合理的问题就开始显现。而这座名为Fractal的城市设想了这样的一个规划方案，如下图所示<br><img src="/images/算法/fx.png" alt="ch1"><br><a id="more"></a></p>
 <p>当城区规模扩大之后，Fractal的解决方案是把和原来城区结构一样的区域按照图中的方式建设在城市周围，提升城市的等级。对于任意等级的城市，我们把正方形街区从左上角开始按照道路标号。</p>
 <p>虽然这个方案很烂，Fractal 规划部门的人员还是想知道，如果城市发展到了等级 N，编号为 A 和 B 的两个街区的直线距离是多少。街区的距离指的是街区的中心点之间的距离，每个街区都是边长为 10 米的正方形。</p>
 <h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行输入正整数n，表示测试数据的数目。<br>以下n行，输入n组测试数据，每组一行。<br>每组数据包括三个整数 N,A,B, 表示城市等级以及两个街区的编号，整数之间用空格隔开。</p>
 <h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>一共输出n行数据，每行对应一组测试数据的输出结果，结果四舍五入到整数。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1≤N≤31,</div><div class="line">1≤A,B≤22N,</div><div class="line">1≤n≤1000</div></pre></td></tr></table></figure>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3 </div><div class="line">1 1 2 </div><div class="line">2 16 1 </div><div class="line">3 4 33</div></pre></td></tr></table></figure>
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">10 </div><div class="line">30 </div><div class="line">50</div></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><code>递归</code><br><a href="https://murfyexp.github.io/2019/08/01/%E7%AE%97%E6%B3%95/%E6%80%BB%E7%BB%93/%E5%85%B3%E4%BA%8E%E9%80%92%E5%BD%92%E9%83%BD%E8%A6%81%E6%83%B3%E4%BB%80%E4%B9%88/" target="_blank">关于递归</a></p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><pre><code>1≤N≤31,
+1≤A,B≤22N,
+1≤n≤1000
+</code></pre><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4><pre><code>3 
+1 1 2 
+2 16 1 
+3 4 33
+</code></pre><h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h4><pre><code>10 
+30 
+50
+</code></pre><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><code>递归</code><br><a href="https://murfyexp.github.io/2019/08/01/%E7%AE%97%E6%B3%95/%E6%80%BB%E7%BB%93/%E5%85%B3%E4%BA%8E%E9%80%92%E5%BD%92%E9%83%BD%E8%A6%81%E6%83%B3%E4%BB%80%E4%B9%88/" target="_blank">关于递归</a></p>
 <p><img src="/images/算法/fx1.png" alt="ch1"><br>按照各个城区中心为坐标原点，于是每一个城市等级，它的中心都会发生变化。上图等级2的10号城区的坐标为(3, -3)。</p>
-<p>按城区1的中心为原点，旋转平移后的坐标如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">左上角：（x，y）关于原点顺时针90度旋转得到（y，-x）再关于y轴轴对称变换得到（-y，-x）；</div><div class="line">右上角：（x，y）向右平移2len个单位得到（x+2len，y），len为两区域之间的长度；</div><div class="line">右下角：（x，y）向右平移2len个单位得到（x+2len，y）再向下平移2len个单位得到（x+2len，y-2len）；</div><div class="line">左下角：（x，y）逆时针旋转90度得到（-y，x），再关于y轴轴对称变换得到（y，x），最后再向下平移2len得到（y，x-2len）；</div></pre></td></tr></table></figure></p>
-<p>调整坐标原点，向右下角移动，具体操作为调整原来的坐标，横坐标减小len，纵坐标增加len。调整坐标原点后的坐标如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">左上角：（-y，-x）改变坐标得到（-y-len，-x+len）；</div><div class="line">右上角：（x+2len，y）变成（x+len，y+len）；</div><div class="line">右下角：（x+2len，y-2len）变成 （x+len，y-len）；</div><div class="line">左下角：（y，x-2len）变成（y-len，x-len）</div></pre></td></tr></table></figure></p>
-<p><a href="https://murfyexp.github.io/2019/08/06/%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC/" target="_blank">旋转矩阵</a><br>递推型</p>
+<p>按城区1的中心为原点，旋转平移后的坐标如下：</p>
+<pre><code>左上角：（x，y）关于原点顺时针90度旋转得到（y，-x）再关于y轴轴对称变换得到（-y，-x）；
+右上角：（x，y）向右平移2len个单位得到（x+2len，y），len为两区域之间的长度；
+右下角：（x，y）向右平移2len个单位得到（x+2len，y）再向下平移2len个单位得到（x+2len，y-2len）；
+左下角：（x，y）逆时针旋转90度得到（-y，x），再关于y轴轴对称变换得到（y，x），最后再向下平移2len得到（y，x-2len）；
+</code></pre><p>调整坐标原点，向右下角移动，具体操作为调整原来的坐标，横坐标减小len，纵坐标增加len。调整坐标原点后的坐标如下：</p>
+<pre><code>左上角：（-y，-x）改变坐标得到（-y-len，-x+len）；
+右上角：（x+2len，y）变成（x+len，y+len）；
+右下角：（x+2len，y-2len）变成 （x+len，y-len）；
+左下角：（y，x-2len）变成（y-len，x-len）
+</code></pre><p><a href="https://murfyexp.github.io/2019/08/06/%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC/" target="_blank">旋转矩阵</a><br>递推型</p>
 <ol>
 <li>前后关系：cal(n)与cal(n-1)</li>
 <li>子问题状态：城市的级别n和城市的编号m</li>
@@ -409,522 +129,188 @@
 <li>递归出口：n == 0</li>
 </ol>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>使用<code>long long</code>的数据范围<br>需要分块求其对应的位置，城市应该从0开始</p>
-<h4 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a>调试过程</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">两次调用递归函数，导致TLE</div><div class="line">pll pos = cal(n<span class="number">-1</span>, m%cnt);</div><div class="line">ll x = pos.first, y = pos.second;</div><div class="line"><span class="comment">//ll x = cal(n-1, m%cnt).first;</span></div><div class="line"><span class="comment">//ll y = cal(n-1, m%cnt).second;</span></div></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll; <span class="comment">//数据范围较大,使用ll</span></div><div class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</div><div class="line"></div><div class="line"><span class="comment">//旋转时，各位置均看作原点</span></div><div class="line"><span class="function">pll <span class="title">cal</span><span class="params">(ll n, ll m)</span> <span class="comment">//n级城市,第m+1个房子</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;<span class="comment">//递归出口n为0</span></div><div class="line">    ll len = <span class="number">1l</span>l &lt;&lt; (n - <span class="number">1</span>); <span class="comment">//n级城市的两区域的相距长度，n为1时，len等于1</span></div><div class="line">    ll cnt = <span class="number">1l</span>l &lt;&lt; (<span class="number">2</span>*n - <span class="number">2</span>) ; <span class="comment">//n-1级城市,房子的总数</span></div><div class="line">    pll pos = cal(n<span class="number">-1</span>, m%cnt);  <span class="comment">//m%cnt即该房子在n-1级城市的编号</span></div><div class="line">    ll x = pos.first, y = pos.second;</div><div class="line">    <span class="keyword">int</span> z = m / cnt; <span class="comment">//由z可得该房子位于哪个区域</span></div><div class="line">    <span class="keyword">if</span> (z == <span class="number">0</span>) <span class="keyword">return</span> &#123;y, x&#125;;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (z == <span class="number">1</span>) <span class="keyword">return</span> &#123;x, y + len&#125;;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (z == <span class="number">2</span>) <span class="keyword">return</span> &#123;x + len, y + len&#125;;</div><div class="line">    <span class="keyword">return</span> &#123;<span class="number">2</span> * len - <span class="number">1</span> - y, len - <span class="number">1</span> - x&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    ll n, N, A, B;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; n;</div><div class="line">    <span class="keyword">while</span>(n--)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; A &gt;&gt; B;</div><div class="line">        ll x1 = cal(N, A<span class="number">-1</span>).first;  ll x2 = cal(N, B<span class="number">-1</span>).first;</div><div class="line">        ll y1 = cal(N, A<span class="number">-1</span>).second; ll y2 = cal(N, B<span class="number">-1</span>).second;</div><div class="line">        ll dx = x1 - x2, dy = y1 - y2; <span class="comment">//定义中间变量，缩短代码长度</span></div><div class="line">        <span class="keyword">double</span> ans = <span class="built_in">sqrt</span>((dx * dx + dy * dy)) * <span class="number">10</span>; <span class="comment">//最后乘10即可</span></div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%0.lf\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a>调试过程</h4><pre><code class="lang-C++">两次调用递归函数，导致TLE
+pll pos = cal(n-1, m%cnt);
+ll x = pos.first, y = pos.second;
+//ll x = cal(n-1, m%cnt).first;
+//ll y = cal(n-1, m%cnt).second;
+</code></pre>
+<pre><code class="lang-C++">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+typedef long long ll; //数据范围较大,使用ll
+typedef pair&lt;ll, ll&gt; pll;
+
+//旋转时，各位置均看作原点
+pll cal(ll n, ll m) //n级城市,第m+1个房子
+{
+    if (n == 0) return {0, 0};//递归出口n为0
+    ll len = 1ll &lt;&lt; (n - 1); //n级城市的两区域的相距长度，n为1时，len等于1
+    ll cnt = 1ll &lt;&lt; (2*n - 2) ; //n-1级城市,房子的总数
+    pll pos = cal(n-1, m%cnt);  //m%cnt即该房子在n-1级城市的编号
+    ll x = pos.first, y = pos.second;
+    int z = m / cnt; //由z可得该房子位于哪个区域
+    if (z == 0) return {y, x};
+    else if (z == 1) return {x, y + len};
+    else if (z == 2) return {x + len, y + len};
+    return {2 * len - 1 - y, len - 1 - x};
+}
+
+int main()
+{
+    ll n, N, A, B;
+    cin &gt;&gt; n;
+    while(n--)
+    {
+        cin &gt;&gt; N &gt;&gt; A &gt;&gt; B;
+        ll x1 = cal(N, A-1).first;  ll x2 = cal(N, B-1).first;
+        ll y1 = cal(N, A-1).second; ll y2 = cal(N, B-1).second;
+        ll dx = x1 - x2, dy = y1 - y2; //定义中间变量，缩短代码长度
+        double ans = sqrt((dx * dx + dy * dy)) * 10; //最后乘10即可
+        printf(&quot;%0.lf\n&quot;,ans);
+    }
+}
+</code></pre>
 
       
     </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/数据结构-算法/" rel="tag"># 数据结构 算法</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/08/06/数学/矩阵旋转/" rel="next" title="矩阵旋转">
-                <i class="fa fa-chevron-left"></i> 矩阵旋转
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/13/数学/极大似然估计的理解/" rel="prev" title="极大似然估计的理解">
-                极大似然估计的理解 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://murfyexp.github.io/2019/08/08/算法/算法竞赛进阶指南/分形之城/" data-id="cjzbt3n1s005sz1xp0ketl84y" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li></ul>
+
     </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
-
-          
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2019/08/08/算法/算法竞赛进阶指南/分形之城/"
-           data-title="分形之城" data-url="https://murfyexp.github.io/2019/08/08/算法/算法竞赛进阶指南/分形之城/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/13/数学/极大似然估计的理解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          极大似然估计的理解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/06/数学/矩阵旋转/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">矩阵旋转</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DartNet网络协议栈/">DartNet网络协议栈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JOS操作系统/">JOS操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux网络编程/">Linux网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/miniftp服务器/">miniftp服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/muduo网络库/">muduo网络库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/再学C/">再学C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/模板与总结/">模板与总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法竞赛进阶指南/">算法竞赛进阶指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络编程/">网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/老李的杂货铺/">老李的杂货铺</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试算法/">面试算法</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux系统编程和网络编程/">Linux系统编程和网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层网络库/">底层网络库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得体会/">心得体会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法-二分/">数据结构 算法 二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性代数/">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试-算法/">面试 算法</a></li></ul>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux系统编程和网络编程/" style="font-size: 10px;">Linux系统编程和网络编程</a> <a href="/tags/OS/" style="font-size: 12.5px;">OS</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/底层网络库/" style="font-size: 15px;">底层网络库</a> <a href="/tags/心得体会/" style="font-size: 10px;">心得体会</a> <a href="/tags/数据结构-算法/" style="font-size: 16.25px;">数据结构 算法</a> <a href="/tags/数据结构-算法-二分/" style="font-size: 10px;">数据结构 算法 二分</a> <a href="/tags/概率论/" style="font-size: 10px;">概率论</a> <a href="/tags/线性代数/" style="font-size: 10px;">线性代数</a> <a href="/tags/编程语言/" style="font-size: 18.75px;">编程语言</a> <a href="/tags/网络/" style="font-size: 13.75px;">网络</a> <a href="/tags/网络编程/" style="font-size: 17.5px;">网络编程</a> <a href="/tags/软件/" style="font-size: 11.25px;">软件</a> <a href="/tags/面试-算法/" style="font-size: 20px;">面试 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/13/数学/极大似然估计的理解/">极大似然估计的理解</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/">分形之城</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
-               alt="Shaojie Li" />
-          <p class="site-author-name" itemprop="name">Shaojie Li</p>
-          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
-        </div>
-        <nav class="site-state motion-element">
         
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+          <li>
+            <a href="/2019/08/06/数学/矩阵旋转/">矩阵旋转</a>
+          </li>
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/08/06/算法/算法竞赛进阶指南/递归求解等比数列求和/">递归求解等比数列求和</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-zhihu"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/08/05/杂货铺/hexo的LaTeX渲染问题/">hexo的LaTeX渲染问题</a>
+          </li>
         
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据范围"><span class="nav-number">1.3.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入样例"><span class="nav-number">1.4.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出样例"><span class="nav-number">1.5.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调试过程"><span class="nav-number">3.1.</span> <span class="nav-text">调试过程</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
-</div>
- 
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
-
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+      </ul>
     </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-
-
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Shaojie Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-  
+</nav>
     
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"murfyexp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
-
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-
-  <!-- 页面点击小红心 -->
-
-  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

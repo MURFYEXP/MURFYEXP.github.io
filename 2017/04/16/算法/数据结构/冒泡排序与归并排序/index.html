@@ -1,92 +1,11 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="数据结构 算法," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta name="description" content="归并排序归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们重点来关注下合并过程。
+  <title>冒泡排序与归并排序 | 大傻与小火机写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="归并排序归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们重点来关注下合并过程。
 合并过程示例图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冒泡排序与归并排序">
@@ -104,824 +23,342 @@
 <meta name="twitter:description" content="归并排序归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们重点来关注下合并过程。
 合并过程示例图">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/归并排序.png">
+  
+    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '6382808465152148000',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://murfyexp.github.io/2017/04/16/算法/数据结构/冒泡排序与归并排序/"/>
-
-
-
-
-
-  <title> 冒泡排序与归并排序 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">大傻与小火机写字的地方</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Writing 1000 Words a Day Changes My Life</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://murfyexp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-算法/数据结构/冒泡排序与归并排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/16/算法/数据结构/冒泡排序与归并排序/" class="article-date">
+  <time datetime="2017-04-17T04:47:47.000Z" itemprop="datePublished">2017-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
   </div>
 
-
-
-
-
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      冒泡排序与归并排序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们<code>重点来关注下合并过程</code>。</p>
+<p>合并过程示例图<br><img src="/images/归并排序.png" alt="ch1"><br><a id="more"></a><br>合并的主体过程为：<code>分别从两区间的头部选择较小的一个插入到原数组中</code></p>
+<pre><code class="lang-C++">for ( Rank i = 0, j = 0, k = 0; ( j &lt; lb ) || ( k &lt; lc ); ) {
+      if ( ( j &lt; lb ) &amp;&amp; ( ! ( k &lt; lc ) || ( B[j] &lt;= C[k] ) ) ) A[i++] = B[j++];//j位于区间内，k超出了C的右边界时，哨兵值为无穷大，将数组B的值放入A中
+      if ( ( k &lt; lc ) &amp;&amp; ( ! ( j &lt; lb ) || ( C[k] &lt;  B[j] ) ) ) A[i++] = C[k++];//k位于区间内，j超出了B的右边界时，哨兵值为无穷大，将数组C的值放入A中
+      }
+</code></pre>
+<p><img src="/images/merge.png" alt="ch1"></p>
+<p><code>( j &lt; lb ) || ( k &lt; lc)</code>两区间同时越界才退出循环。<code>B[j] &lt;= C[k]</code>保证了归并过程的<code>稳定性</code><br>for语句内的if判断条件采用<code>短路求值</code>策略，<code>保证后面的数组访问不会越界</code></p>
+<pre><code class="lang-C++">for (int i = 0, j = 0, k = 0; j &lt; lb || k &lt; lc; ) { //for语句的写法值得学习}
+</code></pre>
+<p><code>int i = 0, j = 0, k = 0;</code>这里只需一个int，否则报错。</p>
+<p>完整代码</p>
+<pre><code class="lang-C++">#include &lt;iostream&gt;
+using namespace std;
+
+void merge(int *a, int lo, int mi, int hi)
+{
+    int *A =  &amp;a[lo];  //声明一个指针
+    int lb = mi - lo;
+    int *B = new int[lb]; //分配一个一维数组
+    cout &lt;&lt; A[0] &lt;&lt; endl;
+    for (int i = 0; i &lt; lb; i++)
+    {
+        B[i] = A[i];//for语句内进行赋值
+    }
+    int *C = &amp;a[mi];
+    int lc = hi - mi;
+    for (int i = 0, j = 0, k = 0; j &lt; lb || k &lt; lc; )
+    { //for语句的写法值得学习
+        if (j &lt; lb &amp;&amp; (lc &lt;= k || B[j] &lt;= C[k]) ) { A[i++] = B[j++]; };
+        if (k &lt; lc &amp;&amp; (lb &lt;= j || C[k] &lt; B[j]) )  { A[i++] = C[k++]; };
+    }
+    delete [] B; //释放内存
+}
+
+void mergesort(int *a, int lo, int hi)
+{
+    //递归退出条件
+    if ( hi - lo &lt; 2 ) return; //单元素区间自然有序，否则...
+    int mi = (hi + lo) &gt;&gt; 1;   //中点的下标hi+lo
+    mergesort(a, lo, mi);
+    mergesort(a, mi, hi);
+    merge(a, lo, mi, hi);
+}
+
+int main(int argc, const char * argv[])
+{
+    int a[] = {5, 4, 3, 2, 1};
+    mergesort(a, 0, 5);
+    return 0;
+}
+</code></pre>
+<p><code>只需要开辟[lo，mi)大小的空间用来存放前一区间的数值</code>，避免发生元素覆盖</p>
+<pre><code class="lang-C++">int lb = mi - lo;
+int *B = new int[lb]; //分配一个一维数组
+</code></pre>
+<p><code>B[j] &lt;= C[k] A[i++] = B[j++]</code>，保证了归并排序的稳定性</p>
+<p>二路归并的精简实现：删除冗余逻辑</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序属于<code>交换排序</code>，它的排序过程为<code>倒三角模型</code>。<br>优化后的冒泡1：sorted变量记录当前序列是否有序，<code>若已有序，则直接返回</code><br><img src="/images/冒泡1.png" alt="ch1"></p>
+<pre><code class="lang-C++">bool bubble(int *a, int lo, int hi)
+{
+    int sorted = true; //last初始化为lo
+
+    cout &lt;&lt; &quot;趟数：&quot; &lt;&lt; ++cnt &lt;&lt; endl;
+
+    while (++lo &lt; hi) //自左向右，依次检测逆序
+    {
+        if (a[lo] &lt; a[lo - 1])
+        {
+            sorted = false;
+            swap(a[lo], a[lo - 1]);
+        }
+    }
+    return sorted;
+}
+
+void bubblesort(int *a, int lo, int hi)
+{
+    //hi = bubble(a, lo, hi)无需再定义其他变量
+    while (!bubble(a, lo, hi--));
+}
+</code></pre>
+<p>优化后的冒泡2：<code>跳过已排序区间</code>，每趟直接对逆序进行调整<br><img src="/images/冒泡2.png" alt="ch1"></p>
+<pre><code class="lang-C++">int bubble(int *a, int lo, int hi)
+{
+    int last = lo; //last初始化为lo
+
+    cout &lt;&lt; &quot;趟数：&quot; &lt;&lt; ++cnt &lt;&lt; endl;
+
+    while (++lo &lt; hi) //自左向右，依次检测逆序
+    {
+        if (a[lo] &lt; a[lo - 1])
+        {
+            last = lo; //更新最右侧逆序对的位置
+            swap(a[lo], a[lo - 1]);
+        }
+    }
+    return last;
+}
+
+void bubblesort(int *a, int lo, int hi)
+{
+    //hi = bubble(a, lo, hi)无需再定义其他变量
+    while (lo &lt; (hi = bubble(a, lo, hi)));
+}
+</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>稳定性：</code>冒泡-&gt;稳定，归并-&gt;稳定<br><code>初始序列相关性：</code>冒泡-&gt;相关，归并-&gt;不相关<br><code>时间复杂度：</code>冒泡（最好O(n)，最差O(n^2)，平均O(n^2)），归并（O(nlogn)）</p>
+<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p>短路求值，<code>之前的条件只要满足，直接跳入执行语句</code></p>
+<pre><code class="lang-C++">int main(int argc, const char * argv[])
+{
+    int j = 0, k = 3;
+    if (j &lt; 1 || ++k &gt; 2)
+    {
+        cout &lt;&lt; j &lt;&lt; endl;
+        cout &lt;&lt; k &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://murfyexp.github.io/2017/04/16/算法/数据结构/冒泡排序与归并排序/" data-id="cjzbt3n090058z1xpua1dvy2i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li></ul>
+
+    </footer>
+  </div>
   
     
+<nav id="article-nav">
   
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">大傻与小火机写字的地方</span>
-      <span class="logo-line-after"><i></i></span>
+    <a href="/2017/04/23/算法/Leetcode/字符串相似度-编辑距离/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          字符串相似度(编辑距离)
+        
+      </div>
     </a>
-  </div>
-    
-      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
-    
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
   
-
   
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
+    <a href="/2017/03/25/算法/Leetcode/两单链表相交的一系列问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">两单链表相交的一系列问题</div>
+    </a>
   
 </nav>
 
+  
+</article>
 
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+</section>
+        
+          <aside id="sidebar">
+  
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/04/16/算法/数据结构/冒泡排序与归并排序/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="大傻与小火机写字的地方">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                冒泡排序与归并排序
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-16T21:47:47-07:00">
-                2017-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/16/算法/数据结构/冒泡排序与归并排序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/16/算法/数据结构/冒泡排序与归并排序/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/04/16/算法/数据结构/冒泡排序与归并排序/" class="leancloud_visitors" data-flag-title="冒泡排序与归并排序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序总体的时间复杂度为O(nlogn)，合并有序子序列merge过程为O(n)。接下来我们<code>重点来关注下合并过程</code>。</p>
-<p>合并过程示例图<br><img src="/images/归并排序.png" alt="ch1"><br><a id="more"></a><br>合并的主体过程为：<code>分别从两区间的头部选择较小的一个插入到原数组中</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> ( Rank i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>; ( j &lt; lb ) || ( k &lt; lc ); ) &#123;</div><div class="line">      <span class="keyword">if</span> ( ( j &lt; lb ) &amp;&amp; ( ! ( k &lt; lc ) || ( B[j] &lt;= C[k] ) ) ) A[i++] = B[j++];<span class="comment">//j位于区间内，k超出了C的右边界时，哨兵值为无穷大，将数组B的值放入A中</span></div><div class="line">      <span class="keyword">if</span> ( ( k &lt; lc ) &amp;&amp; ( ! ( j &lt; lb ) || ( C[k] &lt;  B[j] ) ) ) A[i++] = C[k++];<span class="comment">//k位于区间内，j超出了B的右边界时，哨兵值为无穷大，将数组C的值放入A中</span></div><div class="line">      &#125;</div></pre></td></tr></table></figure></p>
-<p><img src="/images/merge.png" alt="ch1"></p>
-<p><code>( j &lt; lb ) || ( k &lt; lc)</code>两区间同时越界才退出循环。<code>B[j] &lt;= C[k]</code>保证了归并过程的<code>稳定性</code><br>for语句内的if判断条件采用<code>短路求值</code>策略，<code>保证后面的数组访问不会越界</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>; j &lt; lb || k &lt; lc; ) &#123; <span class="comment">//for语句的写法值得学习&#125;</span></div></pre></td></tr></table></figure>
-<p><code>int i = 0, j = 0, k = 0;</code>这里只需一个int，否则报错。</p>
-<p>完整代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> lo, <span class="keyword">int</span> mi, <span class="keyword">int</span> hi)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> *A =  &amp;a[lo];  <span class="comment">//声明一个指针</span></div><div class="line">    <span class="keyword">int</span> lb = mi - lo;</div><div class="line">    <span class="keyword">int</span> *B = <span class="keyword">new</span> <span class="keyword">int</span>[lb]; <span class="comment">//分配一个一维数组</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; A[<span class="number">0</span>] &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lb; i++)</div><div class="line">    &#123;</div><div class="line">        B[i] = A[i];<span class="comment">//for语句内进行赋值</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> *C = &amp;a[mi];</div><div class="line">    <span class="keyword">int</span> lc = hi - mi;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>; j &lt; lb || k &lt; lc; )</div><div class="line">    &#123; <span class="comment">//for语句的写法值得学习</span></div><div class="line">        <span class="keyword">if</span> (j &lt; lb &amp;&amp; (lc &lt;= k || B[j] &lt;= C[k]) ) &#123; A[i++] = B[j++]; &#125;;</div><div class="line">        <span class="keyword">if</span> (k &lt; lc &amp;&amp; (lb &lt;= j || C[k] &lt; B[j]) )  &#123; A[i++] = C[k++]; &#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">delete</span> [] B; <span class="comment">//释放内存</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//递归退出条件</span></div><div class="line">    <span class="keyword">if</span> ( hi - lo &lt; <span class="number">2</span> ) <span class="keyword">return</span>; <span class="comment">//单元素区间自然有序，否则...</span></div><div class="line">    <span class="keyword">int</span> mi = (hi + lo) &gt;&gt; <span class="number">1</span>;   <span class="comment">//中点的下标hi+lo</span></div><div class="line">    mergesort(a, lo, mi);</div><div class="line">    mergesort(a, mi, hi);</div><div class="line">    merge(a, lo, mi, hi);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>&#125;;</div><div class="line">    mergesort(a, <span class="number">0</span>, <span class="number">5</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>只需要开辟[lo，mi)大小的空间用来存放前一区间的数值</code>，避免发生元素覆盖<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> lb = mi - lo;</div><div class="line"><span class="keyword">int</span> *B = <span class="keyword">new</span> <span class="keyword">int</span>[lb]; <span class="comment">//分配一个一维数组</span></div></pre></td></tr></table></figure></p>
-<p><code>B[j] &lt;= C[k] A[i++] = B[j++]</code>，保证了归并排序的稳定性</p>
-<p>二路归并的精简实现：删除冗余逻辑</p>
-<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序属于<code>交换排序</code>，它的排序过程为<code>倒三角模型</code>。<br>优化后的冒泡1：sorted变量记录当前序列是否有序，<code>若已有序，则直接返回</code><br><img src="/images/冒泡1.png" alt="ch1"><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> sorted = <span class="literal">true</span>; <span class="comment">//last初始化为lo</span></div><div class="line">    </div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"趟数："</span> &lt;&lt; ++cnt &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (++lo &lt; hi) <span class="comment">//自左向右，依次检测逆序</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (a[lo] &lt; a[lo - <span class="number">1</span>])</div><div class="line">        &#123;</div><div class="line">            sorted = <span class="literal">false</span>;</div><div class="line">            swap(a[lo], a[lo - <span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sorted;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubblesort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//hi = bubble(a, lo, hi)无需再定义其他变量</span></div><div class="line">    <span class="keyword">while</span> (!bubble(a, lo, hi--));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>优化后的冒泡2：<code>跳过已排序区间</code>，每趟直接对逆序进行调整<br><img src="/images/冒泡2.png" alt="ch1"><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> last = lo; <span class="comment">//last初始化为lo</span></div><div class="line">    </div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"趟数："</span> &lt;&lt; ++cnt &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (++lo &lt; hi) <span class="comment">//自左向右，依次检测逆序</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (a[lo] &lt; a[lo - <span class="number">1</span>])</div><div class="line">        &#123;</div><div class="line">            last = lo; <span class="comment">//更新最右侧逆序对的位置</span></div><div class="line">            swap(a[lo], a[lo - <span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> last;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubblesort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//hi = bubble(a, lo, hi)无需再定义其他变量</span></div><div class="line">    <span class="keyword">while</span> (lo &lt; (hi = bubble(a, lo, hi)));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>稳定性：</code>冒泡-&gt;稳定，归并-&gt;稳定<br><code>初始序列相关性：</code>冒泡-&gt;相关，归并-&gt;不相关<br><code>时间复杂度：</code>冒泡（最好O(n)，最差O(n^2)，平均O(n^2)），归并（O(nlogn)）</p>
-<h3 id="C-小知识"><a href="#C-小知识" class="headerlink" title="C++小知识"></a>C++小知识</h3><p>短路求值，<code>之前的条件只要满足，直接跳入执行语句</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> j = <span class="number">0</span>, k = <span class="number">3</span>;</div><div class="line">    <span class="keyword">if</span> (j &lt; <span class="number">1</span> || ++k &gt; <span class="number">2</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; k &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/数据结构-算法/" rel="tag"># 数据结构 算法</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/25/算法/Leetcode/两单链表相交的一系列问题/" rel="next" title="两单链表相交的一系列问题">
-                <i class="fa fa-chevron-left"></i> 两单链表相交的一系列问题
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/23/算法/Leetcode/字符串相似度-编辑距离/" rel="prev" title="字符串相似度(编辑距离)">
-                字符串相似度(编辑距离) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DartNet网络协议栈/">DartNet网络协议栈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JOS操作系统/">JOS操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux网络编程/">Linux网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/miniftp服务器/">miniftp服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/muduo网络库/">muduo网络库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/再学C/">再学C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/模板与总结/">模板与总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法竞赛进阶指南/">算法竞赛进阶指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络编程/">网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/老李的杂货铺/">老李的杂货铺</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试算法/">面试算法</a></li></ul>
     </div>
   </div>
 
-          
-          </div>
-          
 
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/04/16/算法/数据结构/冒泡排序与归并排序/"
-           data-title="冒泡排序与归并排序" data-url="https://murfyexp.github.io/2017/04/16/算法/数据结构/冒泡排序与归并排序/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux系统编程和网络编程/">Linux系统编程和网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层网络库/">底层网络库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得体会/">心得体会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法-二分/">数据结构 算法 二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性代数/">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试-算法/">面试 算法</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux系统编程和网络编程/" style="font-size: 10px;">Linux系统编程和网络编程</a> <a href="/tags/OS/" style="font-size: 12.5px;">OS</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/底层网络库/" style="font-size: 15px;">底层网络库</a> <a href="/tags/心得体会/" style="font-size: 10px;">心得体会</a> <a href="/tags/数据结构-算法/" style="font-size: 16.25px;">数据结构 算法</a> <a href="/tags/数据结构-算法-二分/" style="font-size: 10px;">数据结构 算法 二分</a> <a href="/tags/概率论/" style="font-size: 10px;">概率论</a> <a href="/tags/线性代数/" style="font-size: 10px;">线性代数</a> <a href="/tags/编程语言/" style="font-size: 18.75px;">编程语言</a> <a href="/tags/网络/" style="font-size: 13.75px;">网络</a> <a href="/tags/网络编程/" style="font-size: 17.5px;">网络编程</a> <a href="/tags/软件/" style="font-size: 11.25px;">软件</a> <a href="/tags/面试-算法/" style="font-size: 20px;">面试 算法</a>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/13/数学/极大似然估计的理解/">极大似然估计的理解</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/">分形之城</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
-               alt="Shaojie Li" />
-          <p class="site-author-name" itemprop="name">Shaojie Li</p>
-          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
-        </div>
-        <nav class="site-state motion-element">
         
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+          <li>
+            <a href="/2019/08/06/数学/矩阵旋转/">矩阵旋转</a>
+          </li>
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/08/06/算法/算法竞赛进阶指南/递归求解等比数列求和/">递归求解等比数列求和</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-zhihu"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/08/05/杂货铺/hexo的LaTeX渲染问题/">hexo的LaTeX渲染问题</a>
+          </li>
         
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">1.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">2.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-小知识"><span class="nav-number">4.</span> <span class="nav-text">C++小知识</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
-</div>
- 
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
-
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+      </ul>
     </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-
-
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Shaojie Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-  
+</nav>
     
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"murfyexp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
-
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-
-  <!-- 页面点击小红心 -->
-
-  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

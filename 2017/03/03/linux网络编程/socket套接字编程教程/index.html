@@ -1,92 +1,11 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="网络编程," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta name="description" content="socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。
+  <title>socket套接字编程教程 | 大傻与小火机写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。
 在客户端上建立套接字的步骤如下：
 
 
@@ -137,295 +56,81 @@ connect()将套接字连接到服务器
 socket()创建套接字
 使用bind()系统调用将套接字绑定到地址，地址由主机上的端口号组">
 <meta name="twitter:image" content="https://murfyexp.github.io/images/cs_Socket.png">
+  
+    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '6382808465152148000',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://murfyexp.github.io/2017/03/03/linux网络编程/socket套接字编程教程/"/>
-
-
-
-
-
-  <title> socket套接字编程教程 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">大傻与小火机写字的地方</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Writing 1000 Words a Day Changes My Life</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://murfyexp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-linux网络编程/socket套接字编程教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/03/linux网络编程/socket套接字编程教程/" class="article-date">
+  <time datetime="2017-03-04T07:22:09.000Z" itemprop="datePublished">2017-03-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux网络编程/">Linux网络编程</a>
   </div>
 
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">大傻与小火机写字的地方</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
   </div>
+  <div class="article-inner">
     
-      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
     
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      socket套接字编程教程
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/03/03/linux网络编程/socket套接字编程教程/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="大傻与小火机写字的地方">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                socket套接字编程教程
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-03T23:22:09-08:00">
-                2017-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/03/linux网络编程/socket套接字编程教程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/03/linux网络编程/socket套接字编程教程/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/03/03/linux网络编程/socket套接字编程教程/" class="leancloud_visitors" data-flag-title="socket套接字编程教程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-entry" itemprop="articleBody">
       
         <p>socket套接字工作于TCP/IP协议中应用层和传输层之间的一个抽象，使得网络上不同的计算机可以进行通信。</p>
 <p>在客户端上建立套接字的步骤如下：</p>
@@ -448,548 +153,212 @@ socket()创建套接字
 </blockquote>
 <p>CS模式下API图<br><img src="/images/cs_Socket.png" alt="CS模式"></p>
 <h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>sockfd和newsockfd文件描述符，这两个变量存储套接字系统call和accept系统调用返回的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in serv_addr，cli_addr;</div></pre></td></tr></table></figure>
-<p>sockaddr_in是互联网地址结构。定义在<netinet in.h="">。变量serv_addr为服务器的地址，cli_addr是客户端的地址。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sockaddr_in</div><div class="line">&#123;</div><div class="line">    <span class="keyword">short</span> sin_family;</div><div class="line">    u_short sin_port;</div><div class="line">    <span class="keyword">struct</span> in_addr sin_addr;</div><div class="line">    <span class="keyword">char</span> sin_zero [<span class="number">8</span>];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></netinet></p>
+<pre><code class="lang-C">struct sockaddr_in serv_addr，cli_addr;
+</code></pre>
+<p>sockaddr_in是互联网地址结构。定义在<netinet in.h="">。变量serv_addr为服务器的地址，cli_addr是客户端的地址。</netinet></p>
+<pre><code class="lang-C">struct sockaddr_in
+{
+    short sin_family;
+    u_short sin_port;
+    struct in_addr sin_addr;
+    char sin_zero [8];
+};
+</code></pre>
 <p>in_addr结构，在相同的头文件中定义，只包含一个无符号长整型s_addr。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (argc &lt; <span class="number">2</span>) </div><div class="line">&#123;</div><div class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"ERROR, no port provided\n"</span>);</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">if (argc &lt; 2) 
+{
+    fprintf(stderr,&quot;ERROR, no port provided\n&quot;);
+    exit(1);
+}
+</code></pre>
 <p>用户需要传入服务器的端口号，若未执行此操作就报错</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line"><span class="keyword">if</span> (sockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR opening socket"</span>);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">sockfd = socket(AF_INET, SOCK_STREAM, 0);
+if (sockfd &lt; 0)
+    error(&quot;ERROR opening socket&quot;);
+</code></pre>
 <p>socket()创建一个套接字，它需要三个参数。<br>第一个是套接字的地址域。2种：共享文件系统的两个进程的unix域，以及Internet上任意两个主机的Internet域。符号常数AF_UNIX用于前者，而AF_INET后者</p>
 <p>第二个参数是套接字的类型。2种：来自文件或管道的流套接字，以及以块读取消息的数据报套接字。符号常量是SOCK_STREAM和SOCK_DGRAM。</p>
 <p>第三个参数是协议。如果此参数为零，操作系统将选择最适当的协议。它将选择TCP作为流套接字，UDP选择数据报套接字。</p>
 <p>套接字调用返回文件描述符表的一个表项。此值用于对此套接字的所有后续引用。如果套接字调用失败，它返回-1。在这种情况下，程序显示和错误消息并退出。<br>上面是套接字调用的简化描述；还有许多其他选择域和类型，但这些是最常见的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bzero((<span class="keyword">char</span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr));</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">bzero((char *) &amp;serv_addr, sizeof(serv_addr));
+</code></pre>
 <p>该函数bzero()将缓冲区中的所有值设置为零。它有两个参数，第一个是指向缓冲区的指针，第二个是缓冲区的大小。因此，此行初始化 serv_addr为零。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">portno = atoi(argv[<span class="number">1</span>]);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">portno = atoi(argv[1]);
+</code></pre>
 <p>服务器将侦听连接的端口号作为参数传入，并使用该atoi()函数将其从数字字符串转换为整数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_family = AF_INET;</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">serv_addr.sin_family = AF_INET;
+</code></pre>
 <p>short sin_family用于记录地址，它始终设置为符号常量AF_INET。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_addr.s_addr = INADDR_ANY;</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">serv_addr.sin_addr.s_addr = INADDR_ANY;
+</code></pre>
 <p>unsigned long s_addr，记录主机的IP地址。对于服务器，这将始终是运行服务器的计算机的IP地址，INADDR_ANY是获得此地址的符号常量。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">serv_addr.sin_port = htons(portno);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">serv_addr.sin_port = htons(portno);
+</code></pre>
 <p>unsigned short sin_port，记录端口号。这里需要使用将主机字节顺序中的端口号转换为网络字节顺序中的端口号。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (bind(sockfd, (<span class="keyword">struct</span> sockaddr *) &amp;serv_addr,</div><div class="line">        <span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</div><div class="line">error(<span class="string">"ERROR on binding"</span>);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">if (bind(sockfd, (struct sockaddr *) &amp;serv_addr,
+        sizeof(serv_addr)) &lt; 0)
+error(&quot;ERROR on binding&quot;);
+</code></pre>
 <p>bind()将套接字绑定到一个地址上。它需要三个参数：套接字文件描述符，绑定的地址和绑定的地址的大小。第二个参数是sockaddr类型，但传入的是sockaddr_in，因此必须将它转换为正确的类型。<br>bind()过程失败的原因有很多，最明显的是该套接字已经在这台机器上使用。 </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">listen(sockfd,<span class="number">5</span>);</div><div class="line">```    </div><div class="line">listen（sockfd，<span class="number">5</span>）;</div><div class="line">listen监听该套接字连接。第一个参数是套接字文件描述符，第二个参数是等待连接的队列大小</div><div class="line"></div><div class="line">```C    </div><div class="line">clilen = <span class="keyword">sizeof</span>(cli_addr);</div><div class="line">newsockfd = accept(sockfd, (<span class="keyword">struct</span> sockaddr *) &amp;cli_addr, &amp;clilen);</div><div class="line"><span class="keyword">if</span> (newsockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR on accept"</span>);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">listen(sockfd,5);
+</code></pre>
+<p>listen（sockfd，5）;<br>listen监听该套接字连接。第一个参数是套接字文件描述符，第二个参数是等待连接的队列大小</p>
+<pre><code class="lang-C">clilen = sizeof(cli_addr);
+newsockfd = accept(sockfd, (struct sockaddr *) &amp;cli_addr, &amp;clilen);
+if (newsockfd &lt; 0)
+    error(&quot;ERROR on accept&quot;);
+</code></pre>
 <p>accept()导致进程阻塞，直到客户端连接到服务器。当连接成功时，它唤醒该进程。返回一个新的文件描述符，并使用这个新的文件描述符完成此连接上的所有通信。第二个参数是指向连接另一端的客户端地址的引用指针，第三个参数是此结构的大小。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bzero(buffer,<span class="number">256</span>);</div><div class="line">n = read(newsockfd,buffer,<span class="number">255</span>);</div><div class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) error(<span class="string">"ERROR reading from socket"</span>);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"Here is the message: %s\n"</span>,buffer);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">bzero(buffer,256);
+n = read(newsockfd,buffer,255);
+if (n &lt; 0) error(&quot;ERROR reading from socket&quot;);
+printf(&quot;Here is the message: %s\n&quot;,buffer);
+</code></pre>
 <p>使用bzero()函数初始化缓冲区，然后从套接字读取信息。read()使用新的文件描述符，阻塞直到有一些东西可读，即客户端已经执行write()后。它将读取套接字中的字符，并返回读取的字符数。 </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">n = write(newsockfd,<span class="string">"I got your message"</span>,<span class="number">18</span>);</div><div class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) error(<span class="string">"ERROR writing to socket"</span>);</div></pre></td></tr></table></figure>
+<pre><code class="lang-C">n = write(newsockfd,&quot;I got your message&quot;,18);
+if (n &lt; 0) error(&quot;ERROR writing to socket&quot;);
+</code></pre>
 <p>一旦建立了连接，两端都可以读写。</p>
 
       
     </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/02/操作系统/内存管理(页面管理)/" rel="next" title="内存管理(页面管理)">
-                <i class="fa fa-chevron-left"></i> 内存管理(页面管理)
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/08/网络/DartNet/简单覆盖网络-SON/" rel="prev" title="简单覆盖网络(SON)">
-                简单覆盖网络(SON) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://murfyexp.github.io/2017/03/03/linux网络编程/socket套接字编程教程/" data-id="cjzbt3mc4000mz1xp5twcmt4j" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络编程/">网络编程</a></li></ul>
+
     </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
-
-          
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/03/03/linux网络编程/socket套接字编程教程/"
-           data-title="socket套接字编程教程" data-url="https://murfyexp.github.io/2017/03/03/linux网络编程/socket套接字编程教程/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/08/网络/DartNet/简单覆盖网络-SON/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          简单覆盖网络(SON)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/02/操作系统/内存管理(页面管理)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">内存管理(页面管理)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DartNet网络协议栈/">DartNet网络协议栈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JOS操作系统/">JOS操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux网络编程/">Linux网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/miniftp服务器/">miniftp服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/muduo网络库/">muduo网络库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/再学C/">再学C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/模板与总结/">模板与总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法竞赛进阶指南/">算法竞赛进阶指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络编程/">网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/老李的杂货铺/">老李的杂货铺</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试算法/">面试算法</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux系统编程和网络编程/">Linux系统编程和网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层网络库/">底层网络库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得体会/">心得体会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法-二分/">数据结构 算法 二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性代数/">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试-算法/">面试 算法</a></li></ul>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux系统编程和网络编程/" style="font-size: 10px;">Linux系统编程和网络编程</a> <a href="/tags/OS/" style="font-size: 12.5px;">OS</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/底层网络库/" style="font-size: 15px;">底层网络库</a> <a href="/tags/心得体会/" style="font-size: 10px;">心得体会</a> <a href="/tags/数据结构-算法/" style="font-size: 16.25px;">数据结构 算法</a> <a href="/tags/数据结构-算法-二分/" style="font-size: 10px;">数据结构 算法 二分</a> <a href="/tags/概率论/" style="font-size: 10px;">概率论</a> <a href="/tags/线性代数/" style="font-size: 10px;">线性代数</a> <a href="/tags/编程语言/" style="font-size: 18.75px;">编程语言</a> <a href="/tags/网络/" style="font-size: 13.75px;">网络</a> <a href="/tags/网络编程/" style="font-size: 17.5px;">网络编程</a> <a href="/tags/软件/" style="font-size: 11.25px;">软件</a> <a href="/tags/面试-算法/" style="font-size: 20px;">面试 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/13/数学/极大似然估计的理解/">极大似然估计的理解</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/">分形之城</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
-               alt="Shaojie Li" />
-          <p class="site-author-name" itemprop="name">Shaojie Li</p>
-          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
-        </div>
-        <nav class="site-state motion-element">
         
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+          <li>
+            <a href="/2019/08/06/数学/矩阵旋转/">矩阵旋转</a>
+          </li>
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/08/06/算法/算法竞赛进阶指南/递归求解等比数列求和/">递归求解等比数列求和</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-zhihu"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/08/05/杂货铺/hexo的LaTeX渲染问题/">hexo的LaTeX渲染问题</a>
+          </li>
         
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端"><span class="nav-number">1.</span> <span class="nav-text">服务端</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
-</div>
- 
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
-
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+      </ul>
     </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-
-
-
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Shaojie Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-  
+</nav>
     
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"murfyexp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="/js/script.js"></script>
 
-
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-
-  <!-- 页面点击小红心 -->
-
-  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

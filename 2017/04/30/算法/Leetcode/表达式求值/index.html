@@ -1,927 +1,408 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="面试 算法," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta name="description" content="问题12输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8">
+  <title>表达式求值 | 大傻与小火机写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果
+例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="表达式求值">
 <meta property="og:url" content="https://murfyexp.github.io/2017/04/30/算法/Leetcode/表达式求值/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="问题12输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8">
+<meta property="og:description" content="问题输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果
+例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8">
 <meta property="og:updated_time" content="2017-05-01T03:31:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="表达式求值">
-<meta name="twitter:description" content="问题12输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8">
+<meta name="twitter:description" content="问题输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果
+例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8">
+  
+    <link rel="alternate" href="/atom.xml" title="大傻与小火机写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '6382808465152148000',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://murfyexp.github.io/2017/04/30/算法/Leetcode/表达式求值/"/>
-
-
-
-
-
-  <title> 表达式求值 | 大傻与小火机写字的地方 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261250513&web_id=1261250513" language="JavaScript"></script>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">大傻与小火机写字的地方</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Writing 1000 Words a Day Changes My Life</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://murfyexp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-算法/Leetcode/表达式求值" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/30/算法/Leetcode/表达式求值/" class="article-date">
+  <time datetime="2017-05-01T03:24:52.000Z" itemprop="datePublished">2017-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/面试算法/">面试算法</a>
   </div>
 
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">大傻与小火机写字的地方</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
   </div>
+  <div class="article-inner">
     
-      <p class="site-subtitle">Writing 1000 Words a Day Changes My Life</p>
     
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      表达式求值
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/04/30/算法/Leetcode/表达式求值/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Shaojie Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="大傻与小火机写字的地方">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="大傻与小火机写字的地方" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                表达式求值
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-30T20:24:52-07:00">
-                2017-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/面试算法/" itemprop="url" rel="index">
-                    <span itemprop="name">面试算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/30/算法/Leetcode/表达式求值/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/30/算法/Leetcode/表达式求值/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/04/30/算法/Leetcode/表达式求值/" class="leancloud_visitors" data-flag-title="表达式求值">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果</div><div class="line">例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8</div></pre></td></tr></table></figure>
-<a id="more"></a>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><pre><code>输入一个中缀表达式，包括+，-，*，/，(，) 的四则运算，求其计算结果
+例如：表达式((3+5*2)+3)/5+6/4*2+3的结果为8
+</code></pre><a id="more"></a>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>人生中第一场春招cvte的笔试题，简化后的四则表达式求值。也算是中规中距的一道编程题。考察编程基础，栈的使用。表达式求值是<code>栈结构的延迟缓冲的应用</code>。线性扫描算法模式中，<code>在预读足够长之后，方能确定可处理的前缀</code>  </p>
 <p>中缀表达式，最符合人们思维方式的一种表达式，操作符在操作数的中间。它的实现，<code>需要两个栈：操作数栈和运算符栈</code>。其中操作数栈用于<code>保存当前计算值</code>，运算符栈用于<code>处理优先级问题</code>。  </p>
 <p>后缀表达式，也称逆波兰表达式。不使用括号，即可表示带优先级的运算关系<br>。<code>它由运算符出现的先后次序，来决定运算的前后</code>。<code>不需要考虑优先级的问题，计算机处理起来便简单很多</code></p>
 <p>各编译器对四则运算表达式求值的实现也大同小异。基本思路都是，<code>先将中缀转后缀，然后利用逆波兰表达式进行运算</code>。<code>一个栈</code>即可搞定，简洁，高效。</p>
 <p>优先级的处理，<code>利用枚举的特性，通过字符二维数组，存放两运算符比较的运算结果</code>。注意枚举的写法，还可以这样玩。 </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N_OPTR 9 <span class="comment">//运算符总数</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123; ADD, SUB, MUL, DIV, POW, FAC, L_P, R_P, EOE &#125; Operator; <span class="comment">//运算符集合</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span> pri[N_OPTR][N_OPTR] = &#123; <span class="comment">//运算符优先等级 [栈顶] [当前]</span></div><div class="line">   <span class="comment">/*              |-------------------- 当 前 运 算 符 --------------------| */</span></div><div class="line">   <span class="comment">/*              +      -      *      /      ^      !      (      )      \0 */</span></div><div class="line">   <span class="comment">/* --  + */</span>    <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,</div><div class="line">   <span class="comment">/* |   - */</span>    <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,</div><div class="line">   <span class="comment">/* 栈  * */</span>    <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,</div><div class="line">   <span class="comment">/* 顶  / */</span>    <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,</div><div class="line">   <span class="comment">/* 运  ^ */</span>    <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,</div><div class="line">   <span class="comment">/* 算  ! */</span>    <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,   <span class="string">' '</span>,   <span class="string">'&gt;'</span>,   <span class="string">'&gt;'</span>,</div><div class="line">   <span class="comment">/* 符  ( */</span>    <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'='</span>,   <span class="string">' '</span>,</div><div class="line">   <span class="comment">/* |   ) */</span>    <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,   <span class="string">' '</span>,</div><div class="line">   <span class="comment">/* -- \0 */</span>    <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">'&lt;'</span>,   <span class="string">' '</span>,   <span class="string">'='</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function">Operator <span class="title">optr2rank</span> <span class="params">( <span class="keyword">char</span> op )</span> </span>&#123; <span class="comment">//由运算符转译出编号</span></div><div class="line">   <span class="keyword">switch</span> ( op ) &#123;<span class="comment">//无需break,直接返回</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'+'</span> : <span class="keyword">return</span> ADD; <span class="comment">//加</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'-'</span> : <span class="keyword">return</span> SUB; <span class="comment">//减</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'*'</span> : <span class="keyword">return</span> MUL; <span class="comment">//乘</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'/'</span> : <span class="keyword">return</span> DIV; <span class="comment">//除</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'^'</span> : <span class="keyword">return</span> POW; <span class="comment">//乘方</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'!'</span> : <span class="keyword">return</span> FAC; <span class="comment">//阶乘</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'('</span> : <span class="keyword">return</span> L_P; <span class="comment">//左括号</span></div><div class="line">      <span class="keyword">case</span> <span class="string">')'</span> : <span class="keyword">return</span> R_P; <span class="comment">//右括号</span></div><div class="line">      <span class="keyword">case</span> <span class="string">'\0'</span>: <span class="keyword">return</span> EOE; <span class="comment">//起始符与终止符</span></div><div class="line">      <span class="keyword">default</span>  : <span class="built_in">exit</span> ( <span class="number">-1</span> ); <span class="comment">//未知运算符</span></div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">char</span> <span class="title">orderBetween</span> <span class="params">( <span class="keyword">char</span> op1, <span class="keyword">char</span> op2 )</span> <span class="comment">//比较两个运算符之间的优先级</span></span></div><div class="line">&#123; <span class="keyword">return</span> pri[optr2rank ( op1 ) ][optr2rank ( op2 ) ]; &#125;</div></pre></td></tr></table></figure>
-<p>按<code>特定地格式将操作数接至RPN末尾</code>，由中序得到后序表达式<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">append</span> <span class="params">( <span class="keyword">char</span>*&amp; rpn, <span class="keyword">float</span> opnd )</span> </span>&#123; <span class="comment">//将操作数接至RPN末尾</span></div><div class="line">    <span class="comment">//strlen函数返回字符串的长度</span></div><div class="line">    <span class="keyword">int</span> n = <span class="built_in">strlen</span> ( rpn ); <span class="comment">//RPN当前长度（以'\0'结尾，长度n + 1）</span></div><div class="line">    <span class="keyword">char</span> buf[<span class="number">64</span>];</div><div class="line">    <span class="keyword">if</span> ( opnd != ( <span class="keyword">float</span> ) ( <span class="keyword">int</span> ) opnd )</div><div class="line">        <span class="comment">//sprintf的作用是将一个格式化的字符串输出到一个目的字符串中</span></div><div class="line">        <span class="built_in">sprintf</span> ( buf, <span class="string">"%.2f \0"</span>, opnd ); <span class="comment">//浮点格式，或</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">sprintf</span> ( buf, <span class="string">"%d \0"</span>, ( <span class="keyword">int</span> ) opnd ); <span class="comment">//整数格式</span></div><div class="line">    <span class="comment">//重新分配内存时，记得给结束符分配一个单元的空间</span></div><div class="line">    rpn = ( <span class="keyword">char</span>* ) <span class="built_in">realloc</span> ( rpn, <span class="keyword">sizeof</span> ( <span class="keyword">char</span> ) * ( n + <span class="built_in">strlen</span> ( buf ) + <span class="number">1</span> ) ); <span class="comment">//扩展空间</span></div><div class="line">    <span class="built_in">strcat</span> ( rpn, buf ); <span class="comment">//RPN加长</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<pre><code class="lang-C++">#define N_OPTR 9 //运算符总数
+typedef enum { ADD, SUB, MUL, DIV, POW, FAC, L_P, R_P, EOE } Operator; //运算符集合
+const char pri[N_OPTR][N_OPTR] = { //运算符优先等级 [栈顶] [当前]
+   /*              |-------------------- 当 前 运 算 符 --------------------| */
+   /*              +      -      *      /      ^      !      (      )      \0 */
+   /* --  + */    &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,
+   /* |   - */    &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,
+   /* 栈  * */    &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,
+   /* 顶  / */    &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,
+   /* 运  ^ */    &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,
+   /* 算  ! */    &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,   &#39; &#39;,   &#39;&gt;&#39;,   &#39;&gt;&#39;,
+   /* 符  ( */    &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;=&#39;,   &#39; &#39;,
+   /* |   ) */    &#39; &#39;,   &#39; &#39;,   &#39; &#39;,   &#39; &#39;,   &#39; &#39;,   &#39; &#39;,   &#39; &#39;,   &#39; &#39;,   &#39; &#39;,
+   /* -- \0 */    &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39;&lt;&#39;,   &#39; &#39;,   &#39;=&#39;
+};
+
+Operator optr2rank ( char op ) { //由运算符转译出编号
+   switch ( op ) {//无需break,直接返回
+      case &#39;+&#39; : return ADD; //加
+      case &#39;-&#39; : return SUB; //减
+      case &#39;*&#39; : return MUL; //乘
+      case &#39;/&#39; : return DIV; //除
+      case &#39;^&#39; : return POW; //乘方
+      case &#39;!&#39; : return FAC; //阶乘
+      case &#39;(&#39; : return L_P; //左括号
+      case &#39;)&#39; : return R_P; //右括号
+      case &#39;\0&#39;: return EOE; //起始符与终止符
+      default  : exit ( -1 ); //未知运算符
+   }
+}
+
+char orderBetween ( char op1, char op2 ) //比较两个运算符之间的优先级
+{ return pri[optr2rank ( op1 ) ][optr2rank ( op2 ) ]; }
+</code></pre>
+<p>按<code>特定地格式将操作数接至RPN末尾</code>，由中序得到后序表达式</p>
+<pre><code class="lang-C++">void append ( char*&amp; rpn, float opnd ) { //将操作数接至RPN末尾
+    //strlen函数返回字符串的长度
+    int n = strlen ( rpn ); //RPN当前长度（以&#39;\0&#39;结尾，长度n + 1）
+    char buf[64];
+    if ( opnd != ( float ) ( int ) opnd )
+        //sprintf的作用是将一个格式化的字符串输出到一个目的字符串中
+        sprintf ( buf, &quot;%.2f \0&quot;, opnd ); //浮点格式，或
+    else
+        sprintf ( buf, &quot;%d \0&quot;, ( int ) opnd ); //整数格式
+    //重新分配内存时，记得给结束符分配一个单元的空间
+    rpn = ( char* ) realloc ( rpn, sizeof ( char ) * ( n + strlen ( buf ) + 1 ) ); //扩展空间
+    strcat ( rpn, buf ); //RPN加长
+}
+</code></pre>
 <p><code>char*&amp; rpn</code> 指针的引用，指针引用作为形参时，<code>改变形参的指针，同时实参的指针也发生改变</code>；<code>char* rpn</code> 改变形参的指针，实参的指针不改变</p>
 <p><code>sprintf函数</code>每次读取操作数放入buf数组中，并<code>在操作数后面添加空格和结束符</code>。<code>strcat连接rpn和buf两个字符串</code>，使用时需要注意，不要超过dest数组的大小</p>
-<p>剔除输入字符串中的白空格。简化运算过程中，<code>入栈时对空白字符检查操作</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span>* <span class="title">removeSpace</span> <span class="params">( <span class="keyword">char</span>* s )</span> </span>&#123; <span class="comment">//剔除s[]中的白空格</span></div><div class="line">    <span class="keyword">char</span>* p = s, *q = s;</div><div class="line">    <span class="keyword">while</span> ( <span class="literal">true</span> )</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">while</span> ( <span class="built_in">isspace</span> ( *q ) ) q++;</div><div class="line">        <span class="keyword">if</span> ( <span class="string">'\0'</span> == *q )</div><div class="line">        &#123;</div><div class="line">            *p = <span class="string">'\0'</span>;</div><div class="line">            <span class="keyword">return</span> s;</div><div class="line">        &#125;</div><div class="line">        *(p++) = *(q++);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>指针q跳过空格，将字符不断复制到指针p</code>，通过p，q将相应位置上的内存内容修改，<code>所以最终只需返回s即可</code></p>
-<p>解析字符中的数字(<code>整数或浮点数</code>)，并存入操作数栈<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">readNumber</span> <span class="params">( <span class="keyword">char</span>*&amp; p, Stack&lt;<span class="keyword">float</span>&gt;&amp; stk )</span> <span class="comment">//p为指针引用，stk为引用</span></span></div><div class="line">&#123; <span class="comment">//将起始于p的子串解析为数值，并存入操作数栈</span></div><div class="line">    stk.push ( ( *p - <span class="string">'0'</span> ) ); <span class="comment">//当前数位对应的数值进栈</span></div><div class="line">    <span class="keyword">while</span> ( <span class="built_in">isdigit</span> ( * ( ++p ) ) ) <span class="comment">//只要后续还有紧邻的数字（即多位整数的情况），则</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> top = stk.top();</div><div class="line">        stk.pop();</div><div class="line">        stk.push ( top * <span class="number">10</span> + ( *p - <span class="string">'0'</span> ) ); <span class="comment">//弹出原操作数并追加新数位后，新数值重新入栈</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> ( <span class="string">'.'</span> != *p ) <span class="keyword">return</span>; <span class="comment">//此后非小数点，则意味着当前操作数解析完成</span></div><div class="line">    <span class="keyword">float</span> fraction = <span class="number">1</span>; <span class="comment">//否则，意味着还有小数部分</span></div><div class="line">    <span class="keyword">while</span> ( <span class="built_in">isdigit</span> ( * ( ++p ) ) ) <span class="comment">//逐位加入</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">float</span> top = stk.top(); <span class="comment">//top值为float型</span></div><div class="line">        stk.pop();</div><div class="line">        stk.push ( top + ( *p - <span class="string">'0'</span> ) * ( fraction /= <span class="number">10</span> ) ); <span class="comment">//小数部分</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>%.2f 格式符</code>，只取<code>小数点后</code>2位有效数字，<code>不够补0</code>。<br>float小数点<code>前后</code>加起来有效数字共<code>6位</code>；double小数<code>前后</code>加起来的有效数字共<code>16位</code></p>
-<p>中序表达式求值，并实现中缀转后缀<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">evaluate</span><span class="params">(<span class="keyword">char</span> *S, <span class="keyword">char</span> *&amp;RPN)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">float</span>&gt; opnd; <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; optr;</div><div class="line">    optr.push(<span class="string">'\0'</span>); <span class="comment">//尾哨兵'\0'也作为头哨兵首先入栈，使得‘\0’与括号的处理方式统一起来</span></div><div class="line">    <span class="keyword">while</span> (!optr.empty())<span class="comment">//在运算符栈非空之前，逐个处理表达式中各字符</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isdigit</span>(*S))</div><div class="line">        &#123;</div><div class="line">            readNumber(S, opnd); <span class="comment">//读取数字</span></div><div class="line">            append_opnd(RPN, *S);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">switch</span> (orderBetween(optr.top(), *S)) <span class="comment">//栈顶运算符与当前运算符之间优先级高低分别处理</span></div><div class="line">            &#123;</div><div class="line">                <span class="keyword">case</span> <span class="string">'&lt;'</span> :</div><div class="line">                    optr.push(*S);</div><div class="line">                    S++;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                    </div><div class="line">                <span class="keyword">case</span> <span class="string">'='</span> :</div><div class="line">                    optr.pop();</div><div class="line">                    S++;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                    </div><div class="line">                <span class="keyword">case</span> <span class="string">'&gt;'</span> : <span class="comment">//当前运算符，并不急着入栈。与后序栈顶不断比较</span></div><div class="line">                    &#123;</div><div class="line">                        <span class="keyword">char</span> op = optr.top(); optr.pop();</div><div class="line">                        append_optr(RPN, op); <span class="comment">//将高优先级的栈顶运算符加入RPN中</span></div><div class="line">                        <span class="keyword">if</span>(*S == <span class="string">'!'</span>)<span class="comment">//一元运算符</span></div><div class="line">                        &#123;</div><div class="line">                            <span class="keyword">float</span> Opnd = opnd.top(); opnd.pop();</div><div class="line">                            calcu1(Opnd, op);</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">else</span><span class="comment">//二元运算符</span></div><div class="line">                        &#123;</div><div class="line">                            <span class="keyword">float</span> Opnd1 = opnd.top(); opnd.pop();</div><div class="line">                            <span class="keyword">float</span> Opnd2 = opnd.top(); opnd.pop();</div><div class="line">                            calcu2(Opnd1, op, Opnd2);</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                    </div><div class="line">                <span class="keyword">default</span>: <span class="comment">//语法错误，直接-1退出</span></div><div class="line">                    <span class="built_in">exit</span>(<span class="number">-1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> opnd.top();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>optr.push(&#39;\0&#39;);</code>尾哨兵’\0’也作为头哨兵首先入栈，<code>使得‘\0’与括号的处理方式统一起来</code>；求值过程的终止条件，<code>运算符栈非空之前</code>，逐个处理表达式中各字符；<code>case:&#39;&gt;&#39;当前运算符，并不急着入栈</code>，与后序栈顶不断比较。</p>
-<p>中缀转后缀的<code>两个时机</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">isdigit</span>(*S))</div><div class="line">&#123;</div><div class="line">    readNumber(S, opnd); <span class="comment">//读取数字</span></div><div class="line">    append_opnd(RPN, *S);</div><div class="line">&#125;</div><div class="line">append_optr(RPN, op); <span class="comment">//将高优先级的栈顶运算符加入RPN中</span></div></pre></td></tr></table></figure></p>
-<h3 id="C-语法小知识"><a href="#C-语法小知识" class="headerlink" title="C++语法小知识"></a>C++语法小知识</h3><p>realloc函数<code>重新分配内存空间</code>，ptr为需要重新分配的内存空间指针，size为新的内存空间的大小。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span>* <span class="title">realloc</span> <span class="params">(<span class="keyword">void</span>* ptr, <span class="keyword">size_t</span> size)</span></span>;</div></pre></td></tr></table></figure></p>
-<p>sprintf<code>将一个格式化的字符串输出到一个目的字符串中</code>；snprintf可以认为是sprintf()的升级版，比sprintf()多了一个参数，<code>能够控制要写入的字符串的长度</code>，更加安全，只要稍加留意，不会造成缓冲区的溢出。</p>
-<p>优先级小问题<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *s = <span class="string">"ab"</span>;</div><div class="line"><span class="built_in">cout</span> &lt;&lt;  *s++ &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//++的优先级大于*，输出a</span></div><div class="line"><span class="built_in">cout</span> &lt;&lt; *s &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//输出b</span></div></pre></td></tr></table></figure></p>
-<p>case语句<code>含语句块的写法</code>，使得代码结构更加清晰。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'&gt;'</span> :&#123;&#125; <span class="keyword">break</span>;</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/面试-算法/" rel="tag"># 面试 算法</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/04/23/算法/Leetcode/字符串相似度-编辑距离/" rel="next" title="字符串相似度(编辑距离)">
-                <i class="fa fa-chevron-left"></i> 字符串相似度(编辑距离)
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/31/语言/char-a-与-char-a/" rel="prev" title="char *a 与 char a[]的区别">
-                char *a 与 char a[]的区别 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-          
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/04/30/算法/Leetcode/表达式求值/"
-           data-title="表达式求值" data-url="https://murfyexp.github.io/2017/04/30/算法/Leetcode/表达式求值/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg"
-               alt="Shaojie Li" />
-          <p class="site-author-name" itemprop="name">Shaojie Li</p>
-          <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
-        </div>
-        <nav class="site-state motion-element">
-        
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/MURFYEXP" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/li-mou-mou-70-27/activities" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-zhihu"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-语法小知识"><span class="nav-number">3.</span> <span class="nav-text">C++语法小知识</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shaojie Li</span>
-</div>
- 
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp本站总访问量-  <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
-
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"murfyexp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("WfBS1ifUUJOtUR6mzH6R99xj-gzGzoHsz", "PDbiB2ikYOANK9s4yVXfOTH9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
+<p>剔除输入字符串中的白空格。简化运算过程中，<code>入栈时对空白字符检查操作</code></p>
+<pre><code class="lang-C++">char* removeSpace ( char* s ) { //剔除s[]中的白空格
+    char* p = s, *q = s;
+    while ( true )
+    {
+        while ( isspace ( *q ) ) q++;
+        if ( &#39;\0&#39; == *q )
+        {
+            *p = &#39;\0&#39;;
+            return s;
         }
-      });
+        *(p++) = *(q++);
     }
+}
+</code></pre>
+<p><code>指针q跳过空格，将字符不断复制到指针p</code>，通过p，q将相应位置上的内存内容修改，<code>所以最终只需返回s即可</code></p>
+<p>解析字符中的数字(<code>整数或浮点数</code>)，并存入操作数栈</p>
+<pre><code class="lang-C++">void readNumber ( char*&amp; p, Stack&lt;float&gt;&amp; stk ) //p为指针引用，stk为引用
+{ //将起始于p的子串解析为数值，并存入操作数栈
+    stk.push ( ( *p - &#39;0&#39; ) ); //当前数位对应的数值进栈
+    while ( isdigit ( * ( ++p ) ) ) //只要后续还有紧邻的数字（即多位整数的情况），则
+    {
+        int top = stk.top();
+        stk.pop();
+        stk.push ( top * 10 + ( *p - &#39;0&#39; ) ); //弹出原操作数并追加新数位后，新数值重新入栈
+    }
+    if ( &#39;.&#39; != *p ) return; //此后非小数点，则意味着当前操作数解析完成
+    float fraction = 1; //否则，意味着还有小数部分
+    while ( isdigit ( * ( ++p ) ) ) //逐位加入
+    {
+        float top = stk.top(); //top值为float型
+        stk.pop();
+        stk.push ( top + ( *p - &#39;0&#39; ) * ( fraction /= 10 ) ); //小数部分
+    }
+}
+</code></pre>
+<p><code>%.2f 格式符</code>，只取<code>小数点后</code>2位有效数字，<code>不够补0</code>。<br>float小数点<code>前后</code>加起来有效数字共<code>6位</code>；double小数<code>前后</code>加起来的有效数字共<code>16位</code></p>
+<p>中序表达式求值，并实现中缀转后缀</p>
+<pre><code class="lang-C++">float evaluate(char *S, char *&amp;RPN)
+{
+    stack&lt;float&gt; opnd; stack&lt;char&gt; optr;
+    optr.push(&#39;\0&#39;); //尾哨兵&#39;\0&#39;也作为头哨兵首先入栈，使得‘\0’与括号的处理方式统一起来
+    while (!optr.empty())//在运算符栈非空之前，逐个处理表达式中各字符
+    {
+        if (isdigit(*S))
+        {
+            readNumber(S, opnd); //读取数字
+            append_opnd(RPN, *S);
+        }
+        else
+        {
+            switch (orderBetween(optr.top(), *S)) //栈顶运算符与当前运算符之间优先级高低分别处理
+            {
+                case &#39;&lt;&#39; :
+                    optr.push(*S);
+                    S++;
+                    break;
 
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
+                case &#39;=&#39; :
+                    optr.pop();
+                    S++;
+                    break;
 
+                case &#39;&gt;&#39; : //当前运算符，并不急着入栈。与后序栈顶不断比较
+                    {
+                        char op = optr.top(); optr.pop();
+                        append_optr(RPN, op); //将高优先级的栈顶运算符加入RPN中
+                        if(*S == &#39;!&#39;)//一元运算符
+                        {
+                            float Opnd = opnd.top(); opnd.pop();
+                            calcu1(Opnd, op);
+                        }
+                        else//二元运算符
+                        {
+                            float Opnd1 = opnd.top(); opnd.pop();
+                            float Opnd2 = opnd.top(); opnd.pop();
+                            calcu2(Opnd1, op, Opnd2);
+                        }
+                    }
+                    break;
+
+                default: //语法错误，直接-1退出
+                    exit(-1);
+            }
+        }
+    }
+    return opnd.top();
+}
+</code></pre>
+<p><code>optr.push(&#39;\0&#39;);</code>尾哨兵’\0’也作为头哨兵首先入栈，<code>使得‘\0’与括号的处理方式统一起来</code>；求值过程的终止条件，<code>运算符栈非空之前</code>，逐个处理表达式中各字符；<code>case:&#39;&gt;&#39;当前运算符，并不急着入栈</code>，与后序栈顶不断比较。</p>
+<p>中缀转后缀的<code>两个时机</code></p>
+<pre><code class="lang-C++">if (isdigit(*S))
+{
+    readNumber(S, opnd); //读取数字
+    append_opnd(RPN, *S);
+}
+append_optr(RPN, op); //将高优先级的栈顶运算符加入RPN中
+</code></pre>
+<h3 id="C-语法小知识"><a href="#C-语法小知识" class="headerlink" title="C++语法小知识"></a>C++语法小知识</h3><p>realloc函数<code>重新分配内存空间</code>，ptr为需要重新分配的内存空间指针，size为新的内存空间的大小。</p>
+<pre><code class="lang-C++">void* realloc (void* ptr, size_t size);
+</code></pre>
+<p>sprintf<code>将一个格式化的字符串输出到一个目的字符串中</code>；snprintf可以认为是sprintf()的升级版，比sprintf()多了一个参数，<code>能够控制要写入的字符串的长度</code>，更加安全，只要稍加留意，不会造成缓冲区的溢出。</p>
+<p>优先级小问题</p>
+<pre><code class="lang-C++">char *s = &quot;ab&quot;;
+cout &lt;&lt;  *s++ &lt;&lt; endl; //++的优先级大于*，输出a
+cout &lt;&lt; *s &lt;&lt; endl;//输出b
+</code></pre>
+<p>case语句<code>含语句块的写法</code>，使得代码结构更加清晰。</p>
+<pre><code class="lang-C++">case &#39;&gt;&#39; :{} break;
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://murfyexp.github.io/2017/04/30/算法/Leetcode/表达式求值/" data-id="cjzbt3mzl0052z1xps7ne3nuc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试-算法/">面试 算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/31/语言/char-a-与-char-a/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          char *a 与 char a[]的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/23/算法/Leetcode/字符串相似度-编辑距离/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">字符串相似度(编辑距离)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DartNet网络协议栈/">DartNet网络协议栈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JOS操作系统/">JOS操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux网络编程/">Linux网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/miniftp服务器/">miniftp服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/muduo网络库/">muduo网络库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/再学C/">再学C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/模板与总结/">模板与总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法竞赛进阶指南/">算法竞赛进阶指南</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络编程/">网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/老李的杂货铺/">老李的杂货铺</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试算法/">面试算法</a></li></ul>
+    </div>
+  </div>
 
 
   
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux系统编程和网络编程/">Linux系统编程和网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小技巧/">小技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层网络库/">底层网络库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得体会/">心得体会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法/">数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构-算法-二分/">数据结构 算法 二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性代数/">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试-算法/">面试 算法</a></li></ul>
+    </div>
+  </div>
 
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux系统编程和网络编程/" style="font-size: 10px;">Linux系统编程和网络编程</a> <a href="/tags/OS/" style="font-size: 12.5px;">OS</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/底层网络库/" style="font-size: 15px;">底层网络库</a> <a href="/tags/心得体会/" style="font-size: 10px;">心得体会</a> <a href="/tags/数据结构-算法/" style="font-size: 16.25px;">数据结构 算法</a> <a href="/tags/数据结构-算法-二分/" style="font-size: 10px;">数据结构 算法 二分</a> <a href="/tags/概率论/" style="font-size: 10px;">概率论</a> <a href="/tags/线性代数/" style="font-size: 10px;">线性代数</a> <a href="/tags/编程语言/" style="font-size: 18.75px;">编程语言</a> <a href="/tags/网络/" style="font-size: 13.75px;">网络</a> <a href="/tags/网络编程/" style="font-size: 17.5px;">网络编程</a> <a href="/tags/软件/" style="font-size: 11.25px;">软件</a> <a href="/tags/面试-算法/" style="font-size: 20px;">面试 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
 
 
-  <!-- 页面点击小红心 -->
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/13/数学/极大似然估计的理解/">极大似然估计的理解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/算法/算法竞赛进阶指南/分形之城/">分形之城</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/06/数学/矩阵旋转/">矩阵旋转</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/06/算法/算法竞赛进阶指南/递归求解等比数列求和/">递归求解等比数列求和</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/05/杂货铺/hexo的LaTeX渲染问题/">hexo的LaTeX渲染问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
-  <!-- 背景动画 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Shaojie Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

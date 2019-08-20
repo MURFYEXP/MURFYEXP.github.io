@@ -293,6 +293,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shaojie Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大傻与小火机写字的地方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/" itemprop="url">套接字I/O超时设置方法和用select实现超时 connect机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T18:22:09-07:00">
+                2018-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="使用alarm函数设置超时"><a href="#使用alarm函数设置超时" class="headerlink" title="使用alarm函数设置超时"></a>使用alarm函数设置超时</h3><pre><code class="lang-C">void handler(int sig)
+{
+}
+signal(SIGALRM, handler);
+
+alarm(5);
+int ret = read(fd, buf, sizeof(buf));
+if (ret == -1 &amp;&amp; errno == EINTR) 
+    errno = ETIMEOUT;
+else if (ret &gt;= 0)
+    alarm(0);
+</code></pre>
+<p>EINTR为中断信号，如果read在5s内被SIGALRM信号中断而返回，则表示超时，否则未超时已读取到数据，取消闹钟。但这种方法不常用，因为有时可能在其他地方使用了alarm会造成混乱。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/07/linux网络编程/套接字I:O超时设置方法和用select实现超时 connect机制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/05/06/linux网络编程/shutdown与close函数的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1699,163 +1867,6 @@ int getsockname(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2018/04/25/杂货铺/一次调试代码的失败经历/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shaojie Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大傻与小火机写字的地方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/杂货铺/一次调试代码的失败经历/" itemprop="url">一次调试代码的失败经历</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T22:24:12-07:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/老李的杂货铺/" itemprop="url" rel="index">
-                    <span itemprop="name">老李的杂货铺</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/杂货铺/一次调试代码的失败经历/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/杂货铺/一次调试代码的失败经历/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>事故背景：因为新的需求，所以在原有的代码上，一次性地改动了多个文件。初看返回的报错，定位到相应的代码，逻辑上并看不出什么问题。此程序是一个动态库，直接放在客户那边的服务器上跑，也就不能断点调试了。唯一的调试手段，就是在可疑的地方加上日志。</p>
-<p>由于改动的地方太多，直接看相应地代码处，又死活看不出问题来。无奈，选择了用最卖力的方法：一个文件一个地替换，最终定位出问题文件，接着锁定问题代码。但是大把的时间，就这样在试的过程中浪费掉了。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/25/杂货铺/一次调试代码的失败经历/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1910,7 +1921,7 @@ int getsockname(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1921,7 +1932,7 @@ int getsockname(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1932,7 +1943,7 @@ int getsockname(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

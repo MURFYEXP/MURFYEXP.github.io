@@ -293,6 +293,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/03/15/操作系统/内存管理(页表管理)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shaojie Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大傻与小火机写字的地方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/15/操作系统/内存管理(页表管理)/" itemprop="url">内存管理(页表管理)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T17:27:09-07:00">
+                2017-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JOS操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">JOS操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/15/操作系统/内存管理(页表管理)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/15/操作系统/内存管理(页表管理)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在<code>boot/boot.S文件</code>中，引入了一个全局描述符表，这个表<code>把所有的段的基址设置为0，界限设置为0xffffffff=4GB的方式，关闭了分段管理的功能</code>。因此虚拟地址中的段选择子字段的内容没有意义，<code>线性地址的值总是等于虚拟地址中段内偏移的值</code></p>
+<pre><code class="lang-x86asm">gdt:
+  SEG_NULL                # null seg
+  SEG(STA_X|STA_R, 0x0, 0xffffffff)        # code seg
+  SEG(STA_W, 0x0, 0xffffffff)            # data seg
+</code></pre>
+<h3 id="虚拟地址，线性地址与物理地址"><a href="#虚拟地址，线性地址与物理地址" class="headerlink" title="虚拟地址，线性地址与物理地址"></a>虚拟地址，线性地址与物理地址</h3><p>虚拟地址(Virtual Address)是由两部分组成：<code>段选择子(segment selector)和段内偏移(segment offset)</code><br>线性地址(Linear Address)指的是<code>通过段地址转换机制把虚拟地址进行转换之后得到的地址</code><br>物理地址(Physical Addresses)是<code>分页地址转换机制把线性地址进行转换之后得到的真实的内存地址</code><br>逻辑地址：<code>虚拟地址中的段内偏移</code></p>
+<p>整个流程是虚拟地址先经过分段机制转化成线性地址，之后再通过分页机制转化为物理地址。<br><img src="/images/JOS/地址转换.png" alt=""></p>
+<p>一旦<code>进入保护模式</code>，我们就不能直接使用线性地址或者物理地址了。<code>所有代码中的地址引用都是虚拟地址的形式，然后被MMU系统所转换，所以C语言中的指针其实都是虚拟地址</code></p>
+<h3 id="页表管理机制"><a href="#页表管理机制" class="headerlink" title="页表管理机制"></a>页表管理机制</h3><p>管理页表相关的函数：</p>
+<blockquote>
+<ul>
+<li>pgdir_walk()  </li>
+<li>boot_map_region()   </li>
+<li>page_lookup()   </li>
+<li>page_remove()   </li>
+<li>page_insert()</li>
+</ul>
+</blockquote>
+<p>JOS中采用的是二级页表结构，根据va高10位得到页目录表项，<code>从一级页表里得到页表物理地址</code>，再根据va接下去的10位得到页表表项，<code>得到页物理地址</code>，最后根据最后12位页内偏移，<code>得到最终的物理地址</code><br><img src="/images/JOS/线性地址结构.png" alt=""></p>
+<p>为了方便我们实现页表管理，inc/mmu.h提供了几个有用的宏来帮助我们操作地址：</p>
+<pre><code>PGNUM(la)：物理地址的页号
+PDX(la)：线性地址的页目录表项
+PTX(la)：线性地址的页表表项
+PGOFF(la)：线性地址的页内偏移
+PTE_ADDR(pte)：页表表项/页目录表项的物理地址
+</code></pre><p>由于现在还没通过<code>%cr3激活页表</code>，因此现在的地址映射依然是<code>之前的[KERNBASE, KERNBASE + 4MB)到[0, 4MB)</code>。为了方便实现当前物理地址、页信息结构  、虚拟地址之间的转换，kern/pmap.h中也提供了一些有用的宏和函数：</p>
+<pre><code>PADDR(kva)：虚拟地址对应的物理地址
+KADDR(pa)：物理地址对应的虚拟地址
+page2pa(pp)：页结构pp所对应的物理页地址
+page2kva(pp)：获取页结构pp对应的虚拟地址
+pa2page(pa)：物理地址所在的物理页的页结构pp
+</code></pre><h4 id="页面管理函数的实现"><a href="#页面管理函数的实现" class="headerlink" title="页面管理函数的实现"></a>页面管理函数的实现</h4><p>其实我们只需<code>页面插入与页面删除两个函数即可实现页面管理的工作</code>，下面通过函数原型，函数功能，以及函数实现三个方面来一一分析页面管理函数。</p>
+<p><code>pgdir_walk()函数</code><br>函数原型：pgdir_walk(pde_t <em>pgdir, const void </em>va, int create)<br>函数功能：<code>返回线性地址对应的页表项(PTE)的虚拟地址</code></p>
+<p>create 标志是1，如果当前va地址所属的页不存在，那么申请开辟这页<br>create 标志是0，仅仅是查询va地址所属的页是否存在。存在就返回对应的page table的入口地址，不存在就返回NULL</p>
+<pre><code class="lang-C">pte_t * pgdir_walk(pde_t *pgdir, const void * va, int create)
+{
+      unsigned int page_off;
+      pte_t * page_base = NULL;
+      struct PageInfo* new_page = NULL;
+
+      unsigned int dic_off = PDX(va);
+      pde_t * dic_entry_ptr = pgdir + dic_off;
+
+      if(!(*dic_entry_ptr &amp; PTE_P))
+      {
+            if(create)
+            {
+                   new_page = page_alloc(1);
+                   if(new_page == NULL) return NULL;
+                   new_page-&gt;pp_ref++;
+                   *dic_entry_ptr = (page2pa(new_page) | PTE_P | PTE_W | PTE_U);
+            }
+           else
+               return NULL;      
+      }  
+
+      page_off = PTX(va);
+      page_base = KADDR(PTE_ADDR(*dic_entry_ptr));
+      return &amp;page_base[page_off];
+}
+</code></pre>
+<p><code>boot_map_region()函数</code><br>函数原型：static void boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm)<br>函数功能：<code>完成虚拟地址到物理地址的映射过程</code>，将虚拟地址空间范围[va, va+size)映射到物理空间[pa,pa+size)的映射关系<code>加入到页表中</code></p>
+<p>这个函数主要的目的是<code>为了设置虚拟地址UTOP之上的地址范围</code>，这一部分的地址映射是静态的，<code>在操作系统的运行过程中不会改变</code>，这些页PageInfo的pp_ref域的值不会改变</p>
+<p>在每一轮中，把一个虚拟页和物理页的映射关系存放到响应的页表项中。直到把size个字节的内存都分配完。</p>
+<pre><code class="lang-C">static void boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm)
+{
+    int nadd;
+    pte_t *entry = NULL;
+    for(nadd = 0; nadd &lt; size; nadd += PGSIZE)
+    {
+        entry = pgdir_walk(pgdir,(void *)va, 1);    //Get the table entry of this page.
+        *entry = (pa | perm | PTE_P);
+        pa += PGSIZE;
+        va += PGSIZE;
+    }
+}
+</code></pre>
+<p><code>page_insert()函数</code><br>函数原型：page_insert(pde_t <em>pgdir, struct PageInfo </em>pp, void *va, int perm)<br>函数功能：<code>物理内存中页pp与虚拟地址va建立映射关系</code></p>
+<p>如果va所在的虚拟内存页不存在，那么pgdir_walk的create为1，创建这个虚拟页。如果va所在的虚拟内存页存在，那么取消当前va的虚拟内存页也和之前物理页的关联，并且为va建立新的物理页联系</p>
+<p><code>pp-&gt;pp_ref++语句需要放在page_remove之前</code>，在虚拟内存页已经存在的情况，pp被释放，从而导致无法访问。</p>
+<pre><code class="lang-C">int page_insert(pde_t *pgdir, struct PageInfo *pp, void *va, int perm)
+{
+    pte_t *entry = NULL;
+    entry =  pgdir_walk(pgdir, va, 1);    //Get the mapping page of this address va.
+    if(entry == NULL) return -E_NO_MEM;
+
+    pp-&gt;pp_ref++;
+    if((*entry) &amp; PTE_P)             //If this virtual address is already mapped.
+    {
+        tlb_invalidate(pgdir, va);
+        page_remove(pgdir, va);
+    }
+    *entry = (page2pa(pp) | perm | PTE_P);
+    pgdir[PDX(va)] |= perm;                  //Remember this step!
+
+    return 0;
+}
+</code></pre>
+<p><code>page_lookup()函数</code><br>函数原型：struct PageInfo <em> page_lookup(pde_t </em>pgdir, void <em>va, pte_t *</em>pte_store)<br>函数功能：<code>根据虚拟地址va返回它映射的物理页信息</code></p>
+<p>调用pgdir_walk函数获取这个va对应的页表项，然后判断这个页是否已经在内存中，如果在则返回这个页的PageInfo结构体指针。并且把这个页表项的内容存放到pte_store中。</p>
+<p><code>疑问：pte_store设置成二级指针的意义何在？</code></p>
+<pre><code class="lang-C">struct PageInfo * page_lookup(pde_t *pgdir, void *va, pte_t **pte_store)
+{
+    pte_t *entry = NULL;
+    struct PageInfo *ret = NULL;
+
+    entry = pgdir_walk(pgdir, va, 0);
+    if(entry == NULL)
+        return NULL;
+    if(!(*entry &amp; PTE_P))
+        return NULL;
+
+    ret = pa2page(PTE_ADDR(*entry));
+    if(pte_store != NULL)
+    {
+        *pte_store = entry;
+    }
+    return ret;
+}
+</code></pre>
+<p><code>page_remove()函数</code><br>函数原型：void page_remove(pde_t <em>pgdir, void </em>va)<br>函数功能：<code>取消虚拟地址va对应的物理页的映射关系</code></p>
+<p>利用page_lookup()找到这个物理页使它无效，同时要将tlb中的对应条目无效。<code>pp_ref减一，*pte = 0；将此页对应的页表项置0，页面回收</code></p>
+<pre><code class="lang-C">void page_remove(pde_t *pgdir, void *va)
+{
+    pte_t *pte = NULL;
+    struct PageInfo *page = page_lookup(pgdir, va, &amp;pte);
+    if(page == NULL) return ;    
+
+    page_decref(page);
+    tlb_invalidate(pgdir, va);
+    *pte = 0;
+}
+</code></pre>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/03/14/linux网络编程/TCP协议产生的粘包问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2398,164 +2683,6 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://murfyexp.github.io/2017/02/27/算法/Leetcode/8-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shaojie Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://pic2.zhimg.com/85f345ee7c2ac6bf572a9a41895a4be5_200x112.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大傻与小火机写字的地方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/27/算法/Leetcode/8-5/" itemprop="url">二叉树中累加和为指定值的最长路径</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T13:07:42-08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/面试算法/" itemprop="url" rel="index">
-                    <span itemprop="name">面试算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/27/算法/Leetcode/8-5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/算法/Leetcode/8-5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><pre><code>给定一棵二叉树的头节点head和一个32位整数sum,二叉树节点值类型为整型，求累加和为sum的最长路径长度.  
-路径是指从某个节点往下,每次最多选择一个孩子节点或者不选所形成的节点链
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/27/算法/Leetcode/8-5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2610,7 +2737,7 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2621,7 +2748,7 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2632,7 +2759,7 @@ PROT_MODE_CSEG被当作段选择子，而protcseg是偏移地址</code>。段选
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

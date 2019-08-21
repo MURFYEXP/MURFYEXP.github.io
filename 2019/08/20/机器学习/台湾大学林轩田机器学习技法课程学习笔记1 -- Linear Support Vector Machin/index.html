@@ -111,14 +111,14 @@
 
 
 
-<meta name="description" content="台湾大学林轩田机器学习技法课程学习笔记1 — Linear Support Vector Machine本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。
-Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocke">
+<meta name="description" content="本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。
+Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocket算法在平面或者超平面上把正负类分开。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="台湾大学林轩田机器学习技法课程学习笔记1 -- Linear Support Vector Machine">
 <meta property="og:url" content="https://murfyexp.github.io/2019/08/20/机器学习/台湾大学林轩田机器学习技法课程学习笔记1 -- Linear Support Vector Machin/index.html">
 <meta property="og:site_name" content="大傻与小火机写字的地方">
-<meta property="og:description" content="台湾大学林轩田机器学习技法课程学习笔记1 — Linear Support Vector Machine本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。
-Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocke">
+<meta property="og:description" content="本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。
+Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocket算法在平面或者超平面上把正负类分开。">
 <meta property="og:image" content="http://img.blog.csdn.net/20170621075532782?">
 <meta property="og:image" content="http://img.blog.csdn.net/20170621080123771?">
 <meta property="og:image" content="http://img.blog.csdn.net/20170621082437517?">
@@ -140,11 +140,11 @@ Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classi
 <meta property="og:image" content="http://img.blog.csdn.net/20170621162739818?">
 <meta property="og:image" content="http://img.blog.csdn.net/20170621164552819?">
 <meta property="og:image" content="http://img.blog.csdn.net/20170621165105577?">
-<meta property="og:updated_time" content="2019-08-20T08:37:26.000Z">
+<meta property="og:updated_time" content="2019-08-21T03:17:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="台湾大学林轩田机器学习技法课程学习笔记1 -- Linear Support Vector Machine">
-<meta name="twitter:description" content="台湾大学林轩田机器学习技法课程学习笔记1 — Linear Support Vector Machine本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。
-Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocke">
+<meta name="twitter:description" content="本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。
+Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocket算法在平面或者超平面上把正负类分开。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20170621075532782?">
 
 
@@ -417,9 +417,9 @@ Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classi
       
 
       
-        <h3 id="台湾大学林轩田机器学习技法课程学习笔记1-—-Linear-Support-Vector-Machine"><a href="#台湾大学林轩田机器学习技法课程学习笔记1-—-Linear-Support-Vector-Machine" class="headerlink" title="台湾大学林轩田机器学习技法课程学习笔记1 — Linear Support Vector Machine"></a>台湾大学林轩田机器学习技法课程学习笔记1 — Linear Support Vector Machine</h3><p>本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。</p>
+        <p>本系列分成16节课，将会介绍《机器学习基石》的进阶版《机器学习技法》，更深入地探讨机器学习一些高级算法和技巧。</p>
 <h3 id="Large-Margin-Separating-Hyperplane"><a href="#Large-Margin-Separating-Hyperplane" class="headerlink" title="Large-Margin Separating Hyperplane"></a><strong>Large-Margin Separating Hyperplane</strong></h3><p>回顾一下我们之前介绍了linear classification，对于线性可分的情况，我们可以使用PLA/pocket算法在平面或者超平面上把正负类分开。</p>
-<p><img src="http://img.blog.csdn.net/20170621075532782?" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20170621075532782?" alt="这里写图片描述"><br><a id="more"></a></p>
 <p>例如对平面2D这种情况，我们可以找到一条直线，能将正类和负类完全分开。但是，这样的直线通常不止一条，如下图所示。那么，下图中的三条分类线都能将数据分开，但是哪条线更好呢？</p>
 <p><img src="http://img.blog.csdn.net/20170621080123771?" alt="这里写图片描述"></p>
 <p>这三条直线都是由PLA/pocket算法不断修正错误点而最终产生的，整个确定直线形状的过程是随机的。单从分类效果上看，这三条直线都满足要求，而且都满足VC bound要求，模型复杂度$\Omega(H)$是一样的，即具有一定的泛化能力。但是，如果要选择的话，凭第一感觉，我们还是会选择第三条直线，感觉它的分类效果更好一些。那这又是为什么呢？</p>
@@ -686,7 +686,7 @@ Large-Margin Separating Hyperplane回顾一下我们之前介绍了linear classi
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#台湾大学林轩田机器学习技法课程学习笔记1-—-Linear-Support-Vector-Machine"><span class="nav-number">1.</span> <span class="nav-text">台湾大学林轩田机器学习技法课程学习笔记1 — Linear Support Vector Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Margin-Separating-Hyperplane"><span class="nav-number">2.</span> <span class="nav-text">Large-Margin Separating Hyperplane</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-Large-Margin-Problem"><span class="nav-number">3.</span> <span class="nav-text">Standard Large-Margin Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Vector-Machine"><span class="nav-number">4.</span> <span class="nav-text">Support Vector Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reasons-behind-Large-Margin-Hyperplane"><span class="nav-number">5.</span> <span class="nav-text">Reasons behind Large-Margin Hyperplane</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Margin-Separating-Hyperplane"><span class="nav-number">1.</span> <span class="nav-text">Large-Margin Separating Hyperplane</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-Large-Margin-Problem"><span class="nav-number">2.</span> <span class="nav-text">Standard Large-Margin Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Vector-Machine"><span class="nav-number">3.</span> <span class="nav-text">Support Vector Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reasons-behind-Large-Margin-Hyperplane"><span class="nav-number">4.</span> <span class="nav-text">Reasons behind Large-Margin Hyperplane</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
